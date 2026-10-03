@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testomation — Architecture & Project Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #F0F1EC;
+    --surface-2: #E7E8E1;
+    --ink: #1A1D1B;
+    --muted: #6B7269;
+    --faint: #9EA39A;
+    --border: #D9DAD2;
+    --green: #3F7D58;
+    --green-bg: #E7EFE9;
+    --amber: #A66A2E;
+    --amber-bg: #F3E9DB;
+    --blue: #3D6B8C;
+    --blue-bg: #E6EEF2;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --sans: 'IBM Plex Sans', system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15171A;
+      --surface: #1C1F22;
+      --surface-2: #23262A;
+      --ink: #E9E7DF;
+      --muted: #9BA096;
+      --faint: #6B706A;
+      --border: #2C2F32;
+      --green: #74AF8B;
+      --green-bg: #1E2A22;
+      --amber: #D69A5D;
+      --amber-bg: #2C2419;
+      --blue: #86AFC9;
+      --blue-bg: #1C2731;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15171A;
+    --surface: #1C1F22;
+    --surface-2: #23262A;
+    --ink: #E9E7DF;
+    --muted: #9BA096;
+    --faint: #6B706A;
+    --border: #2C2F32;
+    --green: #74AF8B;
+    --green-bg: #1E2A22;
+    --amber: #D69A5D;
+    --amber-bg: #2C2419;
+    --blue: #86AFC9;
+    --blue-bg: #1C2731;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--green); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 40px 24px;
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+  }
+  .brand {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    margin-bottom: 4px;
+  }
+  .brand-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    max-width: 20ch;
+  }
+  .nav-list { list-style: none; margin: 0; padding: 0; }
+  .nav-list li { margin-bottom: 2px; }
+  .nav-list a {
+    display: block;
+    padding: 6px 10px;
+    margin: 0 -10px;
+    border-radius: 4px;
+    color: var(--muted);
+    font-size: 13.5px;
+    font-family: var(--mono);
+  }
+  .nav-list a:hover { background: var(--surface); text-decoration: none; color: var(--ink); }
+  .nav-list a.active { color: var(--ink); background: var(--surface-2); }
+  .nav-num { color: var(--faint); margin-right: 8px; }
+
+  .sidebar-foot {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--faint);
+    font-family: var(--mono);
+  }
+  .theme-toggle {
+    margin-top: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .theme-toggle:hover { color: var(--ink); }
+
+  /* ---------- Main ---------- */
+  main { padding: 64px 48px 120px; min-width: 0; }
+  .col { max-width: 700px; }
+
+  .hero { margin-bottom: 88px; }
+  .hero .eyebrow {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--green);
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 44px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0 0 20px;
+  }
+  .hero p.lede {
+    font-size: 19px;
+    color: var(--muted);
+    max-width: 58ch;
+    margin: 0;
+  }
+
+  section { margin-bottom: 92px; scroll-margin-top: 40px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-family: var(--mono);
+    color: var(--faint);
+    font-size: 14px;
+  }
+  h2 {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 22px;
+    margin: 0;
+  }
+  h3 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 17px;
+    margin: 0 0 8px;
+  }
+  p { margin: 0 0 16px; max-width: 68ch; }
+  .muted { color: var(--muted); }
+
+  /* pipeline steps */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 18px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--green);
+    padding-top: 3px;
+  }
+  .step h3 { margin-bottom: 6px; }
+  .step p { margin-bottom: 0; }
+
+  /* diagram */
+  .diagram {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px;
+    overflow-x: auto;
+  }
+  .diagram pre {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--muted);
+    white-space: pre;
+  }
+  .diagram-caption {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--faint);
+    margin-top: 14px;
+    margin-bottom: 0;
+  }
+
+  /* component cards */
+  .component {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .component:last-child { border-bottom: none; }
+  .component-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--green);
+    background: var(--green-bg);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  .choice-list {
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .choice-list li {
+    padding: 10px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    margin-bottom: 8px;
+    font-size: 14.5px;
+  }
+  .choice-list li strong { font-family: var(--mono); font-weight: 600; font-size: 13.5px; }
+
+  /* feature catalog */
+  .feature-intro { margin-bottom: 36px; }
+  .feature-group { margin-bottom: 40px; }
+  .feature-group:last-child { margin-bottom: 0; }
+  .feature-group-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .feature-group-head h3 { margin: 0; }
+  .feature-tag {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .tag-core { color: var(--green); background: var(--green-bg); }
+  .tag-later { color: var(--amber); background: var(--amber-bg); }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .feature-grid li {
+    padding: 12px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  .feature-grid li strong { display: block; font-size: 14px; margin-bottom: 3px; }
+  .feature-grid li span { color: var(--muted); font-size: 13px; }
+  .feature-grid .stretch { grid-column: 1 / -1; }
+
+  /* risk callouts */
+  .risk {
+    display: grid;
+    grid-template-columns: 3px 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .risk-bar { background: var(--amber); border-radius: 2px; }
+  .risk-body {
+    background: var(--amber-bg);
+    padding: 16px 20px;
+    border-radius: 0 5px 5px 0;
+  }
+  .risk-body h3 { margin-bottom: 6px; }
+  .risk-body p { margin-bottom: 0; color: var(--ink); opacity: 0.85; }
+
+  /* stack table */
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--faint);
+    font-weight: 500;
+  }
+  td:first-child { font-family: var(--mono); font-size: 13.5px; color: var(--ink); white-space: nowrap; }
+  td.opt { color: var(--muted); }
+  .table-wrap { overflow-x: auto; margin: 8px 0 28px; }
+  .table-wrap table { min-width: 560px; }
+
+  /* sub-headings, notes, code */
+  .subhead {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--green);
+    margin: 40px 0 14px;
+    letter-spacing: 0.02em;
+  }
+  .subhead:first-of-type { margin-top: 8px; }
+  .note {
+    background: var(--blue-bg);
+    border-left: 3px solid var(--blue);
+    padding: 14px 18px;
+    border-radius: 0 5px 5px 0;
+    font-size: 14.5px;
+    margin: 20px 0 0;
+    max-width: none;
+  }
+  .note strong { font-family: var(--mono); font-size: 13px; }
+  .code {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 20px;
+    overflow-x: auto;
+    margin: 0 0 20px;
+  }
+  .code pre {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--ink);
+    white-space: pre;
+  }
+  .code .c { color: var(--faint); }
+  code {
+    font-family: var(--mono);
+    font-size: 0.88em;
+    background: var(--surface-2);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  .new-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--blue);
+    background: var(--blue-bg);
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-left: 6px;
+    vertical-align: 2px;
+  }
+  .edge-list { list-style: none; padding: 0; margin: 0 0 8px; }
+  .edge-list li {
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 7px 0;
+    border-bottom: 1px dashed var(--border);
+    color: var(--muted);
+  }
+  .edge-list li b { color: var(--ink); font-weight: 600; }
+  .edge-list li em { color: var(--green); font-style: normal; }
+
+  /* roadmap */
+  .roadmap { position: relative; padding-left: 28px; }
+  .roadmap::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+    background: var(--border);
+  }
+  .phase { position: relative; padding-bottom: 32px; }
+  .phase:last-child { padding-bottom: 0; }
+  .phase::before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 4px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--green);
+  }
+  .phase-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+  .phase h3 { margin-bottom: 6px; }
+  .phase p { margin-bottom: 0; }
+
+  footer {
+    max-width: 700px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--faint);
+  }
+
+  /* mobile */
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar {
+      position: static;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: 24px;
+    }
+    .nav-list { display: flex; flex-wrap: wrap; gap: 4px; }
+    .nav-list li { margin: 0; }
+    .brand-sub { margin-bottom: 16px; }
+    main { padding: 48px 24px 80px; }
+    h1 { font-size: 32px; }
+    .step { grid-template-columns: 32px 1fr; }
+    .feature-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <nav class="sidebar" aria-label="Section navigation">
+    <div class="brand">TESTOMATION</div>
+    <div class="brand-sub">Architecture &amp; project brief</div>
+    <ul class="nav-list" id="navList">
+      <li><a href="#overview"><span class="nav-num">00</span>Overview</a></li>
+      <li><a href="#pipeline"><span class="nav-num">01</span>Pipeline</a></li>
+      <li><a href="#features"><span class="nav-num">02</span>Feature catalog</a></li>
+      <li><a href="#architecture"><span class="nav-num">03</span>Architecture</a></li>
+      <li><a href="#components"><span class="nav-num">04</span>Components</a></li>
+      <li><a href="#memory"><span class="nav-num">05</span>Memory graph</a></li>
+      <li><a href="#cost"><span class="nav-num">06</span>Cost strategy</a></li>
+      <li><a href="#observability"><span class="nav-num">07</span>Observability</a></li>
+      <li><a href="#runtime"><span class="nav-num">08</span>Agent runtime</a></li>
+      <li><a href="#risks"><span class="nav-num">09</span>Design risks</a></li>
+      <li><a href="#stack"><span class="nav-num">10</span>Tech stack</a></li>
+      <li><a href="#roadmap"><span class="nav-num">11</span>Build order</a></li>
+    </ul>
+    <div class="sidebar-foot">
+      v0.4 — project brief
+      <br>
+      <button class="theme-toggle" id="themeToggle" type="button">toggle theme</button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="col">
+
+      <div class="hero">
+        <div class="eyebrow">// project brief</div>
+        <h1>Testomation</h1>
+        <p class="lede">An autonomous software testing platform. It reads a codebase or app, decides what needs testing, writes the test cases itself, drives a real browser to run them, tells bugs apart from noise, and reports back — with minimal humans in the loop.</p>
+      </div>
+
+      <section id="overview">
+        <div class="section-head">
+          <span class="section-num">00</span>
+          <h2>Overview</h2>
+        </div>
+        <p>Traditional test automation still needs a human to decide what to test and to write the script. Testomation moves both of those jobs to an AI agent: one that reasons about the application the way a QA engineer would, generates its own coverage, and only asks for a human when it isn't sure whether something is actually broken.</p>
+        <p class="muted">The goal isn't to replace scripted regression testing — it's to sit alongside it, filling the gap between "what we remembered to test" and "what the app can actually do."</p>
+        <h3 style="margin-top:28px">What changed since v0.2</h3>
+        <p>Four cross-cutting layers now sit underneath the five agents. None of them adds a new pipeline step; they change how every existing step behaves.</p>
+        <ul class="choice-list">
+          <li><strong>Memory graph</strong> — a shared, persistent map of the app under test and everything Testomation has learned about it. Every agent reads it before acting and writes back after. <a href="#memory">§05</a></li>
+          <li><strong>Cost strategy</strong> — the LLM authors and interprets tests but never runs them. Deterministic tools go first; the model only sees what they couldn't settle. <a href="#cost">§06</a></li>
+          <li><strong>Observability</strong> — Langfuse traces every agent job, including the ones that never called a model, so cost, cache rate and analyzer accuracy are measurable. <a href="#observability">§07</a></li>
+          <li><strong>Agent runtime</strong> — LangGraph runs the branching logic inside each reasoning agent (memory → rules → LLM → human review), while Temporal runs the jobs around them. <a href="#runtime">§08</a></li>
+        </ul>
+        <p class="muted" style="margin-top:16px">They reinforce each other: memory is what makes most LLM calls unnecessary, LangGraph is what enforces "memory and rules before the model" in code, and Langfuse is how you prove it's working.</p>
+      </section>
+
+      <section id="pipeline">
+        <div class="section-head">
+          <span class="section-num">01</span>
+          <h2>The pipeline</h2>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div>
+              <h3>Ingest</h3>
+              <p>Pull in the target: repo, live URL, OpenAPI spec, design files, or user stories. This is the raw material the Planner works from.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div>
+              <h3>Plan</h3>
+              <p>An agent reasons about what should be tested — user flows, edge cases, boundary conditions, negative paths — and produces a structured coverage plan.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div>
+              <h3>Generate</h3>
+              <p>Each planned flow becomes an executable test: Playwright code, plain-language steps for an agent to run live, or both.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <div>
+              <h3>Execute</h3>
+              <p>A browser actually runs the flow. Screenshots, DOM state, console output, and network traffic are captured at every step.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">05</div>
+            <div>
+              <h3>Analyze &amp; report</h3>
+              <p>Evidence is compared against expected behavior, classified and deduped, then pushed out as a readable bug report with repro steps attached.</p>
+            </div>
+          </div>
+        </div>
+        <div class="note"><strong>Every step, same loop:</strong> check the memory graph → try deterministic tools → call the LLM only for what's still unanswered → write the result back to memory with its provenance → log the whole job to Langfuse. In code, that loop is a small LangGraph graph per agent. Details in <a href="#memory">§05</a> and <a href="#runtime">§08</a>.</div>
+      </section>
+
+      <section id="features">
+        <div class="section-head">
+          <span class="section-num">02</span>
+          <h2>Feature catalog</h2>
+        </div>
+        <p class="feature-intro">Everything below is a candidate feature, grouped by where it sits in the system. <span class="feature-tag tag-core">core</span> marks what an MVP needs to be useful at all; <span class="feature-tag tag-later">later</span> marks what turns it from a working tool into a platform.</p>
+
+        <div class="feature-group">
+          <div class="feature-group-head">
+            <h3>Planning &amp; test generation</h3>
+            <span class="feature-tag tag-core">core</span>
+          </div>
+          <ul class="feature-grid">
+            <li><strong>Autonomous flow discovery</strong><span>Crawls or reads the app and proposes the user flows worth testing, without being told what they are.</span></li>
+            <li><strong>Natural-language test authoring</strong><span>A human can type "test that guest checkout fails without an email" and get a runnable test.</span></li>
+            <li><strong>Edge-case &amp; negative-path enumeration</strong><span>Generates boundary values, invalid inputs, and error states alongside the happy path.</span></li>
+            <li><strong>Coverage gap analysis</strong><span>Flags flows and routes that exist in the app but have no test touching them.</span></li>
+            <li><strong>Requirement-to-test traceability</strong><span>Links each generated test back to the user story or spec line that justified it.</span></li>
+            <li><strong>Synthetic test data generation</strong><span>Produces realistic names, emails, payment data, and file uploads for forms, without using real PII.</span></li>
+            <li class="stretch"><strong>Test impact analysis</strong><span>Given a code diff, works out which existing tests are actually affected and only reruns those — the difference between a 40-minute suite and a 3-minute one on every PR.</span></li>
+          </ul>
+        </div>
+
+        <div class="feature-group">
+          <div class="feature-group-head">
+            <h3>Memory &amp; knowledge</h3>
+            <span class="feature-tag tag-core">core</span>
+          </div>
+          <ul class="feature-grid">
+            <li><strong>Persistent app knowledge graph</strong><span>Pages, flows, tests, bugs, commits and human decisions stored as linked nodes, so related things stay together across runs.</span></li>
+            <li><strong>Memory-first lookups</strong><span>Agents check what's already known before reasoning from scratch; answers get cached as graph facts.</span></li>
+            <li><strong>Provenance &amp; confidence</strong><span>Every fact records who created it (rules, LLM, human), how sure it is, and the Langfuse trace behind it.</span></li>
+            <li><strong>Change-aware invalidation</strong><span>A commit that touches a file marks dependent memory as stale until it's re-verified.</span></li>
+          </ul>
+        </div>
+
+        <div class="feature-group">
+          <div class="feature-group-head">
+            <h3>Execution</h3>
+            <span class="feature-tag tag-core">core</span>
+          </div>
+          <ul class="feature-grid">
+            <li><strong>Parallel/distributed runs</strong><span>Fans tests out across a browser pool so a full suite runs in minutes, not hours.</span></li>
+            <li><strong>Cross-browser matrix</strong><span>Same test, run against Chromium, Firefox, and WebKit to catch engine-specific bugs.</span></li>
+            <li><strong>Responsive &amp; mobile-web viewport testing</strong><span>Reruns flows at phone, tablet, and desktop breakpoints.</span></li>
+            <li><strong>Visual regression diffing</strong><span>Pixel or perceptual comparison against a baseline screenshot, with a highlighted diff.</span></li>
+            <li><strong>Combined API + UI verification</strong><span>Calls the backend directly to set up state, then verifies the frontend reflects it correctly.</span></li>
+            <li><strong>Accessibility auditing</strong><span>Runs axe-core (or similar) on every page visited and reports WCAG violations.</span></li>
+            <li><strong>Auth &amp; session handling</strong><span>Stores and reuses login sessions so every test doesn't have to re-authenticate from scratch.</span></li>
+            <li><strong>Third-party mocking</strong><span>Stubs flaky or rate-limited external services (payments, email, maps) so failures are the app's fault, not a dependency's.</span></li>
+            <li class="stretch tag-later"><strong>Ephemeral preview environments</strong><span>Spins up a throwaway environment per pull request so tests run against that exact change, not a shared staging server.</span></li>
+            <li class="stretch"><strong>Exploratory session recording</strong><span>The agent free-roams the app like a curious user, and every click, scroll, and state change is logged for later review — this is how it finds the bugs no one thought to write a test for.</span></li>
+          </ul>
+        </div>
+
+        <div class="feature-group">
+          <div class="feature-group-head">
+            <h3>Bug detection &amp; analysis</h3>
+            <span class="feature-tag tag-core">core</span>
+          </div>
+          <ul class="feature-grid">
+            <li><strong>Multimodal visual bug detection</strong><span>A vision model spots overlapping elements, cropped text, and broken layouts a pixel-diff alone would miss.</span></li>
+            <li><strong>Console &amp; network error classification</strong><span>Separates real application errors from expected noise (ad blockers, analytics failures).</span></li>
+            <li><strong>Severity &amp; priority scoring</strong><span>Ranks findings so a blocked checkout outranks a misaligned footer.</span></li>
+            <li><strong>Deduplication</strong><span>Matches a new failure against existing open tickets instead of filing a duplicate.</span></li>
+            <li><strong>Confidence scoring</strong><span>Every finding carries a confidence level; low-confidence ones route to a human review queue instead of auto-filing.</span></li>
+            <li><strong>Flaky test detection &amp; quarantine</strong><span>Tracks pass/fail history per test and automatically isolates ones that fail inconsistently, rather than letting them erode trust in the suite.</span></li>
+            <li class="stretch tag-later"><strong>Root-cause suggestion</strong><span>Correlates a failure's timing against recent commits and proposes which change likely caused it.</span></li>
+            <li class="stretch tag-later"><strong>Regression clustering</strong><span>Groups multiple failures that stem from the same underlying bug into one report instead of ten.</span></li>
+          </ul>
+        </div>
+
+        <div class="feature-group">
+          <div class="feature-group-head">
+            <h3>Human-in-the-loop &amp; collaboration</h3>
+            <span class="feature-tag tag-core">core</span>
+          </div>
+          <ul class="feature-grid">
+            <li><strong>Review queue</strong><span>A single place to approve, reject, or edit anything the agent wasn't confident about.</span></li>
+            <li><strong>One-click test approval</strong><span>Generated tests start in draft; a human promotes them into the regression suite.</span></li>
+            <li><strong>Inline annotation</strong><span>Comment directly on a screenshot or trace step to explain context the agent missed.</span></li>
+            <li><strong>Jira / Linear / GitHub Issues sync</strong><span>Bugs become tickets automatically, with status synced both ways.</span></li>
+            <li><strong>Slack / Teams notifications</strong><span>Failures post to the right channel with the evidence bundle attached, not just a red X.</span></li>
+            <li class="stretch"><strong>Audit trail</strong><span>Every decision the agent made — why it generated a test, why it flagged something — is logged and reviewable.</span></li>
+          </ul>
+        </div>
+
+        <div class="feature-group">
+          <div class="feature-group-head">
+            <h3>Reporting &amp; analytics</h3>
+            <span class="feature-tag tag-later">later</span>
+          </div>
+          <ul class="feature-grid">
+            <li><strong>Live dashboard</strong><span>Coverage, pass rate, flake rate, and open-bug count at a glance.</span></li>
+            <li><strong>Trend graphs per release</strong><span>Shows whether quality is improving or degrading release over release.</span></li>
+            <li><strong>Per-module health scoring</strong><span>Surfaces which parts of the app are the most bug-prone or worst-covered.</span></li>
+            <li><strong>Exportable reports</strong><span>PDF or CSV summaries for stakeholders who don't live in the dashboard.</span></li>
+            <li><strong>LLM cost &amp; compute tracking</strong><span>Shows what each test run and each agent actually costs, via Langfuse, so spend stays visible as usage scales.</span></li>
+            <li><strong>Custom alerting rules</strong><span>"Notify me only if a payment flow breaks" instead of every flaky assertion.</span></li>
+          </ul>
+        </div>
+
+        <div class="feature-group">
+          <div class="feature-group-head">
+            <h3>Platform &amp; integration</h3>
+            <span class="feature-tag tag-later">later</span>
+          </div>
+          <ul class="feature-grid">
+            <li><strong>CI/CD plugins</strong><span>Native steps for GitHub Actions, GitLab CI, and CircleCI so runs trigger on every PR.</span></li>
+            <li><strong>Event-driven triggers</strong><span>Run on push, on deploy, nightly, or on demand — not just on a fixed schedule.</span></li>
+            <li><strong>Public API / SDK</strong><span>Programmatic control for teams who want to script Testomation into their own tooling.</span></li>
+            <li><strong>Multi-project / multi-tenant support</strong><span>One instance serving several teams or products with isolated data.</span></li>
+            <li><strong>Production synthetic monitoring</strong><span>Runs a light version of the suite continuously against production to catch live incidents, not just pre-release bugs.</span></li>
+            <li><strong>Plugin architecture</strong><span>Lets teams add custom checks (brand guidelines, internal compliance rules) without forking the core.</span></li>
+          </ul>
+        </div>
+
+        <div class="feature-group">
+          <div class="feature-group-head">
+            <h3>Security &amp; governance</h3>
+            <span class="feature-tag tag-later">later</span>
+          </div>
+          <ul class="feature-grid">
+            <li><strong>Secrets management</strong><span>Test credentials are injected at run time, never stored in a generated script.</span></li>
+            <li><strong>PII redaction</strong><span>Masks sensitive data in screenshots and logs before they're stored or shared.</span></li>
+            <li><strong>Role-based access control</strong><span>Controls who can approve tests, view evidence, or change production-monitoring schedules.</span></li>
+            <li><strong>Sandboxed execution</strong><span>Every browser session runs isolated, so one test can't affect another's state or leak data across tenants.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="architecture">
+        <div class="section-head">
+          <span class="section-num">03</span>
+          <h2>System architecture</h2>
+        </div>
+        <p>Five cooperating agents sit behind a single orchestrator. Instead of each agent keeping its own notes, they all share one memory graph, which in turn points out to the two places heavy data lives: raw evidence in blob storage, and LLM reasoning in Langfuse.</p>
+        <div class="diagram">
+<pre>             ┌───────────────────────────────┐
+             │          ORCHESTRATOR         │
+             │    job queue · agent state    │
+             │       per-run LLM budget      │
+             └───────────────┬───────────────┘
+                             │
+     ┌───────────┬───────────┴───────────┬───────────┐
+     │           │           │           │           │
+┌────▼────┐ ┌────▼────┐ ┌────▼────┐ ┌────▼────┐ ┌────▼────┐
+│ Planner │ │ Test Gen│ │ Executor│ │ Analyzer│ │ Reporter│
+│  agent  │ │  agent  │ │ agent(s)│ │  agent  │ │         │
+└────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘
+     │           │           │           │           │
+     └───────────┴───────────┼───────────┴───────────┘
+                             │  read first · write back
+             ┌───────────────▼───────────────┐
+             │          MEMORY GRAPH         │
+             │  pages · flows · tests · bugs │
+             │   noise signatures · commits  │
+             │      Postgres + pgvector      │
+             └─────┬──────────────────────┬──┘
+                   │                      │
+     evidence ids  │                      │ trace ids
+       ┌───────────▼───────────┐ ┌────────▼────────┐
+       │     Evidence Store    │ │     Langfuse    │
+       │   screenshots · DOM   │ │  traces · cost  │
+       │ logs · traces · video │ │ prompts · scores│
+       └───────────────────────┘ └─────────────────┘</pre>
+        </div>
+        <p class="diagram-caption">Five agents, one orchestrator, one shared memory. Test cases now live in the graph as <code>TestCase</code> nodes; the executor still runs them on a Playwright browser pool. The orchestrator runs as Temporal workflows; agents that branch run as LangGraph graphs inside those workflows' activities.</p>
+      </section>
+
+      <section id="components">
+        <div class="section-head">
+          <span class="section-num">04</span>
+          <h2>Components</h2>
+        </div>
+
+        <div class="component">
+          <span class="component-tag">Planner agent</span>
+          <h3>Turns the app into a flow graph</h3>
+          <p>Reads routes, components, API schema, or a live crawl of the app to build a map of user flows — "signup → verify email → onboarding," "add to cart → checkout → payment failure." The structural map comes from deterministic parsing and a state-graph crawler; the LLM's job is narrower — naming flows, ranking what matters, and inferring business rules a crawler can't see ("checkout should fail without an email").</p>
+          <p class="muted">Writes <code>Page</code>, <code>Flow</code> and <code>ApiEndpoint</code> nodes to memory, and only re-plans areas a diff actually touched.</p>
+        </div>
+
+        <div class="component">
+          <span class="component-tag">Test generation agent</span>
+          <h3>Converts a flow into something executable</h3>
+          <p>This is the biggest architectural fork in the whole system — how a "test" is represented:</p>
+          <ul class="choice-list">
+            <li><strong>Scripted output</strong> — the LLM writes Playwright/Cypress code. Deterministic, fast, version-controllable. Brittle if the UI changes and the model guessed a selector.</li>
+            <li><strong>Natural-language, resolved at runtime</strong> — steps like "click the login button," resolved live by an agent using vision or the DOM instead of a hardcoded selector. More resilient to UI drift, slower and less deterministic per run.</li>
+            <li><strong>Hybrid (recommended)</strong> — scripted tests for the regression suite that runs in CI; an agent held in reserve for exploratory coverage and unscripted bug-hunting.</li>
+          </ul>
+          <p class="muted" style="margin-top:14px">Before generating, it pulls locators that worked before and similar existing tests from memory to use as templates. Common patterns (login, form submit, CRUD) come from templates with no LLM call at all. Novel flows go through a generate → run → read error → repair loop with a hard retry cap.</p>
+        </div>
+
+        <div class="component">
+          <span class="component-tag">Executor</span>
+          <h3>Actually drives the browser</h3>
+          <p>Two modes, kept separate rather than merged into one agent:</p>
+          <ul class="choice-list">
+            <li><strong>Playwright/Puppeteer</strong> running generated code directly — fast, parallelizable, the right choice for CI gates.</li>
+            <li><strong>CDP + vision agent loop</strong> — screenshot → model decides the next action → execute → repeat. Slower and more expensive, but this is what finds the bug a script wasn't written to look for.</li>
+          </ul>
+          <p>Every run captures screenshots, DOM snapshots, console errors, network requests, and a trace recording — evidence, not just a pass/fail flag. Code coverage per test is recorded too, which becomes the <code>touches</code> edges that power test impact analysis.</p>
+        </div>
+
+        <div class="component">
+          <span class="component-tag">Analyzer agent</span>
+          <h3>Decides what's actually a bug</h3>
+          <p>Reasons over the evidence bundle rather than a single assertion. Signal sources include failed assertions, console exceptions, 4xx/5xx network responses, visual regressions, dead-end navigation states, and accessibility violations. A multimodal model is genuinely useful here — it can look at two screenshots and explain "this button overlaps this text" in a way a pixel-diff alone can't.</p>
+          <p class="muted">Runs as a rules engine first — known noise signatures, status codes, axe-core, perceptual diffs, flake history — and escalates to the model only for failures nothing else could classify. This is the first agent built as a LangGraph graph (§08).</p>
+        </div>
+
+        <div class="component">
+          <span class="component-tag">Reporter</span>
+          <h3>Closes the loop with humans</h3>
+          <p>Structured output routes to Jira/Linear as a ticket, Slack as a notification, and a dashboard tracking coverage, flake rate, and bug counts over time — always with the evidence bundle attached so nobody has to re-run anything to triage.</p>
+        </div>
+
+        <div class="component">
+          <span class="component-tag">Orchestrator</span>
+          <h3>Keeps everything coordinated</h3>
+          <p>A job/state layer — Temporal, or a simpler Redis/Celery queue — handling retries, parallel browser sessions, LLM rate-limiting, and checkpointing so a crash mid-exploration doesn't lose progress. It also enforces a per-run LLM budget and uses the memory graph to decide which tests a given diff actually needs. It owns the fleet; the reasoning inside each agent belongs to LangGraph.</p>
+        </div>
+
+        <div class="component">
+          <span class="component-tag">Agent runtime (LangGraph)</span><span class="new-badge">new</span>
+          <h3>Runs the decision loop inside each reasoning agent</h3>
+          <p>Each reasoning agent is a small graph: plain-Python nodes for memory and rules, one node that calls the model, conditional edges on confidence, and a pause point for human review. See <a href="#runtime">§08</a>.</p>
+        </div>
+
+        <div class="component">
+          <span class="component-tag">Memory graph</span><span class="new-badge">new</span>
+          <h3>Shared knowledge every agent reads and writes</h3>
+          <p>Not an agent — a store. It replaces the old standalone test-case store and holds the relationships between pages, flows, tests, bugs, commits and human decisions. See <a href="#memory">§05</a>.</p>
+        </div>
+
+        <div class="component">
+          <span class="component-tag">Observability (Langfuse)</span><span class="new-badge">new</span>
+          <h3>Records what every agent did and what it cost</h3>
+          <p>Wraps each agent job in a trace. LLM calls appear as generations with tokens and cost; deterministic steps appear as spans, so skipped LLM calls are visible too. See <a href="#observability">§07</a>.</p>
+        </div>
+      </section>
+
+      <section id="memory">
+        <div class="section-head">
+          <span class="section-num">05</span>
+          <h2>Memory graph</h2>
+        </div>
+        <p>The memory graph is Testomation's long-term knowledge about the app under test: what exists, what's been tested, what broke, why, and what humans decided. It keeps useful things connected — a bug is linked to the component it affects, the commit that likely caused it, the test that found it and the evidence that proves it — so any agent can follow those links instead of re-deriving them.</p>
+
+        <div class="subhead">// what it stores</div>
+        <ul class="feature-grid">
+          <li><strong>App structure</strong><span><code>Page</code>, <code>Component</code>, <code>Element</code>, <code>ApiEndpoint</code>, <code>SourceFile</code></span></li>
+          <li><strong>Test knowledge</strong><span><code>Flow</code>, <code>TestCase</code>, <code>Run</code>, <code>Evidence</code> (a pointer into blob storage)</span></li>
+          <li><strong>Findings</strong><span><code>Bug</code>, <code>NoiseSignature</code> (errors known to be harmless), <code>Requirement</code></span></li>
+          <li><strong>History</strong><span><code>Commit</code>, <code>HumanDecision</code> (approve / reject / annotate)</span></li>
+        </ul>
+
+        <p style="margin-top:24px">The edges are what make it useful:</p>
+        <ul class="edge-list">
+          <li><b>Flow</b> <em>—visits→</em> <b>Page</b> <em>—calls→</em> <b>ApiEndpoint</b></li>
+          <li><b>Page</b> <em>—renders→</em> <b>Component</b> <em>—contains→</em> <b>Element</b></li>
+          <li><b>TestCase</b> <em>—covers→</em> <b>Flow</b> · <b>TestCase</b> <em>—justified_by→</em> <b>Requirement</b></li>
+          <li><b>TestCase</b> <em>—touches→</em> <b>SourceFile</b> <span class="muted">(from coverage data)</span></li>
+          <li><b>Bug</b> <em>—found_in→</em> <b>Run</b> · <b>Bug</b> <em>—affects→</em> <b>Component</b> · <b>Bug</b> <em>—likely_caused_by→</em> <b>Commit</b></li>
+          <li><b>Evidence</b> <em>—matches→</em> <b>NoiseSignature</b></li>
+          <li><b>HumanDecision</b> <em>—confirmed | rejected→</em> <b>Bug</b> / <b>TestCase</b></li>
+        </ul>
+
+        <div class="subhead">// how it plugs into the pipeline</div>
+        <p>Memory doesn't add a step — it wraps every existing one in the same five-part loop:</p>
+        <div class="steps">
+          <div class="step"><div class="step-num">a</div><div><h3>Look up</h3><p>Before acting, the agent queries the graph. Is this error a known noise signature? Is there a working locator for this element? Has this flow been planned, and has nothing it touches changed since?</p></div></div>
+          <div class="step"><div class="step-num">b</div><div><h3>Try deterministic tools</h3><p>If memory doesn't answer it, rules, parsers, crawlers and diffing get the next shot (§06).</p></div></div>
+          <div class="step"><div class="step-num">c</div><div><h3>Escalate to the LLM</h3><p>Only what's still unanswered reaches a model — with the relevant neighbourhood of the graph as context, rather than the whole app.</p></div></div>
+          <div class="step"><div class="step-num">d</div><div><h3>Write back</h3><p>The answer becomes a node or edge, stamped with provenance (rules / LLM / human), a confidence level, and the Langfuse trace ID. Next time, step (a) answers it for free.</p></div></div>
+          <div class="step"><div class="step-num">e</div><div><h3>Invalidate on change</h3><p>When a commit lands, changed files are followed through <code>touches</code> and <code>renders</code> edges, and every dependent node is marked stale until re-verified.</p></div></div>
+        </div>
+
+        <div class="subhead">// what each agent reads and writes</div>
+        <div class="table-wrap">
+        <table>
+          <tr><th>Agent</th><th>Reads before acting</th><th>Writes after</th></tr>
+          <tr><td>Planner</td><td class="opt">Existing flows, pages with no covering test, bug-prone components</td><td class="opt">New <code>Page</code>, <code>Flow</code>, <code>ApiEndpoint</code> nodes from crawls</td></tr>
+          <tr><td>Test gen</td><td class="opt">Locators that worked, similar tests to template from, test data that passed a form's validation</td><td class="opt"><code>TestCase</code> nodes linked to flows and requirements</td></tr>
+          <tr><td>Executor</td><td class="opt">Stored auth sessions, slow endpoints to mock</td><td class="opt"><code>Run</code>, <code>Evidence</code> pointers, <code>touches</code> edges</td></tr>
+          <tr><td>Analyzer</td><td class="opt">Noise signatures, past bugs on the same component, recent commits touching it</td><td class="opt"><code>Bug</code>, <code>NoiseSignature</code>, dedup links</td></tr>
+          <tr><td>Reporter</td><td class="opt">Linked tickets, affected requirements, owning module</td><td class="opt">Ticket IDs back onto <code>Bug</code> nodes</td></tr>
+          <tr><td>Orchestrator</td><td class="opt">Diff → <code>touches</code> → affected tests</td><td class="opt">—</td></tr>
+          <tr><td>Review queue</td><td class="opt">Low-confidence facts awaiting a human</td><td class="opt"><code>HumanDecision</code> nodes (also sent to Langfuse as scores)</td></tr>
+        </table>
+        </div>
+
+        <div class="subhead">// features that become graph queries</div>
+        <p>Several items in the feature catalog stop being separate subsystems:</p>
+        <ul class="choice-list">
+          <li><strong>Coverage gap analysis</strong> — pages with no incoming <code>covers</code> path.</li>
+          <li><strong>Test impact analysis</strong> — changed files → <code>touches</code> → tests to rerun.</li>
+          <li><strong>Traceability</strong> — test → <code>justified_by</code> → requirement.</li>
+          <li><strong>Dedup &amp; regression clustering</strong> — failures sharing a component and an error signature.</li>
+          <li><strong>Root-cause suggestion</strong> — bug → component → recent commits touching it.</li>
+          <li><strong>Per-module health</strong> — bug and coverage counts rolled up per component.</li>
+        </ul>
+
+        <div class="subhead">// trust rules</div>
+        <ul class="choice-list">
+          <li><strong>Provenance on everything</strong> — created by rules, LLM or human, plus the trace ID that produced it.</li>
+          <li><strong>Human beats model</strong> — human-confirmed facts outrank LLM-inferred ones when they conflict.</li>
+          <li><strong>No silent suppression</strong> — an LLM-inferred <code>NoiseSignature</code> never auto-hides a failure until a human confirms it.</li>
+          <li><strong>Stale until proven</strong> — invalidated nodes can inform an agent but can't short-circuit a decision.</li>
+        </ul>
+
+        <div class="subhead">// storage</div>
+        <p>Start in the Postgres that's already in the stack — two tables, typed JSONB properties, and pgvector for fuzzy matching ("is this error similar to a known one?"). The traversals Testomation needs are mostly one to three hops, which recursive CTEs handle fine. Move to a dedicated graph database only if traversals get deep or slow.</p>
+        <div class="code"><pre><span class="c">-- nodes: anything the system knows about</span>
+CREATE TABLE mem_node (
+  id          uuid PRIMARY KEY,
+  kind        text NOT NULL,        <span class="c">-- 'Page', 'Bug', 'NoiseSignature', ...</span>
+  key         text NOT NULL,        <span class="c">-- natural key, e.g. route or error hash</span>
+  props       jsonb NOT NULL DEFAULT '{}',
+  embedding   vector(1024),         <span class="c">-- optional, for fuzzy matching</span>
+  source      text NOT NULL,        <span class="c">-- 'rules' | 'llm' | 'human'</span>
+  confidence  real NOT NULL,
+  trace_id    text,                 <span class="c">-- Langfuse trace that created it</span>
+  stale       boolean NOT NULL DEFAULT false,
+  updated_at  timestamptz NOT NULL DEFAULT now(),
+  UNIQUE (kind, key)
+);
+
+<span class="c">-- edges: how those things relate</span>
+CREATE TABLE mem_edge (
+  src     uuid REFERENCES mem_node(id),
+  rel     text NOT NULL,            <span class="c">-- 'covers', 'touches', 'affects', ...</span>
+  dst     uuid REFERENCES mem_node(id),
+  props   jsonb NOT NULL DEFAULT '{}',
+  source  text NOT NULL,
+  PRIMARY KEY (src, rel, dst)
+);</pre></div>
+      </section>
+
+      <section id="cost">
+        <div class="section-head">
+          <span class="section-num">06</span>
+          <h2>Cost strategy</h2>
+        </div>
+        <p>The rule: <strong>the LLM writes and interprets tests; it never runs them.</strong> A test generated once and run a thousand times by Playwright costs one generation. LLM spend then scales with how much the app <em>changes</em>, not with how often it's tested.</p>
+
+        <div class="subhead">// deterministic first, LLM for the residue</div>
+        <div class="table-wrap">
+        <table>
+          <tr><th>Stage</th><th>Deterministic first</th><th>LLM only for</th></tr>
+          <tr><td>Plan</td><td class="opt">Router / sitemap / OpenAPI parsing; state-graph crawler</td><td class="opt">Naming and ranking flows; inferring business rules</td></tr>
+          <tr><td>Generate</td><td class="opt">Templates for common patterns; boundary values from HTML attributes; schema-driven API tests; Faker for data</td><td class="opt">Novel multi-step flows</td></tr>
+          <tr><td>Execute</td><td class="opt">Plain Playwright with role-based / test-id locators</td><td class="opt">Nothing</td></tr>
+          <tr><td>Analyze</td><td class="opt">Assertions, status codes, console allowlist, axe-core, perceptual diff, flake history</td><td class="opt">Failures matching no known signature</td></tr>
+          <tr><td>Dedupe</td><td class="opt">Hash of normalised error signature</td><td class="opt">Borderline matches (embeddings first)</td></tr>
+          <tr><td>Report</td><td class="opt">Templated tickets and messages</td><td class="opt">Optional summary on filed bugs</td></tr>
+          <tr><td>Impact</td><td class="opt">Coverage mapping via the memory graph</td><td class="opt">Nothing</td></tr>
+        </table>
+        </div>
+
+        <div class="subhead">// making the remaining calls cheap</div>
+        <ul class="choice-list">
+          <li><strong>Memory before model</strong> — the graph is the cache; a question answered once isn't paid for again.</li>
+          <li><strong>Change-triggered</strong> — re-plan and regenerate only what a diff touched.</li>
+          <li><strong>Model tiers</strong> — a small, fast model for classification and dedup; a larger one for planning and generation.</li>
+          <li><strong>Text over pixels</strong> — send the accessibility tree or a trimmed DOM; screenshots only for suspected visual bugs.</li>
+          <li><strong>Prompt caching &amp; batch</strong> — app context repeats across calls; nightly planning doesn't need to be real-time.</li>
+          <li><strong>Hard per-run budget</strong> — once a PR's budget is spent, remaining items go to the review queue instead.</li>
+        </ul>
+
+        <div class="subhead">// exploratory testing without a vision loop</div>
+        <p>Before reaching for the vision agent, run monkey/fuzz interaction and coverage-guided crawling, checking invariants on every state reached: no console errors, no 5xx responses, no axe violations, nothing overflowing the viewport. The vision agent becomes an occasional, budgeted deep pass on high-value flows.</p>
+      </section>
+
+      <section id="observability">
+        <div class="section-head">
+          <span class="section-num">07</span>
+          <h2>Observability with Langfuse</h2>
+        </div>
+        <p>Langfuse is the record of what each agent did, what it cost, and whether it was right. Its trace model maps cleanly onto Testomation:</p>
+        <div class="table-wrap">
+        <table>
+          <tr><th>Langfuse</th><th>Testomation</th></tr>
+          <tr><td>Session</td><td class="opt">One PR or test run — <code>run-&lt;pr&gt;-&lt;sha&gt;</code></td></tr>
+          <tr><td>Trace</td><td class="opt">One agent job — "plan checkout flows", "triage failure #182"</td></tr>
+          <tr><td>Span</td><td class="opt">A non-LLM step — memory lookup, crawl, rules-engine triage</td></tr>
+          <tr><td>Generation</td><td class="opt">An actual model call, with tokens, cost and prompt version</td></tr>
+          <tr><td>Tags</td><td class="opt"><code>agent:analyzer</code>, <code>trigger:pr</code>, <code>repo:web-app</code>, <code>model-tier:small</code></td></tr>
+          <tr><td>Scores</td><td class="opt">Human verdicts from the review queue</td></tr>
+        </table>
+        </div>
+
+        <div class="subhead">// instrumentation sketch</div>
+        <div class="code"><pre>from anthropic import Anthropic
+from opentelemetry.instrumentation.anthropic import AnthropicInstrumentor
+from langfuse import observe, get_client, propagate_attributes
+
+AnthropicInstrumentor().instrument()   <span class="c"># every Claude call → a generation</span>
+langfuse = get_client()                <span class="c"># reads LANGFUSE_* env vars</span>
+
+@observe(name="analyzer.triage", capture_input=False)  <span class="c"># no raw DOM / screenshots</span>
+def triage_failure(failure, run_id):
+    with propagate_attributes(session_id=run_id, tags=["agent:analyzer"]):
+        hit = memory.lookup_noise(failure.signature)       <span class="c"># (a) memory</span>
+        langfuse.update_current_span(metadata={"memory_hit": hit is not None})
+        if hit and hit.source == "human":
+            return hit.verdict
+
+        verdict = rules_engine.classify(failure)           <span class="c"># (b) deterministic</span>
+        if verdict.confident:
+            memory.write(verdict, source="rules")
+            return verdict
+
+        verdict = llm_classify(failure)                    <span class="c"># (c) model</span>
+        memory.write(verdict, source="llm",               <span class="c"># (d) write back</span>
+                     trace_id=langfuse.get_current_trace_id())
+        return verdict</pre></div>
+        <p class="muted">In Temporal activities or other short-lived workers, call <code>langfuse.flush()</code> before the process exits.</p>
+
+        <div class="subhead">// how it ties to memory and cost</div>
+        <ul class="choice-list">
+          <li><strong>Graph ↔ trace links</strong> — every LLM-created node stores its trace ID, so any bug or test can be traced back to the exact reasoning and prompt version that produced it.</li>
+          <li><strong>Cache rate</strong> — a <code>memory_hit</code> flag on every span shows the share of decisions memory answered, which should climb as the graph matures.</li>
+          <li><strong>Budget enforcement</strong> — the orchestrator queries spend-so-far per session and stops escalating once a run's budget is used.</li>
+          <li><strong>Analyzer accuracy</strong> — review-queue decisions are written back as scores, giving real precision numbers and telling you when a confidence threshold is safe to raise.</li>
+          <li><strong>LangGraph tracing</strong> — Langfuse's LangChain callback handler traces LangGraph runs, so each graph node appears as its own span without extra instrumentation.</li>
+          <li><strong>Prompt management &amp; datasets</strong> — prompts are versioned in Langfuse; hard triage cases become a regression dataset to rerun on every prompt change or model downgrade.</li>
+        </ul>
+        <div class="note"><strong>Self-host it.</strong> Traces touch customer app content. Run Langfuse inside your own infrastructure, keep <code>capture_input=False</code> on anything that sees page content, and log evidence IDs rather than raw payloads.</div>
+      </section>
+
+      <section id="runtime">
+        <div class="section-head">
+          <span class="section-num">08</span>
+          <h2>Agent runtime: LangGraph</h2>
+        </div>
+        <p>Testomation has two different orchestration problems, and they want different tools. Running hundreds of tests across a browser pool, retrying failed jobs and scheduling a run per PR is <em>distributed job</em> work. Deciding, inside one agent, whether memory answered a question, whether the rules engine is sure, and whether to ask a human is <em>reasoning control flow</em>. The split: <strong>Temporal on the outside, LangGraph on the inside.</strong></p>
+
+        <div class="table-wrap">
+        <table>
+          <tr><th>Concern</th><th>Temporal / Redis workers</th><th>LangGraph</th></tr>
+          <tr><td>Unit of work</td><td class="opt">A whole run: impact analysis, test fan-out, reporting</td><td class="opt">One agent's decision on one item</td></tr>
+          <tr><td>Parallelism</td><td class="opt">Hundreds of tests across a browser pool</td><td class="opt">Within a single graph, if at all</td></tr>
+          <tr><td>Durability</td><td class="opt">Workflow survives worker crashes and redeploys</td><td class="opt">Graph state checkpointed per step to Postgres</td></tr>
+          <tr><td>Branching</td><td class="opt">Fixed pipeline of activities</td><td class="opt">Conditional edges: memory hit, confidence, budget</td></tr>
+          <tr><td>Humans</td><td class="opt">—</td><td class="opt"><code>interrupt()</code> pauses a graph until the review queue answers</td></tr>
+        </table>
+        </div>
+
+        <div class="subhead">// how a run nests</div>
+        <div class="code"><pre>Temporal workflow: "PR #412"
+ ├─ activity: impact analysis         plain code · memory-graph query
+ ├─ activity: run affected tests      plain Playwright · fanned out across the pool
+ ├─ activity: triage failures      →  Analyzer graph, one thread per failure
+ ├─ activity: generate missing tests → Test-gen graph (generate → run → repair, capped)
+ └─ activity: report                 plain code · templates</pre></div>
+        <p>Each activity that needs reasoning invokes a small, focused graph. Everything else stays plain code.</p>
+
+        <div class="subhead">// where LangGraph is used — and where it isn't</div>
+        <ul class="feature-grid">
+          <li><strong>Analyzer — first, and the best fit</strong><span>Memory → rules → LLM → confidence gate → file or pause for review. The graph drawn below.</span></li>
+          <li><strong>Test gen</strong><span>Generate → run → read the error → repair, with a hard retry cap so a stubborn flow can't burn tokens.</span></li>
+          <li><strong>Planner</strong><span>Crawl → parse → rank → go back for more detail on high-value areas.</span></li>
+          <li><strong>Exploratory agent</strong><span>A natural loop that stops on budget exhausted or no new states found.</span></li>
+          <li><strong>Not: scripted execution</strong><span>Playwright running a generated test has no decisions to make; a graph adds only overhead.</span></li>
+          <li><strong>Not: reporter</strong><span>Templated output — a plain function is enough.</span></li>
+          <li><strong>Not: outer orchestration</strong><span>Fan-out, retries and scheduling across workers stay in Temporal.</span></li>
+          <li><strong>Not: the memory graph</strong><span>LangGraph's own long-term store is key-value, not a linked graph. Agents reach the Postgres memory graph through lookup and write-back nodes.</span></li>
+        </ul>
+
+        <div class="subhead">// the analyzer as a graph</div>
+        <div class="diagram"><pre>         failure
+            │
+   ┌────────▼────────┐
+   │  memory lookup  ├─ human-confirmed hit ┐
+   └────────┬────────┘                      │
+            │ miss / unconfirmed            │
+   ┌────────▼────────┐                      │
+   │   rules engine  ├─ confident ──────┐   │
+   └────────┬────────┘                  │   │
+            │ unsure                    │   │
+   ┌────────▼────────┐                  │   │
+   │   LLM classify  │                  │   │
+   │ (if budget left)│                  │   │
+   └────────┬────────┘                  │   │
+            │ result                    │   │
+   ┌────────▼────────┐                  │   │
+   │ confidence gate ├─ low ───┐        │   │
+   └────────┬────────┘         │        │   │
+            │ high      ┌──────▼──────┐ │   │
+            │           │ interrupt() │ │   │
+            │           │ review queue│ │   │
+            │           └──────┬──────┘ │   │
+            │                  │        │   │
+   ┌────────▼────────┐                  │   │
+   │    write back   │◄────────┴────────┴───┘
+   │ to memory graph │
+   └────────┬────────┘
+            │
+            ▼
+   file bug · add noise signature · link dupe</pre></div>
+        <p class="diagram-caption">Every box except "LLM classify" is plain Python. A cheap path through the graph never touches a model.</p>
+
+        <div class="subhead" style="margin-top:36px">// sketch</div>
+        <div class="code"><pre>from typing import TypedDict, Optional
+from langgraph.graph import StateGraph, START, END
+from langgraph.types import interrupt, Command
+from langgraph.checkpoint.postgres import PostgresSaver
+from langfuse.langchain import CallbackHandler
+
+class Triage(TypedDict):
+    failure: dict
+    verdict: Optional[dict]
+    confidence: float
+    source: str                     <span class="c"># 'memory' | 'rules' | 'llm' | 'human'</span>
+
+def memory_lookup(s): ...           <span class="c"># plain Python, no model</span>
+def rules_engine(s):  ...           <span class="c"># plain Python, no model</span>
+def llm_classify(s):  ...           <span class="c"># the ONLY node that calls Claude;</span>
+                                    <span class="c"># sets confidence=0 if the run's budget is spent</span>
+def review(s):
+    decision = interrupt({"failure_id": s["failure"]["id"]})   <span class="c"># graph pauses here</span>
+    return {"verdict": decision, "source": "human", "confidence": 1.0}
+def write_back(s):    ...           <span class="c"># memory.write(verdict, source=s["source"], ...)</span>
+
+g = StateGraph(Triage)
+for name, fn in [("memory", memory_lookup), ("rules", rules_engine),
+                 ("llm", llm_classify), ("review", review), ("write", write_back)]:
+    g.add_node(name, fn)
+
+g.add_edge(START, "memory")
+g.add_conditional_edges("memory", lambda s: "write" if s["source"] == "human" else "rules")
+g.add_conditional_edges("rules",  lambda s: "write" if s["confidence"] &gt;= 0.9 else "llm")
+g.add_conditional_edges("llm",    lambda s: "write" if s["confidence"] &gt;= 0.8 else "review")
+g.add_edge("review", "write")
+g.add_edge("write", END)
+
+analyzer = g.compile(checkpointer=PostgresSaver(conn))   <span class="c"># same Postgres as memory</span>
+
+<span class="c"># inside a Temporal activity</span>
+cfg = {"configurable": {"thread_id": f"triage-{failure['id']}"},
+       "callbacks": [CallbackHandler()]}                  <span class="c"># every node -&gt; Langfuse span</span>
+analyzer.invoke({"failure": failure}, config=cfg)
+
+<span class="c"># later, when a reviewer decides in the review queue</span>
+analyzer.invoke(Command(resume=reviewer_decision), config=cfg)</pre></div>
+
+        <div class="subhead">// what this buys</div>
+        <ul class="choice-list">
+          <li><strong>Cost rules enforced in code</strong> — the order memory → rules → model is the graph's shape, not a convention each agent has to remember.</li>
+          <li><strong>Review queue for free</strong> — an interrupted graph <em>is</em> a review-queue item. The reviewer's decision resumes it, the result is written to memory as human-sourced, and it's sent to Langfuse as a score.</li>
+          <li><strong>Crash-safe exploration</strong> — checkpoints in the same Postgres as the memory graph mean a long exploratory session resumes where it stopped.</li>
+          <li><strong>Visible paths</strong> — with the Langfuse handler attached, every node is a span, so you can see how many failures took the free path versus the model path.</li>
+        </ul>
+        <div class="note"><strong>Adopt it incrementally.</strong> Build the analyzer as a graph first, where branching and review pauses matter most. Move other agents over only when their logic actually branches or loops — a straight-line agent doesn't need a framework.</div>
+      </section>
+
+      <section id="risks">
+        <div class="section-head">
+          <span class="section-num">09</span>
+          <h2>Design risks worth building around</h2>
+        </div>
+        <div class="risk">
+          <div class="risk-bar"></div>
+          <div class="risk-body">
+            <h3>Self-healing can hide real bugs</h3>
+            <p>A tool that quietly swaps in a new selector when one breaks and re-runs isn't the same as understanding why it broke. If a button moved because a layout regressed, silently "healing" the locator buries the exact bug the test existed to catch. The Analyzer should treat selector drift as a signal to flag, not a problem to auto-resolve.</p>
+          </div>
+        </div>
+        <div class="risk">
+          <div class="risk-bar"></div>
+          <div class="risk-body">
+            <h3>Vision-agent runs are slow and non-deterministic</h3>
+            <p>Great for exploratory bug-hunting, bad for a CI gate that needs to be fast and repeatable. Keep scripted regression and agentic exploration as two distinct modes rather than asking one agent to do both jobs well.</p>
+          </div>
+        </div>
+        <div class="risk">
+          <div class="risk-bar"></div>
+          <div class="risk-body">
+            <h3>Memory can learn the wrong lesson</h3>
+            <p>If the Analyzer once wrongly decides a 500 error is noise and saves that as a signature, it will ignore that bug on every future run. It's the same failure mode as self-healing, made permanent. LLM-inferred suppressions must stay in the review queue until a human confirms them.</p>
+          </div>
+        </div>
+        <div class="risk">
+          <div class="risk-bar"></div>
+          <div class="risk-body">
+            <h3>Stale memory looks like fresh knowledge</h3>
+            <p>A locator or flow that was correct last month may not be today. Invalidation on every commit, plus treating stale nodes as hints rather than answers, keeps old facts from short-circuiting new decisions.</p>
+          </div>
+        </div>
+        <div class="risk">
+          <div class="risk-bar"></div>
+          <div class="risk-body">
+            <h3>Cost optimisation can quietly cost coverage</h3>
+            <p>A tight budget that routes everything to the review queue just moves the work to humans. Watch the review-queue size in Langfuse next to spend; if one drops while the other climbs, the budget is set wrong.</p>
+          </div>
+        </div>
+        <div class="risk">
+          <div class="risk-bar"></div>
+          <div class="risk-body">
+            <h3>Two orchestrators can blur into one</h3>
+            <p>If LangGraph starts handling fan-out and retries, or Temporal starts encoding agent decisions, you get two half-overlapping systems and state that lives in both. Keep the line sharp: Temporal owns jobs and workers; LangGraph owns decisions within one item.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="stack">
+        <div class="section-head">
+          <span class="section-num">10</span>
+          <h2>Suggested tech stack</h2>
+        </div>
+        <div class="table-wrap">
+        <table>
+          <tr><th>Layer</th><th>Choice</th><th>Why</th></tr>
+          <tr><td>Browser automation</td><td class="opt">Playwright</td><td class="opt">Best CDP support, multi-browser, built-in tracing</td></tr>
+          <tr><td>Agent runtime</td><td class="opt">LangGraph + Claude API tool use</td><td class="opt">Branching decision loops, human-review interrupts, per-step checkpoints</td></tr>
+          <tr><td>Memory graph</td><td class="opt">Postgres (node/edge tables, JSONB) + pgvector</td><td class="opt">Replaces the separate test store; one database, fuzzy matching built in</td></tr>
+          <tr><td>Evidence store</td><td class="opt">S3-compatible blob storage</td><td class="opt">Screenshots, traces, video recordings</td></tr>
+          <tr><td>Job orchestration</td><td class="opt">Temporal (or Redis + workers to start)</td><td class="opt">Durable per-PR workflows, fan-out across the browser pool, retries</td></tr>
+          <tr><td>Graph checkpoints</td><td class="opt">LangGraph Postgres checkpointer</td><td class="opt">Same database as the memory graph; resumable agent state</td></tr>
+          <tr><td>Reporting</td><td class="opt">Jira / Slack APIs + dashboard</td><td class="opt">Ticket creation, notification, trend visibility</td></tr>
+          <tr><td>LLM observability</td><td class="opt">Langfuse (self-hosted), OTel Anthropic instrumentation</td><td class="opt">Traces, cost per agent/run, prompt versions, review scores</td></tr>
+          <tr><td>Deterministic checks</td><td class="opt">axe-core, pixelmatch / SSIM, Istanbul / V8 coverage</td><td class="opt">Handle most triage and impact analysis without a model</td></tr>
+          <tr><td>Exploration</td><td class="opt">Coverage-guided crawler + monkey/fuzz interaction</td><td class="opt">Cheap first pass before any vision agent</td></tr>
+        </table>
+        </div>
+      </section>
+
+      <section id="roadmap">
+        <div class="section-head">
+          <span class="section-num">11</span>
+          <h2>Build order</h2>
+        </div>
+        <div class="roadmap">
+          <div class="phase">
+            <div class="phase-label">PHASE 1</div>
+            <h3>Prove the plumbing</h3>
+            <p>A Playwright executor that runs a hand-written test and captures the full evidence bundle. No AI yet — get ingestion, execution, and evidence storage solid first. Create the memory graph schema now: tests, runs and evidence pointers are its first nodes, and coverage data gives the first <code>touches</code> edges.</p>
+          </div>
+          <div class="phase">
+            <div class="phase-label">PHASE 2</div>
+            <h3>Generate from plain English</h3>
+            <p>A test-gen agent that turns a described flow into working Playwright code. Wire up Langfuse and the per-run budget <em>before</em> this first model call, so cost is visible from day one. Generated tests land in memory linked to the flow they cover. Keep the repair loop as plain code for now — no framework yet.</p>
+          </div>
+          <div class="phase">
+            <div class="phase-label">PHASE 3</div>
+            <h3>Plan the coverage</h3>
+            <p>A planner built as crawler + parser first, with the LLM ranking and naming flows. It populates <code>Page</code>, <code>Flow</code> and <code>ApiEndpoint</code> nodes, and re-plans only what a diff touches.</p>
+          </div>
+          <div class="phase">
+            <div class="phase-label">PHASE 4</div>
+            <h3>Tell bugs from noise</h3>
+            <p>An analyzer that runs as a rules engine with an LLM fallback, classifies pass/fail from evidence and writes a human-readable bug report, plus a review queue for anything it isn't confident about. This is where memory starts paying off: noise signatures and human decisions accumulate, and review verdicts flow into Langfuse as scores. Build it as the first LangGraph graph: <code>interrupt()</code> powers the review queue and checkpoints live in Postgres. Move the test-gen repair loop onto LangGraph here too once the pattern is proven.</p>
+          </div>
+          <div class="phase">
+            <div class="phase-label">PHASE 5</div>
+            <h3>Go exploratory</h3>
+            <p>Fuzzing and coverage-guided crawling with invariant checks first, then the vision-based agent as a budgeted deep pass (a LangGraph loop that stops when budget or new states run out), plus flaky-test quarantine and visual regression diffing — the trio that turns a test runner into something that finds bugs on its own.</p>
+          </div>
+          <div class="phase">
+            <div class="phase-label">PHASE 6</div>
+            <h3>Platformize</h3>
+            <p>CI/CD plugins, dashboard and trend analytics (read straight from the memory graph and Langfuse metrics), production synthetic monitoring, RBAC, and the plugin architecture — the features that let other teams adopt it without your help.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        Testomation — project brief v0.4 · memory graph, cost strategy, Langfuse observability, LangGraph agent runtime
+      </footer>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  // scroll-spy for sidebar nav
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('#navList a'));
+    var sections = links.map(function (l) { return document.querySelector(l.getAttribute('href')); });
+    function onScroll() {
+      var pos = window.scrollY + 120;
+      var current = sections[0];
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i] && sections[i].offsetTop <= pos) current = sections[i];
+      }
+      links.forEach(function (l) {
+        l.classList.toggle('active', current && l.getAttribute('href') === '#' + current.id);
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
+  // theme toggle (light/dark override)
+  (function () {
+    var btn = document.getElementById('themeToggle');
+    var root = document.documentElement;
+    btn.addEventListener('click', function () {
+      var current = root.getAttribute('data-theme');
+      if (current === 'dark') { root.setAttribute('data-theme', 'light'); }
+      else if (current === 'light') { root.removeAttribute('data-theme'); }
+      else { root.setAttribute('data-theme', 'dark'); }
+    });
+  })();
+</script>
+</body>
+</html>
