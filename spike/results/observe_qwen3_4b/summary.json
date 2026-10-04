@@ -1,0 +1,427 @@
+{
+ "model": "qwen3:4b",
+ "flows": {
+  "flow01": {
+   "flow": "Log in as alice; the navigation bar then shows her username 'alice'.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "expects": [
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "img",
+      "name": "alice"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "text": "alice"
+     }
+    }
+   ],
+   "final": "passed"
+  },
+  "flow02": {
+   "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "expects": [
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "text": "Wrong email/password combination"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "Login"
+     }
+    }
+   ],
+   "final": "passed"
+  },
+  "flow03": {
+   "flow": "Sign up a brand-new user with generated data; afterwards the navigation bar shows the new username.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "expects": [
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "text": "Aurelia84"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "hasText",
+     "target": {
+      "text": "Aurelia84"
+     },
+     "value": "Aurelia84"
+    }
+   ],
+   "final": "failed",
+   "verify_error": "step 6: Error: expect(locator).toBeVisible() failed\n\nLocator: getByText('Aurelia84').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByText('Aurelia84').first() with timeout 5000ms\n  - waiting for getByText('Aurelia84').first()\n"
+  },
+  "flow04": {
+   "flow": "As alice, publish a new article with a title, description, body and two tags; the article page then shows the title.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "failed",
+     "step": "2",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Article Title' })\n"
+    },
+    {
+     "phase": "actions",
+     "round": 1,
+     "status": "failed",
+     "step": "2",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Article Title' })\n"
+    },
+    {
+     "phase": "actions",
+     "round": 2,
+     "status": "failed",
+     "step": "2",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Article Title' })\n"
+    },
+    {
+     "phase": "actions",
+     "round": 3,
+     "status": "failed",
+     "step": "2",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Article Title' })\n"
+    }
+   ],
+   "final": "no-actions"
+  },
+  "flow05": {
+   "flow": "As alice, open the article \"Dave's post 3\" and post a comment; the comment appears on the page.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "failed",
+     "step": "4",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Write a comment...' })\n"
+    },
+    {
+     "phase": "actions",
+     "round": 1,
+     "status": "failed",
+     "step": "4",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Write a comment...' })\n"
+    },
+    {
+     "phase": "actions",
+     "round": 2,
+     "status": "failed",
+     "step": "4",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Write a comment...' })\n"
+    },
+    {
+     "phase": "actions",
+     "round": 3,
+     "status": "failed",
+     "step": "4",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Write a comment...' })\n"
+    }
+   ],
+   "final": "no-actions"
+  },
+  "flow06": {
+   "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "failed",
+     "step": "2",
+     "error": "Error: locator.click: Error: strict mode violation: getByRole('listitem') resolved to 18 elements:\n    1) <li class=\"nav-item\">\u2026</li> aka getByRole('banner').getByRole('listitem').filter({ hasText: 'Source code' })\n    2) <li class=\"nav-item\">\u2026</li> aka getByRole('listitem').filter({ hasText: 'Home'"
+    },
+    {
+     "phase": "actions",
+     "round": 1,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "expects": [
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "react"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "playwright"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "postgres"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "design"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "testing"
+     }
+    }
+   ],
+   "final": "passed"
+  },
+  "flow07": {
+   "flow": "As alice, favorite the article \"Dave's post 3\"; its favorite count goes from 0 to 1.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: 'Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">\u2026</button> aka getByRole('button', { name: '\uf141 Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-pr"
+    },
+    {
+     "phase": "actions",
+     "round": 1,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: '\uf141 Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">\u2026</button> aka getByRole('button', { name: '\uf141 Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-"
+    },
+    {
+     "phase": "actions",
+     "round": 2,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: '\uf141 Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">\u2026</button> aka getByRole('button', { name: '\uf141 Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-"
+    },
+    {
+     "phase": "actions",
+     "round": 3,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: '\uf141 Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">\u2026</button> aka getByRole('button', { name: '\uf141 Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-"
+    }
+   ],
+   "final": "no-actions"
+  },
+  "flow08": {
+   "flow": "As alice, open 'Your Feed'; it lists articles by bob and carol (whom she follows) and none by dave.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "expects": [
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "Your Feed"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "Global Feed"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "hasText",
+     "target": {
+      "text": "Carol's post 1 Post 1 by carol Read more... design postgres"
+     },
+     "value": "Carol's post 1 Post 1 by carol Read more... design postgres"
+    },
+    {
+     "action": "expect",
+     "assert": "hasText",
+     "target": {
+      "text": "Carol's post 2 Post 2 by carol Read more... design testing"
+     },
+     "value": "Carol's post 2 Post 2 by carol Read more... design testing"
+    },
+    {
+     "action": "expect",
+     "assert": "hasText",
+     "target": {
+      "text": "Carol's post 3 Post 3 by carol Read more... playwright testing"
+     },
+     "value": "Carol's post 3 Post 3 by carol Read more... playwright testing"
+    }
+   ],
+   "final": "failed",
+   "verify_error": "step 9: Error: expect(locator).toContainText(expected) failed\n\nLocator: getByText('Carol\\'s post 1 Post 1 by carol Read more... design postgres').first()\nExpected substring: \"Carol's post 1 Post 1 by carol Read more... design postgres\"\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toCon"
+  },
+  "flow09": {
+   "flow": "Without logging in, open bob's profile; it lists his three articles.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "expects": [
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "text": "Bob's post 3 Post 3 by bob Read more... design testing"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "text": "Bob's post 2 Post 2 by bob Read more... design postgres"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "text": "Bob's post 1 Post 1 by bob Read more... postgres react"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "text": "October 4, 2026"
+     }
+    }
+   ],
+   "final": "failed",
+   "verify_error": "step 2: Error: expect(locator).toBeVisible() failed\n\nLocator: getByText('Bob\\'s post 3 Post 3 by bob Read more... design testing').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByText('Bob\\'s post 3 Post 3 by bob Read more... design testing').fi"
+  },
+  "flow10": {
+   "flow": "As alice, change her bio in settings to some generated text; her profile page then shows that bio.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "expects": [
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "Edit Profile Settings"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "hasText",
+     "target": {
+      "role": "heading",
+      "name": "alice"
+     },
+     "value": "alice"
+    },
+    {
+     "action": "expect",
+     "assert": "hasText",
+     "target": {
+      "role": "link",
+      "name": "Alice's post 3"
+     },
+     "value": "Alice's post 3"
+    },
+    {
+     "action": "expect",
+     "assert": "hasText",
+     "target": {
+      "role": "link",
+      "name": "Alice's post 2"
+     },
+     "value": "Alice's post 2"
+    },
+    {
+     "action": "expect",
+     "assert": "hasText",
+     "target": {
+      "role": "link",
+      "name": "Alice's post 1"
+     },
+     "value": "Alice's post 1"
+    }
+   ],
+   "final": "failed",
+   "verify_error": "step 10: Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('button', { name: 'Edit Profile Settings' }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('button', { name: 'Edit Profile Settings' }).first() with timeout 5000ms\n  "
+  }
+ },
+ "summary": {
+  "passed": 3,
+  "actions_ok": 7,
+  "model_calls": 27,
+  "mean_seconds": 6.0,
+  "wall_minutes": 5.0
+ }
+}

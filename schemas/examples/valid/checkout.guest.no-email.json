@@ -1,0 +1,14 @@
+{
+  "spec_version": 1,
+  "id": "checkout.guest.no-email",
+  "flow": "guest-checkout",
+  "requirement": "checkout.email-required",
+  "steps": [
+    { "action": "goto",   "url": "/cart" },
+    { "action": "click",  "target": { "role": "button", "name": "Checkout" } },
+    { "action": "fill",   "target": { "label": "Name" },  "value": { "$faker": "person.fullName" } },
+    { "action": "fill",   "target": { "label": "Email" }, "value": "" },
+    { "action": "click",  "target": { "role": "button", "name": "Place order" } },
+    { "action": "expect", "target": { "role": "alert" },  "assert": "hasText", "value": "Email is required" }
+  ]
+}

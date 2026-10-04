@@ -101,8 +101,8 @@ runner.
 
 **Design work:**
 
-- Pick the target app (Q12): a Conduit implementation with a stable seed and fast
-  template-database reset.
+- ~~Pick the target app (Q12)~~ — done: Conduit in `bench/app/` with an API seed and
+  template-database reset (D37).
 - Bug catalogue format — `bench/bugs/<id>.yaml`: id, category, toggle (env flag or patch),
   expected report (page, signal type, signature hint), `held_out`.
 - A hand-written **reference spec suite** — used to filter mutants (only the ones it kills
@@ -205,7 +205,7 @@ specs missed, and makes no off-origin navigation.
 | Q22 Spike exit targets | Before step 1 starts |
 | Q2 Models per tier | Step 1 (proposal), step 6 (final) |
 | Q4 Natural keys | Step 2 (proposal), step 7 (final) |
-| Q12 Benchmark target app | Step 3 |
+| ~~Q12 Benchmark target app~~ | Closed early (D37) |
 | Q24 Imported-suite failure mapping | Step 4 |
 | Q15, Q17, Q18, Q21, Q23 Planner and freshness | Step 7 |
 | Q5, Q6, Q19 Thresholds, budget, score combination | Step 8 |

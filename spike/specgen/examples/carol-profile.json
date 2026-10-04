@@ -1,0 +1,10 @@
+{
+  "spec_version": 1,
+  "id": "profile.lists-articles",
+  "flow": "Without logging in, open carol's profile; it shows her name and her article 'Carol's post 1'.",
+  "steps": [
+    { "action": "goto", "url": "/#/profile/carol" },
+    { "action": "expect", "target": { "role": "heading", "name": "carol" }, "assert": "visible" },
+    { "action": "expect", "target": { "role": "heading", "name": "Carol's post 1" }, "assert": "visible" }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+ "spec_version": 1,
+ "id": "flow08",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": "alice@conduit.test"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": {
+    "$secret": "ALICE_PASSWORD"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "url",
+   "value": "/#/profile/alice"
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "heading",
+    "name": "Carol's post 1"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "heading",
+    "name": "Carol's post 2"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "heading",
+    "name": "Carol's post 3"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 1"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 2"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 3"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "hidden",
+   "target": {
+    "role": "heading",
+    "name": "Dave's post 1"
+   }
+  }
+ ],
+ "flow": "As alice, open 'Your Feed'; it lists articles by bob and carol (whom she follows) and none by dave."
+}

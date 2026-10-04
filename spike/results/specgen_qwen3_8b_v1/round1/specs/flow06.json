@@ -1,0 +1,55 @@
+{
+ "spec_version": 1,
+ "id": "flow06",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "react"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "url",
+   "value": "/#/article/dave-s-post-3"
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "heading",
+    "name": "Dave's post 3"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "hidden",
+   "target": {
+    "role": "heading",
+    "name": "Carol's post 2"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "hidden",
+   "target": {
+    "role": "heading",
+    "name": "Dave's post 2"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "hidden",
+   "target": {
+    "role": "heading",
+    "name": "Alice's post 2"
+   }
+  }
+ ],
+ "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'."
+}

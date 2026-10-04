@@ -1,0 +1,26 @@
+{
+  "num_ctx": 4096,
+  "gpu_baseline_mib": 12,
+  "results": [
+    {
+      "model": "qwen3:4b",
+      "processor": "87% GPU (3.0 GiB)",
+      "gpu_mib_loaded": 2780,
+      "load_s": 3.0,
+      "prompt_tok_s": 433.2,
+      "gen_tok_s": 43.6,
+      "gen_tokens": 256,
+      "wall_s": 9.0
+    },
+    {
+      "model": "gemma3:4b",
+      "processor": "54% GPU (3.5 GiB)",
+      "gpu_mib_loaded": 2898,
+      "load_s": 6.1,
+      "prompt_tok_s": 221.5,
+      "gen_tok_s": 30.3,
+      "gen_tokens": 218,
+      "wall_s": 13.6
+    }
+  ]
+}

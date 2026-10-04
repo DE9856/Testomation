@@ -1,0 +1,39 @@
+{
+ "spec_version": 1,
+ "id": "flow09",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/profile/bob"
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "text": "Bob's post 3 Post 3 by bob Read more... design testing"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "text": "Bob's post 2 Post 2 by bob Read more... design postgres"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "text": "Bob's post 1 Post 1 by bob Read more... postgres react"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "text": "October 4, 2026"
+   }
+  }
+ ],
+ "flow": "Without logging in, open bob's profile; it lists his three articles."
+}

@@ -1,0 +1,5 @@
+{
+  "spec_version": 1,
+  "id": "invalid.dollar-literal",
+  "steps": [{ "action": "fill", "target": { "label": "Password" }, "value": "$secret:ALICE_PASSWORD" }]
+}

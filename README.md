@@ -9,7 +9,18 @@ between "what we remembered to test" and "what the app can actually do."
 
 **📄 Project brief (v0.6): https://de9856.github.io/Testomation/**
 
-> **Status: design stage.** There is no code yet. This repo holds the idea documentation.
+> **Status: design stage.** The repo holds the idea documentation plus a bare scaffold —
+> no agent logic yet. Next up is the feasibility spike ([DESIGN_ROADMAP](docs/DESIGN_ROADMAP.md)).
+
+## Getting started
+
+```bash
+cp .env.example .env
+uv sync && uv run pytest              # Python 3.12 (uv fetches it)
+uv run testomation --help             # commands are stubs until their phase lands
+cd runner && npm install && npm run typecheck && npm run validate-examples
+docker compose -f deploy/compose.yaml up -d   # Postgres + pgvector with the draft memory schema
+```
 
 ## The pipeline
 
@@ -47,6 +58,11 @@ suite's report.
 
 | Path | What it is |
 |---|---|
+| [`src/testomation/`](src/testomation/) | Python package: CLI, config, stub packages per component |
+| [`runner/`](runner/) | TypeScript Playwright spec runner (stub) + helper registry |
+| [`schemas/`](schemas/) | Draft spec JSON Schema + valid/invalid examples |
+| [`deploy/`](deploy/) | Compose file (Postgres + pgvector) and draft memory DDL |
+| [`bench/`](bench/), [`spike/`](spike/) | Benchmark and feasibility spike (placeholders) |
 | [`index.html`](index.html) | The project brief (v0.6) — source of truth, served on GitHub Pages |
 | [`docs/`](docs/) | The brief split into editable Markdown files |
 | [`archive/`](archive/) | Previous briefs (v0.4, v0.5) |

@@ -4,8 +4,11 @@ Guidance for Claude (and humans) working in this repository.
 
 ## Status
 
-**Design stage — there is no code yet.** This repo holds the idea documentation for
-Testomation. The source of truth is the project brief `index.html` (**v0.6**, served on
+**Design stage, with scaffolding only.** The repo holds the idea documentation for
+Testomation plus a bare skeleton (packaging, CLI stubs, draft spec schema, runner stub,
+compose, draft memory DDL) and a working step executor in `runner/` (`steps.ts`: all actions
+except `upload`/`helper`, origin guard, failing-step annotation + aria snapshot on failure).
+No agent logic yet — the feasibility spike is in progress (`docs/SPIKE_RESULTS.md`). The source of truth is the project brief `index.html` (**v0.6**, served on
 GitHub Pages); the Markdown files in `docs/` are a split-out, editable version of it. Keep the
 two in sync. If they disagree, flag it rather than silently picking one. Previous briefs are
 kept at `archive/testomation-v0.5.html` and `archive/testomation-v0.4.html`.
@@ -50,6 +53,7 @@ between "what we remembered to test" and "what the app can actually do."
 | [docs/TECH_STACK.md](docs/TECH_STACK.md) | Chosen tools per layer and why; what was considered and not used |
 | [docs/ROADMAP.md](docs/ROADMAP.md) | Build order: spike, phases 0–6 + later |
 | [docs/DESIGN_ROADMAP.md](docs/DESIGN_ROADMAP.md) | What to design and decide before each phase, with exit gates |
+| [docs/SPIKE_RESULTS.md](docs/SPIKE_RESULTS.md) | Measured feasibility: model fit/speed on this laptop, spike findings |
 | [docs/DECISIONS.md](docs/DECISIONS.md) | Decisions made, decisions still open, gaps found and resolved |
 
 ## Core principles (do not violate without discussion)
@@ -108,6 +112,13 @@ between "what we remembered to test" and "what the app can actually do."
 - **Benchmark** — local target app with toggleable seeded bugs; `testomation bench` (full
   tier) and `testomation bench --replay` (replay tier).
 
+## Commands
+
+- `uv sync` · `uv run pytest` · `uv run ruff check .` · `uv run testomation --help`
+- `cd runner && npm install && npm run typecheck && npm run validate-examples`
+- `docker compose -f deploy/compose.yaml up -d` (Postgres + pgvector; applies `deploy/sql/`)
+- `bench/app/conduit.sh up | reset | down` (benchmark target app on :4100)
+
 ## Working conventions for this repo
 
 - Change a decision → update `docs/DECISIONS.md`, every doc that references it, **and** the
@@ -118,3 +129,5 @@ between "what we remembered to test" and "what the app can actually do."
 - When proposing something not covered, add it under "Open questions" in `docs/DECISIONS.md`
   rather than stating it as settled.
 - Model names are configuration, not code — refer to tiers (`small`, `large`) in designs.
+- `schemas/test-spec.schema.json` and `deploy/sql/001_memory.sql` mirror `docs/TEST_SPEC.md` and
+  `docs/MEMORY_GRAPH.md`; change them together. Spec examples must pass in both Python and TS.

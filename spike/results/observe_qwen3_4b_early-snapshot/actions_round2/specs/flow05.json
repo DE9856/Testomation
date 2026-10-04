@@ -1,0 +1,37 @@
+{
+ "spec_version": 1,
+ "id": "flow05",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/profile/alice"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "link",
+    "name": "Alice's post 3 Post 3 by alice Read more... design postgres"
+   }
+  },
+  {
+   "action": "goto",
+   "url": "/#/article/dave-s-post-3"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Write a comment..."
+   },
+   "value": "Hello, Dave!"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Post Comment"
+   }
+  }
+ ],
+ "flow": "As alice, open the article \"Dave's post 3\" and post a comment; the comment appears on the page."
+}

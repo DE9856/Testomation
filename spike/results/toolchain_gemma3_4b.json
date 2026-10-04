@@ -1,0 +1,478 @@
+{
+  "model": "gemma3:4b",
+  "native_think_None": [
+    {
+      "parsed": true,
+      "valid": true,
+      "errors": [],
+      "steps": 3,
+      "spec": {
+        "spec_version": 1,
+        "id": "login_check_username",
+        "steps": [
+          {
+            "action": "api",
+            "method": "POST",
+            "path": "/login",
+            "body": {
+              "Email": "alice@conduit.test",
+              "Password": "ALICE_PASSWORD"
+            },
+            "expect": {
+              "status": 200
+            }
+          },
+          {
+            "action": "viewport",
+            "preset": "desktop"
+          },
+          {
+            "action": "check",
+            "target": {
+              "role": "navigation",
+              "name": "alice"
+            }
+          }
+        ]
+      },
+      "seconds": 13.4,
+      "thinking_chars": 0
+    },
+    {
+      "parsed": true,
+      "valid": true,
+      "errors": [],
+      "steps": 2,
+      "spec": {
+        "spec_version": 1,
+        "id": "faker-signup-and-home",
+        "steps": [
+          {
+            "action": "api",
+            "method": "POST",
+            "path": "/register",
+            "body": {
+              "Username": "fakeruser",
+              "Email": "fakeruser@conduit.test",
+              "Password": "password"
+            },
+            "expect": {
+              "status": 200
+            }
+          },
+          {
+            "action": "api",
+            "method": "GET",
+            "path": "/",
+            "expect": {
+              "status": 200
+            }
+          }
+        ],
+        "flow": "signup-and-home"
+      },
+      "seconds": 4.0,
+      "thinking_chars": 0
+    },
+    {
+      "parsed": true,
+      "valid": true,
+      "errors": [],
+      "steps": 3,
+      "spec": {
+        "spec_version": 1,
+        "id": "article-publish-and-verify",
+        "steps": [
+          {
+            "action": "api",
+            "method": "POST",
+            "path": "/editor",
+            "body": {
+              "Article Title": "My First Conduit Article",
+              "What's this article about?": "A test article for Conduit.",
+              "Write your article (in markdown)": "# My First Article\n\nThis is a test article to verify the publishing functionality.",
+              "Enter tags": [
+                "conduit",
+                "test"
+              ]
+            },
+            "expect": {
+              "status": 200
+            }
+          },
+          {
+            "action": "api",
+            "method": "GET",
+            "path": "/",
+            "expect": {
+              "status": 200
+            }
+          },
+          {
+            "action": "check",
+            "target": {
+              "role": "label",
+              "name": "article-title"
+            }
+          }
+        ],
+        "flow": "alice"
+      },
+      "seconds": 5.6,
+      "thinking_chars": 0
+    }
+  ],
+  "v1_plain": [
+    {
+      "parsed": false,
+      "error": "Expecting value: line 678 column 16 (char 11401)",
+      "raw": "{\n  \"spec_version\": 1,\n  \"id\": \"login_check_username_in_navbar\",\n  \"steps\": [\n    {\n      \"action\": \"api\",\n      \"method\": \"POST\",\n      \"path\": \"/login\",\n      \"body\": {\n        \"Email\": \"alice@conduit.test\",\n        \"Password\": \"ALICE_PASSWORD\"\n      },\n      \"expect\": {\n        \"status\": 200\n    ",
+      "seconds": 154.0
+    },
+    {
+      "parsed": true,
+      "valid": true,
+      "errors": [],
+      "steps": 4,
+      "spec": {
+        "spec_version": 1,
+        "id": "signup-and-verify-home",
+        "steps": [
+          {
+            "action": "click",
+            "target": {
+              "label": "/register"
+            }
+          },
+          {
+            "action": "fill",
+            "target": {
+              "label": "/register"
+            },
+            "value": {
+              "$secret": "ALICE_PASSWORD"
+            }
+          },
+          {
+            "action": "click",
+            "target": {
+              "label": "/register"
+            }
+          },
+          {
+            "action": "check",
+            "target": {
+              "label": "/"
+            }
+          }
+        ]
+      },
+      "seconds": 7.2
+    },
+    {
+      "parsed": true,
+      "valid": true,
+      "errors": [],
+      "steps": 4,
+      "spec": {
+        "spec_version": 1,
+        "id": "article-publish-and-verify",
+        "steps": [
+          {
+            "action": "api",
+            "method": "POST",
+            "path": "/editor",
+            "body": {
+              "Article Title": "My First Conduit Article",
+              "What's this article about?": "A test article for Conduit.",
+              "Write your article (in markdown)": "# My First Article\n\nThis is a test article to verify the publishing functionality.",
+              "Enter tags": [
+                "conduit",
+                "test"
+              ]
+            },
+            "expect": {
+              "status": 200
+            }
+          },
+          {
+            "action": "api",
+            "method": "GET",
+            "path": "/settings",
+            "expect": {
+              "status": 200
+            }
+          },
+          {
+            "action": "api",
+            "method": "GET",
+            "path": "/article/My%20First%20Article",
+            "expect": {
+              "status": 200
+            }
+          },
+          {
+            "action": "api",
+            "method": "GET",
+            "path": "/article/My%20First%20Article",
+            "expect": {
+              "status": 200
+            }
+          }
+        ],
+        "flow": "alice",
+        "requirement": "alice@conduit.test, $secret ALICE_PASSWORD"
+      },
+      "seconds": 13.2
+    }
+  ],
+  "v1_langfuse": [
+    {
+      "parsed": false,
+      "error": "Expecting value: line 678 column 16 (char 11401)",
+      "raw": "{\n  \"spec_version\": 1,\n  \"id\": \"login_check_username_in_navbar\",\n  \"steps\": [\n    {\n      \"action\": \"api\",\n      \"method\": \"POST\",\n      \"path\": \"/login\",\n      \"body\": {\n        \"Email\": \"alice@conduit.test\",\n        \"Password\": \"ALICE_PASSWORD\"\n      },\n      \"expect\": {\n        \"status\": 200\n    ",
+      "seconds": 146.3
+    },
+    {
+      "parsed": true,
+      "valid": true,
+      "errors": [],
+      "steps": 2,
+      "spec": {
+        "spec_version": 1,
+        "id": "signup-and-verify-home",
+        "steps": [
+          {
+            "action": "api",
+            "method": "POST",
+            "path": "/register",
+            "body": {
+              "Username": "testuser",
+              "Email": "testuser@conduit.test",
+              "Password": "password"
+            },
+            "expect": {
+              "status": 201
+            }
+          },
+          {
+            "action": "api",
+            "method": "GET",
+            "path": "/",
+            "expect": {
+              "status": 200
+            }
+          }
+        ],
+        "requirement": "alice@conduit.test"
+      },
+      "seconds": 6.9
+    },
+    {
+      "parsed": true,
+      "valid": true,
+      "errors": [],
+      "steps": 4,
+      "spec": {
+        "spec_version": 1,
+        "id": "article-publish-and-verify",
+        "steps": [
+          {
+            "action": "api",
+            "method": "POST",
+            "path": "/editor",
+            "body": {
+              "Article Title": "My First Conduit Article",
+              "What's this article about?": "A test article for Conduit.",
+              "Write your article (in markdown)": "# My First Article\n\nThis is a test article to verify the publishing functionality.",
+              "Enter tags": [
+                "conduit",
+                "test"
+              ]
+            },
+            "expect": {
+              "status": 200
+            }
+          },
+          {
+            "action": "api",
+            "method": "GET",
+            "path": "/settings",
+            "expect": {
+              "status": 200
+            }
+          },
+          {
+            "action": "api",
+            "method": "GET",
+            "path": "/article/My%20First%20Article",
+            "expect": {
+              "status": 200
+            }
+          },
+          {
+            "action": "api",
+            "method": "GET",
+            "path": "/article/My%20First%20Article",
+            "expect": {
+              "status": 200
+            }
+          }
+        ],
+        "flow": "alice",
+        "requirement": "alice@conduit.test, $secret ALICE_PASSWORD"
+      },
+      "seconds": 13.6
+    }
+  ],
+  "triage_native": [
+    {
+      "expected": "bug",
+      "answer": "{\"verdict\": \"bug\"}",
+      "at_token": "bug",
+      "probs": {
+        "bug": 1.0,
+        "flaky": 0.0
+      },
+      "alts": [
+        "bug",
+        "debug",
+        "fl",
+        "Bug",
+        "bugs"
+      ]
+    },
+    {
+      "expected": "noise",
+      "answer": "{\n  \"verdict\": \"noise\"\n}",
+      "at_token": "noise",
+      "probs": {
+        "noise": 1.0,
+        "flaky": 0.0
+      },
+      "alts": [
+        "noise",
+        "fl",
+        "noisy",
+        "no",
+        " noise"
+      ]
+    },
+    {
+      "expected": "flaky",
+      "answer": "{\n  \"verdict\": \"flaky\"\n}",
+      "at_token": "fl",
+      "probs": {
+        "flaky": 1.0,
+        "noise": 0.0
+      },
+      "alts": [
+        "fl",
+        "noisy",
+        "flake",
+        "noise",
+        "false"
+      ]
+    }
+  ],
+  "triage_v1_plain": [
+    {
+      "expected": "bug",
+      "answer": "{\"verdict\": \"bug\"}",
+      "at_token": "bug",
+      "probs": {
+        "bug": 1.0,
+        "flaky": 0.0
+      },
+      "alts": [
+        "bug",
+        "debug",
+        "fl",
+        "Bug",
+        "bugs"
+      ]
+    },
+    {
+      "expected": "noise",
+      "answer": "{\n  \"verdict\": \"noise\"\n}",
+      "at_token": "noise",
+      "probs": {
+        "noise": 1.0,
+        "flaky": 0.0
+      },
+      "alts": [
+        "noise",
+        "fl",
+        "noisy",
+        "no",
+        " noise"
+      ]
+    },
+    {
+      "expected": "flaky",
+      "answer": "{\n  \"verdict\": \"flaky\"\n}",
+      "at_token": "fl",
+      "probs": {
+        "flaky": 1.0,
+        "noise": 0.0
+      },
+      "alts": [
+        "fl",
+        "noisy",
+        "flake",
+        "noise",
+        "false"
+      ]
+    }
+  ],
+  "triage_v1_langfuse": [
+    {
+      "expected": "bug",
+      "answer": "{\"verdict\": \"bug\"}",
+      "at_token": "bug",
+      "probs": {
+        "bug": 1.0,
+        "flaky": 0.0
+      },
+      "alts": [
+        "bug",
+        "debug",
+        "fl",
+        "Bug",
+        "bugs"
+      ]
+    },
+    {
+      "expected": "noise",
+      "answer": "{\n  \"verdict\": \"noise\"\n}",
+      "at_token": "noise",
+      "probs": {
+        "noise": 1.0,
+        "flaky": 0.0
+      },
+      "alts": [
+        "noise",
+        "fl",
+        "noisy",
+        "no",
+        " noise"
+      ]
+    },
+    {
+      "expected": "flaky",
+      "answer": "{\n  \"verdict\": \"flaky\"\n}",
+      "at_token": "fl",
+      "probs": {
+        "flaky": 1.0,
+        "noise": 0.0
+      },
+      "alts": [
+        "fl",
+        "noisy",
+        "flake",
+        "noise",
+        "false"
+      ]
+    }
+  ]
+}

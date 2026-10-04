@@ -1,0 +1,105 @@
+{
+ "spec_version": 1,
+ "id": "ref04-publish",
+ "flow": "As alice, publish a new article with a title, description, body and two tags; the article page then shows the title.",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": "alice@conduit.test"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": {
+    "$secret": "ALICE_PASSWORD"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "goto",
+   "url": "/#/editor"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Article Title"
+   },
+   "value": {
+    "$faker": "lorem.sentence",
+    "as": "title"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "What's this article about?"
+   },
+   "value": {
+    "$faker": "lorem.sentence"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Write your article (in markdown)"
+   },
+   "value": {
+    "$faker": "lorem.paragraph"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Enter tags"
+   },
+   "value": "spike,benchmark"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Publish Article"
+   }
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "nth": 0
+   },
+   "assert": "hasText",
+   "value": {
+    "$var": "title"
+   }
+  }
+ ]
+}

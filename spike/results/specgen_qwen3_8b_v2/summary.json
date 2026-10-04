@@ -1,0 +1,357 @@
+{
+ "model": "qwen3:8b",
+ "prompt": "v2",
+ "schema": "real",
+ "repair_expect_targets": false,
+ "rounds": [
+  {
+   "round": 0,
+   "ran": 8,
+   "passed_total": 2
+  },
+  {
+   "round": 1,
+   "ran": 7,
+   "passed_total": 2
+  },
+  {
+   "round": 2,
+   "ran": 7,
+   "passed_total": 2
+  },
+  {
+   "round": 3,
+   "ran": 7,
+   "passed_total": 2
+  }
+ ],
+ "flows": {
+  "flow01": {
+   "flow": "Log in as alice; the navigation bar then shows her username 'alice'.",
+   "history": [
+    {
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "final": "passed",
+   "has_expect": true
+  },
+  "flow02": {
+   "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page.",
+   "history": [
+    {
+     "round": 0,
+     "status": "failed",
+     "step": "3",
+     "error": "Error: $secret WRONG_PASSWORD is not set in the environment"
+    },
+    {
+     "round": 1,
+     "status": "repair-changed-expect"
+    },
+    {
+     "round": 1,
+     "status": "failed",
+     "step": "3",
+     "error": "Error: $secret WRONG_PASSWORD is not set in the environment"
+    },
+    {
+     "round": 2,
+     "status": "repair-changed-expect"
+    },
+    {
+     "round": 2,
+     "status": "failed",
+     "step": "3",
+     "error": "Error: $secret WRONG_PASSWORD is not set in the environment"
+    },
+    {
+     "round": 3,
+     "status": "repair-changed-expect"
+    },
+    {
+     "round": 3,
+     "status": "failed",
+     "step": "3",
+     "error": "Error: $secret WRONG_PASSWORD is not set in the environment"
+    }
+   ],
+   "flagged": true,
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow03": {
+   "flow": "Sign up a brand-new user with generated data; afterwards the navigation bar shows the new username.",
+   "history": [
+    {
+     "round": 0,
+     "status": "failed",
+     "step": "6",
+     "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('link', { name: 'name' }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('link', { name: 'name' }).first() with timeout 5000ms\n  - waiting for getByRole('link', { name"
+    },
+    {
+     "round": 1,
+     "status": "failed",
+     "step": "6",
+     "error": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('heading', { name: 'name' }) to be visible\n"
+    },
+    {
+     "round": 2,
+     "status": "failed",
+     "step": "6",
+     "error": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('heading', { name: 'name' }) to be visible\n"
+    },
+    {
+     "round": 3,
+     "status": "failed",
+     "step": "6",
+     "error": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('heading', { name: 'name' }) to be visible\n"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow04": {
+   "flow": "As alice, publish a new article with a title, description, body and two tags; the article page then shows the title.",
+   "history": [
+    {
+     "round": 0,
+     "status": "schema-invalid",
+     "error": "{'action': 'fill', 'target': {'role': 'textbox', 'name': 'Write your article (in markdown)'}, 'value': '# This is the body of my first article.\\n\\nThis is a paragraph in markdown.'} is not valid under"
+    },
+    {
+     "round": 1,
+     "status": "schema-invalid",
+     "error": "{'action': 'fill', 'target': {'role': 'textbox', 'name': 'Write your article (in markdown)'}, 'value': '# This is the body of my first article.\\n\\nThis is a paragraph in markdown.'} is not valid under"
+    },
+    {
+     "round": 2,
+     "status": "schema-invalid",
+     "error": "{'action': 'fill', 'target': {'role': 'textbox', 'name': 'Write your article (in markdown)'}, 'value': '# This is the body of my first article.\\n\\nThis is a paragraph in markdown.'} is not valid under"
+    },
+    {
+     "round": 3,
+     "status": "schema-invalid",
+     "error": "{'action': 'fill', 'target': {'role': 'textbox', 'name': 'Write your article (in markdown)'}, 'value': '# This is the body of my first article.\\n\\nThis is a paragraph in markdown.'} is not valid under"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow05": {
+   "flow": "As alice, open the article \"Dave's post 3\" and post a comment; the comment appears on the page.",
+   "history": [
+    {
+     "round": 0,
+     "status": "failed",
+     "step": "9",
+     "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('paragraph', { name: 'Comment from alice' }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('paragraph', { name: 'Comment from alice' }).first() with timeout 5000ms\n  "
+    },
+    {
+     "round": 1,
+     "status": "repair-changed-expect"
+    },
+    {
+     "round": 1,
+     "status": "failed",
+     "step": "9",
+     "error": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('paragraph', { name: 'This is a comment from alice' }) to be visible\n"
+    },
+    {
+     "round": 2,
+     "status": "repair-changed-expect"
+    },
+    {
+     "round": 2,
+     "status": "failed",
+     "step": "9",
+     "error": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('paragraph', { name: 'This is a comment from alice' }) to be visible\n"
+    },
+    {
+     "round": 3,
+     "status": "repair-changed-expect"
+    },
+    {
+     "round": 3,
+     "status": "failed",
+     "step": "9",
+     "error": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('paragraph', { name: 'This is a comment from alice' }) to be visible\n"
+    }
+   ],
+   "flagged": true,
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow06": {
+   "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'.",
+   "history": [
+    {
+     "round": 0,
+     "status": "failed",
+     "step": "2",
+     "error": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('listitem', { name: 'react' })\n"
+    },
+    {
+     "round": 1,
+     "status": "repair-changed-expect"
+    },
+    {
+     "round": 1,
+     "status": "failed",
+     "step": "3",
+     "error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected: predicate to succeed\nReceived: \"http://localhost:4100/#/\"\nTimeout:  5000ms\n"
+    },
+    {
+     "round": 2,
+     "status": "repair-changed-expect"
+    },
+    {
+     "round": 2,
+     "status": "failed",
+     "step": "3",
+     "error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected: predicate to succeed\nReceived: \"http://localhost:4100/#/\"\nTimeout:  5000ms\n"
+    },
+    {
+     "round": 3,
+     "status": "repair-changed-expect"
+    },
+    {
+     "round": 3,
+     "status": "failed",
+     "step": "3",
+     "error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected: predicate to succeed\nReceived: \"http://localhost:4100/#/\"\nTimeout:  5000ms\n"
+    }
+   ],
+   "flagged": true,
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow07": {
+   "flow": "As alice, favorite the article \"Dave's post 3\"; its favorite count goes from 0 to 1.",
+   "history": [
+    {
+     "round": 0,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: '\uf141 Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">\u2026</button> aka getByRole('button', { name: '\uf141 Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-"
+    },
+    {
+     "round": 1,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: '\uf141 Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">\u2026</button> aka getByRole('button', { name: '\uf141 Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-"
+    },
+    {
+     "round": 2,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: '\uf141 Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">\u2026</button> aka getByRole('button', { name: '\uf141 Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-"
+    },
+    {
+     "round": 3,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: '\uf141 Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">\u2026</button> aka getByRole('button', { name: '\uf141 Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow08": {
+   "flow": "As alice, open 'Your Feed'; it lists articles by bob and carol (whom she follows) and none by dave.",
+   "history": [
+    {
+     "round": 0,
+     "status": "failed",
+     "step": "10",
+     "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('heading', { name: 'Bob\\'s post 1' }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('heading', { name: 'Bob\\'s post 1' }).first() with timeout 5000ms\n  - waiting for "
+    },
+    {
+     "round": 1,
+     "status": "repair-changed-expect"
+    },
+    {
+     "round": 1,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected: predicate to succeed\nReceived: \"http://localhost:4100/#/\"\nTimeout:  5000ms\n"
+    },
+    {
+     "round": 2,
+     "status": "repair-changed-expect"
+    },
+    {
+     "round": 2,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected: predicate to succeed\nReceived: \"http://localhost:4100/#/\"\nTimeout:  5000ms\n"
+    },
+    {
+     "round": 3,
+     "status": "repair-changed-expect"
+    },
+    {
+     "round": 3,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: expect(page).toHaveURL(expected) failed\n\nExpected: predicate to succeed\nReceived: \"http://localhost:4100/#/\"\nTimeout:  5000ms\n"
+    }
+   ],
+   "flagged": true,
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow09": {
+   "flow": "Without logging in, open bob's profile; it lists his three articles.",
+   "history": [
+    {
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "final": "passed",
+   "has_expect": true
+  },
+  "flow10": {
+   "flow": "As alice, change her bio in settings to some generated text; her profile page then shows that bio.",
+   "history": [
+    {
+     "round": 0,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_call_error' was unexpected); 'spec_version' is a required property; [] should be non-empty"
+    },
+    {
+     "round": 1,
+     "status": "failed",
+     "step": "11",
+     "error": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('paragraph').first()\nExpected substring: \"Alice's bio text here\"\nReceived string:    \"Post 3 by alice\"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" getByRole('paragraph').first() with timeout 5000ms\n  - waiting for ge"
+    },
+    {
+     "round": 2,
+     "status": "failed",
+     "step": "11",
+     "error": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('paragraph').first()\nExpected substring: \"Alice's bio text here\"\nReceived string:    \"Post 3 by alice\"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" getByRole('paragraph').first() with timeout 5000ms\n  - waiting for ge"
+    },
+    {
+     "round": 3,
+     "status": "failed",
+     "step": "11",
+     "error": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('paragraph').first()\nExpected substring: \"Alice's bio text here\"\nReceived string:    \"Post 3 by alice\"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" getByRole('paragraph').first() with timeout 5000ms\n  - waiting for ge"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  }
+ },
+ "generation": {
+  "calls": 34,
+  "mean_seconds": 42.0,
+  "mean_prompt_tokens": 3713,
+  "mean_gen_tokens": 354
+ }
+}

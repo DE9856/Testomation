@@ -1,0 +1,43 @@
+{
+ "spec_version": 1,
+ "id": "flow09",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/profile/bob"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "bob"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 3"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 2"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 1"
+   },
+   "assert": "visible"
+  }
+ ],
+ "flow": "Without logging in, open bob's profile; it lists his three articles."
+}

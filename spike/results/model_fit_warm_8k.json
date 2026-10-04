@@ -1,0 +1,36 @@
+{
+  "num_ctx": 8192,
+  "gpu_baseline_mib": 12,
+  "results": [
+    {
+      "model": "gemma3:4b",
+      "processor": "52% GPU (3.5 GiB)",
+      "gpu_mib_loaded": 2896,
+      "load_s": 5.5,
+      "prompt_tok_s": 203.8,
+      "gen_tok_s": 29.6,
+      "gen_tokens": 215,
+      "wall_s": 13.1
+    },
+    {
+      "model": "qwen3:8b",
+      "processor": "43% GPU (6.1 GiB)",
+      "gpu_mib_loaded": 2804,
+      "load_s": 5.1,
+      "prompt_tok_s": 94.0,
+      "gen_tok_s": 12.7,
+      "gen_tokens": 134,
+      "wall_s": 16.3
+    },
+    {
+      "model": "qwen3:4b",
+      "processor": "72% GPU (3.6 GiB)",
+      "gpu_mib_loaded": 2742,
+      "load_s": 5.9,
+      "prompt_tok_s": 254.3,
+      "gen_tok_s": 32.7,
+      "gen_tokens": 256,
+      "wall_s": 13.9
+    }
+  ]
+}

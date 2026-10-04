@@ -1,0 +1,75 @@
+{
+ "spec_version": 1,
+ "id": "flow08",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": "alice@conduit.test"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": {
+    "$secret": "ALICE_PASSWORD"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "heading",
+    "name": "bob"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "heading",
+    "name": "carol"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "hidden",
+   "target": {
+    "role": "heading",
+    "name": "dave"
+   }
+  }
+ ],
+ "flow": "As alice, open 'Your Feed'; it lists articles by bob and carol (whom she follows) and none by dave."
+}

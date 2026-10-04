@@ -1,0 +1,5 @@
+{
+  "spec_version": 1,
+  "id": "invalid.css-target",
+  "steps": [{ "action": "click", "target": { "css": "#checkout > button" } }]
+}

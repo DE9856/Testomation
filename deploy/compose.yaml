@@ -1,0 +1,23 @@
+# Phase 0: Postgres + pgvector only. The Langfuse stack is added in phase 3 (D8).
+# Ollama runs natively on the host (GPU), not here.
+name: testomation
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_USER: testomation
+      POSTGRES_PASSWORD: testomation
+      POSTGRES_DB: testomation
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U testomation"]
+      interval: 5s
+      retries: 10
+
+volumes:
+  pgdata:

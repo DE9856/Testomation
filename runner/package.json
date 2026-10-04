@@ -1,0 +1,18 @@
+{
+  "name": "testomation-runner",
+  "private": true,
+  "type": "module",
+  "description": "Playwright spec runner: interprets Testomation JSON specs. The only code that drives the browser.",
+  "scripts": {
+    "test": "playwright test",
+    "typecheck": "tsc --noEmit",
+    "validate-examples": "node --experimental-strip-types scripts/validate-examples.ts"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
+    "@playwright/test": "^1.56.0",
+    "@types/node": "^22.0.0",
+    "ajv": "^8.17.0",
+    "typescript": "^5.6.0"
+  }
+}

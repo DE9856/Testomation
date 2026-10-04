@@ -1,0 +1,805 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node-22",
+      "/home/deepesh/Desktop/Testomation/runner/node_modules/.bin/playwright",
+      "test",
+      "--output",
+      "/home/deepesh/Desktop/Testomation/spike/results/triage_runs/noise-analytics/test-results"
+    ],
+    "configFile": "/home/deepesh/Desktop/Testomation/runner/playwright.config.ts",
+    "rootDir": "/home/deepesh/Desktop/Testomation/runner",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/deepesh/Desktop/Testomation/spike/results/triage_runs/noise-analytics/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/deepesh/Desktop/Testomation/runner",
+        "testIgnore": [],
+        "testMatch": [
+          "spec-runner.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "/home/deepesh/Desktop/Testomation/spike/results/triage_runs/noise-analytics/results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "spec-runner.spec.ts",
+      "file": "spec-runner.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "ref01-login",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2253,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 439
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 34
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 1588
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 11
+                    },
+                    {
+                      "title": "6. expect",
+                      "duration": 10
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:43:53.605Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "signals",
+                      "contentType": "application/json",
+                      "body": "W3sia2luZCI6InJlcXVlc3RmYWlsZWQiLCJ0ZXh0IjoibmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn0seyJraW5kIjoiY29uc29sZSIsInRleHQiOiJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogbmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn1d"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-f8757b8417620702c9c6",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref02-wrong-password",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 978,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 377
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 27
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 433
+                    },
+                    {
+                      "title": "5. expect",
+                      "duration": 9
+                    },
+                    {
+                      "title": "6. expect",
+                      "duration": 3
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:43:55.962Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "signals",
+                      "contentType": "application/json",
+                      "body": "W3sia2luZCI6InJlcXVlc3RmYWlsZWQiLCJ0ZXh0IjoibmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn0seyJraW5kIjoiY29uc29sZSIsInRleHQiOiJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogbmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn0seyJraW5kIjoiaHR0cCIsInRleHQiOiJQT1NUIDQyMiIsInVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDEwMC9hcGkvdXNlcnMvbG9naW4iLCJzdGF0dXMiOjQyMn0seyJraW5kIjoiY29uc29sZSIsInRleHQiOiJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA0MjIgKFVucHJvY2Vzc2FibGUgRW50aXR5KSIsInVybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDEwMC9hcGkvdXNlcnMvbG9naW4ifV0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-d1f4d68827e38122f08e",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref03-signup",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1053,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 402
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 29
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "4. fill",
+                      "duration": 8
+                    },
+                    {
+                      "title": "5. click",
+                      "duration": 485
+                    },
+                    {
+                      "title": "6. expect",
+                      "duration": 7
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:43:56.950Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "signals",
+                      "contentType": "application/json",
+                      "body": "W3sia2luZCI6InJlcXVlc3RmYWlsZWQiLCJ0ZXh0IjoibmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn0seyJraW5kIjoiY29uc29sZSIsInRleHQiOiJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogbmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn1d"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-12953323fe1dd751461c",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref04-publish",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1568,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 454
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 25
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 488
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 8
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 8
+                    },
+                    {
+                      "title": "7. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "8. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "9. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "10. fill",
+                      "duration": 8
+                    },
+                    {
+                      "title": "11. click",
+                      "duration": 422
+                    },
+                    {
+                      "title": "12. expect",
+                      "duration": 7
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:43:58.013Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "signals",
+                      "contentType": "application/json",
+                      "body": "W3sia2luZCI6InJlcXVlc3RmYWlsZWQiLCJ0ZXh0IjoibmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn0seyJraW5kIjoiY29uc29sZSIsInRleHQiOiJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogbmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn1d"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-985c16d0d65b109f110e",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref05-comment",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1515,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 424
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 28
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 481
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 8
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 13
+                    },
+                    {
+                      "title": "7. fill",
+                      "duration": 13
+                    },
+                    {
+                      "title": "8. click",
+                      "duration": 421
+                    },
+                    {
+                      "title": "9. expect",
+                      "duration": 5
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:43:59.589Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "signals",
+                      "contentType": "application/json",
+                      "body": "W3sia2luZCI6InJlcXVlc3RmYWlsZWQiLCJ0ZXh0IjoibmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn0seyJraW5kIjoiY29uc29sZSIsInRleHQiOiJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogbmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn1d"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-d5870fb1b9f80bd224db",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref06-tag-filter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 841,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 324
+                    },
+                    {
+                      "title": "2. wait_for",
+                      "duration": 21
+                    },
+                    {
+                      "title": "3. click",
+                      "duration": 352
+                    },
+                    {
+                      "title": "4. expect",
+                      "duration": 7
+                    },
+                    {
+                      "title": "5. expect",
+                      "duration": 5
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:44:01.114Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "signals",
+                      "contentType": "application/json",
+                      "body": "W3sia2luZCI6InJlcXVlc3RmYWlsZWQiLCJ0ZXh0IjoibmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn0seyJraW5kIjoiY29uc29sZSIsInRleHQiOiJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogbmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn1d"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-ce5bf57c7ad2748a27dd",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref07-favorite",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1440,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 405
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 26
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 7
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 427
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 7
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 13
+                    },
+                    {
+                      "title": "7. click",
+                      "duration": 438
+                    },
+                    {
+                      "title": "8. expect",
+                      "duration": 7
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:44:01.964Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "signals",
+                      "contentType": "application/json",
+                      "body": "W3sia2luZCI6InJlcXVlc3RmYWlsZWQiLCJ0ZXh0IjoibmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn0seyJraW5kIjoiY29uc29sZSIsInRleHQiOiJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogbmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn1d"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-a41679562d654845c636",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref08-your-feed",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1351,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 400
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 27
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 431
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 9
+                    },
+                    {
+                      "title": "6. click",
+                      "duration": 348
+                    },
+                    {
+                      "title": "7. expect",
+                      "duration": 7
+                    },
+                    {
+                      "title": "8. expect",
+                      "duration": 5
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:44:03.413Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "signals",
+                      "contentType": "application/json",
+                      "body": "W3sia2luZCI6InJlcXVlc3RmYWlsZWQiLCJ0ZXh0IjoibmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn0seyJraW5kIjoiY29uc29sZSIsInRleHQiOiJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogbmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn1d"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-2a4e0e220517889b2816",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref09-profile",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 798,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 648
+                    },
+                    {
+                      "title": "2. expect",
+                      "duration": 23
+                    },
+                    {
+                      "title": "3. expect",
+                      "duration": 5
+                    },
+                    {
+                      "title": "4. expect",
+                      "duration": 4
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:44:04.774Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "signals",
+                      "contentType": "application/json",
+                      "body": "W3sia2luZCI6InJlcXVlc3RmYWlsZWQiLCJ0ZXh0IjoibmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn0seyJraW5kIjoiY29uc29sZSIsInRleHQiOiJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogbmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn1d"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-b65b7970ec2408de0112",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref10-bio",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1556,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 408
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 27
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 477
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 8
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 8
+                    },
+                    {
+                      "title": "7. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "8. click",
+                      "duration": 355
+                    },
+                    {
+                      "title": "9. goto",
+                      "duration": 12
+                    },
+                    {
+                      "title": "10. expect",
+                      "duration": 12
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:44:05.582Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "signals",
+                      "contentType": "application/json",
+                      "body": "W3sia2luZCI6InJlcXVlc3RmYWlsZWQiLCJ0ZXh0IjoibmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn0seyJraW5kIjoiY29uc29sZSIsInRleHQiOiJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogbmV0OjpFUlJfTkFNRV9OT1RfUkVTT0xWRUQiLCJ1cmwiOiJodHRwOi8vYW5hbHl0aWNzLmludmFsaWQvYmVhY29uLmpzIn1d"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-eb0968b131dcc464f6a0",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-04T12:43:52.886Z",
+    "duration": 14321.26,
+    "expected": 10,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

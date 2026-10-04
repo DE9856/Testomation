@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+
+# Node / Playwright
+node_modules/
+runner/test-results/
+runner/playwright-report/
+runner/blob-report/
+
+# Runtime data: evidence, reports, run specs, traces
+data/
+
+# Local config
+.env
+
+# Spike runs: keep JSON results/specs, not Playwright videos/traces/screenshots (~140 MB)
+spike/results/**/test-results/

@@ -46,12 +46,26 @@ decoding.
   tests, so the brain and the hands can't drift.
 - At generation time, the registered helper names are injected into the schema as an enum,
   so constrained decoding can only name helpers that exist.
+- **The schema must be decoder-friendly (D38)**, because Ollama silently drops what it can't
+  convert: each `anyOf` branch a complete typed object; every `pattern` anchored `^…$`;
+  arrays capped (`steps.maxItems: 40`). `targets` are therefore an `anyOf` of five complete
+  objects (`{testid}`, `{role, name?}`, `{label}`, `{placeholder}`, `{text}`).
+- **Constraints the decoder enforces, so the model can't get them wrong:** `role` is an enum of
+  the ARIA roles Playwright accepts (a model asked for `role: "input"` gets `textbox`), and a
+  literal string value may not start with `$` (pattern `^([^$].*)?$`), so secrets and generated
+  data must use the `$secret` / `$faker` / `$var` objects.
+- `name` is only allowed on roles that can have an accessible name (D40). Paragraphs, list
+  items and plain text are targeted with `{"text": ...}` — in an aria snapshot,
+  `- listitem: Some text` is content, not a name.
+- The schema file holds the validator-correct patterns; the llm client rewrites them into
+  the form Ollama's grammar accepts when it builds a request (D39). Ollama also ignores
+  `contains`, so "a spec must have an `expect`" is a lint rule, not a schema rule.
 
 ## Step vocabulary
 
 | Action | Fields | Notes |
 |---|---|---|
-| `goto` | `url` | A path relative to the target's base URL — must start with `/` |
+| `goto` | `url` | A path relative to the target's base URL — must start with `/` (`^/.*$`) |
 | `click`, `hover` | `target` | |
 | `fill`, `select` | `target`, `value` | Value may be a literal or a reference |
 | `check`, `uncheck` | `target` | |
@@ -65,7 +79,8 @@ decoding.
 
 ## Targets
 
-Exactly one of, in order of preference:
+Exactly one of, in order of preference (each may add `"nth": n`, 0-based, when several
+elements match — D41):
 
 1. `testid`
 2. `role` + `name`

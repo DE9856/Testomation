@@ -1,0 +1,58 @@
+{
+ "spec_version": 1,
+ "id": "flow04",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/editor"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Article Title"
+   },
+   "value": {
+    "$faker": "internet.title"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "What's this article about?"
+   },
+   "value": {
+    "$faker": "internet.description"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Write your article (in markdown)"
+   },
+   "value": {
+    "$faker": "internet.paragraph"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Enter tags"
+   },
+   "value": {
+    "$faker": "internet.word"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Publish Article"
+   }
+  }
+ ],
+ "flow": "As alice, publish a new article with a title, description, body and two tags; the article page then shows the title."
+}

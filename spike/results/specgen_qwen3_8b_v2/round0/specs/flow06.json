@@ -1,0 +1,42 @@
+{
+ "spec_version": 1,
+ "id": "flow06",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "listitem",
+    "name": "react"
+   }
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Carol's post 2"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Dave's post 2"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Alice's post 2"
+   },
+   "assert": "visible"
+  }
+ ],
+ "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'."
+}

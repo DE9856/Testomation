@@ -1,0 +1,42 @@
+{
+ "spec_version": 1,
+ "id": "ref06-tag-filter",
+ "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'.",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "heading",
+    "name": "Dave's post 2"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "react"
+   }
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 1"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Dave's post 2"
+   },
+   "assert": "hidden"
+  }
+ ]
+}

@@ -1,0 +1,94 @@
+{
+ "spec_version": 1,
+ "id": "flow08",
+ "flow": "As alice, open 'Your Feed'; it lists articles by bob and carol (whom she follows) and none by dave.",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": "alice@conduit.test"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": {
+    "$secret": "ALICE_PASSWORD"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "goto",
+   "url": "/#/"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   }
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Carol's post 2"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Carol's post 1"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Popular Tags"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "text": "alice"
+   },
+   "assert": "visible"
+  }
+ ]
+}

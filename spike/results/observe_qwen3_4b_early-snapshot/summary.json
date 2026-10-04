@@ -1,0 +1,444 @@
+{
+ "model": "qwen3:4b",
+ "flows": {
+  "flow01": {
+   "flow": "Log in as alice; the navigation bar then shows her username 'alice'.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "expects": [
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "img",
+      "name": "alice"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "text": "alice"
+     }
+    }
+   ],
+   "final": "passed"
+  },
+  "flow02": {
+   "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "expects": [
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "textbox",
+      "name": "Email"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "textbox",
+      "name": "Password"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "Login"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "hasText",
+     "target": {
+      "role": "paragraph"
+     },
+     "value": "Error: Invalid password"
+    }
+   ],
+   "final": "failed",
+   "verify_error": "step 8: Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('paragraph').first()\nExpected substring: \"Error: Invalid password\"\nReceived string:    \"Need an account?\"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" getByRole('paragraph').first() with timeout 5000ms\n  - waiting for"
+  },
+  "flow03": {
+   "flow": "Sign up a brand-new user with generated data; afterwards the navigation bar shows the new username.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "expects": [
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "textbox",
+      "name": "Your Name"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "textbox",
+      "name": "Email"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "textbox",
+      "name": "Password"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "Sign up"
+     }
+    }
+   ],
+   "final": "passed"
+  },
+  "flow04": {
+   "flow": "As alice, publish a new article with a title, description, body and two tags; the article page then shows the title.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "failed",
+     "step": "2",
+     "error": "Error: unknown $faker path: internet.title"
+    },
+    {
+     "phase": "actions",
+     "round": 1,
+     "status": "failed",
+     "step": "2",
+     "error": "Error: unknown $faker path: internet.title"
+    },
+    {
+     "phase": "actions",
+     "round": 2,
+     "status": "failed",
+     "step": "2",
+     "error": "Error: unknown $faker path: internet.title"
+    },
+    {
+     "phase": "actions",
+     "round": 3,
+     "status": "failed",
+     "step": "2",
+     "error": "Error: unknown $faker path: internet.title"
+    }
+   ],
+   "final": "no-actions"
+  },
+  "flow05": {
+   "flow": "As alice, open the article \"Dave's post 3\" and post a comment; the comment appears on the page.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "failed",
+     "step": "4",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Write a comment...' })\n"
+    },
+    {
+     "phase": "actions",
+     "round": 1,
+     "status": "failed",
+     "step": "4",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Write a comment...' })\n"
+    },
+    {
+     "phase": "actions",
+     "round": 2,
+     "status": "failed",
+     "step": "4",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Write a comment...' })\n"
+    },
+    {
+     "phase": "actions",
+     "round": 3,
+     "status": "failed",
+     "step": "4",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Write a comment...' })\n"
+    }
+   ],
+   "final": "no-actions"
+  },
+  "flow06": {
+   "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "failed",
+     "step": "2",
+     "error": "Error: locator.click: Error: strict mode violation: getByRole('listitem') resolved to 6 elements:\n    1) <li class=\"nav-item\">\u2026</li> aka getByRole('navigation').getByRole('listitem').filter({ hasText: 'Source code' })\n    2) <li class=\"nav-item\">\u2026</li> aka getByRole('listitem').filter({ hasText: 'Ho"
+    },
+    {
+     "phase": "actions",
+     "round": 1,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "expects": [
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "react"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "playwright"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "postgres"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "design"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "testing"
+     }
+    }
+   ],
+   "final": "passed"
+  },
+  "flow07": {
+   "flow": "As alice, favorite the article \"Dave's post 3\"; its favorite count goes from 0 to 1.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: 'Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">\u2026</button> aka getByRole('button', { name: '\uf141 Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-pr"
+    },
+    {
+     "phase": "actions",
+     "round": 1,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: '\uf141 Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">\u2026</button> aka getByRole('button', { name: '\uf141 Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-"
+    },
+    {
+     "phase": "actions",
+     "round": 2,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: '\uf141 Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">\u2026</button> aka getByRole('button', { name: '\uf141 Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-"
+    },
+    {
+     "phase": "actions",
+     "round": 3,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: '\uf141 Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">\u2026</button> aka getByRole('button', { name: '\uf141 Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-"
+    }
+   ],
+   "final": "no-actions"
+  },
+  "flow08": {
+   "flow": "As alice, open 'Your Feed'; it lists articles by bob and carol (whom she follows) and none by dave.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "expects": [
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "Your Feed"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "Global Feed"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "Your Feed"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "button",
+      "name": "Global Feed"
+     }
+    }
+   ],
+   "final": "passed"
+  },
+  "flow09": {
+   "flow": "Without logging in, open bob's profile; it lists his three articles.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "expects": [
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "text": "bob"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "text": "Followers ( 1 )"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "text": "My Articles"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "text": "Favorited Articles"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "text": "Loading bob articles..."
+     }
+    }
+   ],
+   "final": "failed",
+   "verify_error": "step 6: Error: expect(locator).toBeVisible() failed\n\nLocator: getByText('Loading bob articles...').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByText('Loading bob articles...').first() with timeout 5000ms\n  - waiting for getByText('Loading bob"
+  },
+  "flow10": {
+   "flow": "As alice, change her bio in settings to some generated text; her profile page then shows that bio.",
+   "history": [
+    {
+     "phase": "actions",
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "expects": [
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "heading",
+      "name": "alice"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "link",
+      "name": "\uf13d Edit Profile Settings"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "listitem"
+     }
+    },
+    {
+     "action": "expect",
+     "assert": "visible",
+     "target": {
+      "role": "listitem"
+     }
+    }
+   ],
+   "final": "passed"
+  }
+ },
+ "summary": {
+  "passed": 5,
+  "actions_ok": 7,
+  "model_calls": 27,
+  "mean_seconds": 5.9,
+  "wall_minutes": 4.6
+ }
+}

@@ -1,0 +1,40 @@
+# /#/login
+- banner:
+  - navigation:
+    - link "conduit":
+      - /url: "#/"
+    - list:
+      - listitem:
+        - link " Source code":
+          - /url: https://github.com/TonyMckes/conduit-realworld-example-app
+    - list:
+      - listitem:
+        - link " Home":
+          - /url: "#/"
+      - listitem:
+        - link " Login":
+          - /url: "#/login"
+      - listitem:
+        - link "Sign up":
+          - /url: "#/register"
+- main:
+  - heading "Sign in" [level=1]
+  - paragraph:
+    - link "Need an account?":
+      - /url: "#/register"
+  - group:
+    - textbox "Email"
+  - group:
+    - textbox "Password"
+  - button "Login"
+- contentinfo:
+  - link "conduit":
+    - /url: "#/"
+  - text: An interactive learning project from
+  - link "Thinkster":
+    - /url: https://thinkster.io
+  - text: . Code & design licensed under MIT.
+  - list:
+    - listitem:
+      - link " Source code":
+        - /url: https://github.com/TonyMckes/conduit-realworld-example-app

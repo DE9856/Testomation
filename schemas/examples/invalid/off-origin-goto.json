@@ -1,0 +1,5 @@
+{
+  "spec_version": 1,
+  "id": "invalid.off-origin",
+  "steps": [{ "action": "goto", "url": "https://example.com/" }]
+}

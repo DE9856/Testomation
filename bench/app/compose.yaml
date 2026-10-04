@@ -1,0 +1,36 @@
+# Benchmark target app (Conduit) with its own Postgres. See bench/app/README.md.
+name: testomation-bench
+
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: conduit
+      POSTGRES_PASSWORD: conduit
+      POSTGRES_DB: postgres
+    volumes:
+      - conduit-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U conduit"]
+      interval: 3s
+      retries: 20
+
+  app:
+    build: ./conduit
+    init: true   # node as PID 1 ignores SIGTERM; tini makes stop/reset take ~1s, not 10s
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      JWT_KEY: bench-only-not-a-secret
+      PROD_DB_USERNAME: conduit
+      PROD_DB_PASSWORD: conduit
+      PROD_DB_NAME: conduit
+      PROD_DB_HOSTNAME: db
+      PROD_DB_DIALECT: postgres
+      BUGS: ${BUGS:-}   # seeded bugs to switch on, e.g. BUGS=publish-500 bench/app/conduit.sh reset
+    ports:
+      - "4100:3001"   # TESTO_TARGET_URL=http://localhost:4100
+
+volumes:
+  conduit-db:

@@ -1,0 +1,57 @@
+{
+ "spec_version": 1,
+ "id": "flow02",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": "alice@conduit.test"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": "wrongpassword"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "heading",
+    "name": "Sign in"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "listitem"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "hasText",
+   "target": {
+    "role": "listitem"
+   },
+   "value": "Wrong email/password combination"
+  }
+ ],
+ "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page."
+}

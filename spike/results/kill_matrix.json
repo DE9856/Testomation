@@ -1,0 +1,70 @@
+{
+ "clean_passed": [
+  "ref01-login",
+  "ref02-wrong-password",
+  "ref03-signup",
+  "ref04-publish",
+  "ref05-comment",
+  "ref06-tag-filter",
+  "ref07-favorite",
+  "ref08-your-feed",
+  "ref09-profile",
+  "ref10-bio"
+ ],
+ "login-error-hidden": {
+  "target": "ref02-wrong-password",
+  "caught_by_target": true,
+  "failed": [
+   "ref02-wrong-password"
+  ]
+ },
+ "signup-500": {
+  "target": "ref03-signup",
+  "caught_by_target": true,
+  "failed": [
+   "ref03-signup"
+  ]
+ },
+ "publish-500": {
+  "target": "ref04-publish",
+  "caught_by_target": true,
+  "failed": [
+   "ref04-publish"
+  ]
+ },
+ "comment-not-shown": {
+  "target": "ref05-comment",
+  "caught_by_target": true,
+  "failed": [
+   "ref05-comment"
+  ]
+ },
+ "tag-filter-ignored": {
+  "target": "ref06-tag-filter",
+  "caught_by_target": true,
+  "failed": [
+   "ref06-tag-filter"
+  ]
+ },
+ "favorite-count-stuck": {
+  "target": "ref07-favorite",
+  "caught_by_target": true,
+  "failed": [
+   "ref07-favorite"
+  ]
+ },
+ "profile-articles-empty": {
+  "target": "ref09-profile",
+  "caught_by_target": true,
+  "failed": [
+   "ref09-profile"
+  ]
+ },
+ "bio-not-saved": {
+  "target": "ref10-bio",
+  "caught_by_target": true,
+  "failed": [
+   "ref10-bio"
+  ]
+ }
+}

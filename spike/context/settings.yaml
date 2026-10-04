@@ -1,0 +1,44 @@
+# /#/settings
+- banner:
+  - navigation:
+    - link "conduit":
+      - /url: "#/"
+    - list:
+      - listitem:
+        - link " Source code":
+          - /url: https://github.com/TonyMckes/conduit-realworld-example-app
+    - list:
+      - listitem:
+        - link " Home":
+          - /url: "#/"
+      - listitem:
+        - link " New Article":
+          - /url: "#/editor"
+      - listitem:
+        - img "alice"
+        - text: alice
+- main:
+  - heading "Your Settings" [level=1]
+  - group:
+    - group:
+      - textbox "URL of profile picture"
+    - group:
+      - textbox "Your Name": alice
+    - group:
+      - textbox "Short bio about you"
+    - group:
+      - textbox "Email": alice@conduit.test
+    - group:
+      - textbox "Password"
+    - button "Update Settings"
+- contentinfo:
+  - link "conduit":
+    - /url: "#/"
+  - text: An interactive learning project from
+  - link "Thinkster":
+    - /url: https://thinkster.io
+  - text: . Code & design licensed under MIT.
+  - list:
+    - listitem:
+      - link " Source code":
+        - /url: https://github.com/TonyMckes/conduit-realworld-example-app

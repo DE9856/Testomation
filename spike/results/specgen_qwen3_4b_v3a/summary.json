@@ -1,0 +1,270 @@
+{
+ "model": "qwen3:4b",
+ "prompt": "v2",
+ "schema": "spike/specgen/schema_v3.json",
+ "repair_expect_targets": true,
+ "rounds": [
+  {
+   "round": 0,
+   "ran": 8,
+   "passed_total": 3
+  },
+  {
+   "round": 1,
+   "ran": 6,
+   "passed_total": 4
+  },
+  {
+   "round": 2,
+   "ran": 5,
+   "passed_total": 4
+  },
+  {
+   "round": 3,
+   "ran": 5,
+   "passed_total": 4
+  }
+ ],
+ "flows": {
+  "flow01": {
+   "flow": "Log in as alice; the navigation bar then shows her username 'alice'.",
+   "history": [
+    {
+     "round": 0,
+     "status": "no-expect"
+    },
+    {
+     "round": 1,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "final": "passed",
+   "has_expect": true
+  },
+  "flow02": {
+   "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page.",
+   "history": [
+    {
+     "round": 0,
+     "status": "failed",
+     "step": "6",
+     "error": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('paragraph').first()\nExpected substring: \"Wrong email/password combination\"\nReceived string:    \"Need an account?\"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" getByRole('paragraph').first() with timeout 5000ms\n  - wa"
+    },
+    {
+     "round": 1,
+     "status": "failed",
+     "step": "6",
+     "error": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('paragraph').first()\nExpected substring: \"Wrong email/password combination\"\nReceived string:    \"Need an account?\"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" getByRole('paragraph').first() with timeout 5000ms\n  - wa"
+    },
+    {
+     "round": 2,
+     "status": "failed",
+     "step": "6",
+     "error": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('paragraph').first()\nExpected substring: \"Wrong email/password combination\"\nReceived string:    \"Need an account?\"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" getByRole('paragraph').first() with timeout 5000ms\n  - wa"
+    },
+    {
+     "round": 3,
+     "status": "failed",
+     "step": "6",
+     "error": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('paragraph').first()\nExpected substring: \"Wrong email/password combination\"\nReceived string:    \"Need an account?\"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" getByRole('paragraph').first() with timeout 5000ms\n  - wa"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow03": {
+   "flow": "Sign up a brand-new user with generated data; afterwards the navigation bar shows the new username.",
+   "history": [
+    {
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "final": "passed",
+   "has_expect": true
+  },
+  "flow04": {
+   "flow": "As alice, publish a new article with a title, description, body and two tags; the article page then shows the title.",
+   "history": [
+    {
+     "round": 0,
+     "status": "failed",
+     "step": "2",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Article Title' })\n"
+    },
+    {
+     "round": 1,
+     "status": "failed",
+     "step": "2",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Article Title' })\n"
+    },
+    {
+     "round": 2,
+     "status": "failed",
+     "step": "2",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Article Title' })\n"
+    },
+    {
+     "round": 3,
+     "status": "failed",
+     "step": "2",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Article Title' })\n"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow05": {
+   "flow": "As alice, open the article \"Dave's post 3\" and post a comment; the comment appears on the page.",
+   "history": [
+    {
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "final": "passed",
+   "has_expect": true
+  },
+  "flow06": {
+   "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'.",
+   "history": [
+    {
+     "round": 0,
+     "status": "failed",
+     "step": "3",
+     "error": "Error: locator.click: Error: strict mode violation: getByRole('listitem') resolved to 18 elements:\n    1) <li class=\"nav-item\">\u2026</li> aka getByRole('banner').getByRole('listitem').filter({ hasText: 'Source code' })\n    2) <li class=\"nav-item\">\u2026</li> aka getByRole('listitem').filter({ hasText: 'Home'"
+    },
+    {
+     "round": 1,
+     "status": "failed",
+     "step": "4",
+     "error": "Error: locator.waitFor: Error: strict mode violation: getByRole('listitem') resolved to 7 elements:\n    1) <li class=\"nav-item\">\u2026</li> aka getByRole('navigation').getByRole('listitem').filter({ hasText: 'Source code' })\n    2) <li class=\"nav-item\">\u2026</li> aka getByRole('listitem').filter({ hasText: '"
+    },
+    {
+     "round": 2,
+     "status": "failed",
+     "step": "4",
+     "error": "Error: locator.waitFor: Error: strict mode violation: getByRole('listitem') resolved to 7 elements:\n    1) <li class=\"nav-item\">\u2026</li> aka getByRole('navigation').getByRole('listitem').filter({ hasText: 'Source code' })\n    2) <li class=\"nav-item\">\u2026</li> aka getByRole('listitem').filter({ hasText: '"
+    },
+    {
+     "round": 3,
+     "status": "failed",
+     "step": "4",
+     "error": "Error: locator.waitFor: Error: strict mode violation: getByRole('listitem') resolved to 7 elements:\n    1) <li class=\"nav-item\">\u2026</li> aka getByRole('navigation').getByRole('listitem').filter({ hasText: 'Source code' })\n    2) <li class=\"nav-item\">\u2026</li> aka getByRole('listitem').filter({ hasText: '"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow07": {
+   "flow": "As alice, favorite the article \"Dave's post 3\"; its favorite count goes from 0 to 1.",
+   "history": [
+    {
+     "round": 0,
+     "status": "no-expect"
+    },
+    {
+     "round": 1,
+     "status": "no-expect"
+    },
+    {
+     "round": 2,
+     "status": "no-expect"
+    },
+    {
+     "round": 3,
+     "status": "no-expect"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow08": {
+   "flow": "As alice, open 'Your Feed'; it lists articles by bob and carol (whom she follows) and none by dave.",
+   "history": [
+    {
+     "round": 0,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('heading', { name: 'bob' }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('heading', { name: 'bob' }).first() with timeout 5000ms\n  - waiting for getByRole('heading',"
+    },
+    {
+     "round": 1,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('heading', { name: 'bob' }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('heading', { name: 'bob' }).first() with timeout 5000ms\n  - waiting for getByRole('heading',"
+    },
+    {
+     "round": 2,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('heading', { name: 'bob' }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('heading', { name: 'bob' }).first() with timeout 5000ms\n  - waiting for getByRole('heading',"
+    },
+    {
+     "round": 3,
+     "status": "failed",
+     "step": "7",
+     "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('heading', { name: 'bob' }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('heading', { name: 'bob' }).first() with timeout 5000ms\n  - waiting for getByRole('heading',"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow09": {
+   "flow": "Without logging in, open bob's profile; it lists his three articles.",
+   "history": [
+    {
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "final": "passed",
+   "has_expect": true
+  },
+  "flow10": {
+   "flow": "As alice, change her bio in settings to some generated text; her profile page then shows that bio.",
+   "history": [
+    {
+     "round": 0,
+     "status": "failed",
+     "step": "10",
+     "error": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('paragraph').first()\nExpected substring: \"Generated bio text\"\nReceived string:    \"Post 3 by alice\"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" getByRole('paragraph').first() with timeout 5000ms\n  - waiting for getBy"
+    },
+    {
+     "round": 1,
+     "status": "failed",
+     "step": "10",
+     "error": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('paragraph').first()\nExpected substring: \"Generated bio text\"\nReceived string:    \"Post 3 by alice\"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" getByRole('paragraph').first() with timeout 5000ms\n  - waiting for getBy"
+    },
+    {
+     "round": 2,
+     "status": "failed",
+     "step": "10",
+     "error": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('paragraph').first()\nExpected substring: \"Generated bio text\"\nReceived string:    \"Post 3 by alice\"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" getByRole('paragraph').first() with timeout 5000ms\n  - waiting for getBy"
+    },
+    {
+     "round": 3,
+     "status": "failed",
+     "step": "10",
+     "error": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('paragraph').first()\nExpected substring: \"Generated bio text\"\nReceived string:    \"Post 3 by alice\"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" getByRole('paragraph').first() with timeout 5000ms\n  - waiting for getBy"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  }
+ },
+ "generation": {
+  "calls": 29,
+  "mean_seconds": 7.9,
+  "mean_prompt_tokens": 3804,
+  "mean_gen_tokens": 324
+ }
+}

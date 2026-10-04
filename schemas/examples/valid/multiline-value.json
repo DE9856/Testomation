@@ -1,0 +1,9 @@
+{
+  "spec_version": 1,
+  "id": "examples.multiline-value",
+  "steps": [
+    { "action": "goto", "url": "/#/editor" },
+    { "action": "fill", "target": { "role": "textbox", "name": "Write your article (in markdown)" }, "value": "# Title\n\nBody text" },
+    { "action": "expect", "target": { "role": "textbox", "name": "Write your article (in markdown)" }, "assert": "hasValue", "value": "# Title\n\nBody text" }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+ "spec_version": 1,
+ "id": "flow06",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "button",
+    "name": "Global Feed"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "react"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "heading",
+    "name": "react"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "heading",
+    "name": "react"
+   }
+  }
+ ],
+ "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'."
+}

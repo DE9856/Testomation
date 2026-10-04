@@ -1,0 +1,73 @@
+# /#/article/dave-s-post-3
+- banner:
+  - navigation:
+    - link "conduit":
+      - /url: "#/"
+    - list:
+      - listitem:
+        - link " Source code":
+          - /url: https://github.com/TonyMckes/conduit-realworld-example-app
+    - list:
+      - listitem:
+        - link " Home":
+          - /url: "#/"
+      - listitem:
+        - link " Login":
+          - /url: "#/login"
+      - listitem:
+        - link "Sign up":
+          - /url: "#/register"
+- main:
+  - heading "Dave's post 3" [level=1]
+  - link "dave":
+    - /url: "#/profile/dave"
+    - img "dave"
+  - link "dave":
+    - /url: "#/profile/dave"
+  - text: October 4, 2026
+  - button "Followers ( 0 )"
+  - button " Favorite ( 0 )"
+  - heading "Heading" [level=1]
+  - paragraph:
+    - text: Body of post 3 by
+    - strong: dave
+    - text: .
+  - list:
+    - listitem: one
+    - listitem: two
+  - list:
+    - listitem: playwright
+    - listitem: react
+  - separator
+  - link "dave":
+    - /url: "#/profile/dave"
+    - img "dave"
+  - link "dave":
+    - /url: "#/profile/dave"
+  - text: October 4, 2026
+  - button "Followers ( 0 )"
+  - button " Favorite ( 0 )"
+  - link "Sign in":
+    - /url: "#/login"
+  - text: or
+  - link "Sign up":
+    - /url: "#/register"
+  - text: to add comments on this article.
+  - paragraph: Comment from alice
+  - link "alice":
+    - /url: "#/profile/alice"
+    - img "alice"
+  - link "alice":
+    - /url: "#/profile/alice"
+  - text: October 4, 2026
+- contentinfo:
+  - link "conduit":
+    - /url: "#/"
+  - text: An interactive learning project from
+  - link "Thinkster":
+    - /url: https://thinkster.io
+  - text: . Code & design licensed under MIT.
+  - list:
+    - listitem:
+      - link " Source code":
+        - /url: https://github.com/TonyMckes/conduit-realworld-example-app

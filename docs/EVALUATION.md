@@ -11,7 +11,7 @@ small local models, which are easy to make worse by accident.
 
 | Part | What |
 |---|---|
-| **Target app** | One small but realistic web app (auth, forms, CRUD, lists), run locally with a seeded database. A RealWorld ("Conduit") implementation is a good candidate. |
+| **Target app** | One small but realistic web app (auth, forms, CRUD, lists), run locally with a seeded database: **Conduit** (RealWorld; React + Express + Postgres), vendored in `bench/app/` (D37). `bench/app/conduit.sh up` / `reset` start it on `:4100` and restore the seed in ~2 s. |
 | **Hand-planted bugs** | ~20 across categories (below), each with an id, category, expected report and a `held_out` flag. |
 | **Mutation bugs** | A mutation-testing tool such as Stryker adds many small automatic bugs. **Only detectable mutants count**: ones the hand-written reference spec suite kills. The rest change nothing a user could see and would only drag recall down. |
 | **Toggles** | Every bug can be switched on/off (env flag or patch), so the same app runs clean or bugged. |
@@ -49,6 +49,7 @@ skipped. The replay tier keeps the gate honest for the part that changes most of
 | Noise precision | When something was called noise, was it really noise? |
 | Review-queue rate | How much work was pushed to a human? |
 | Spec success rate | Share of generated specs that are valid and pass on the clean app within 3 repair rounds |
+| **Spec kill rate** | Share of generated specs that pass on the clean app **and fail** with their flow's seeded bug on. The spike showed pass rate alone rewards always-true assertions (Q29) |
 | Model calls & time per run | What did it cost in compute? |
 | Memory hit rate | How much did memory answer on a second run? |
 

@@ -1,0 +1,11 @@
+{
+ "spec_version": 1,
+ "id": "flow09",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/profile/bob"
+  }
+ ],
+ "flow": "Without logging in, open bob's profile; it lists his three articles."
+}

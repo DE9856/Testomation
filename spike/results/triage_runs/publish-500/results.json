@@ -1,0 +1,831 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node-22",
+      "/home/deepesh/Desktop/Testomation/runner/node_modules/.bin/playwright",
+      "test",
+      "--output",
+      "/home/deepesh/Desktop/Testomation/spike/results/triage_runs/publish-500/test-results"
+    ],
+    "configFile": "/home/deepesh/Desktop/Testomation/runner/playwright.config.ts",
+    "rootDir": "/home/deepesh/Desktop/Testomation/runner",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/deepesh/Desktop/Testomation/spike/results/triage_runs/publish-500/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/deepesh/Desktop/Testomation/runner",
+        "testIgnore": [],
+        "testMatch": [
+          "spec-runner.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "/home/deepesh/Desktop/Testomation/spike/results/triage_runs/publish-500/results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "spec-runner.spec.ts",
+      "file": "spec-runner.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "ref01-login",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2250,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 725
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 36
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 8
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 1299
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 13
+                    },
+                    {
+                      "title": "6. expect",
+                      "duration": 10
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:41:36.620Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-f8757b8417620702c9c6",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref02-wrong-password",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1130,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 535
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 29
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 425
+                    },
+                    {
+                      "title": "5. expect",
+                      "duration": 8
+                    },
+                    {
+                      "title": "6. expect",
+                      "duration": 3
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:41:38.973Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "signals",
+                      "contentType": "application/json",
+                      "body": "W3sia2luZCI6Imh0dHAiLCJ0ZXh0IjoiUE9TVCA0MjIiLCJ1cmwiOiJodHRwOi8vbG9jYWxob3N0OjQxMDAvYXBpL3VzZXJzL2xvZ2luIiwic3RhdHVzIjo0MjJ9LHsia2luZCI6ImNvbnNvbGUiLCJ0ZXh0IjoiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNDIyIChVbnByb2Nlc3NhYmxlIEVudGl0eSkiLCJ1cmwiOiJodHRwOi8vbG9jYWxob3N0OjQxMDAvYXBpL3VzZXJzL2xvZ2luIn1d"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-d1f4d68827e38122f08e",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref03-signup",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1152,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 524
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 30
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 8
+                    },
+                    {
+                      "title": "4. fill",
+                      "duration": 8
+                    },
+                    {
+                      "title": "5. click",
+                      "duration": 470
+                    },
+                    {
+                      "title": "6. expect",
+                      "duration": 7
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:41:40.112Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-12953323fe1dd751461c",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref04-publish",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "12"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6841,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading').first().first()\nExpected substring: \u001b[32m\"Conduco odio patior ambitus appositus.\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('heading').first().first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading').first().first()\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading').first().first()\nExpected substring: \u001b[32m\"Conduco odio patior ambitus appositus.\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('heading').first().first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading').first().first()\u001b[22m\n\n    at assert (/home/deepesh/Desktop/Testomation/runner/steps.ts:117:48)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:100:27)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 48,
+                      "line": 117
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:117\n\n  115 |     case 'visible': return expect(loc.first()).toBeVisible();\n  116 |     case 'hidden': return expect(loc).toHaveCount(0);\n> 117 |     case 'hasText': return expect(loc.first()).toContainText(str(value));\n      |                                                ^\n  118 |     case 'hasValue': return expect(loc.first()).toHaveValue(str(value));\n  119 |     case 'count': return expect(loc).toHaveCount(Number(value));\n  120 |     case 'ariaSnapshot': return expect(loc.first()).toMatchAriaSnapshot(str(value));"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 48,
+                        "line": 117
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading').first().first()\nExpected substring: \u001b[32m\"Conduco odio patior ambitus appositus.\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('heading').first().first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading').first().first()\u001b[22m\n\n\n   at steps.ts:117\n\n  115 |     case 'visible': return expect(loc.first()).toBeVisible();\n  116 |     case 'hidden': return expect(loc).toHaveCount(0);\n> 117 |     case 'hasText': return expect(loc.first()).toContainText(str(value));\n      |                                                ^\n  118 |     case 'hasValue': return expect(loc.first()).toHaveValue(str(value));\n  119 |     case 'count': return expect(loc).toHaveCount(Number(value));\n  120 |     case 'ariaSnapshot': return expect(loc.first()).toMatchAriaSnapshot(str(value));\n    at assert (/home/deepesh/Desktop/Testomation/runner/steps.ts:117:48)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:100:27)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 494
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 31
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 8
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 482
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 7
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 8
+                    },
+                    {
+                      "title": "7. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "8. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "9. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "10. fill",
+                      "duration": 8
+                    },
+                    {
+                      "title": "11. click",
+                      "duration": 366
+                    },
+                    {
+                      "title": "12. expect",
+                      "duration": 5024,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading').first().first()\nExpected substring: \u001b[32m\"Conduco odio patior ambitus appositus.\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('heading').first().first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading').first().first()\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading').first().first()\nExpected substring: \u001b[32m\"Conduco odio patior ambitus appositus.\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('heading').first().first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading').first().first()\u001b[22m\n\n    at assert (/home/deepesh/Desktop/Testomation/runner/steps.ts:117:48)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:100:27)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 48,
+                          "line": 117
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:117\n\n  115 |     case 'visible': return expect(loc.first()).toBeVisible();\n  116 |     case 'hidden': return expect(loc).toHaveCount(0);\n> 117 |     case 'hasText': return expect(loc.first()).toContainText(str(value));\n      |                                                ^\n  118 |     case 'hasValue': return expect(loc.first()).toHaveValue(str(value));\n  119 |     case 'count': return expect(loc).toHaveCount(Number(value));\n  120 |     case 'ariaSnapshot': return expect(loc.first()).toMatchAriaSnapshot(str(value));"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:41:41.274Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "12"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBncm91cDoKICAgIC0gdGV4dDogQ2Fubm90IHJlYWQgcHJvcGVydGllcyBvZiB1bmRlZmluZWQgKHJlYWRpbmcgJ2lkJykKICAgIC0gZ3JvdXA6CiAgICAgIC0gdGV4dGJveCAiQXJ0aWNsZSBUaXRsZSI6IENvbmR1Y28gb2RpbyBwYXRpb3IgYW1iaXR1cyBhcHBvc2l0dXMuCiAgICAtIGdyb3VwOgogICAgICAtIHRleHRib3ggIldoYXQncyB0aGlzIGFydGljbGUgYWJvdXQ/IjogVm9sdXB0YXRlbSB0YW1lbiBpdXN0byB2ZXNjbyBzdWdnZXJvIGF0cm94IHZvbHVwdGFzLgogICAgLSBncm91cDoKICAgICAgLSB0ZXh0Ym94ICJXcml0ZSB5b3VyIGFydGljbGUgKGluIG1hcmtkb3duKSI6IENvbW1vZGkgYWNjb21tb2RvIGFjcXVpcm8gc3VtbWEgYWRzdHJpbmdvIGF0LiBUZXN0aW1vbml1bSBjb25maWRvIGFyY2EgY2VuYWN1bHVtIGFzc2VudGF0b3IgdXJiYW51cyBjb25vciBhZG1pbmlzdHJhdGlvLiBPY2NhZWNhdGkgcXVpcyBuZXF1ZSB2aXJnbyBiZW5lZmljaXVtIHZlbmlhIHZlcmJlcmEgY3VyaW9zaXRhcy4KICAgIC0gZ3JvdXA6CiAgICAgIC0gdGV4dGJveCAiRW50ZXIgdGFncyI6IHNwaWtlLGJlbmNobWFyawogICAgLSBidXR0b24gIlB1Ymxpc2ggQXJ0aWNsZSIKLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "eyJ0aXRsZSI6IkNvbmR1Y28gb2RpbyBwYXRpb3IgYW1iaXR1cyBhcHBvc2l0dXMuIn0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/triage_runs/publish-500/test-results/spec-runner-ref04-publish-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "signals",
+                      "contentType": "application/json",
+                      "body": "W3sia2luZCI6Imh0dHAiLCJ0ZXh0IjoiUE9TVCA1MDAiLCJ1cmwiOiJodHRwOi8vbG9jYWxob3N0OjQxMDAvYXBpL2FydGljbGVzIiwic3RhdHVzIjo1MDB9LHsia2luZCI6ImNvbnNvbGUiLCJ0ZXh0IjoiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAwIChJbnRlcm5hbCBTZXJ2ZXIgRXJyb3IpIiwidXJsIjoiaHR0cDovL2xvY2FsaG9zdDo0MTAwL2FwaS9hcnRpY2xlcyJ9XQ=="
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/triage_runs/publish-500/test-results/spec-runner-ref04-publish-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/triage_runs/publish-500/test-results/spec-runner-ref04-publish-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/triage_runs/publish-500/test-results/spec-runner-ref04-publish-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 48,
+                    "line": 117
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-985c16d0d65b109f110e",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref05-comment",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1885,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 696
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 38
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 8
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 489
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 12
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 14
+                    },
+                    {
+                      "title": "7. fill",
+                      "duration": 24
+                    },
+                    {
+                      "title": "8. click",
+                      "duration": 432
+                    },
+                    {
+                      "title": "9. expect",
+                      "duration": 13
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:41:48.834Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-d5870fb1b9f80bd224db",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref06-tag-filter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 905,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 366
+                    },
+                    {
+                      "title": "2. wait_for",
+                      "duration": 49
+                    },
+                    {
+                      "title": "3. click",
+                      "duration": 357
+                    },
+                    {
+                      "title": "4. expect",
+                      "duration": 8
+                    },
+                    {
+                      "title": "5. expect",
+                      "duration": 5
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:41:50.821Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-ce5bf57c7ad2748a27dd",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref07-favorite",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1324,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 233
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 27
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 8
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 481
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 8
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 13
+                    },
+                    {
+                      "title": "7. click",
+                      "duration": 437
+                    },
+                    {
+                      "title": "8. expect",
+                      "duration": 7
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:41:51.737Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-a41679562d654845c636",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref08-your-feed",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1493,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 470
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 28
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 8
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 484
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 9
+                    },
+                    {
+                      "title": "6. click",
+                      "duration": 367
+                    },
+                    {
+                      "title": "7. expect",
+                      "duration": 7
+                    },
+                    {
+                      "title": "8. expect",
+                      "duration": 5
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:41:53.071Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-2a4e0e220517889b2816",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref09-profile",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1004,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 402
+                    },
+                    {
+                      "title": "2. expect",
+                      "duration": 55
+                    },
+                    {
+                      "title": "3. expect",
+                      "duration": 6
+                    },
+                    {
+                      "title": "4. expect",
+                      "duration": 6
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:41:54.573Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-b65b7970ec2408de0112",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "ref10-bio",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1411,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 279
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 28
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 472
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 8
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 8
+                    },
+                    {
+                      "title": "7. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "8. click",
+                      "duration": 415
+                    },
+                    {
+                      "title": "9. goto",
+                      "duration": 13
+                    },
+                    {
+                      "title": "10. expect",
+                      "duration": 12
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:41:55.586Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-eb0968b131dcc464f6a0",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-04T12:41:35.900Z",
+    "duration": 21158.6,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

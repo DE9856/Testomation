@@ -1,0 +1,62 @@
+{
+ "spec_version": 1,
+ "id": "flow04",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/editor"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Article Title"
+   },
+   "value": "New Article"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "What's this article about?"
+   },
+   "value": "This is a new article"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Write your article (in markdown)"
+   },
+   "value": "# New Article\nThis is a new article"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Enter tags"
+   },
+   "value": "tag1, tag2"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Publish Article"
+   }
+  },
+  {
+   "action": "goto",
+   "url": "/#/article/alice-s-new-article"
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "heading",
+    "name": "New Article"
+   }
+  }
+ ],
+ "flow": "As alice, publish a new article with a title, description, body and two tags; the article page then shows the title."
+}

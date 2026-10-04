@@ -1,0 +1,5 @@
+{
+  "spec_version": 1,
+  "id": "invalid.named-paragraph",
+  "steps": [{ "action": "expect", "target": { "role": "paragraph", "name": "Comment from alice" }, "assert": "visible" }]
+}

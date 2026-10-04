@@ -1,0 +1,101 @@
+# /#/
+- banner:
+  - navigation:
+    - link "conduit":
+      - /url: "#/"
+    - list:
+      - listitem:
+        - link " Source code":
+          - /url: https://github.com/TonyMckes/conduit-realworld-example-app
+    - list:
+      - listitem:
+        - link " Home":
+          - /url: "#/"
+      - listitem:
+        - link " Login":
+          - /url: "#/login"
+      - listitem:
+        - link "Sign up":
+          - /url: "#/register"
+- main:
+  - heading "conduit" [level=1]
+  - paragraph: A place to share your knowledge.
+  - list:
+    - listitem:
+      - button "Global Feed"
+  - link "dave":
+    - /url: "#/profile/dave"
+    - img "dave"
+  - link "dave":
+    - /url: "#/profile/dave"
+  - text: October 4, 2026
+  - button " ( 0 )"
+  - link "Dave's post 3 Post 3 by dave Read more... playwright react":
+    - /url: "#/article/dave-s-post-3"
+    - heading "Dave's post 3" [level=1]
+    - paragraph: Post 3 by dave
+    - text: Read more...
+    - list:
+      - listitem: playwright
+      - listitem: react
+  - link "dave":
+    - /url: "#/profile/dave"
+    - img "dave"
+  - link "dave":
+    - /url: "#/profile/dave"
+  - text: October 4, 2026
+  - button " ( 0 )"
+  - link "Dave's post 2 Post 2 by dave Read more... playwright testing":
+    - /url: "#/article/dave-s-post-2"
+    - heading "Dave's post 2" [level=1]
+    - paragraph: Post 2 by dave
+    - text: Read more...
+    - list:
+      - listitem: playwright
+      - listitem: testing
+  - link "dave":
+    - /url: "#/profile/dave"
+    - img "dave"
+  - link "dave":
+    - /url: "#/profile/dave"
+  - text: October 4, 2026
+  - button " ( 1 )"
+  - link "Dave's post 1 Post 1 by dave Read more... design testing":
+    - /url: "#/article/dave-s-post-1"
+    - heading "Dave's post 1" [level=1]
+    - paragraph: Post 1 by dave
+    - text: Read more...
+    - list:
+      - listitem: design
+      - listitem: testing
+  - navigation "Pagination":
+    - listitem:
+      - button "Previous page" [disabled]: 
+    - listitem:
+      - button "Page 1 is your current page": "1"
+    - listitem:
+      - button "Page 2": "2"
+    - listitem:
+      - button "Page 3": "3"
+    - listitem:
+      - button "Page 4": "4"
+    - listitem:
+      - button "Next page": 
+  - complementary:
+    - heading "Popular Tags" [level=6]
+    - button "playwright"
+    - button "react"
+    - button "postgres"
+    - button "design"
+    - button "testing"
+- contentinfo:
+  - link "conduit":
+    - /url: "#/"
+  - text: An interactive learning project from
+  - link "Thinkster":
+    - /url: https://thinkster.io
+  - text: . Code & design licensed under MIT.
+  - list:
+    - listitem:
+      - link " Source code":
+        - /url: https://github.com/TonyMckes/conduit-realworld-example-app

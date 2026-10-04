@@ -1,0 +1,627 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://testomation.local/schemas/test-spec.schema.json",
+  "title": "Testomation test spec",
+  "description": "DRAFT v1 \u2014 the one source for specs (D31). Finalised in design step 2. See docs/TEST_SPEC.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "spec_version",
+    "id",
+    "steps"
+  ],
+  "properties": {
+    "spec_version": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "flow": {
+      "type": "string"
+    },
+    "requirement": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/step"
+      },
+      "maxItems": 40,
+      "description": "Capped so a looping model can't run away (decoders enforce maxItems)"
+    }
+  },
+  "$defs": {
+    "path": {
+      "type": "string",
+      "pattern": "^/.*$",
+      "description": "Relative to TESTO_TARGET_URL (origin guard, D32)"
+    },
+    "target": {
+      "description": "Exactly one target kind, in order of preference. Each branch is a complete object so constrained decoders can enforce it (D38). `name` is only allowed on roles that can have an accessible name (not paragraph, listitem, generic, \u2026), so a decoder can't produce a target that never matches (D40).",
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "testid"
+          ],
+          "properties": {
+            "testid": {
+              "type": "string"
+            },
+            "nth": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 20,
+              "description": "0-based index when several elements match (e.g. the same button at the top and bottom of a page)"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "role",
+            "name"
+          ],
+          "properties": {
+            "role": {
+              "enum": [
+                "alert",
+                "alertdialog",
+                "application",
+                "article",
+                "banner",
+                "blockquote",
+                "button",
+                "cell",
+                "checkbox",
+                "columnheader",
+                "combobox",
+                "complementary",
+                "contentinfo",
+                "definition",
+                "dialog",
+                "directory",
+                "document",
+                "feed",
+                "figure",
+                "form",
+                "grid",
+                "gridcell",
+                "group",
+                "heading",
+                "img",
+                "link",
+                "listbox",
+                "log",
+                "main",
+                "marquee",
+                "math",
+                "meter",
+                "menu",
+                "menubar",
+                "menuitem",
+                "menuitemcheckbox",
+                "menuitemradio",
+                "navigation",
+                "note",
+                "option",
+                "progressbar",
+                "radio",
+                "radiogroup",
+                "region",
+                "row",
+                "rowgroup",
+                "rowheader",
+                "scrollbar",
+                "search",
+                "searchbox",
+                "separator",
+                "slider",
+                "spinbutton",
+                "status",
+                "switch",
+                "tab",
+                "table",
+                "tablist",
+                "tabpanel",
+                "textbox",
+                "timer",
+                "toolbar",
+                "tooltip",
+                "tree",
+                "treegrid",
+                "treeitem"
+              ]
+            },
+            "name": {
+              "type": "string"
+            },
+            "nth": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 20,
+              "description": "0-based index when several elements match (e.g. the same button at the top and bottom of a page)"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "role"
+          ],
+          "properties": {
+            "role": {
+              "enum": [
+                "alert",
+                "alertdialog",
+                "application",
+                "article",
+                "banner",
+                "blockquote",
+                "button",
+                "caption",
+                "cell",
+                "checkbox",
+                "code",
+                "columnheader",
+                "combobox",
+                "complementary",
+                "contentinfo",
+                "definition",
+                "deletion",
+                "dialog",
+                "directory",
+                "document",
+                "emphasis",
+                "feed",
+                "figure",
+                "form",
+                "generic",
+                "grid",
+                "gridcell",
+                "group",
+                "heading",
+                "img",
+                "insertion",
+                "link",
+                "list",
+                "listbox",
+                "listitem",
+                "log",
+                "main",
+                "marquee",
+                "math",
+                "meter",
+                "menu",
+                "menubar",
+                "menuitem",
+                "menuitemcheckbox",
+                "menuitemradio",
+                "navigation",
+                "none",
+                "note",
+                "option",
+                "paragraph",
+                "presentation",
+                "progressbar",
+                "radio",
+                "radiogroup",
+                "region",
+                "row",
+                "rowgroup",
+                "rowheader",
+                "scrollbar",
+                "search",
+                "searchbox",
+                "separator",
+                "slider",
+                "spinbutton",
+                "status",
+                "strong",
+                "subscript",
+                "superscript",
+                "switch",
+                "tab",
+                "table",
+                "tablist",
+                "tabpanel",
+                "term",
+                "textbox",
+                "time",
+                "timer",
+                "toolbar",
+                "tooltip",
+                "tree",
+                "treegrid",
+                "treeitem"
+              ]
+            },
+            "nth": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 20,
+              "description": "0-based index when several elements match (e.g. the same button at the top and bottom of a page)"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "label"
+          ],
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "nth": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 20,
+              "description": "0-based index when several elements match (e.g. the same button at the top and bottom of a page)"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "placeholder"
+          ],
+          "properties": {
+            "placeholder": {
+              "type": "string"
+            },
+            "nth": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 20,
+              "description": "0-based index when several elements match (e.g. the same button at the top and bottom of a page)"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "text"
+          ],
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "nth": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 20,
+              "description": "0-based index when several elements match (e.g. the same button at the top and bottom of a page)"
+            }
+          }
+        }
+      ]
+    },
+    "value": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^([^$](.|\\n)*)?$",
+          "description": "Literal text. A leading $ is reserved for references ($faker, $var, $secret)"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "$faker"
+          ],
+          "properties": {
+            "$faker": {
+              "enum": [
+                "person.fullName",
+                "person.firstName",
+                "internet.username",
+                "internet.email",
+                "internet.password",
+                "internet.url",
+                "lorem.word",
+                "lorem.words",
+                "lorem.sentence",
+                "lorem.paragraph",
+                "lorem.slug",
+                "string.alphanumeric",
+                "number.int",
+                "date.recent",
+                "company.name",
+                "location.city"
+              ],
+              "description": "Supported @faker-js/faker paths (extend deliberately)"
+            },
+            "as": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "$var"
+          ],
+          "properties": {
+            "$var": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "$secret"
+          ],
+          "properties": {
+            "$secret": {
+              "type": "string",
+              "pattern": "^[A-Z][A-Z0-9_]*$"
+            }
+          }
+        }
+      ]
+    },
+    "fixture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "$fixture"
+      ],
+      "properties": {
+        "$fixture": {
+          "type": "string"
+        }
+      }
+    },
+    "step": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "action",
+            "url"
+          ],
+          "properties": {
+            "action": {
+              "const": "goto"
+            },
+            "url": {
+              "$ref": "#/$defs/path"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "action",
+            "target"
+          ],
+          "properties": {
+            "action": {
+              "enum": [
+                "click",
+                "hover",
+                "check",
+                "uncheck"
+              ]
+            },
+            "target": {
+              "$ref": "#/$defs/target"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "action",
+            "target",
+            "value"
+          ],
+          "properties": {
+            "action": {
+              "enum": [
+                "fill",
+                "select"
+              ]
+            },
+            "target": {
+              "$ref": "#/$defs/target"
+            },
+            "value": {
+              "$ref": "#/$defs/value"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "action",
+            "key"
+          ],
+          "properties": {
+            "action": {
+              "const": "press"
+            },
+            "key": {
+              "type": "string"
+            },
+            "target": {
+              "$ref": "#/$defs/target"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "action",
+            "target",
+            "file"
+          ],
+          "properties": {
+            "action": {
+              "const": "upload"
+            },
+            "target": {
+              "$ref": "#/$defs/target"
+            },
+            "file": {
+              "$ref": "#/$defs/fixture"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "action",
+            "target",
+            "state"
+          ],
+          "properties": {
+            "action": {
+              "const": "wait_for"
+            },
+            "target": {
+              "$ref": "#/$defs/target"
+            },
+            "state": {
+              "enum": [
+                "visible",
+                "hidden"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "action",
+            "assert"
+          ],
+          "properties": {
+            "action": {
+              "const": "expect"
+            },
+            "target": {
+              "$ref": "#/$defs/target"
+            },
+            "assert": {
+              "enum": [
+                "visible",
+                "hidden",
+                "hasText",
+                "hasValue",
+                "count",
+                "url",
+                "ariaSnapshot"
+              ]
+            },
+            "value": {
+              "$ref": "#/$defs/value"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "action",
+            "method",
+            "path"
+          ],
+          "properties": {
+            "action": {
+              "const": "api"
+            },
+            "method": {
+              "enum": [
+                "GET",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE"
+              ]
+            },
+            "path": {
+              "$ref": "#/$defs/path"
+            },
+            "body": {},
+            "expect": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "action",
+            "preset"
+          ],
+          "properties": {
+            "action": {
+              "const": "viewport"
+            },
+            "preset": {
+              "enum": [
+                "phone",
+                "tablet",
+                "desktop"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "action",
+            "name"
+          ],
+          "properties": {
+            "action": {
+              "const": "helper"
+            },
+            "name": {
+              "type": "string",
+              "description": "Registered helper; enum injected at generation time (D33)"
+            },
+            "args": {
+              "type": "object"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

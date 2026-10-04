@@ -1,0 +1,35 @@
+{
+ "spec_version": 1,
+ "id": "ref09-profile",
+ "flow": "Without logging in, open bob's profile; it lists his three articles.",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/profile/bob"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 3"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 2"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 1"
+   },
+   "assert": "visible"
+  }
+ ]
+}

@@ -1,0 +1,890 @@
+{
+  "model": "qwen3:4b",
+  "native_think_False": [
+    {
+      "parsed": true,
+      "valid": true,
+      "errors": [],
+      "steps": 6,
+      "spec": {
+        "spec_version": 1,
+        "id": "login_check_alice_username",
+        "steps": [
+          {
+            "action": "goto",
+            "url": "/login"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "input",
+              "name": "Email"
+            },
+            "value": "alice@conduit.test"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "input",
+              "name": "Password"
+            },
+            "value": "$secret:ALICE_PASSWORD"
+          },
+          {
+            "action": "click",
+            "target": {
+              "role": "button",
+              "name": "Sign in"
+            }
+          },
+          {
+            "action": "wait_for",
+            "target": {
+              "role": "navigation",
+              "name": "Navigation"
+            },
+            "state": "visible"
+          },
+          {
+            "action": "check",
+            "target": {
+              "role": "link",
+              "name": "alice"
+            }
+          }
+        ],
+        "requirement": "The username 'alice' should appear in the navigation bar after logging in as alice."
+      },
+      "seconds": 7.8,
+      "thinking_chars": 0
+    },
+    {
+      "parsed": true,
+      "valid": true,
+      "errors": [],
+      "steps": 6,
+      "spec": {
+        "spec_version": 1,
+        "id": "sign_up_new_user_check_home_page",
+        "steps": [
+          {
+            "action": "goto",
+            "url": "/register"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "input",
+              "name": "Username"
+            },
+            "value": "faker_username"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "input",
+              "name": "Email"
+            },
+            "value": "faker_email"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "input",
+              "name": "Password"
+            },
+            "value": "faker_password"
+          },
+          {
+            "action": "click",
+            "target": {
+              "role": "button",
+              "name": "Sign up"
+            }
+          },
+          {
+            "action": "wait_for",
+            "target": {
+              "role": "link",
+              "name": "Home"
+            },
+            "state": "visible"
+          }
+        ],
+        "requirement": "User should be redirected to home page after signing up"
+      },
+      "seconds": 5.1,
+      "thinking_chars": 0
+    },
+    {
+      "parsed": true,
+      "valid": true,
+      "errors": [],
+      "steps": 12,
+      "spec": {
+        "spec_version": 1,
+        "id": "publish-article-and-check-title",
+        "steps": [
+          {
+            "action": "goto",
+            "url": "/login"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "Email",
+              "name": "Email"
+            },
+            "value": "alice@con:conduit.test"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "Password",
+              "name": "Password"
+            },
+            "value": "$secret:ALICE_PASSWORD"
+          },
+          {
+            "action": "click",
+            "target": {
+              "role": "button",
+              "name": "Sign in"
+            }
+          },
+          {
+            "action": "goto",
+            "url": "/editor"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "Article Title",
+              "name": "Article Title"
+            },
+            "value": "Test Article"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "What's this article about?",
+              "name": "What's this article about?"
+            },
+            "value": "This is a test article."
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "Write your article (in markdown)",
+              "name": "Write your article (in markdown)"
+            },
+            "value": "# Test Article\nThis is a test article."
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "Enter tags",
+              "name": "Enter tags"
+            },
+            "value": "tag1, tag2"
+          },
+          {
+            "action": "click",
+            "target": {
+              "role": "button",
+              "name": "Publish Article"
+            }
+          },
+          {
+            "action": "goto",
+            "url": "/profile/alice"
+          },
+          {
+            "action": "check",
+            "target": {
+              "role": "h1",
+              "name": "Title"
+            }
+          }
+        ]
+      },
+      "seconds": 9.0,
+      "thinking_chars": 0
+    }
+  ],
+  "native_think_True": [
+    {
+      "parsed": true,
+      "valid": false,
+      "errors": [
+        "{'action': 'fill', 'selector': 'Email', 'value': 'alice@conduit.test'} is not valid under any of the given schemas",
+        "{'action': 'fill', 'selector': 'Password', 'value': '$secret:ALICE_PASSWORD'} is not valid under any of the given schemas",
+        "{'action': 'click', 'selector': 'Sign in'} is not valid under any of the given schemas"
+      ],
+      "steps": 5,
+      "spec": {
+        "spec_version": 1,
+        "id": "log-in-as-alice-check-username-in-navigation-bar",
+        "steps": [
+          {
+            "action": "goto",
+            "url": "/login"
+          },
+          {
+            "action": "fill",
+            "selector": "Email",
+            "value": "alice@conduit.test"
+          },
+          {
+            "action": "fill",
+            "selector": "Password",
+            "value": "$secret:ALICE_PASSWORD"
+          },
+          {
+            "action": "click",
+            "selector": "Sign in"
+          },
+          {
+            "action": "check",
+            "selector": "navigation bar",
+            "text": "alice"
+          }
+        ]
+      },
+      "seconds": 99.2,
+      "thinking_chars": 19730
+    },
+    {
+      "parsed": true,
+      "valid": false,
+      "errors": [
+        "{'action': 'fill', 'selector': 'Username', 'value': 'faker:username'} is not valid under any of the given schemas",
+        "{'action': 'fill', 'selector': 'Email', 'value': 'faker:email'} is not valid under any of the given schemas",
+        "{'action': 'fill', 'selector': 'Password', 'value': 'faker:password'} is not valid under any of the given schemas"
+      ],
+      "steps": 6,
+      "spec": {
+        "spec_version": 1,
+        "id": "sign-up-new-user-check-home",
+        "steps": [
+          {
+            "action": "goto",
+            "url": "/register"
+          },
+          {
+            "action": "fill",
+            "selector": "Username",
+            "value": "faker:username"
+          },
+          {
+            "action": "fill",
+            "selector": "Email",
+            "value": "faker:email"
+          },
+          {
+            "action": "fill",
+            "selector": "Password",
+            "value": "faker:password"
+          },
+          {
+            "action": "click",
+            "selector": "Sign up"
+          },
+          {
+            "action": "check",
+            "url": "/"
+          }
+        ]
+      },
+      "seconds": 92.9,
+      "thinking_chars": 18040
+    },
+    {
+      "call_error": "HTTP Error 500: Internal Server Error"
+    }
+  ],
+  "v1_plain": [
+    {
+      "parsed": true,
+      "valid": true,
+      "errors": [],
+      "steps": 6,
+      "spec": {
+        "spec_version": 1,
+        "id": "login_check_alice_username",
+        "steps": [
+          {
+            "action": "goto",
+            "url": "/login"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "input",
+              "name": "Email"
+            },
+            "value": "alice@conduit.test"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "input",
+              "name": "Password"
+            },
+            "value": "$secret ALICE_PASSWORD"
+          },
+          {
+            "action": "click",
+            "target": {
+              "role": "button",
+              "name": "Sign in"
+            }
+          },
+          {
+            "action": "wait_for",
+            "target": {
+              "role": "navigation",
+              "name": "Navigation"
+            },
+            "state": "visible"
+          },
+          {
+            "action": "check",
+            "target": {
+              "role": "link",
+              "name": "alice"
+            }
+          }
+        ],
+        "requirement": "The username 'alice' should appear in the navigation bar after logging in as alice."
+      },
+      "seconds": 11.4
+    },
+    {
+      "parsed": true,
+      "valid": true,
+      "errors": [],
+      "steps": 7,
+      "spec": {
+        "spec_version": 1,
+        "id": "sign_up_new_user_check_home_page",
+        "steps": [
+          {
+            "action": "goto",
+            "url": "/register"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "input",
+              "name": "Username"
+            },
+            "value": "faker_username"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "input",
+              "name": "Email"
+            },
+            "value": "faker_email"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "input",
+              "name": "Password"
+            },
+            "value": "faker_password"
+          },
+          {
+            "action": "click",
+            "target": {
+              "role": "button",
+              "name": "Sign up"
+            }
+          },
+          {
+            "action": "wait_for",
+            "target": {
+              "role": "link",
+              "name": "Home"
+            },
+            "state": "visible"
+          },
+          {
+            "action": "goto",
+            "url": "/"
+          }
+        ],
+        "requirement": "user ends up on home page after sign up"
+      },
+      "seconds": 6.9
+    },
+    {
+      "parsed": true,
+      "valid": true,
+      "errors": [],
+      "steps": 12,
+      "spec": {
+        "spec_version": 1,
+        "id": "publish-article-and-check-title",
+        "steps": [
+          {
+            "action": "goto",
+            "url": "/login"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "Email",
+              "name": "Email"
+            },
+            "value": "alice@con:conduit.test"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "Password",
+              "name": "Password"
+            },
+            "value": "$secret:ALICE_PASSWORD"
+          },
+          {
+            "action": "click",
+            "target": {
+              "role": "button",
+              "name": "Sign in"
+            }
+          },
+          {
+            "action": "goto",
+            "url": "/editor"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "Article Title",
+              "name": "Article Title"
+            },
+            "value": "My First Article"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "What's this article about?",
+              "name": "What's this article about?"
+            },
+            "value": "This is my first article."
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "Write your article (in markdown)",
+              "name": "Write your article (in markdown)"
+            },
+            "value": "# My First Article\nThis is the body of my first article."
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "Enter tags",
+              "name": "Enter tags"
+            },
+            "value": "tag1, tag2"
+          },
+          {
+            "action": "click",
+            "target": {
+              "role": "button",
+              "name": "Publish Article"
+            }
+          },
+          {
+            "action": "goto",
+            "url": "/profile/alice"
+          },
+          {
+            "action": "check",
+            "target": {
+              "role": "h1",
+              "name": "Article Title"
+            }
+          }
+        ],
+        "requirement": "As alice, publish an article with a title, description, body and two tags, then check the article page shows the title."
+      },
+      "seconds": 12.4
+    }
+  ],
+  "v1_langfuse": [
+    {
+      "parsed": true,
+      "valid": true,
+      "errors": [],
+      "steps": 6,
+      "spec": {
+        "spec_version": 1,
+        "id": "login_check_alice_username",
+        "steps": [
+          {
+            "action": "goto",
+            "url": "/login"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "input",
+              "name": "Email"
+            },
+            "value": "alice@conduit.test"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "input",
+              "name": "Password"
+            },
+            "value": "$secret ALICE_PASSWORD"
+          },
+          {
+            "action": "click",
+            "target": {
+              "role": "button",
+              "name": "Sign in"
+            }
+          },
+          {
+            "action": "wait_for",
+            "target": {
+              "role": "navigation",
+              "name": "Navigation"
+            },
+            "state": "visible"
+          },
+          {
+            "action": "check",
+            "target": {
+              "role": "link",
+              "name": "alice"
+            }
+          }
+        ],
+        "requirement": "The username 'alice' should appear in the navigation bar after logging in as alice."
+      },
+      "seconds": 6.9
+    },
+    {
+      "parsed": true,
+      "valid": true,
+      "errors": [],
+      "steps": 7,
+      "spec": {
+        "spec_version": 1,
+        "id": "sign_up_new_user_check_home_page",
+        "steps": [
+          {
+            "action": "goto",
+            "url": "/register"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "input",
+              "name": "Username"
+            },
+            "value": "faker_username"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "input",
+              "name": "Email"
+            },
+            "value": "faker_email"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "input",
+              "name": "Password"
+            },
+            "value": "faker_password"
+          },
+          {
+            "action": "click",
+            "target": {
+              "role": "button",
+              "name": "Sign up"
+            }
+          },
+          {
+            "action": "wait_for",
+            "target": {
+              "role": "link",
+              "name": "Home"
+            },
+            "state": "visible"
+          },
+          {
+            "action": "goto",
+            "url": "/"
+          }
+        ],
+        "requirement": "user ends up on home page after sign up"
+      },
+      "seconds": 6.8
+    },
+    {
+      "parsed": true,
+      "valid": true,
+      "errors": [],
+      "steps": 12,
+      "spec": {
+        "spec_version": 1,
+        "id": "publish-article-and-check-title",
+        "steps": [
+          {
+            "action": "goto",
+            "url": "/login"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "Email",
+              "name": "Email"
+            },
+            "value": "alice@con:conduit.test"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "Password",
+              "name": "Password"
+            },
+            "value": "$secret:ALICE_PASSWORD"
+          },
+          {
+            "action": "click",
+            "target": {
+              "role": "button",
+              "name": "Sign in"
+            }
+          },
+          {
+            "action": "goto",
+            "url": "/editor"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "Article Title",
+              "name": "Article Title"
+            },
+            "value": "My First Article"
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "What's this article about?",
+              "name": "What's this article about?"
+            },
+            "value": "This is my first article."
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "Write your article (in markdown)",
+              "name": "Write your article (in markdown)"
+            },
+            "value": "# My First Article\nThis is the body of my first article."
+          },
+          {
+            "action": "fill",
+            "target": {
+              "role": "Enter tags",
+              "name": "Enter tags"
+            },
+            "value": "tag1, tag2"
+          },
+          {
+            "action": "click",
+            "target": {
+              "role": "button",
+              "name": "Publish Article"
+            }
+          },
+          {
+            "action": "goto",
+            "url": "/profile/alice"
+          },
+          {
+            "action": "check",
+            "target": {
+              "role": "h1",
+              "name": "Article Title"
+            }
+          }
+        ],
+        "requirement": "As alice, publish an article with a title, description, body and two tags, then check the article page shows the title."
+      },
+      "seconds": 12.8
+    }
+  ],
+  "triage_native": [
+    {
+      "expected": "bug",
+      "answer": "{\n  \"verdict\": \"bug\"\n  }",
+      "at_token": "bug",
+      "probs": {
+        "bug": 0.969,
+        "flaky": 0.025,
+        "noise": 0.001
+      },
+      "alts": [
+        "bug",
+        "fl",
+        "error",
+        "noise",
+        "?\",\n"
+      ]
+    },
+    {
+      "expected": "noise",
+      "answer": "{\n  \"verdict\": \"noise\"\n  }",
+      "at_token": "noise",
+      "probs": {
+        "noise": 0.973,
+        "flaky": 0.018,
+        "bug": 0.004
+      },
+      "alts": [
+        "noise",
+        "fl",
+        "bug",
+        "no",
+        "what"
+      ]
+    },
+    {
+      "expected": "flaky",
+      "answer": "{\n  \"verdict\": \"flaky\"\n  }",
+      "at_token": "fl",
+      "probs": {
+        "flaky": 0.999,
+        "noise": 0.0
+      },
+      "alts": [
+        "fl",
+        "flake",
+        "?\",\n",
+        "noise",
+        "what"
+      ]
+    }
+  ],
+  "triage_v1_plain": [
+    {
+      "expected": "bug",
+      "answer": "{\n  \"verdict\": \"bug\"\n  }",
+      "at_token": "bug",
+      "probs": {
+        "bug": 0.969,
+        "flaky": 0.025,
+        "noise": 0.001
+      },
+      "alts": [
+        "bug",
+        "fl",
+        "error",
+        "noise",
+        "?\",\n"
+      ]
+    },
+    {
+      "expected": "noise",
+      "answer": "{\n  \"verdict\": \"noise\"\n  }",
+      "at_token": "noise",
+      "probs": {
+        "noise": 0.973,
+        "flaky": 0.018,
+        "bug": 0.004
+      },
+      "alts": [
+        "noise",
+        "fl",
+        "bug",
+        "no",
+        "what"
+      ]
+    },
+    {
+      "expected": "flaky",
+      "answer": "{\n  \"verdict\": \"flaky\"\n  }",
+      "at_token": "fl",
+      "probs": {
+        "flaky": 0.999,
+        "noise": 0.0
+      },
+      "alts": [
+        "fl",
+        "flake",
+        "?\",\n",
+        "noise",
+        "what"
+      ]
+    }
+  ],
+  "triage_v1_langfuse": [
+    {
+      "expected": "bug",
+      "answer": "{\n  \"verdict\": \"bug\"\n  }",
+      "at_token": "bug",
+      "probs": {
+        "bug": 0.969,
+        "flaky": 0.025,
+        "noise": 0.001
+      },
+      "alts": [
+        "bug",
+        "fl",
+        "error",
+        "noise",
+        "?\",\n"
+      ]
+    },
+    {
+      "expected": "noise",
+      "answer": "{\n  \"verdict\": \"noise\"\n  }",
+      "at_token": "noise",
+      "probs": {
+        "noise": 0.973,
+        "flaky": 0.018,
+        "bug": 0.004
+      },
+      "alts": [
+        "noise",
+        "fl",
+        "bug",
+        "no",
+        "what"
+      ]
+    },
+    {
+      "expected": "flaky",
+      "answer": "{\n  \"verdict\": \"flaky\"\n  }",
+      "at_token": "fl",
+      "probs": {
+        "flaky": 0.999,
+        "noise": 0.0
+      },
+      "alts": [
+        "fl",
+        "flake",
+        "?\",\n",
+        "noise",
+        "what"
+      ]
+    }
+  ]
+}

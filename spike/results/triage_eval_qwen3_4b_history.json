@@ -1,0 +1,383 @@
+{
+ "summary": {
+  "model": "qwen3:4b",
+  "cases": 24,
+  "labels": {
+   "bug": 8,
+   "noise": 7,
+   "flaky": 3,
+   "test_issue": 6
+  },
+  "model_accuracy": 0.583,
+  "all_bug_baseline": 0.333,
+  "rules_coverage": "11/24",
+  "rules_accuracy_when_fired": 1.0,
+  "rules_then_model_accuracy": 0.833,
+  "per_label_recall": {
+   "bug": "8/8",
+   "noise": "3/7",
+   "flaky": "3/3",
+   "test_issue": "0/6"
+  },
+  "mean_p_when_right": 0.915,
+  "mean_p_when_wrong": 0.802,
+  "accuracy_when_p>=0.9": "10/15",
+  "confusion": {
+   "noise\u2192bug": 4,
+   "test_issue\u2192bug": 6
+  },
+  "mean_seconds": 0.75,
+  "cascade_rules_then_model_gate_0.8": {
+   "auto_right": 16,
+   "auto_wrong": 1,
+   "to_review": 7
+  }
+ },
+ "rows": [
+  {
+   "id": "case01",
+   "label": "bug",
+   "variant": "login-error-hidden",
+   "verdict": "bug",
+   "p": 0.988,
+   "probs": {
+    "bug": 0.988,
+    "flaky": 0.006,
+    "test_issue": 0.004,
+    "noise": 0.0
+   },
+   "seconds": 3.49,
+   "rules": null
+  },
+  {
+   "id": "case02",
+   "label": "bug",
+   "variant": "signup-500",
+   "verdict": "bug",
+   "p": 0.984,
+   "probs": {
+    "bug": 0.984,
+    "test_issue": 0.008,
+    "flaky": 0.006
+   },
+   "seconds": 0.65,
+   "rules": "bug"
+  },
+  {
+   "id": "case03",
+   "label": "bug",
+   "variant": "publish-500",
+   "verdict": "bug",
+   "p": 0.99,
+   "probs": {
+    "bug": 0.99,
+    "test_issue": 0.005,
+    "flaky": 0.004
+   },
+   "seconds": 0.68,
+   "rules": "bug"
+  },
+  {
+   "id": "case04",
+   "label": "bug",
+   "variant": "comment-not-shown",
+   "verdict": "bug",
+   "p": 0.94,
+   "probs": {
+    "bug": 0.94,
+    "flaky": 0.05,
+    "test_issue": 0.006
+   },
+   "seconds": 0.83,
+   "rules": null
+  },
+  {
+   "id": "case05",
+   "label": "bug",
+   "variant": "tag-filter-ignored",
+   "verdict": "bug",
+   "p": 0.987,
+   "probs": {
+    "bug": 0.987,
+    "flaky": 0.008,
+    "test_issue": 0.001,
+    "noise": 0.0
+   },
+   "seconds": 0.86,
+   "rules": null
+  },
+  {
+   "id": "case06",
+   "label": "bug",
+   "variant": "favorite-count-stuck",
+   "verdict": "bug",
+   "p": 0.729,
+   "probs": {
+    "bug": 0.729,
+    "flaky": 0.257,
+    "test_issue": 0.006,
+    "noise": 0.004
+   },
+   "seconds": 0.86,
+   "rules": null
+  },
+  {
+   "id": "case07",
+   "label": "bug",
+   "variant": "profile-articles-empty",
+   "verdict": "bug",
+   "p": 0.974,
+   "probs": {
+    "bug": 0.974,
+    "test_issue": 0.017,
+    "noise": 0.004,
+    "flaky": 0.003
+   },
+   "seconds": 0.63,
+   "rules": null
+  },
+  {
+   "id": "case08",
+   "label": "bug",
+   "variant": "bio-not-saved",
+   "verdict": "bug",
+   "p": 0.792,
+   "probs": {
+    "bug": 0.792,
+    "flaky": 0.195,
+    "test_issue": 0.007,
+    "noise": 0.001
+   },
+   "seconds": 0.86,
+   "rules": null
+  },
+  {
+   "id": "case09",
+   "label": "noise",
+   "variant": "noise-analytics",
+   "verdict": "noise",
+   "p": 0.999,
+   "probs": {
+    "noise": 0.999,
+    "bug": 0.001
+   },
+   "seconds": 0.48,
+   "rules": "noise"
+  },
+  {
+   "id": "case10",
+   "label": "noise",
+   "variant": "noise-analytics",
+   "verdict": "noise",
+   "p": 0.999,
+   "probs": {
+    "noise": 0.999,
+    "bug": 0.001
+   },
+   "seconds": 0.34,
+   "rules": "noise"
+  },
+  {
+   "id": "case11",
+   "label": "noise",
+   "variant": "noise-analytics",
+   "verdict": "bug",
+   "p": 0.927,
+   "probs": {
+    "bug": 0.927,
+    "noise": 0.069,
+    "test_issue": 0.001
+   },
+   "seconds": 0.4,
+   "rules": null
+  },
+  {
+   "id": "case12",
+   "label": "noise",
+   "variant": "noise-analytics",
+   "verdict": "bug",
+   "p": 0.633,
+   "probs": {
+    "bug": 0.633,
+    "noise": 0.359,
+    "flaky": 0.002,
+    "test_issue": 0.002
+   },
+   "seconds": 0.36,
+   "rules": null
+  },
+  {
+   "id": "case13",
+   "label": "noise",
+   "variant": "noise-console-warning",
+   "verdict": "noise",
+   "p": 0.998,
+   "probs": {
+    "noise": 0.998,
+    "bug": 0.001,
+    "test_issue": 0.0
+   },
+   "seconds": 0.34,
+   "rules": null
+  },
+  {
+   "id": "case14",
+   "label": "noise",
+   "variant": "noise-console-warning",
+   "verdict": "bug",
+   "p": 0.705,
+   "probs": {
+    "bug": 0.705,
+    "noise": 0.287,
+    "test_issue": 0.002,
+    "flaky": 0.001
+   },
+   "seconds": 0.38,
+   "rules": null
+  },
+  {
+   "id": "case15",
+   "label": "noise",
+   "variant": "noise-console-warning",
+   "verdict": "bug",
+   "p": 0.559,
+   "probs": {
+    "bug": 0.559,
+    "noise": 0.43,
+    "flaky": 0.004,
+    "test_issue": 0.002
+   },
+   "seconds": 0.35,
+   "rules": null
+  },
+  {
+   "id": "case16",
+   "label": "flaky",
+   "variant": "flaky-slow-articles",
+   "verdict": "flaky",
+   "p": 0.911,
+   "probs": {
+    "flaky": 0.911,
+    "bug": 0.078,
+    "noise": 0.007,
+    "test_issue": 0.0
+   },
+   "seconds": 0.64,
+   "rules": "flaky"
+  },
+  {
+   "id": "case17",
+   "label": "flaky",
+   "variant": "flaky-slow-articles",
+   "verdict": "flaky",
+   "p": 0.74,
+   "probs": {
+    "flaky": 0.74,
+    "bug": 0.255,
+    "noise": 0.001
+   },
+   "seconds": 0.7,
+   "rules": null
+  },
+  {
+   "id": "case18",
+   "label": "flaky",
+   "variant": "flaky-slow-articles",
+   "verdict": "flaky",
+   "p": 0.773,
+   "probs": {
+    "flaky": 0.773,
+    "bug": 0.224,
+    "noise": 0.0
+   },
+   "seconds": 0.37,
+   "rules": null
+  },
+  {
+   "id": "case19",
+   "label": "test_issue",
+   "variant": "generated:specgen_qwen3_4b_v1",
+   "verdict": "bug",
+   "p": 0.639,
+   "probs": {
+    "bug": 0.639,
+    "flaky": 0.358,
+    "test_issue": 0.0
+   },
+   "seconds": 0.58,
+   "rules": "test_issue"
+  },
+  {
+   "id": "case20",
+   "label": "test_issue",
+   "variant": "generated:specgen_qwen3_4b_v1",
+   "verdict": "bug",
+   "p": 0.985,
+   "probs": {
+    "bug": 0.985,
+    "flaky": 0.013,
+    "test_issue": 0.0
+   },
+   "seconds": 0.78,
+   "rules": "test_issue"
+  },
+  {
+   "id": "case21",
+   "label": "test_issue",
+   "variant": "generated:specgen_qwen3_4b_v1",
+   "verdict": "bug",
+   "p": 0.712,
+   "probs": {
+    "bug": 0.712,
+    "flaky": 0.284,
+    "test_issue": 0.0
+   },
+   "seconds": 0.82,
+   "rules": "test_issue"
+  },
+  {
+   "id": "case22",
+   "label": "test_issue",
+   "variant": "generated:specgen_qwen3_4b_v1",
+   "verdict": "bug",
+   "p": 0.997,
+   "probs": {
+    "bug": 0.997,
+    "flaky": 0.001,
+    "test_issue": 0.0,
+    "noise": 0.0
+   },
+   "seconds": 0.86,
+   "rules": "test_issue"
+  },
+  {
+   "id": "case23",
+   "label": "test_issue",
+   "variant": "generated:specgen_qwen3_4b_v1",
+   "verdict": "bug",
+   "p": 0.931,
+   "probs": {
+    "bug": 0.931,
+    "test_issue": 0.068,
+    "flaky": 0.0
+   },
+   "seconds": 0.85,
+   "rules": "test_issue"
+  },
+  {
+   "id": "case24",
+   "label": "test_issue",
+   "variant": "generated:specgen_qwen3_4b_v1",
+   "verdict": "bug",
+   "p": 0.93,
+   "probs": {
+    "bug": 0.93,
+    "flaky": 0.068,
+    "test_issue": 0.0,
+    "noise": 0.0
+   },
+   "seconds": 0.88,
+   "rules": "test_issue"
+  }
+ ]
+}

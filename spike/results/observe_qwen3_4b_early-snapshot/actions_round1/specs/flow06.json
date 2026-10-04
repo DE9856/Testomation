@@ -1,0 +1,18 @@
+{
+ "spec_version": 1,
+ "id": "flow06",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "react"
+   }
+  }
+ ],
+ "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'."
+}

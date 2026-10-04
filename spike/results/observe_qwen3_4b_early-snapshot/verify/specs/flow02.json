@@ -1,0 +1,66 @@
+{
+ "spec_version": 1,
+ "id": "flow02",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": "alice@conduit.test"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": "wrong_password"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "hasText",
+   "target": {
+    "role": "paragraph"
+   },
+   "value": "Error: Invalid password"
+  }
+ ],
+ "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page."
+}

@@ -1,0 +1,94 @@
+# /#/profile/alice
+- banner:
+  - navigation:
+    - link "conduit":
+      - /url: "#/"
+    - list:
+      - listitem:
+        - link " Source code":
+          - /url: https://github.com/TonyMckes/conduit-realworld-example-app
+    - list:
+      - listitem:
+        - link " Home":
+          - /url: "#/"
+      - listitem:
+        - link " New Article":
+          - /url: "#/editor"
+      - listitem:
+        - img "alice"
+        - text: alice
+- main:
+  - img "alice"
+  - heading "alice" [level=4]
+  - link " Edit Profile Settings":
+    - /url: "#/settings"
+  - list:
+    - listitem:
+      - link "My Articles":
+        - /url: "#/profile/alice"
+    - listitem:
+      - link "Favorited Articles":
+        - /url: "#/profile/alice/favorites"
+  - link "alice":
+    - /url: "#/profile/alice"
+    - img "alice"
+  - link "alice":
+    - /url: "#/profile/alice"
+  - text: October 4, 2026
+  - button " ( 0 )"
+  - link "Alice's post 3 Post 3 by alice Read more... design postgres":
+    - /url: "#/article/alice-s-post-3"
+    - heading "Alice's post 3" [level=1]
+    - paragraph: Post 3 by alice
+    - text: Read more...
+    - list:
+      - listitem: design
+      - listitem: postgres
+  - link "alice":
+    - /url: "#/profile/alice"
+    - img "alice"
+  - link "alice":
+    - /url: "#/profile/alice"
+  - text: October 4, 2026
+  - button " ( 0 )"
+  - link "Alice's post 2 Post 2 by alice Read more... postgres react":
+    - /url: "#/article/alice-s-post-2"
+    - heading "Alice's post 2" [level=1]
+    - paragraph: Post 2 by alice
+    - text: Read more...
+    - list:
+      - listitem: postgres
+      - listitem: react
+  - link "alice":
+    - /url: "#/profile/alice"
+    - img "alice"
+  - link "alice":
+    - /url: "#/profile/alice"
+  - text: October 4, 2026
+  - button " ( 1 )"
+  - link "Alice's post 1 Post 1 by alice Read more... playwright react":
+    - /url: "#/article/alice-s-post-1"
+    - heading "Alice's post 1" [level=1]
+    - paragraph: Post 1 by alice
+    - text: Read more...
+    - list:
+      - listitem: playwright
+      - listitem: react
+  - navigation "Pagination":
+    - listitem:
+      - button "Previous page" [disabled]: 
+    - listitem:
+      - button "Page 1 is your current page": "1"
+    - listitem:
+      - button "Next page" [disabled]: 
+- contentinfo:
+  - link "conduit":
+    - /url: "#/"
+  - text: An interactive learning project from
+  - link "Thinkster":
+    - /url: https://thinkster.io
+  - text: . Code & design licensed under MIT.
+  - list:
+    - listitem:
+      - link " Source code":
+        - /url: https://github.com/TonyMckes/conduit-realworld-example-app

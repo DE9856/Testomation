@@ -1,0 +1,115 @@
+{
+ "spec_version": 1,
+ "id": "flow04",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": "alice@conduit.test"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": {
+    "$secret": "ALICE_PASSWORD"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "\uf12c New Article"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Article Title"
+   },
+   "value": {
+    "$var": "title"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "What's this article about?"
+   },
+   "value": {
+    "$faker": "lorem.sentence"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Write your article (in markdown)"
+   },
+   "value": {
+    "$faker": "lorem.paragraph"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Enter tags"
+   },
+   "value": {
+    "$faker": "internet.username",
+    "as": "tag1"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Enter tags"
+   },
+   "value": {
+    "$faker": "internet.username",
+    "as": "tag2"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Publish Article"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "url",
+   "value": "/#/article/alice-s-post-"
+  }
+ ],
+ "flow": "As alice, publish a new article with a title, description, body and two tags; the article page then shows the title."
+}

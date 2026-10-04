@@ -955,6 +955,7 @@
         <div class="subhead">// one schema, helpers, origin guard</div>
         <ul class="choice-list">
           <li><strong>One schema source</strong> — <code>schemas/test-spec.schema.json</code> is the only definition of a spec. Pydantic models and TypeScript types are generated from it; example specs in <code>schemas/examples/</code> are validated by both sides.</li>
+          <li><strong>Decoder-friendly</strong> — the spike showed Ollama silently drops schema parts it can't convert, so every union branch is a complete object, every pattern is anchored, the step list is capped, and <code>name</code> is only allowed on roles that can have one. The llm client rewrites patterns into the form Ollama's grammar accepts.</li>
           <li><strong>Helper steps</strong> — when specs need something the vocabulary can't express (dialogs, downloads, iframes, network assertions), a human writes a helper in <code>runner/helpers/</code>. Registered helper names are injected into the schema as an enum, so models can only name helpers that exist — they never write one. A widely used helper can be promoted into the core vocabulary with a <code>spec_version</code> bump.</li>
           <li><strong>Origin guard</strong> — <code>goto</code> and <code>api</code> paths must be relative, and the runner aborts top-level navigation to any origin other than the target app's. Exploration uses the same guard.</li>
         </ul>
@@ -1454,7 +1455,7 @@ def decide(item, decision):
 
         <div class="subhead">// the benchmark</div>
         <ul class="choice-list">
-          <li><strong>Target app</strong> — one small but realistic web app (auth, forms, CRUD, lists) run locally with a seeded database. A RealWorld ("Conduit") implementation is a good candidate.</li>
+          <li><strong>Target app</strong> — one small but realistic web app (auth, forms, CRUD, lists) run locally with a seeded database: Conduit, the RealWorld demo app (React + Express + Postgres), vendored into the repo so bugs can be planted in it. It resets to its seed in about two seconds.</li>
           <li><strong>Hand-planted bugs</strong> — about twenty across categories: broken flows, missing validation, 5xx responses, console errors, layout breaks, accessibility violations, an intentionally flaky element, and harmless noise that must <em>not</em> be reported.</li>
           <li><strong>Mutation bugs</strong> — a mutation-testing tool such as Stryker adds many small automatic bugs. Only <em>detectable</em> mutants count — ones a hand-written reference suite kills — since the rest change nothing a user could see.</li>
           <li><strong>Toggles</strong> — every bug can be switched on or off, so the same app runs clean or bugged.</li>
@@ -1479,6 +1480,7 @@ def decide(item, decision):
           <tr><td>Noise precision</td><td class="opt">When something was called noise, was it really noise?</td></tr>
           <tr><td>Review-queue rate</td><td class="opt">How much work was pushed to a human?</td></tr>
           <tr><td>Spec success rate</td><td class="opt">Share of generated specs that are valid and pass on the clean app within three repair rounds</td></tr>
+          <tr><td>Spec kill rate</td><td class="opt">Share of generated specs that pass on the clean app <em>and fail</em> with their flow's seeded bug on — the spike showed pass rate alone rewards always-true assertions</td></tr>
           <tr><td>Model calls &amp; time per run</td><td class="opt">What did it cost in compute?</td></tr>
           <tr><td>Memory hit rate</td><td class="opt">How much did memory answer on a second run?</td></tr>
         </table>

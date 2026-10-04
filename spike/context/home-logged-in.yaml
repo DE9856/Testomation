@@ -1,0 +1,97 @@
+# /#/
+- banner:
+  - navigation:
+    - link "conduit":
+      - /url: "#/"
+    - list:
+      - listitem:
+        - link " Source code":
+          - /url: https://github.com/TonyMckes/conduit-realworld-example-app
+    - list:
+      - listitem:
+        - link " Home":
+          - /url: "#/"
+      - listitem:
+        - link " New Article":
+          - /url: "#/editor"
+      - listitem:
+        - img "alice"
+        - text: alice
+- main:
+  - list:
+    - listitem:
+      - button "Your Feed"
+    - listitem:
+      - button "Global Feed"
+  - link "carol":
+    - /url: "#/profile/carol"
+    - img "carol"
+  - link "carol":
+    - /url: "#/profile/carol"
+  - text: October 4, 2026
+  - button " ( 0 )"
+  - link "Carol's post 3 Post 3 by carol Read more... playwright testing":
+    - /url: "#/article/carol-s-post-3"
+    - heading "Carol's post 3" [level=1]
+    - paragraph: Post 3 by carol
+    - text: Read more...
+    - list:
+      - listitem: playwright
+      - listitem: testing
+  - link "carol":
+    - /url: "#/profile/carol"
+    - img "carol"
+  - link "carol":
+    - /url: "#/profile/carol"
+  - text: October 4, 2026
+  - button " ( 0 )"
+  - link "Carol's post 2 Post 2 by carol Read more... design testing":
+    - /url: "#/article/carol-s-post-2"
+    - heading "Carol's post 2" [level=1]
+    - paragraph: Post 2 by carol
+    - text: Read more...
+    - list:
+      - listitem: design
+      - listitem: testing
+  - link "carol":
+    - /url: "#/profile/carol"
+    - img "carol"
+  - link "carol":
+    - /url: "#/profile/carol"
+  - text: October 4, 2026
+  - button " ( 1 )"
+  - link "Carol's post 1 Post 1 by carol Read more... design postgres":
+    - /url: "#/article/carol-s-post-1"
+    - heading "Carol's post 1" [level=1]
+    - paragraph: Post 1 by carol
+    - text: Read more...
+    - list:
+      - listitem: design
+      - listitem: postgres
+  - navigation "Pagination":
+    - listitem:
+      - button "Previous page" [disabled]: 
+    - listitem:
+      - button "Page 1 is your current page": "1"
+    - listitem:
+      - button "Page 2": "2"
+    - listitem:
+      - button "Next page": 
+  - complementary:
+    - heading "Popular Tags" [level=6]
+    - button "playwright"
+    - button "react"
+    - button "postgres"
+    - button "design"
+    - button "testing"
+- contentinfo:
+  - link "conduit":
+    - /url: "#/"
+  - text: An interactive learning project from
+  - link "Thinkster":
+    - /url: https://thinkster.io
+  - text: . Code & design licensed under MIT.
+  - list:
+    - listitem:
+      - link " Source code":
+        - /url: https://github.com/TonyMckes/conduit-realworld-example-app

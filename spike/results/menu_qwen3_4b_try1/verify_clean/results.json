@@ -1,0 +1,515 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node-22",
+      "/home/deepesh/Desktop/Testomation/runner/node_modules/.bin/playwright",
+      "test",
+      "--output",
+      "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results"
+    ],
+    "configFile": "/home/deepesh/Desktop/Testomation/runner/playwright.config.ts",
+    "rootDir": "/home/deepesh/Desktop/Testomation/runner",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/deepesh/Desktop/Testomation/runner",
+        "testIgnore": [],
+        "testMatch": [
+          "spec-runner.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "spec-runner.spec.ts",
+      "file": "spec-runner.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "flow03",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "11"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7240,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Luella67').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('Luella67').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Luella67').first()\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Luella67').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('Luella67').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Luella67').first()\u001b[22m\n\n    at assert (/home/deepesh/Desktop/Testomation/runner/steps.ts:115:48)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:100:27)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 48,
+                      "line": 115
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:115\n\n  113 |   const loc = locate(page, step.target);\n  114 |   switch (step.assert) {\n> 115 |     case 'visible': return expect(loc.first()).toBeVisible();\n      |                                                ^\n  116 |     case 'hidden': return expect(loc).toHaveCount(0);\n  117 |     case 'hasText': return expect(loc.first()).toContainText(str(value));\n  118 |     case 'hasValue': return expect(loc.first()).toHaveValue(str(value));"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 48,
+                        "line": 115
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Luella67').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('Luella67').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Luella67').first()\u001b[22m\n\n\n   at steps.ts:115\n\n  113 |   const loc = locate(page, step.target);\n  114 |   switch (step.assert) {\n> 115 |     case 'visible': return expect(loc.first()).toBeVisible();\n      |                                                ^\n  116 |     case 'hidden': return expect(loc).toHaveCount(0);\n  117 |     case 'hasText': return expect(loc.first()).toContainText(str(value));\n  118 |     case 'hasValue': return expect(loc.first()).toHaveValue(str(value));\n    at assert (/home/deepesh/Desktop/Testomation/runner/steps.ts:115:48)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:100:27)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 818
+                    },
+                    {
+                      "title": "2. goto",
+                      "duration": 11
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 37
+                    },
+                    {
+                      "title": "4. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "5. click",
+                      "duration": 381
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 10
+                    },
+                    {
+                      "title": "7. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "8. fill",
+                      "duration": 11
+                    },
+                    {
+                      "title": "9. fill",
+                      "duration": 7
+                    },
+                    {
+                      "title": "10. click",
+                      "duration": 478
+                    },
+                    {
+                      "title": "11. expect",
+                      "duration": 5028,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Luella67').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('Luella67').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Luella67').first()\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Luella67').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('Luella67').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Luella67').first()\u001b[22m\n\n    at assert (/home/deepesh/Desktop/Testomation/runner/steps.ts:115:48)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:100:27)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 48,
+                          "line": 115
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:115\n\n  113 |   const loc = locate(page, step.target);\n  114 |   switch (step.assert) {\n> 115 |     case 'visible': return expect(loc.first()).toBeVisible();\n      |                                                ^\n  116 |     case 'hidden': return expect(loc).toHaveCount(0);\n  117 |     case 'hasText': return expect(loc.first()).toContainText(str(value));\n  118 |     case 'hasValue': return expect(loc.first()).toHaveValue(str(value));"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:54:29.396Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "11"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiQnJ1Y2U4MyIKICAgICAgICAtIHRleHQ6IEJydWNlODMKLSBtYWluOgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJZb3VyIEZlZWQiCiAgICAtIGxpc3RpdGVtOgogICAgICAtIGJ1dHRvbiAiR2xvYmFsIEZlZWQiCiAgLSB0ZXh0OiBBcnRpY2xlcyBub3QgYXZhaWxhYmxlLgogIC0gY29tcGxlbWVudGFyeToKICAgIC0gaGVhZGluZyAiUG9wdWxhciBUYWdzIiBbbGV2ZWw9Nl0KICAgIC0gYnV0dG9uICJwbGF5d3JpZ2h0IgogICAgLSBidXR0b24gInJlYWN0IgogICAgLSBidXR0b24gInBvc3RncmVzIgogICAgLSBidXR0b24gImRlc2lnbiIKICAgIC0gYnV0dG9uICJ0ZXN0aW5nIgotIGNvbnRlbnRpbmZvOgogIC0gbGluayAiY29uZHVpdCI6CiAgICAtIC91cmw6ICIjLyIKICAtIHRleHQ6IEFuIGludGVyYWN0aXZlIGxlYXJuaW5nIHByb2plY3QgZnJvbQogIC0gbGluayAiVGhpbmtzdGVyIjoKICAgIC0gL3VybDogaHR0cHM6Ly90aGlua3N0ZXIuaW8KICAtIHRleHQ6IC4gQ29kZSAmIGRlc2lnbiBsaWNlbnNlZCB1bmRlciBNSVQuCiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgIC0gL3VybDogaHR0cHM6Ly9naXRodWIuY29tL1RvbnlNY2tlcy9jb25kdWl0LXJlYWx3b3JsZC1leGFtcGxlLWFwcA=="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results/spec-runner-flow03-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "signals",
+                      "contentType": "application/json",
+                      "body": "W3sia2luZCI6Imh0dHAiLCJ0ZXh0IjoiUE9TVCA0MDQiLCJ1cmwiOiJodHRwOi8vbG9jYWxob3N0OjQxMDAvYXBpL3VzZXJzL2xvZ2luIiwic3RhdHVzIjo0MDR9LHsia2luZCI6ImNvbnNvbGUiLCJ0ZXh0IjoiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNDA0IChOb3QgRm91bmQpIiwidXJsIjoiaHR0cDovL2xvY2FsaG9zdDo0MTAwL2FwaS91c2Vycy9sb2dpbiJ9XQ=="
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results/spec-runner-flow03-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results/spec-runner-flow03-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results/spec-runner-flow03-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 48,
+                    "line": 115
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-0c1a7b9dc1eff1ac5d45",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow04",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3277,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 695
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 35
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 1329
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 7
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 4
+                    },
+                    {
+                      "title": "7. goto",
+                      "duration": 6
+                    },
+                    {
+                      "title": "8. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "9. fill",
+                      "duration": 11
+                    },
+                    {
+                      "title": "10. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "11. fill",
+                      "duration": 11
+                    },
+                    {
+                      "title": "12. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "13. click",
+                      "duration": 431
+                    },
+                    {
+                      "title": "14. expect",
+                      "duration": 13
+                    },
+                    {
+                      "title": "15. expect",
+                      "duration": 4
+                    },
+                    {
+                      "title": "16. expect",
+                      "duration": 3
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:54:37.451Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBoZWFkaW5nICJBbmdlbDkiIFtsZXZlbD0xXQogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogICAgLSBpbWcgImFsaWNlIgogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+JkiBEZWxldGUgQXJ0aWNsZSIKICAtIGJ1dHRvbiAi74q/IEVkaXQgQXJ0aWNsZSI6CiAgICAtIGxpbmsgIu+KvyBFZGl0IEFydGljbGUiOgogICAgICAtIC91cmw6ICIjL2VkaXRvci9hbmdlbDkiCiAgLSBwYXJhZ3JhcGg6IERlbW9uc3RybyBjb3Jwb3JpcyBkZW1vbnN0cm8gY3VycmljdWx1bSBjdXJ0byBjb21tb2RvIHNvZGFsaXRhcyBkZWNlcm5vIGNvbXBhcm8gYmVuZS4gQ2F1dGUgdGhlY2EgaWxsdW0gYWNpZHVzIGFzc2VudGF0b3IgbmVtbyBhbnRlYSBhZGlwaXNjaSBwZWN1cy4gQ290aWRpZSBhZHN1ZXNjbyBhc3BpY2lvIGFkdWxlc2NlbnMuCiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbTogcXVpc3F1YW0KICAtIHNlcGFyYXRvcgogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogICAgLSBpbWcgImFsaWNlIgogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+JkiBEZWxldGUgQXJ0aWNsZSIKICAtIGJ1dHRvbiAi74q/IEVkaXQgQXJ0aWNsZSI6CiAgICAtIGxpbmsgIu+KvyBFZGl0IEFydGljbGUiOgogICAgICAtIC91cmw6ICIjL2VkaXRvci9hbmdlbDkiCiAgLSB0ZXh0Ym94ICJXcml0ZSBhIGNvbW1lbnQuLi4iCiAgLSBpbWcgImFsaWNlIgogIC0gYnV0dG9uICJQb3N0IENvbW1lbnQiCiAgLSB0ZXh0OiBUaGVyZSBhcmUgbm8gY29tbWVudHMgeWV0Li4uCi0gY29udGVudGluZm86CiAgLSBsaW5rICJjb25kdWl0IjoKICAgIC0gL3VybDogIiMvIgogIC0gdGV4dDogQW4gaW50ZXJhY3RpdmUgbGVhcm5pbmcgcHJvamVjdCBmcm9tCiAgLSBsaW5rICJUaGlua3N0ZXIiOgogICAgLSAvdXJsOiBodHRwczovL3RoaW5rc3Rlci5pbwogIC0gdGV4dDogLiBDb2RlICYgZGVzaWduIGxpY2Vuc2VkIHVuZGVyIE1JVC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGxpbmsgIu+IsyBTb3VyY2UgY29kZSI6CiAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBw"
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "eyJ0aXRsZSI6IkFuZ2VsOSIsImRlc2NyaXB0aW9uIjoiQ2FwdG8gZGVudW8gYW1hcml0dWRvLiIsImJvZHkiOiJEZW1vbnN0cm8gY29ycG9yaXMgZGVtb25zdHJvIGN1cnJpY3VsdW0gY3VydG8gY29tbW9kbyBzb2RhbGl0YXMgZGVjZXJubyBjb21wYXJvIGJlbmUuIENhdXRlIHRoZWNhIGlsbHVtIGFjaWR1cyBhc3NlbnRhdG9yIG5lbW8gYW50ZWEgYWRpcGlzY2kgcGVjdXMuIENvdGlkaWUgYWRzdWVzY28gYXNwaWNpbyBhZHVsZXNjZW5zLiIsInRhZzEiOiJjYXNzbyIsInRhZzIiOiJxdWlzcXVhbSJ9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-a8a7e752380bc2dfc66a",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow10",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "11"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6699,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Perferendis adulescens derideo autem.').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('Perferendis adulescens derideo autem.').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Perferendis adulescens derideo autem.').first()\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Perferendis adulescens derideo autem.').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('Perferendis adulescens derideo autem.').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Perferendis adulescens derideo autem.').first()\u001b[22m\n\n    at assert (/home/deepesh/Desktop/Testomation/runner/steps.ts:115:48)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:100:27)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 48,
+                      "line": 115
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:115\n\n  113 |   const loc = locate(page, step.target);\n  114 |   switch (step.assert) {\n> 115 |     case 'visible': return expect(loc.first()).toBeVisible();\n      |                                                ^\n  116 |     case 'hidden': return expect(loc).toHaveCount(0);\n  117 |     case 'hasText': return expect(loc.first()).toContainText(str(value));\n  118 |     case 'hasValue': return expect(loc.first()).toHaveValue(str(value));"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 48,
+                        "line": 115
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Perferendis adulescens derideo autem.').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('Perferendis adulescens derideo autem.').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Perferendis adulescens derideo autem.').first()\u001b[22m\n\n\n   at steps.ts:115\n\n  113 |   const loc = locate(page, step.target);\n  114 |   switch (step.assert) {\n> 115 |     case 'visible': return expect(loc.first()).toBeVisible();\n      |                                                ^\n  116 |     case 'hidden': return expect(loc).toHaveCount(0);\n  117 |     case 'hasText': return expect(loc.first()).toContainText(str(value));\n  118 |     case 'hasValue': return expect(loc.first()).toHaveValue(str(value));\n    at assert (/home/deepesh/Desktop/Testomation/runner/steps.ts:115:48)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:100:27)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 406
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 30
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 483
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 9
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 5
+                    },
+                    {
+                      "title": "7. goto",
+                      "duration": 6
+                    },
+                    {
+                      "title": "8. fill",
+                      "duration": 8
+                    },
+                    {
+                      "title": "9. click",
+                      "duration": 354
+                    },
+                    {
+                      "title": "10. goto",
+                      "duration": 13
+                    },
+                    {
+                      "title": "11. expect",
+                      "duration": 5022,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Perferendis adulescens derideo autem.').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('Perferendis adulescens derideo autem.').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Perferendis adulescens derideo autem.').first()\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Perferendis adulescens derideo autem.').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('Perferendis adulescens derideo autem.').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Perferendis adulescens derideo autem.').first()\u001b[22m\n\n    at assert (/home/deepesh/Desktop/Testomation/runner/steps.ts:115:48)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:100:27)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 48,
+                          "line": 115
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:115\n\n  113 |   const loc = locate(page, step.target);\n  114 |   switch (step.assert) {\n> 115 |     case 'visible': return expect(loc.first()).toBeVisible();\n      |                                                ^\n  116 |     case 'hidden': return expect(loc).toHaveCount(0);\n  117 |     case 'hasText': return expect(loc.first()).toContainText(str(value));\n  118 |     case 'hasValue': return expect(loc.first()).toHaveValue(str(value));"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T12:54:40.828Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "11"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBpbWcgImFsaWNlIgogIC0gaGVhZGluZyAiYWxpY2UiIFtsZXZlbD00XQogIC0gcGFyYWdyYXBoOiBDYWVsZXN0aXMgY3VibyBhdXQgdGVyc3VzIGFkdWxhdGlvLgogIC0gbGluayAi74S9IEVkaXQgUHJvZmlsZSBTZXR0aW5ncyI6CiAgICAtIC91cmw6ICIjL3NldHRpbmdzIgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAiTXkgQXJ0aWNsZXMiOgogICAgICAgIC0gL3VybDogIiMvcHJvZmlsZS9hbGljZSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAiRmF2b3JpdGVkIEFydGljbGVzIjoKICAgICAgICAtIC91cmw6ICIjL3Byb2ZpbGUvYWxpY2UvZmF2b3JpdGVzIgogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogICAgLSBpbWcgImFsaWNlIgogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkFuZ2VsOSBDYXB0byBkZW51byBhbWFyaXR1ZG8uIFJlYWQgbW9yZS4uLiBxdWlzcXVhbSI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvYW5nZWw5IgogICAgLSBoZWFkaW5nICJBbmdlbDkiIFtsZXZlbD0xXQogICAgLSBwYXJhZ3JhcGg6IENhcHRvIGRlbnVvIGFtYXJpdHVkby4KICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHF1aXNxdWFtCiAgLSBsaW5rICJhbGljZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvYWxpY2UiCiAgICAtIGltZyAiYWxpY2UiCiAgLSBsaW5rICJhbGljZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvYWxpY2UiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74WBICggMCApIgogIC0gbGluayAiQWxpY2UncyBwb3N0IDMgUG9zdCAzIGJ5IGFsaWNlIFJlYWQgbW9yZS4uLiBkZXNpZ24gcG9zdGdyZXMiOgogICAgLSAvdXJsOiAiIy9hcnRpY2xlL2FsaWNlLXMtcG9zdC0zIgogICAgLSBoZWFkaW5nICJBbGljZSdzIHBvc3QgMyIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAzIGJ5IGFsaWNlCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiBkZXNpZ24KICAgICAgLSBsaXN0aXRlbTogcG9zdGdyZXMKICAtIGxpbmsgImFsaWNlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9hbGljZSIKICAgIC0gaW1nICJhbGljZSIKICAtIGxpbmsgImFsaWNlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9hbGljZSIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLvhYEgKCAwICkiCiAgLSBsaW5rICJBbGljZSdzIHBvc3QgMiBQb3N0IDIgYnkgYWxpY2UgUmVhZCBtb3JlLi4uIHBvc3RncmVzIHJlYWN0IjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS9hbGljZS1zLXBvc3QtMiIKICAgIC0gaGVhZGluZyAiQWxpY2UncyBwb3N0IDIiIFtsZXZlbD0xXQogICAgLSBwYXJhZ3JhcGg6IFBvc3QgMiBieSBhbGljZQogICAgLSB0ZXh0OiBSZWFkIG1vcmUuLi4KICAgIC0gbGlzdDoKICAgICAgLSBsaXN0aXRlbTogcG9zdGdyZXMKICAgICAgLSBsaXN0aXRlbTogcmVhY3QKICAtIG5hdmlnYXRpb24gIlBhZ2luYXRpb24iOgogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIlByZXZpb3VzIHBhZ2UiIFtkaXNhYmxlZF06IO+EhwogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIlBhZ2UgMSBpcyB5b3VyIGN1cnJlbnQgcGFnZSI6ICIxIgogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIlBhZ2UgMiI6ICIyIgogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIk5leHQgcGFnZSI6IO+EigotIGNvbnRlbnRpbmZvOgogIC0gbGluayAiY29uZHVpdCI6CiAgICAtIC91cmw6ICIjLyIKICAtIHRleHQ6IEFuIGludGVyYWN0aXZlIGxlYXJuaW5nIHByb2plY3QgZnJvbQogIC0gbGluayAiVGhpbmtzdGVyIjoKICAgIC0gL3VybDogaHR0cHM6Ly90aGlua3N0ZXIuaW8KICAtIHRleHQ6IC4gQ29kZSAmIGRlc2lnbiBsaWNlbnNlZCB1bmRlciBNSVQuCiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgIC0gL3VybDogaHR0cHM6Ly9naXRodWIuY29tL1RvbnlNY2tlcy9jb25kdWl0LXJlYWx3b3JsZC1leGFtcGxlLWFwcA=="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results/spec-runner-flow10-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results/spec-runner-flow10-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results/spec-runner-flow10-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results/spec-runner-flow10-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 48,
+                    "line": 115
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-4e4503366081d9e9d3f4",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-04T12:54:28.674Z",
+    "duration": 18981.293999999998,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

@@ -22,7 +22,7 @@ Current brief: `index.html` **v0.6** (previous: `archive/testomation-v0.5.html`,
 | D12 | ~~Claude API at runtime~~ → **Ollama local models at runtime; Claude (Claude Code) for building only** | Free, local, private | v0.5 | [LOCAL_SETUP](LOCAL_SETUP.md) |
 | D13 | Everything free and local on one laptop | Project constraint | v0.5 | [LOCAL_SETUP](LOCAL_SETUP.md) |
 | D14 | Model calls through one OpenAI-compatible llm client (`langfuse.openai` → Ollama `/v1`) | Tracing for free; provider swap is config | v0.5 | [OBSERVABILITY](OBSERVABILITY.md) |
-| D15 | Model tiers: ~~small ~4B (GPU), large ~7–8B (offload)~~ → **one model by default — `small` (~4B, on GPU) for all text work; `large` (~7–8B, CPU offload) only if the benchmark shows a gain**; `vision` optional; `embed` | No model swaps and faster everything; the schema constrains output, so a 4B model may be enough | v0.6 | [LOCAL_SETUP](LOCAL_SETUP.md) |
+| D15 | Model tiers: ~~small ~4B (GPU), large ~7–8B (offload)~~ → **one model by default — `small` (~4B, on GPU) for all text work; `large` (~7–8B, CPU offload) only if the benchmark shows a gain**; `vision` optional; `embed` | No model swaps and faster everything; the schema constrains output, so a 4B model may be enough. **Spike:** `qwen3:8b` scored 2/10 vs `qwen3:4b`'s 4/10 at 5× the time, so `large` stays unused | v0.6 | [LOCAL_SETUP](LOCAL_SETUP.md) |
 | D16 | Python for the brain, TypeScript for the spec runner; JSON files between them | Best of both Playwright and LangGraph ecosystems | v0.5 | [ARCHITECTURE](ARCHITECTURE.md) |
 | D17 | Evidence in a local folder; graph stores paths | Simplest on one machine | v0.5 | [TECH_STACK](TECH_STACK.md) |
 | D18 | Claims table (`mem_claim`) + `mem_fact` view; edges carry full provenance **and can be disputed by claims too** | Enforces "human beats model" for links (`likely_caused_by`, `duplicate_of`) as well as fields; audit trail | v0.5 (v0.6) | [MEMORY_GRAPH](MEMORY_GRAPH.md) |
@@ -44,13 +44,18 @@ Current brief: `index.html` **v0.6** (previous: `archive/testomation-v0.5.html`,
 | D34 | MVP `Requirement` nodes come from business rules the planner infers (source `llm`) and from humans at approval; the spec's `requirement` field is optional | MVP ingest has no user stories, but traceability still works | v0.6 | [MEMORY_GRAPH](MEMORY_GRAPH.md) |
 | D35 | Positioned against **Playwright Test Agents**: their Generator (writes code) and Healer (self-heals) aren't reused | Keeps principles 2 and 6; makes Testomation's differences explicit | v0.6 | [OVERVIEW](OVERVIEW.md) |
 | D36 | The brief lives at **`index.html`** (served by GitHub Pages); each superseded version is copied to `archive/testomation-v<version>.html` | One linkable source of truth | v0.6 | `CLAUDE.md` |
+| D37 | Benchmark target app: **Conduit** from `TonyMckes/conduit-realworld-example-app` (React + Express + Sequelize + Postgres, MIT), vendored in `bench/app/conduit/` with its own Postgres, seeded through its API and reset from a template DB | Plain JS (Stryker can mutate it), Postgres (template-DB reset ~2 s), small and well known; vendored so bugs can be planted. Two upstream fixes recorded in `UPSTREAM.md` | v0.6 | [EVALUATION](EVALUATION.md) |
+| D38 | The spec schema is **decoder-friendly**: every `anyOf` branch is a complete typed object (never `type` + `properties` beside a `oneOf` of bare `required` rules), every `pattern` is anchored `^…$`, arrays are capped (`steps.maxItems`), and structured-output calls run with thinking **off** | Spike: Ollama silently dropped our original `target` constraints (0/3 valid → 3/3 after the fix); unanchored patterns are ignored; an uncapped array let a model loop until truncation; thinking took 90–140 s per spec and overflowed the context | v0.6 | [TEST_SPEC](TEST_SPEC.md), [SPIKE_RESULTS](SPIKE_RESULTS.md) |
+| D39 | **The llm client derives a decoder view of every schema**: patterns are rewritten into the form Ollama's grammar handles (e.g. `(.\|\n)*` → `.*`); the schema file keeps the validator-correct form and stays the single source | Spike: the validator-correct multi-line pattern broke Ollama's grammar (JSON invalid on 8/10 flows); Ollama's `.` already allows newlines | v0.6 | [SPIKE_RESULTS](SPIKE_RESULTS.md) |
+| D40 | In spec targets, **`name` is only allowed on roles that can have an accessible name**; paragraphs, list items, generic text etc. are targeted by `text` | The 4B model kept writing `{role: paragraph, name: …}` (never matches) despite prompt rules; as a schema constraint the decoder made it impossible and the comment flow started passing | v0.6 | [TEST_SPEC](TEST_SPEC.md) |
+| D41 | Spec targets take an optional **`nth`** (0-based) to pick one of several matching elements | Conduit shows the same "Favorite ( 0 )" button twice on every article; without `nth` the favorite flow could not be written at all. Decoder-enforceable (integer 0–20) | v0.6 | [TEST_SPEC](TEST_SPEC.md) |
 
 ## Open questions
 
 | # | Question | Status / notes |
 |---|---|---|
 | Q1 | ~~Temporal from day one, or Redis first?~~ | **Closed (D5):** neither — pipeline runner + Playwright Test. |
-| Q2 | Which models per tier? | **Partly closed (D15):** one `small` model by default; spike and benchmark pick it and decide whether `large` earns a place. |
+| Q2 | Which models per tier? | **Mostly closed:** `small` = `qwen3:4b`, all layers on GPU (`num_gpu`), thinking off. `large` **not used**: `qwen3:8b` scored 2/10 vs 4/10 at 5× the time ([SPIKE_RESULTS](SPIKE_RESULTS.md)). Revisit only with another model family. |
 | Q3 | ~~Embedding model~~ | **Closed:** local via Ollama; candidate `nomic-embed-text` (768-d). Benchmark may change it. |
 | Q4 | Natural keys for `Flow`, `Component`, `Element` | Open. Proposed in design step 2, confirmed in step 7 ([DESIGN_ROADMAP](DESIGN_ROADMAP.md)). |
 | Q5 | Confidence thresholds | **Process closed (D21):** calibrated on the benchmark. Values TBD. |
@@ -60,8 +65,8 @@ Current brief: `index.html` **v0.6** (previous: `archive/testomation-v0.5.html`,
 | Q9 | ~~Review queue UI~~ | **Closed (D24)** for now; web UI later. |
 | Q10 | ~~Test draft lifecycle~~ | **Closed:** `status` on `TestCase`: draft → approved → quarantined → retired. |
 | Q11 | Multi-tenancy | `project` column added now; full isolation later. |
-| Q12 | Which target app for the benchmark? | Candidate: a RealWorld ("Conduit") implementation. Closed in design step 3. |
-| Q13 | Does Ollama's OpenAI-compatible endpoint, through `langfuse.openai`, handle our spec schema (a discriminated union) under structured output, and pass **logprobs** through? | Verify in the **spike**. Fallback: Ollama's native client (`format=`, `logprobs`) plus a manual generation span. *(extended v0.6)* |
+| Q12 | ~~Which target app for the benchmark?~~ | **Closed (D37):** Conduit (TonyMckes), in `bench/app/`. |
+| Q13 | ~~Does Ollama's OpenAI-compatible endpoint, through `langfuse.openai`, handle our spec schema under structured output, and pass **logprobs** through?~~ | **Closed (spike):** yes for both, provided the schema is decoder-friendly (D38). Still open: whether the Langfuse SDK picks up our OpenTelemetry spans (phase 3). |
 | Q14 | Backend coverage for `touches` | Static map first; how/if to add per-test backend coverage later. |
 | Q15 | Crawler: build our own state-graph crawler or adapt an existing tool? | Open. Closed in design step 7. |
 | Q16 | ~~Sample count for agreement (3?) and whether to vary temperature or prompts~~ | **Closed (D20):** one call with logprobs replaces sampling; see Q19. If logprobs aren't usable, the fallback samples 3× at temperature > 0 (at temperature 0 every sample agrees). |
@@ -70,10 +75,15 @@ Current brief: `index.html` **v0.6** (previous: `archive/testomation-v0.5.html`,
 | Q19 | How to combine label probability, neighbour vote and rules signal into one score; neighbour `k` and minimum similarity | Open. Candidates: logistic regression or isotonic calibration fitted on the benchmark. Placeholders: k = 5, similarity ≥ 0.9. *(new)* |
 | Q20 | When does test selection come back? | Open. When a full run of approved specs exceeds a time limit (e.g. 10 min); impact analysis then picks specs again. *(new)* |
 | Q21 | Should the planner emit a human-editable Markdown plan, like Playwright's planner agent, before specs are generated? | Open. *(new)* |
-| Q22 | Spike exit targets | Proposed in [DESIGN_ROADMAP](DESIGN_ROADMAP.md#step-1--feasibility-spike); confirm before the spike starts. *(new)* |
+| Q22 | Spike exit targets | **Closed (spike):** generation **missed** (best 1/8 seeded bugs caught vs 8/8 hand-written); triage, toolchain and fit **met**. Recommendation in [SPIKE_RESULTS](SPIKE_RESULTS.md#final-verdict-q22): build the deterministic core and triage as designed; phase 3 becomes assisted authoring (proposed — needs a decision). |
 | Q23 | Does the planner's "go back for detail on high-value areas" need a loop framework? | Open. Default: plain code; LangGraph only if the loop proves real. *(new)* |
 | Q24 | For imported Playwright suites (no spec), how is a failure mapped to a step and an element? | Open. Use `test.step` titles when present; otherwise the failing locator from the error and the trace's last action. *(new)* |
 | Q25 | The exploration loop is Python (LangGraph) but browser actions live in the TypeScript runner. How does it drive the browser? | Open. Proposed: a TypeScript **step server** (the spec runner's step code over stdio JSON), so each step is implemented once. Alternative: Playwright for Python in the explorer, duplicating step code. *(new)* |
+| Q26 | Should spec generation **observe then assert**? | **Tested (spike):** observation fixes unseen outcomes; a deterministic assertion menu with model picks reached a 1/8 kill rate. Useful as *suggestions* in assisted authoring, not as autonomous generation. |
+| Q27 | ~~How should a spec pick one of several identical elements?~~ | **Closed (D41):** optional `nth` on targets. Scoping inside a region (`within`) may come later. |
+| Q28 | May a draft repair change an `expect`'s *target* if its `assert` and `value` stay the same? | Open. Tested in the spike (v3a): recovered no flows. Keep the stricter rule until evidence says otherwise. *(new)* |
+| Q29 | How is a generated spec's quality measured? | **Proposed:** by seeded-bug kill rate — a spec counts only if it passes on the clean app **and fails** with its flow's seeded bug on. Pass rate alone rewarded always-true assertions in every spike run. *(new)* |
+| Q30 | Phase 3 scope after the spike: autonomous generation → **assisted authoring** (templates/recorded flows for actions, model-suggested assertions from the before/after menu, human approval of every draft)? | **Open — needs a decision.** Evidence: [SPIKE_RESULTS](SPIKE_RESULTS.md#final-verdict-q22). *(new)* |
 
 ## Gaps found in the v0.5 brief
 
@@ -90,6 +100,7 @@ Current brief: `index.html` **v0.6** (previous: `archive/testomation-v0.5.html`,
 | G19 | Shared files (layout, utils, API client) would mark nearly all memory stale on every commit | **Resolved (D28).** |
 | G20 | Phase 1 required the whole Langfuse stack before any model call existed | **Resolved (D8).** |
 | G21 | No bridge was defined between the Python exploration loop and the TypeScript browser runner | **Open (Q25).** |
+| G22 | The spec schema's `target` and patterns weren't decoder-friendly, so Ollama silently dropped them | **Resolved (D38–D40)** in the spike. |
 
 ## Gaps found in the v0.4 brief
 

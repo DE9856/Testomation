@@ -1,0 +1,76 @@
+{
+ "spec_version": 1,
+ "id": "ref05-comment",
+ "flow": "As alice, open the article \"Dave's post 3\" and post a comment; the comment appears on the page.",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": "alice@conduit.test"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": {
+    "$secret": "ALICE_PASSWORD"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "goto",
+   "url": "/#/article/dave-s-post-3"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Write a comment..."
+   },
+   "value": {
+    "$faker": "lorem.sentence",
+    "as": "comment"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Post Comment"
+   }
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "main"
+   },
+   "assert": "hasText",
+   "value": {
+    "$var": "comment"
+   }
+  }
+ ]
+}

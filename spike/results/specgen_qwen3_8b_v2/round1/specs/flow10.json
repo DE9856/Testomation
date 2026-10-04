@@ -1,0 +1,85 @@
+{
+ "spec_version": 1,
+ "id": "flow10",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": "alice@conduit.test"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": {
+    "$secret": "ALICE_PASSWORD"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   }
+  },
+  {
+   "action": "goto",
+   "url": "/#/settings"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Short bio about you"
+   },
+   "value": {
+    "$faker": "lorem.paragraph"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Update Settings"
+   }
+  },
+  {
+   "action": "goto",
+   "url": "/#/profile/alice"
+  },
+  {
+   "action": "expect",
+   "assert": "hasText",
+   "target": {
+    "role": "paragraph",
+    "name": ""
+   },
+   "value": "Alice's bio text here"
+  }
+ ],
+ "flow": "As alice, change her bio in settings to some generated text; her profile page then shows that bio."
+}

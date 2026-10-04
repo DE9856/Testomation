@@ -1,0 +1,54 @@
+{
+ "spec_version": 1,
+ "id": "flow01",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": {
+    "$secret": "ALICE_EMAIL"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": {
+    "$secret": "ALICE_PASSWORD"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "button",
+    "name": "Home"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "button",
+    "name": "alice"
+   }
+  }
+ ],
+ "flow": "Log in as alice; the navigation bar then shows her username 'alice'."
+}

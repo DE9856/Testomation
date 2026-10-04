@@ -1,0 +1,729 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node-22",
+      "/home/deepesh/Desktop/Testomation/runner/node_modules/.bin/playwright",
+      "test",
+      "--output",
+      "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results"
+    ],
+    "configFile": "/home/deepesh/Desktop/Testomation/runner/playwright.config.ts",
+    "rootDir": "/home/deepesh/Desktop/Testomation/runner",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/deepesh/Desktop/Testomation/runner",
+        "testIgnore": [],
+        "testMatch": [
+          "spec-runner.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "spec-runner.spec.ts",
+      "file": "spec-runner.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "flow03",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "11"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6715,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('main').first()\nExpected substring: \u001b[32m\"Sunny_Shields\"\u001b[39m\nReceived string:    \u001b[31m\" Your Feed Global FeedArticles not available.Popular Tagsplaywrightreactpostgresdesigntesting\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('main').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('main').first()\u001b[22m\n\u001b[2m    14 × locator resolved to <main>…</main>\u001b[22m\n\u001b[2m       - unexpected value \" Your Feed Global FeedArticles not available.Popular Tagsplaywrightreactpostgresdesigntesting\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('main').first()\nExpected substring: \u001b[32m\"Sunny_Shields\"\u001b[39m\nReceived string:    \u001b[31m\" Your Feed Global FeedArticles not available.Popular Tagsplaywrightreactpostgresdesigntesting\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('main').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('main').first()\u001b[22m\n\u001b[2m    14 × locator resolved to <main>…</main>\u001b[22m\n\u001b[2m       - unexpected value \" Your Feed Global FeedArticles not available.Popular Tagsplaywrightreactpostgresdesigntesting\"\u001b[22m\n\n    at assert (/home/deepesh/Desktop/Testomation/runner/steps.ts:117:48)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:100:27)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 48,
+                      "line": 117
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:117\n\n  115 |     case 'visible': return expect(loc.first()).toBeVisible();\n  116 |     case 'hidden': return expect(loc).toHaveCount(0);\n> 117 |     case 'hasText': return expect(loc.first()).toContainText(str(value));\n      |                                                ^\n  118 |     case 'hasValue': return expect(loc.first()).toHaveValue(str(value));\n  119 |     case 'count': return expect(loc).toHaveCount(Number(value));\n  120 |     case 'ariaSnapshot': return expect(loc.first()).toMatchAriaSnapshot(str(value));"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 48,
+                        "line": 117
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('main').first()\nExpected substring: \u001b[32m\"Sunny_Shields\"\u001b[39m\nReceived string:    \u001b[31m\" Your Feed Global FeedArticles not available.Popular Tagsplaywrightreactpostgresdesigntesting\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('main').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('main').first()\u001b[22m\n\u001b[2m    14 × locator resolved to <main>…</main>\u001b[22m\n\u001b[2m       - unexpected value \" Your Feed Global FeedArticles not available.Popular Tagsplaywrightreactpostgresdesigntesting\"\u001b[22m\n\n\n   at steps.ts:117\n\n  115 |     case 'visible': return expect(loc.first()).toBeVisible();\n  116 |     case 'hidden': return expect(loc).toHaveCount(0);\n> 117 |     case 'hasText': return expect(loc.first()).toContainText(str(value));\n      |                                                ^\n  118 |     case 'hasValue': return expect(loc.first()).toHaveValue(str(value));\n  119 |     case 'count': return expect(loc).toHaveCount(Number(value));\n  120 |     case 'ariaSnapshot': return expect(loc.first()).toMatchAriaSnapshot(str(value));\n    at assert (/home/deepesh/Desktop/Testomation/runner/steps.ts:117:48)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:100:27)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 386
+                    },
+                    {
+                      "title": "2. goto",
+                      "duration": 10
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 38
+                    },
+                    {
+                      "title": "4. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "5. click",
+                      "duration": 376
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 10
+                    },
+                    {
+                      "title": "7. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "8. fill",
+                      "duration": 11
+                    },
+                    {
+                      "title": "9. fill",
+                      "duration": 7
+                    },
+                    {
+                      "title": "10. click",
+                      "duration": 482
+                    },
+                    {
+                      "title": "11. expect",
+                      "duration": 5025,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('main').first()\nExpected substring: \u001b[32m\"Sunny_Shields\"\u001b[39m\nReceived string:    \u001b[31m\" Your Feed Global FeedArticles not available.Popular Tagsplaywrightreactpostgresdesigntesting\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('main').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('main').first()\u001b[22m\n\u001b[2m    14 × locator resolved to <main>…</main>\u001b[22m\n\u001b[2m       - unexpected value \" Your Feed Global FeedArticles not available.Popular Tagsplaywrightreactpostgresdesigntesting\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('main').first()\nExpected substring: \u001b[32m\"Sunny_Shields\"\u001b[39m\nReceived string:    \u001b[31m\" Your Feed Global FeedArticles not available.Popular Tagsplaywrightreactpostgresdesigntesting\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByRole('main').first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('main').first()\u001b[22m\n\u001b[2m    14 × locator resolved to <main>…</main>\u001b[22m\n\u001b[2m       - unexpected value \" Your Feed Global FeedArticles not available.Popular Tagsplaywrightreactpostgresdesigntesting\"\u001b[22m\n\n    at assert (/home/deepesh/Desktop/Testomation/runner/steps.ts:117:48)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:100:27)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 48,
+                          "line": 117
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:117\n\n  115 |     case 'visible': return expect(loc.first()).toBeVisible();\n  116 |     case 'hidden': return expect(loc).toHaveCount(0);\n> 117 |     case 'hasText': return expect(loc.first()).toContainText(str(value));\n      |                                                ^\n  118 |     case 'hasValue': return expect(loc.first()).toHaveValue(str(value));\n  119 |     case 'count': return expect(loc).toHaveCount(Number(value));\n  120 |     case 'ariaSnapshot': return expect(loc.first()).toMatchAriaSnapshot(str(value));"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T13:00:02.277Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "11"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiU3VubnlfU2hpZWxkcyIKICAgICAgICAtIHRleHQ6IFN1bm55X1NoaWVsZHMKLSBtYWluOgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJZb3VyIEZlZWQiCiAgICAtIGxpc3RpdGVtOgogICAgICAtIGJ1dHRvbiAiR2xvYmFsIEZlZWQiCiAgLSB0ZXh0OiBBcnRpY2xlcyBub3QgYXZhaWxhYmxlLgogIC0gY29tcGxlbWVudGFyeToKICAgIC0gaGVhZGluZyAiUG9wdWxhciBUYWdzIiBbbGV2ZWw9Nl0KICAgIC0gYnV0dG9uICJwbGF5d3JpZ2h0IgogICAgLSBidXR0b24gInJlYWN0IgogICAgLSBidXR0b24gInBvc3RncmVzIgogICAgLSBidXR0b24gImRlc2lnbiIKICAgIC0gYnV0dG9uICJ0ZXN0aW5nIgotIGNvbnRlbnRpbmZvOgogIC0gbGluayAiY29uZHVpdCI6CiAgICAtIC91cmw6ICIjLyIKICAtIHRleHQ6IEFuIGludGVyYWN0aXZlIGxlYXJuaW5nIHByb2plY3QgZnJvbQogIC0gbGluayAiVGhpbmtzdGVyIjoKICAgIC0gL3VybDogaHR0cHM6Ly90aGlua3N0ZXIuaW8KICAtIHRleHQ6IC4gQ29kZSAmIGRlc2lnbiBsaWNlbnNlZCB1bmRlciBNSVQuCiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgIC0gL3VybDogaHR0cHM6Ly9naXRodWIuY29tL1RvbnlNY2tlcy9jb25kdWl0LXJlYWx3b3JsZC1leGFtcGxlLWFwcA=="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "eyJnZW4xIjoiUm9tYWluZS5Sb21hZ3VlcmE3MEB5YWhvby5jb20iLCJnZW4yIjoiclkwOXJmMmNfdXp2OWpNIiwiZ2VuMyI6IlN1bm55X1NoaWVsZHMiLCJnZW40IjoiQ2Vhc2FyLlBhdWNla0Bob3RtYWlsLmNvbSIsImdlbjUiOiJiRm01TTZWZkpMbWRxVjAifQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results/spec-runner-flow03-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "signals",
+                      "contentType": "application/json",
+                      "body": "W3sia2luZCI6Imh0dHAiLCJ0ZXh0IjoiUE9TVCA0MDQiLCJ1cmwiOiJodHRwOi8vbG9jYWxob3N0OjQxMDAvYXBpL3VzZXJzL2xvZ2luIiwic3RhdHVzIjo0MDR9LHsia2luZCI6ImNvbnNvbGUiLCJ0ZXh0IjoiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNDA0IChOb3QgRm91bmQpIiwidXJsIjoiaHR0cDovL2xvY2FsaG9zdDo0MTAwL2FwaS91c2Vycy9sb2dpbiJ9XQ=="
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results/spec-runner-flow03-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results/spec-runner-flow03-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results/spec-runner-flow03-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 48,
+                    "line": 117
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-0c1a7b9dc1eff1ac5d45",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow04",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3352,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 335
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 38
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 1693
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 13
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 6
+                    },
+                    {
+                      "title": "7. goto",
+                      "duration": 6
+                    },
+                    {
+                      "title": "8. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "9. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "10. fill",
+                      "duration": 11
+                    },
+                    {
+                      "title": "11. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "12. fill",
+                      "duration": 12
+                    },
+                    {
+                      "title": "13. click",
+                      "duration": 432
+                    },
+                    {
+                      "title": "14. expect",
+                      "duration": 14
+                    },
+                    {
+                      "title": "15. expect",
+                      "duration": 4
+                    },
+                    {
+                      "title": "16. expect",
+                      "duration": 4
+                    },
+                    {
+                      "title": "17. expect",
+                      "duration": 4
+                    }
+                  ],
+                  "startTime": "2026-10-04T13:00:09.807Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBoZWFkaW5nICJPcGFsX0JveWxlMTgiIFtsZXZlbD0xXQogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogICAgLSBpbWcgImFsaWNlIgogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+JkiBEZWxldGUgQXJ0aWNsZSIKICAtIGJ1dHRvbiAi74q/IEVkaXQgQXJ0aWNsZSI6CiAgICAtIGxpbmsgIu+KvyBFZGl0IEFydGljbGUiOgogICAgICAtIC91cmw6ICIjL2VkaXRvci9vcGFsLWJveWxlMTgiCiAgLSBwYXJhZ3JhcGg6IFN0aXBzIHRlbnVpcyBjb2VyY2VvIGRlcHJpbW8gYWJkdWNvIGN1Yml0dW0uIFRoZWNhIGFubnVzIG5pc2kgY2xhbSBkb2xvciBzYXBpZW50ZS4gVW5pdmVyc2UgdmlsaXRhcyBleGNlcHR1cmkgZGVkZWNvciB0aGVvbG9ndXMuCiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbTogdm9sdXRhYnJ1bQogIC0gc2VwYXJhdG9yCiAgLSBsaW5rICJhbGljZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvYWxpY2UiCiAgICAtIGltZyAiYWxpY2UiCiAgLSBsaW5rICJhbGljZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvYWxpY2UiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74mSIERlbGV0ZSBBcnRpY2xlIgogIC0gYnV0dG9uICLvir8gRWRpdCBBcnRpY2xlIjoKICAgIC0gbGluayAi74q/IEVkaXQgQXJ0aWNsZSI6CiAgICAgIC0gL3VybDogIiMvZWRpdG9yL29wYWwtYm95bGUxOCIKICAtIHRleHRib3ggIldyaXRlIGEgY29tbWVudC4uLiIKICAtIGltZyAiYWxpY2UiCiAgLSBidXR0b24gIlBvc3QgQ29tbWVudCIKICAtIHRleHQ6IFRoZXJlIGFyZSBubyBjb21tZW50cyB5ZXQuLi4KLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "eyJ0aXRsZSI6Ik9wYWxfQm95bGUxOCIsImRlc2NyaXB0aW9uIjoiQWIgc2VxdWkgYW50ZWEgdG9uZGVvIGNsYXJ1cyBjb21wYXJvIGFkc3Vlc2NvLiIsImJvZHkiOiJTdGlwcyB0ZW51aXMgY29lcmNlbyBkZXByaW1vIGFiZHVjbyBjdWJpdHVtLiBUaGVjYSBhbm51cyBuaXNpIGNsYW0gZG9sb3Igc2FwaWVudGUuIFVuaXZlcnNlIHZpbGl0YXMgZXhjZXB0dXJpIGRlZGVjb3IgdGhlb2xvZ3VzLiIsInRhZzEiOiJkb2xvcnVtIiwidGFnMiI6InZvbHV0YWJydW0ifQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-a8a7e752380bc2dfc66a",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow06",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1731,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 261
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 28
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 484
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 9
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 5
+                    },
+                    {
+                      "title": "7. click",
+                      "duration": 84
+                    },
+                    {
+                      "title": "8. wait_for",
+                      "duration": 5
+                    },
+                    {
+                      "title": "9. click",
+                      "duration": 89
+                    },
+                    {
+                      "title": "10. wait_for",
+                      "duration": 4
+                    },
+                    {
+                      "title": "11. click",
+                      "duration": 96
+                    },
+                    {
+                      "title": "12. wait_for",
+                      "duration": 6
+                    },
+                    {
+                      "title": "13. expect",
+                      "duration": 5
+                    },
+                    {
+                      "title": "14. expect",
+                      "duration": 4
+                    },
+                    {
+                      "title": "15. expect",
+                      "duration": 3
+                    },
+                    {
+                      "title": "16. expect",
+                      "duration": 3
+                    }
+                  ],
+                  "startTime": "2026-10-04T13:00:13.263Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIllvdXIgRmVlZCIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJHbG9iYWwgRmVlZCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAgIC0gaW1nICJjYXJvbCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLvhYEgKCAwICkiCiAgLSBsaW5rICJDYXJvbCdzIHBvc3QgMyBQb3N0IDMgYnkgY2Fyb2wgUmVhZCBtb3JlLi4uIHBsYXl3cmlnaHQgdGVzdGluZyI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvY2Fyb2wtcy1wb3N0LTMiCiAgICAtIGhlYWRpbmcgIkNhcm9sJ3MgcG9zdCAzIiBbbGV2ZWw9MV0KICAgIC0gcGFyYWdyYXBoOiBQb3N0IDMgYnkgY2Fyb2wKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAyIFBvc3QgMiBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHRlc3RpbmciOgogICAgLSAvdXJsOiAiIy9hcnRpY2xlL2Nhcm9sLXMtcG9zdC0yIgogICAgLSBoZWFkaW5nICJDYXJvbCdzIHBvc3QgMiIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAyIGJ5IGNhcm9sCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiBkZXNpZ24KICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDEgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAxIFBvc3QgMSBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHBvc3RncmVzIjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS9jYXJvbC1zLXBvc3QtMSIKICAgIC0gaGVhZGluZyAiQ2Fyb2wncyBwb3N0IDEiIFtsZXZlbD0xXQogICAgLSBwYXJhZ3JhcGg6IFBvc3QgMSBieSBjYXJvbAogICAgLSB0ZXh0OiBSZWFkIG1vcmUuLi4KICAgIC0gbGlzdDoKICAgICAgLSBsaXN0aXRlbTogZGVzaWduCiAgICAgIC0gbGlzdGl0ZW06IHBvc3RncmVzCiAgLSBuYXZpZ2F0aW9uICJQYWdpbmF0aW9uIjoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQcmV2aW91cyBwYWdlIiBbZGlzYWJsZWRdOiDvhIcKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDEgaXMgeW91ciBjdXJyZW50IHBhZ2UiOiAiMSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDIiOiAiMiIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJOZXh0IHBhZ2UiOiDvhIoKICAtIGNvbXBsZW1lbnRhcnk6CiAgICAtIGhlYWRpbmcgIlBvcHVsYXIgVGFncyIgW2xldmVsPTZdCiAgICAtIGJ1dHRvbiAicGxheXdyaWdodCIKICAgIC0gYnV0dG9uICJyZWFjdCIKICAgIC0gYnV0dG9uICJwb3N0Z3JlcyIKICAgIC0gYnV0dG9uICJkZXNpZ24iCiAgICAtIGJ1dHRvbiAidGVzdGluZyIKICAgIC0gYnV0dG9uICJ2b2x1dGFicnVtIgotIGNvbnRlbnRpbmZvOgogIC0gbGluayAiY29uZHVpdCI6CiAgICAtIC91cmw6ICIjLyIKICAtIHRleHQ6IEFuIGludGVyYWN0aXZlIGxlYXJuaW5nIHByb2plY3QgZnJvbQogIC0gbGluayAiVGhpbmtzdGVyIjoKICAgIC0gL3VybDogaHR0cHM6Ly90aGlua3N0ZXIuaW8KICAtIHRleHQ6IC4gQ29kZSAmIGRlc2lnbiBsaWNlbnNlZCB1bmRlciBNSVQuCiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgIC0gL3VybDogaHR0cHM6Ly9naXRodWIuY29tL1RvbnlNY2tlcy9jb25kdWl0LXJlYWx3b3JsZC1leGFtcGxlLWFwcA=="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-5dfad0e19937ee7fae25",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow08",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1927,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 200
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 30
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 489
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 8
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 5
+                    },
+                    {
+                      "title": "7. wait_for",
+                      "duration": 4
+                    },
+                    {
+                      "title": "8. click",
+                      "duration": 357
+                    },
+                    {
+                      "title": "9. expect",
+                      "duration": 8
+                    },
+                    {
+                      "title": "10. expect",
+                      "duration": 6
+                    },
+                    {
+                      "title": "11. expect",
+                      "duration": 4
+                    },
+                    {
+                      "title": "12. expect",
+                      "duration": 4
+                    }
+                  ],
+                  "startTime": "2026-10-04T13:00:15.003Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIllvdXIgRmVlZCIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJHbG9iYWwgRmVlZCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAgIC0gaW1nICJjYXJvbCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLvhYEgKCAwICkiCiAgLSBsaW5rICJDYXJvbCdzIHBvc3QgMyBQb3N0IDMgYnkgY2Fyb2wgUmVhZCBtb3JlLi4uIHBsYXl3cmlnaHQgdGVzdGluZyI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvY2Fyb2wtcy1wb3N0LTMiCiAgICAtIGhlYWRpbmcgIkNhcm9sJ3MgcG9zdCAzIiBbbGV2ZWw9MV0KICAgIC0gcGFyYWdyYXBoOiBQb3N0IDMgYnkgY2Fyb2wKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAyIFBvc3QgMiBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHRlc3RpbmciOgogICAgLSAvdXJsOiAiIy9hcnRpY2xlL2Nhcm9sLXMtcG9zdC0yIgogICAgLSBoZWFkaW5nICJDYXJvbCdzIHBvc3QgMiIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAyIGJ5IGNhcm9sCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiBkZXNpZ24KICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDEgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAxIFBvc3QgMSBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHBvc3RncmVzIjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS9jYXJvbC1zLXBvc3QtMSIKICAgIC0gaGVhZGluZyAiQ2Fyb2wncyBwb3N0IDEiIFtsZXZlbD0xXQogICAgLSBwYXJhZ3JhcGg6IFBvc3QgMSBieSBjYXJvbAogICAgLSB0ZXh0OiBSZWFkIG1vcmUuLi4KICAgIC0gbGlzdDoKICAgICAgLSBsaXN0aXRlbTogZGVzaWduCiAgICAgIC0gbGlzdGl0ZW06IHBvc3RncmVzCiAgLSBuYXZpZ2F0aW9uICJQYWdpbmF0aW9uIjoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQcmV2aW91cyBwYWdlIiBbZGlzYWJsZWRdOiDvhIcKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDEgaXMgeW91ciBjdXJyZW50IHBhZ2UiOiAiMSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDIiOiAiMiIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJOZXh0IHBhZ2UiOiDvhIoKICAtIGNvbXBsZW1lbnRhcnk6CiAgICAtIGhlYWRpbmcgIlBvcHVsYXIgVGFncyIgW2xldmVsPTZdCiAgICAtIGJ1dHRvbiAicGxheXdyaWdodCIKICAgIC0gYnV0dG9uICJyZWFjdCIKICAgIC0gYnV0dG9uICJwb3N0Z3JlcyIKICAgIC0gYnV0dG9uICJkZXNpZ24iCiAgICAtIGJ1dHRvbiAidGVzdGluZyIKICAgIC0gYnV0dG9uICJ2b2x1dGFicnVtIgotIGNvbnRlbnRpbmZvOgogIC0gbGluayAiY29uZHVpdCI6CiAgICAtIC91cmw6ICIjLyIKICAtIHRleHQ6IEFuIGludGVyYWN0aXZlIGxlYXJuaW5nIHByb2plY3QgZnJvbQogIC0gbGluayAiVGhpbmtzdGVyIjoKICAgIC0gL3VybDogaHR0cHM6Ly90aGlua3N0ZXIuaW8KICAtIHRleHQ6IC4gQ29kZSAmIGRlc2lnbiBsaWNlbnNlZCB1bmRlciBNSVQuCiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgIC0gL3VybDogaHR0cHM6Ly9naXRodWIuY29tL1RvbnlNY2tlcy9jb25kdWl0LXJlYWx3b3JsZC1leGFtcGxlLWFwcA=="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-3d3fc9f4b75ca061f9c3",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow10",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "12"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6626,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Paxton_Wintheiser76' }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'Paxton_Wintheiser76' }).first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Paxton_Wintheiser76' }).first()\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Paxton_Wintheiser76' }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'Paxton_Wintheiser76' }).first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Paxton_Wintheiser76' }).first()\u001b[22m\n\n    at assert (/home/deepesh/Desktop/Testomation/runner/steps.ts:115:48)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:100:27)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 48,
+                      "line": 115
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:115\n\n  113 |   const loc = locate(page, step.target);\n  114 |   switch (step.assert) {\n> 115 |     case 'visible': return expect(loc.first()).toBeVisible();\n      |                                                ^\n  116 |     case 'hidden': return expect(loc).toHaveCount(0);\n  117 |     case 'hasText': return expect(loc.first()).toContainText(str(value));\n  118 |     case 'hasValue': return expect(loc.first()).toHaveValue(str(value));"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 48,
+                        "line": 115
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Paxton_Wintheiser76' }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'Paxton_Wintheiser76' }).first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Paxton_Wintheiser76' }).first()\u001b[22m\n\n\n   at steps.ts:115\n\n  113 |   const loc = locate(page, step.target);\n  114 |   switch (step.assert) {\n> 115 |     case 'visible': return expect(loc.first()).toBeVisible();\n      |                                                ^\n  116 |     case 'hidden': return expect(loc).toHaveCount(0);\n  117 |     case 'hasText': return expect(loc.first()).toContainText(str(value));\n  118 |     case 'hasValue': return expect(loc.first()).toHaveValue(str(value));\n    at assert (/home/deepesh/Desktop/Testomation/runner/steps.ts:115:48)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:100:27)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 277
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 29
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 8
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 477
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 7
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 6
+                    },
+                    {
+                      "title": "7. goto",
+                      "duration": 6
+                    },
+                    {
+                      "title": "8. fill",
+                      "duration": 8
+                    },
+                    {
+                      "title": "9. click",
+                      "duration": 412
+                    },
+                    {
+                      "title": "10. goto",
+                      "duration": 15
+                    },
+                    {
+                      "title": "11. expect",
+                      "duration": 8
+                    },
+                    {
+                      "title": "12. expect",
+                      "duration": 5023,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Paxton_Wintheiser76' }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'Paxton_Wintheiser76' }).first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Paxton_Wintheiser76' }).first()\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: 'Paxton_Wintheiser76' }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByRole('heading', { name: 'Paxton_Wintheiser76' }).first() with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: 'Paxton_Wintheiser76' }).first()\u001b[22m\n\n    at assert (/home/deepesh/Desktop/Testomation/runner/steps.ts:115:48)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:100:27)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 48,
+                          "line": 115
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:115\n\n  113 |   const loc = locate(page, step.target);\n  114 |   switch (step.assert) {\n> 115 |     case 'visible': return expect(loc.first()).toBeVisible();\n      |                                                ^\n  116 |     case 'hidden': return expect(loc).toHaveCount(0);\n  117 |     case 'hasText': return expect(loc.first()).toContainText(str(value));\n  118 |     case 'hasValue': return expect(loc.first()).toHaveValue(str(value));"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T13:00:16.938Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "12"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBpbWcgImFsaWNlIgogIC0gaGVhZGluZyAiYWxpY2UiIFtsZXZlbD00XQogIC0gcGFyYWdyYXBoOiBUaGVtYSBtYWduaSB2aXRpdW0gYWNjdXNhbXVzIGFwcG9uby4KICAtIGxpbmsgIu+EvSBFZGl0IFByb2ZpbGUgU2V0dGluZ3MiOgogICAgLSAvdXJsOiAiIy9zZXR0aW5ncyIKICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGxpbmsgIk15IEFydGljbGVzIjoKICAgICAgICAtIC91cmw6ICIjL3Byb2ZpbGUvYWxpY2UiCiAgICAtIGxpc3RpdGVtOgogICAgICAtIGxpbmsgIkZhdm9yaXRlZCBBcnRpY2xlcyI6CiAgICAgICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlL2Zhdm9yaXRlcyIKICAtIGxpbmsgImFsaWNlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9hbGljZSIKICAgIC0gaW1nICJhbGljZSIKICAtIGxpbmsgImFsaWNlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9hbGljZSIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLvhYEgKCAwICkiCiAgLSBsaW5rICJPcGFsX0JveWxlMTggQWIgc2VxdWkgYW50ZWEgdG9uZGVvIGNsYXJ1cyBjb21wYXJvIGFkc3Vlc2NvLiBSZWFkIG1vcmUuLi4gdm9sdXRhYnJ1bSI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvb3BhbC1ib3lsZTE4IgogICAgLSBoZWFkaW5nICJPcGFsX0JveWxlMTgiIFtsZXZlbD0xXQogICAgLSBwYXJhZ3JhcGg6IEFiIHNlcXVpIGFudGVhIHRvbmRlbyBjbGFydXMgY29tcGFybyBhZHN1ZXNjby4KICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHZvbHV0YWJydW0KICAtIGxpbmsgImFsaWNlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9hbGljZSIKICAgIC0gaW1nICJhbGljZSIKICAtIGxpbmsgImFsaWNlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9hbGljZSIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLvhYEgKCAwICkiCiAgLSBsaW5rICJBbGljZSdzIHBvc3QgMyBQb3N0IDMgYnkgYWxpY2UgUmVhZCBtb3JlLi4uIGRlc2lnbiBwb3N0Z3JlcyI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvYWxpY2Utcy1wb3N0LTMiCiAgICAtIGhlYWRpbmcgIkFsaWNlJ3MgcG9zdCAzIiBbbGV2ZWw9MV0KICAgIC0gcGFyYWdyYXBoOiBQb3N0IDMgYnkgYWxpY2UKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IGRlc2lnbgogICAgICAtIGxpc3RpdGVtOiBwb3N0Z3JlcwogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogICAgLSBpbWcgImFsaWNlIgogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkFsaWNlJ3MgcG9zdCAyIFBvc3QgMiBieSBhbGljZSBSZWFkIG1vcmUuLi4gcG9zdGdyZXMgcmVhY3QiOgogICAgLSAvdXJsOiAiIy9hcnRpY2xlL2FsaWNlLXMtcG9zdC0yIgogICAgLSBoZWFkaW5nICJBbGljZSdzIHBvc3QgMiIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAyIGJ5IGFsaWNlCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiBwb3N0Z3JlcwogICAgICAtIGxpc3RpdGVtOiByZWFjdAogIC0gbmF2aWdhdGlvbiAiUGFnaW5hdGlvbiI6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGJ1dHRvbiAiUHJldmlvdXMgcGFnZSIgW2Rpc2FibGVkXTog74SHCiAgICAtIGxpc3RpdGVtOgogICAgICAtIGJ1dHRvbiAiUGFnZSAxIGlzIHlvdXIgY3VycmVudCBwYWdlIjogIjEiCiAgICAtIGxpc3RpdGVtOgogICAgICAtIGJ1dHRvbiAiUGFnZSAyIjogIjIiCiAgICAtIGxpc3RpdGVtOgogICAgICAtIGJ1dHRvbiAiTmV4dCBwYWdlIjog74SKCi0gY29udGVudGluZm86CiAgLSBsaW5rICJjb25kdWl0IjoKICAgIC0gL3VybDogIiMvIgogIC0gdGV4dDogQW4gaW50ZXJhY3RpdmUgbGVhcm5pbmcgcHJvamVjdCBmcm9tCiAgLSBsaW5rICJUaGlua3N0ZXIiOgogICAgLSAvdXJsOiBodHRwczovL3RoaW5rc3Rlci5pbwogIC0gdGV4dDogLiBDb2RlICYgZGVzaWduIGxpY2Vuc2VkIHVuZGVyIE1JVC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGxpbmsgIu+IsyBTb3VyY2UgY29kZSI6CiAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBw"
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "eyJnZW4xIjoiVGhlbWEgbWFnbmkgdml0aXVtIGFjY3VzYW11cyBhcHBvbm8uIn0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results/spec-runner-flow10-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results/spec-runner-flow10-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results/spec-runner-flow10-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen3_4b/verify_clean/test-results/spec-runner-flow10-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 48,
+                    "line": 115
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-4e4503366081d9e9d3f4",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-04T13:00:01.551Z",
+    "duration": 22144.655,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

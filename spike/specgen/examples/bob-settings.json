@@ -1,0 +1,15 @@
+{
+  "spec_version": 1,
+  "id": "settings.shows-own-name",
+  "flow": "Log in as bob and open the settings page; it shows bob's name in the 'Your Name' field.",
+  "steps": [
+    { "action": "goto", "url": "/#/login" },
+    { "action": "fill", "target": { "role": "textbox", "name": "Email" }, "value": "bob@conduit.test" },
+    { "action": "fill", "target": { "role": "textbox", "name": "Password" }, "value": { "$secret": "BOB_PASSWORD" } },
+    { "action": "click", "target": { "role": "button", "name": "Login" } },
+    { "action": "wait_for", "target": { "role": "button", "name": "Your Feed" }, "state": "visible" },
+    { "action": "goto", "url": "/#/settings" },
+    { "action": "expect", "target": { "role": "heading", "name": "Your Settings" }, "assert": "visible" },
+    { "action": "expect", "target": { "role": "textbox", "name": "Your Name" }, "assert": "hasValue", "value": "bob" }
+  ]
+}

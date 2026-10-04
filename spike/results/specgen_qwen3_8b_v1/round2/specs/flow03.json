@@ -1,0 +1,71 @@
+{
+ "spec_version": 1,
+ "id": "flow03",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/register"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Your Name"
+   },
+   "value": {
+    "$faker": "internet.username",
+    "as": "name"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": {
+    "$faker": "internet.email",
+    "as": "email"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": {
+    "$faker": "internet.password"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Sign up"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "listitem",
+    "name": "\uf12c Home"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "expect",
+   "assert": "url",
+   "value": "/#/profile/$var:name"
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "heading",
+    "name": "$var:name"
+   }
+  }
+ ],
+ "flow": "Sign up a brand-new user with generated data; afterwards the navigation bar shows the new username."
+}

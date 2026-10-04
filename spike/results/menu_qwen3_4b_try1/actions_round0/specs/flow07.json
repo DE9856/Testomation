@@ -1,0 +1,74 @@
+{
+ "spec_version": 1,
+ "id": "flow07",
+ "flow": "As alice, favorite the article \"Dave's post 3\"; its favorite count goes from 0 to 1.",
+ "_observe_after": 6,
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": "alice@conduit.test"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": {
+    "$secret": "ALICE_PASSWORD"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "goto",
+   "url": "/#/"
+  },
+  {
+   "action": "goto",
+   "url": "/#/"
+  },
+  {
+   "action": "hover",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "link",
+    "name": "Dave's post 3"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "\uf141 Favorite"
+   }
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "spec_version": 1,
+ "id": "flow09",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/profile/bob"
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "text": "bob"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "text": "Followers ( 1 )"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "text": "My Articles"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "text": "Favorited Articles"
+   }
+  },
+  {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "text": "Loading bob articles..."
+   }
+  }
+ ],
+ "flow": "Without logging in, open bob's profile; it lists his three articles."
+}

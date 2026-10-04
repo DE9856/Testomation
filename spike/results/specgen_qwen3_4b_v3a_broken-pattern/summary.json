@@ -1,0 +1,292 @@
+{
+ "model": "qwen3:4b",
+ "prompt": "v2",
+ "schema": "spike/specgen/schema_v3.json",
+ "repair_expect_targets": true,
+ "rounds": [
+  {
+   "round": 0,
+   "ran": 2,
+   "passed_total": 2
+  },
+  {
+   "round": 1,
+   "ran": 4,
+   "passed_total": 2
+  },
+  {
+   "round": 2,
+   "ran": 5,
+   "passed_total": 2
+  },
+  {
+   "round": 3,
+   "ran": 5,
+   "passed_total": 2
+  }
+ ],
+ "flows": {
+  "flow01": {
+   "flow": "Log in as alice; the navigation bar then shows her username 'alice'.",
+   "history": [
+    {
+     "round": 0,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    },
+    {
+     "round": 1,
+     "status": "failed",
+     "step": "2",
+     "error": "Error: $secret ALICE_EMAIL is not set in the environment"
+    },
+    {
+     "round": 2,
+     "status": "failed",
+     "step": "2",
+     "error": "Error: $secret ALICE_EMAIL is not set in the environment"
+    },
+    {
+     "round": 3,
+     "status": "failed",
+     "step": "2",
+     "error": "Error: $secret ALICE_EMAIL is not set in the environment"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow02": {
+   "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page.",
+   "history": [
+    {
+     "round": 0,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    },
+    {
+     "round": 1,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    },
+    {
+     "round": 2,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    },
+    {
+     "round": 3,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow03": {
+   "flow": "Sign up a brand-new user with generated data; afterwards the navigation bar shows the new username.",
+   "history": [
+    {
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "final": "passed",
+   "has_expect": true
+  },
+  "flow04": {
+   "flow": "As alice, publish a new article with a title, description, body and two tags; the article page then shows the title.",
+   "history": [
+    {
+     "round": 0,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    },
+    {
+     "round": 1,
+     "status": "failed",
+     "step": "5",
+     "error": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'New Article' }) to be visible\n"
+    },
+    {
+     "round": 2,
+     "status": "failed",
+     "step": "5",
+     "error": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'New Article' }) to be visible\n"
+    },
+    {
+     "round": 3,
+     "status": "failed",
+     "step": "5",
+     "error": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'New Article' }) to be visible\n"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow05": {
+   "flow": "As alice, open the article \"Dave's post 3\" and post a comment; the comment appears on the page.",
+   "history": [
+    {
+     "round": 0,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    },
+    {
+     "round": 1,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    },
+    {
+     "round": 2,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    },
+    {
+     "round": 3,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow06": {
+   "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'.",
+   "history": [
+    {
+     "round": 0,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    },
+    {
+     "round": 1,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    },
+    {
+     "round": 2,
+     "status": "failed",
+     "step": "2",
+     "error": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Your Feed' }) to be visible\n"
+    },
+    {
+     "round": 3,
+     "status": "failed",
+     "step": "2",
+     "error": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Your Feed' }) to be visible\n"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow07": {
+   "flow": "As alice, favorite the article \"Dave's post 3\"; its favorite count goes from 0 to 1.",
+   "history": [
+    {
+     "round": 0,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    },
+    {
+     "round": 1,
+     "status": "failed",
+     "step": "5",
+     "error": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Your Feed' }) to be visible\n"
+    },
+    {
+     "round": 2,
+     "status": "failed",
+     "step": "5",
+     "error": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Your Feed' }) to be visible\n"
+    },
+    {
+     "round": 3,
+     "status": "failed",
+     "step": "5",
+     "error": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Your Feed' }) to be visible\n"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow08": {
+   "flow": "As alice, open 'Your Feed'; it lists articles by bob and carol (whom she follows) and none by dave.",
+   "history": [
+    {
+     "round": 0,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    },
+    {
+     "round": 1,
+     "status": "failed",
+     "step": "2",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Email' })\n"
+    },
+    {
+     "round": 2,
+     "status": "failed",
+     "step": "2",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Email' })\n"
+    },
+    {
+     "round": 3,
+     "status": "failed",
+     "step": "2",
+     "error": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('textbox', { name: 'Email' })\n"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  },
+  "flow09": {
+   "flow": "Without logging in, open bob's profile; it lists his three articles.",
+   "history": [
+    {
+     "round": 0,
+     "status": "passed",
+     "step": null,
+     "error": ""
+    }
+   ],
+   "final": "passed",
+   "has_expect": true
+  },
+  "flow10": {
+   "flow": "As alice, change her bio in settings to some generated text; her profile page then shows that bio.",
+   "history": [
+    {
+     "round": 0,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    },
+    {
+     "round": 1,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    },
+    {
+     "round": 2,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    },
+    {
+     "round": 3,
+     "status": "schema-invalid",
+     "error": "Additional properties are not allowed ('_invalid_json' was unexpected); 'spec_version' is a required property; 'steps' is a required property"
+    }
+   ],
+   "final": "failed",
+   "has_expect": false
+  }
+ },
+ "generation": {
+  "calls": 34,
+  "mean_seconds": 21.0,
+  "mean_prompt_tokens": 3411,
+  "mean_gen_tokens": 938
+ }
+}

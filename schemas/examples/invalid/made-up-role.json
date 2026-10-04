@@ -1,0 +1,5 @@
+{
+  "spec_version": 1,
+  "id": "invalid.made-up-role",
+  "steps": [{ "action": "click", "target": { "role": "input", "name": "Email" } }]
+}
