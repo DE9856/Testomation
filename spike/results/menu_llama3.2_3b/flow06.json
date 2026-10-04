@@ -1,0 +1,60 @@
+{
+ "spec_version": 1,
+ "id": "flow06",
+ "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'.",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "listitem",
+    "nth": 2
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "list",
+    "nth": 0
+   },
+   "state": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "assert": "hasValue",
+   "value": ""
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "assert": "hasValue",
+   "value": ""
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "link",
+    "name": "Need an account?"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   },
+   "assert": "visible"
+  }
+ ]
+}

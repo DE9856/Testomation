@@ -1,0 +1,628 @@
+[
+ {
+  "label": "bug",
+  "variant": "login-error-hidden",
+  "kind": "failed-test",
+  "test": "ref02-wrong-password",
+  "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page.",
+  "failing_step": 5,
+  "step": {
+   "action": "expect",
+   "target": {
+    "text": "Wrong email/password combination"
+   },
+   "assert": "visible"
+  },
+  "attempts": [
+   "failed"
+  ],
+  "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByText('Wrong email/password combination').first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByText('Wrong email/password combination').first() with timeout 5000ms\n  - waiting for getByText('Wrong email/password combination').first()\n",
+  "signals": [
+   {
+    "kind": "http",
+    "text": "POST 422",
+    "url": "http://localhost:4100/api/users/login",
+    "status": 422
+   },
+   {
+    "kind": "console",
+    "text": "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)",
+    "url": "http://localhost:4100/api/users/login"
+   }
+  ],
+  "aria": "- banner:\n  - navigation:\n    - link \"conduit\":\n      - /url: \"#/\"\n    - list:\n      - listitem:\n        - link \"\uf233 Source code\":\n          - /url: https://github.com/TonyMckes/conduit-realworld-example-app\n    - list:\n      - listitem:\n        - link \"\uf12c Home\":\n          - /url: \"#/\"\n      - listitem:\n        - link \"\uf29e Login\":\n          - /url: \"#/login\"\n      - listitem:\n        - link \"Sign up\":\n          - /url: \"#/register\"\n- main:\n  - heading \"Sign in\" [level=1]\n  - paragraph:\n    - link \"Need an account?\":\n      - /url: \"#/register\"\n  - group:\n    - textbox \"Email\": alice@conduit.test\n  - group:\n    - textbox \"Password\": definitely-wrong\n  - button \"Login\"\n- contentinfo:\n  - link \"conduit\":\n    - /url: \"#/\"\n  - text: An interactive learning project from\n  - link \"Thinkster\":\n    - /url: https://thinkster.io\n  - text: . Code & design licensed under MIT.\n  - list:\n    - listitem:\n      - link \"\uf233 Source code\":\n        - /url: https://github.com/TonyMckes/conduit-realworld-example-app",
+  "id": "case01"
+ },
+ {
+  "label": "bug",
+  "variant": "signup-500",
+  "kind": "failed-test",
+  "test": "ref03-signup",
+  "flow": "Sign up a brand-new user with generated data; afterwards the navigation bar shows the new username.",
+  "failing_step": 6,
+  "step": {
+   "action": "expect",
+   "target": {
+    "role": "navigation"
+   },
+   "assert": "hasText",
+   "value": {
+    "$var": "name"
+   }
+  },
+  "attempts": [
+   "failed"
+  ],
+  "error": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('navigation').first()\nExpected substring: \"Norbert54\"\nReceived string:    \"conduit Source code Home Login Sign up\"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" getByRole('navigation').first() with timeout 5000ms\n  - waiting for getByRole('navigation').first()\n    14 \u00d7 locator resolved to <nav class=\"navbar navbar-light\">\u2026</nav>\n       - unexpected value \"conduit Source code Home Login Sign up\"\n",
+  "signals": [
+   {
+    "kind": "http",
+    "text": "POST 500",
+    "url": "http://localhost:4100/api/users",
+    "status": 500
+   },
+   {
+    "kind": "console",
+    "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+    "url": "http://localhost:4100/api/users"
+   }
+  ],
+  "aria": "- banner:\n  - navigation:\n    - link \"conduit\":\n      - /url: \"#/\"\n    - list:\n      - listitem:\n        - link \"\uf233 Source code\":\n          - /url: https://github.com/TonyMckes/conduit-realworld-example-app\n    - list:\n      - listitem:\n        - link \"\uf12c Home\":\n          - /url: \"#/\"\n      - listitem:\n        - link \"\uf29e Login\":\n          - /url: \"#/login\"\n      - listitem:\n        - link \"Sign up\":\n          - /url: \"#/register\"\n- main:\n  - heading \"Sign up\" [level=1]\n  - paragraph:\n    - link \"Sign in to your account\":\n      - /url: \"#/login\"\n  - list:\n    - listitem: relation \"Users_pkey\" violates constraint\n  - group:\n    - textbox \"Your Name\": Norbert54\n  - group:\n    - textbox \"Email\": Frances.Mante2@yahoo.com\n  - group:\n    - textbox \"Password\": ett_eY9dKT3JgpW\n  - button \"Sign up\"\n- contentinfo:\n  - link \"conduit\":\n    - /url: \"#/\"\n  - text: An interactive learning project from\n  - link \"Thinkster\":\n    - /url: https://thinkster.io\n  - text: . Code & design licensed under MIT.\n  - list:\n    - listitem:\n      - link \"\uf233 Source code\":\n        - /url: https://github.com/TonyMckes/conduit-realworld-example-app",
+  "id": "case02"
+ },
+ {
+  "label": "bug",
+  "variant": "publish-500",
+  "kind": "failed-test",
+  "test": "ref04-publish",
+  "flow": "As alice, publish a new article with a title, description, body and two tags; the article page then shows the title.",
+  "failing_step": 12,
+  "step": {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "nth": 0
+   },
+   "assert": "hasText",
+   "value": {
+    "$var": "title"
+   }
+  },
+  "attempts": [
+   "failed"
+  ],
+  "error": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('heading').first().first()\nExpected substring: \"Conduco odio patior ambitus appositus.\"\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toContainText\" getByRole('heading').first().first() with timeout 5000ms\n  - waiting for getByRole('heading').first().first()\n",
+  "signals": [
+   {
+    "kind": "http",
+    "text": "POST 500",
+    "url": "http://localhost:4100/api/articles",
+    "status": 500
+   },
+   {
+    "kind": "console",
+    "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+    "url": "http://localhost:4100/api/articles"
+   }
+  ],
+  "aria": "- banner:\n  - navigation:\n    - link \"conduit\":\n      - /url: \"#/\"\n    - list:\n      - listitem:\n        - link \"\uf233 Source code\":\n          - /url: https://github.com/TonyMckes/conduit-realworld-example-app\n    - list:\n      - listitem:\n        - link \"\uf12c Home\":\n          - /url: \"#/\"\n      - listitem:\n        - link \"\uf12c New Article\":\n          - /url: \"#/editor\"\n      - listitem:\n        - img \"alice\"\n        - text: alice\n- main:\n  - group:\n    - text: Cannot read properties of undefined (reading 'id')\n    - group:\n      - textbox \"Article Title\": Conduco odio patior ambitus appositus.\n    - group:\n      - textbox \"What's this article about?\": Voluptatem tamen iusto vesco suggero atrox voluptas.\n    - group:\n      - textbox \"Write your article (in markdown)\": Commodi accommodo acquiro summa adstringo at. Testimonium confido arca cenaculum assentator urbanus conor administratio. Occaecati quis neque virgo beneficium venia verbera curiositas.\n    - group:\n      - textbox \"Enter tags\": spike,benchmark\n    - button \"Publish Article\"\n- contentinfo:\n  - link \"conduit\":\n    - /url: \"#/\"\n  - text: An interactive learning project from\n  - link \"Thinkster\":\n    - /url: https://thinkster.io\n  - text: . Code & design licensed under MIT.\n  - list:\n    - listitem:\n      - link \"\uf233 Source code\":\n        - /url: https://github.com/TonyMckes/conduit-realworld-example-app",
+  "id": "case03"
+ },
+ {
+  "label": "bug",
+  "variant": "comment-not-shown",
+  "kind": "failed-test",
+  "test": "ref05-comment",
+  "flow": "As alice, open the article \"Dave's post 3\" and post a comment; the comment appears on the page.",
+  "failing_step": 9,
+  "step": {
+   "action": "expect",
+   "target": {
+    "role": "main"
+   },
+   "assert": "hasText",
+   "value": {
+    "$var": "comment"
+   }
+  },
+  "attempts": [
+   "failed"
+  ],
+  "error": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('main').first()\nExpected substring: \"Conqueror solutio accommodo vulnero voluptates facere amicitia vaco.\"\nReceived string:    \"Dave's post 3daveOctober 4, 2026  Follow  dave ( 0 )  Favorite ( 0 )HeadingBody of post 3 by dave.onetwoplaywrightreactdaveOctober 4, 2026  Follow  dave ( 0 )  Favorite ( 0 )Post CommentComment from alice aliceOctober 4, 2026\"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" getByRole('main').first() with timeout 5000ms\n  - waiting for getByRole('main').first()\n    14 \u00d7 locator resolved to <main>\u2026</main>\n       - unexpected value \"Dave's post 3daveOctober 4, 2026  Follow  dave ( 0 )  Favorite ( 0 )HeadingBody of post 3 by dave.onetwoplaywrightreactdaveOctober 4, 2026  Follow  dave ( 0 )  Favorite ( 0 )Post CommentComment from alice aliceOctober 4, 2026\"\n",
+  "signals": [],
+  "aria": "- banner:\n  - navigation:\n    - link \"conduit\":\n      - /url: \"#/\"\n    - list:\n      - listitem:\n        - link \"\uf233 Source code\":\n          - /url: https://github.com/TonyMckes/conduit-realworld-example-app\n    - list:\n      - listitem:\n        - link \"\uf12c Home\":\n          - /url: \"#/\"\n      - listitem:\n        - link \"\uf12c New Article\":\n          - /url: \"#/editor\"\n      - listitem:\n        - img \"alice\"\n        - text: alice\n- main:\n  - heading \"Dave's post 3\" [level=1]\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n    - img \"dave\"\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n  - text: October 4, 2026\n  - button \"\uf217 Follow dave ( 0 )\"\n  - button \"\uf141 Favorite ( 0 )\"\n  - heading \"Heading\" [level=1]\n  - paragraph:\n    - text: Body of post 3 by\n    - strong: dave\n    - text: .\n  - list:\n    - listitem: one\n    - listitem: two\n  - list:\n    - listitem: playwright\n    - listitem: react\n  - separator\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n    - img \"dave\"\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n  - text: October 4, 2026\n  - button \"\uf217 Follow dave ( 0 )\"\n  - button \"\uf141 Favorite ( 0 )\"\n  - textbox \"Write a comment...\"\n  - img \"alice\"\n  - button \"Post Comment\"\n  - paragraph: Comment from alice\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf252\"\n- contentinfo:\n  - link \"conduit\":\n    - /url: \"#/\"\n  - text: An interactive learning project from\n  - link \"Thinkster\":\n    - /url: https://thinkster.io\n  - text: . Code & design licensed under MIT.\n  - list:\n    - listitem:\n      - link \"\uf233 Source code\":\n        - /url: https://github.com/TonyMckes/conduit-realworld-example-app",
+  "id": "case04"
+ },
+ {
+  "label": "bug",
+  "variant": "tag-filter-ignored",
+  "kind": "failed-test",
+  "test": "ref06-tag-filter",
+  "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'.",
+  "failing_step": 4,
+  "step": {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 1"
+   },
+   "assert": "visible"
+  },
+  "attempts": [
+   "failed"
+  ],
+  "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('heading', { name: 'Bob\\'s post 1' }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('heading', { name: 'Bob\\'s post 1' }).first() with timeout 5000ms\n  - waiting for getByRole('heading', { name: 'Bob\\'s post 1' }).first()\n",
+  "signals": [],
+  "aria": "- banner:\n  - navigation:\n    - link \"conduit\":\n      - /url: \"#/\"\n    - list:\n      - listitem:\n        - link \"\uf233 Source code\":\n          - /url: https://github.com/TonyMckes/conduit-realworld-example-app\n    - list:\n      - listitem:\n        - link \"\uf12c Home\":\n          - /url: \"#/\"\n      - listitem:\n        - link \"\uf29e Login\":\n          - /url: \"#/login\"\n      - listitem:\n        - link \"Sign up\":\n          - /url: \"#/register\"\n- main:\n  - heading \"conduit\" [level=1]\n  - paragraph: A place to share your knowledge.\n  - list:\n    - listitem:\n      - button \"Global Feed\"\n    - listitem:\n      - button \"\uf219 react\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf141 ( 0 )\"\n  - link \"Verbera conitor somniculosus accendo. Traho articulus calculus carmen curvo cogito molestias aestivus. Read more... benchmark spike\":\n    - /url: \"#/article/verbera-conitor-somniculosus-accendo-\"\n    - heading \"Verbera conitor somniculosus accendo.\" [level=1]\n    - paragraph: Traho articulus calculus carmen curvo cogito molestias aestivus.\n    - text: Read more...\n    - list:\n      - listitem: benchmark\n      - listitem: spike\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n    - img \"dave\"\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n  - text: October 4, 2026\n  - button \"\uf141 ( 0 )\"\n  - link \"Dave's post 3 Post 3 by dave Read more... playwright react\":\n    - /url: \"#/article/dave-s-post-3\"\n    - heading \"Dave's post 3\" [level=1]\n    - paragraph: Post 3 by dave\n    - text: Read more...\n    - list:\n      - listitem: playwright\n      - listitem: react\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n    - img \"dave\"\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n  - text: October 4, 2026\n  - button \"\uf141 ( 0 )\"\n  - link \"Dave's post 2 Post 2 by dave Read more... playwright testing\":\n    - /url: \"#/article/dave-s-post-2\"\n    - heading \"Dave's post 2\" [level=1]\n    - paragraph: Post 2 by dave\n    - text: Read more...\n    - list:\n      - listitem: playwright\n      - listitem: testing\n  - navigation \"Pagination\":\n    - listitem:\n      - button \"Previous page\" [disabled]: \uf107\n    - listitem:\n      - button \"Page 1 is your current page\": \"1\"\n    - listitem:\n      - button \"Page 2\": \"2\"\n    - listitem:\n      - button \"Page 3\": \"3\"\n    - listitem:\n      - button \"Page 4\": \"4\"\n    - listitem:\n      - button \"Page 5\": \"5\"\n    - listitem:\n      - button \"Next page\": \uf10a\n  - complementary:\n    - heading \"Popular Tags\" [level=6]\n    - button \"playwright\"\n    - button \"react\"\n    - button \"postgres\"\n    - button \"design\"\n    - button \"testing\"\n    - button \"spike\"\n    - button \"benchmark\"\n- contentinfo:\n  - link \"conduit\":\n    - /url: \"#/\"\n  - text: An interactive learning project from\n  - link \"Thinkster\":\n    - /url: https://thinkster.io\n  - text: . Code & design licensed under MIT.\n  - list:\n    - listitem:\n      - link \"\uf233 Source code\":\n        - /url: https://github.com/TonyMckes/conduit-realworld-exam",
+  "id": "case05"
+ },
+ {
+  "label": "bug",
+  "variant": "favorite-count-stuck",
+  "kind": "failed-test",
+  "test": "ref07-favorite",
+  "flow": "As alice, favorite the article \"Dave's post 3\"; its favorite count goes from 0 to 1.",
+  "failing_step": 8,
+  "step": {
+   "action": "expect",
+   "target": {
+    "role": "button",
+    "name": "Favorite ( 1 )",
+    "nth": 0
+   },
+   "assert": "visible"
+  },
+  "attempts": [
+   "failed"
+  ],
+  "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('button', { name: 'Favorite ( 1 )' }).first().first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('button', { name: 'Favorite ( 1 )' }).first().first() with timeout 5000ms\n  - waiting for getByRole('button', { name: 'Favorite ( 1 )' }).first().first()\n",
+  "signals": [],
+  "aria": "- banner:\n  - navigation:\n    - link \"conduit\":\n      - /url: \"#/\"\n    - list:\n      - listitem:\n        - link \"\uf233 Source code\":\n          - /url: https://github.com/TonyMckes/conduit-realworld-example-app\n    - list:\n      - listitem:\n        - link \"\uf12c Home\":\n          - /url: \"#/\"\n      - listitem:\n        - link \"\uf12c New Article\":\n          - /url: \"#/editor\"\n      - listitem:\n        - img \"alice\"\n        - text: alice\n- main:\n  - heading \"Dave's post 3\" [level=1]\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n    - img \"dave\"\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n  - text: October 4, 2026\n  - button \"\uf217 Follow dave ( 0 )\"\n  - button \"\uf141 Favorite ( 0 )\"\n  - heading \"Heading\" [level=1]\n  - paragraph:\n    - text: Body of post 3 by\n    - strong: dave\n    - text: .\n  - list:\n    - listitem: one\n    - listitem: two\n  - list:\n    - listitem: playwright\n    - listitem: react\n  - separator\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n    - img \"dave\"\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n  - text: October 4, 2026\n  - button \"\uf217 Follow dave ( 0 )\"\n  - button \"\uf141 Favorite ( 0 )\"\n  - textbox \"Write a comment...\"\n  - img \"alice\"\n  - button \"Post Comment\"\n  - paragraph: Comment from alice\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf252\"\n  - paragraph: Territo ipsa beatae optio autem corrumpo caute coruscus subseco.\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf252\"\n- contentinfo:\n  - link \"conduit\":\n    - /url: \"#/\"\n  - text: An interactive learning project from\n  - link \"Thinkster\":\n    - /url: https://thinkster.io\n  - text: . Code & design licensed under MIT.\n  - list:\n    - listitem:\n      - link \"\uf233 Source code\":\n        - /url: https://github.com/TonyMckes/conduit-realworld-example-app",
+  "id": "case06"
+ },
+ {
+  "label": "bug",
+  "variant": "profile-articles-empty",
+  "kind": "failed-test",
+  "test": "ref09-profile",
+  "flow": "Without logging in, open bob's profile; it lists his three articles.",
+  "failing_step": 2,
+  "step": {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 3"
+   },
+   "assert": "visible"
+  },
+  "attempts": [
+   "failed"
+  ],
+  "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('heading', { name: 'Bob\\'s post 3' }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('heading', { name: 'Bob\\'s post 3' }).first() with timeout 5000ms\n  - waiting for getByRole('heading', { name: 'Bob\\'s post 3' }).first()\n",
+  "signals": [],
+  "aria": "- banner:\n  - navigation:\n    - link \"conduit\":\n      - /url: \"#/\"\n    - list:\n      - listitem:\n        - link \"\uf233 Source code\":\n          - /url: https://github.com/TonyMckes/conduit-realworld-example-app\n    - list:\n      - listitem:\n        - link \"\uf12c Home\":\n          - /url: \"#/\"\n      - listitem:\n        - link \"\uf29e Login\":\n          - /url: \"#/login\"\n      - listitem:\n        - link \"Sign up\":\n          - /url: \"#/register\"\n- main:\n  - img \"bob\"\n  - heading \"bob\" [level=4]\n  - button \"Followers ( 1 )\"\n  - list:\n    - listitem:\n      - link \"My Articles\":\n        - /url: \"#/profile/bob\"\n    - listitem:\n      - link \"Favorited Articles\":\n        - /url: \"#/profile/bob/favorites\"\n  - text: bob doesn't have articles.\n- contentinfo:\n  - link \"conduit\":\n    - /url: \"#/\"\n  - text: An interactive learning project from\n  - link \"Thinkster\":\n    - /url: https://thinkster.io\n  - text: . Code & design licensed under MIT.\n  - list:\n    - listitem:\n      - link \"\uf233 Source code\":\n        - /url: https://github.com/TonyMckes/conduit-realworld-example-app",
+  "id": "case07"
+ },
+ {
+  "label": "bug",
+  "variant": "bio-not-saved",
+  "kind": "failed-test",
+  "test": "ref10-bio",
+  "flow": "As alice, change her bio in settings to some generated text; her profile page then shows that bio.",
+  "failing_step": 10,
+  "step": {
+   "action": "expect",
+   "target": {
+    "role": "main"
+   },
+   "assert": "hasText",
+   "value": {
+    "$var": "bio"
+   }
+  },
+  "attempts": [
+   "failed"
+  ],
+  "error": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('main').first()\nExpected substring: \"Desino adaugeo universe cum caritas dolores cavus universe.\"\nReceived string:    \"alice Edit Profile Settings My Articles Favorited ArticlesaliceOctober 4, 2026  ( 0 )Qui corrupti calco conitor tabella.Trepide cavus aequus thema vado subito repellat facilis.Read more...benchmarkspikealiceOctober 4, 2026  ( 0 )Alice's post 3Post 3 by aliceRead more...designpostgresaliceOctober 4, 2026  ( 0 )Alice's post 2Post 2 by aliceRead more...postgresreact12\"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" getByRole('main').first() with timeout 5000ms\n  - waiting for getByRole('main').first()\n    - locator resolved to <main>\u2026</main>\n    - unexpected value \"alice Edit Profile Settings My Articles Favorited ArticlesLoading alice articles...\"\n    13 \u00d7 locator resolved to <main>\u2026</main>\n       - unexpected value \"alice Edit Profile Settings My Articles Favorited ArticlesaliceOctober 4, 2026  ( 0 )Qui corrupti calco conitor tabella.Trepide cavus aequus thema vado subito repellat facilis.Read more...benchmarkspikealiceOctober 4, 2026  ( 0 )Alice's post 3Post 3 by aliceRead more...desig",
+  "signals": [],
+  "aria": "- banner:\n  - navigation:\n    - link \"conduit\":\n      - /url: \"#/\"\n    - list:\n      - listitem:\n        - link \"\uf233 Source code\":\n          - /url: https://github.com/TonyMckes/conduit-realworld-example-app\n    - list:\n      - listitem:\n        - link \"\uf12c Home\":\n          - /url: \"#/\"\n      - listitem:\n        - link \"\uf12c New Article\":\n          - /url: \"#/editor\"\n      - listitem:\n        - img \"alice\"\n        - text: alice\n- main:\n  - img \"alice\"\n  - heading \"alice\" [level=4]\n  - link \"\uf13d Edit Profile Settings\":\n    - /url: \"#/settings\"\n  - list:\n    - listitem:\n      - link \"My Articles\":\n        - /url: \"#/profile/alice\"\n    - listitem:\n      - link \"Favorited Articles\":\n        - /url: \"#/profile/alice/favorites\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf141 ( 0 )\"\n  - link \"Qui corrupti calco conitor tabella. Trepide cavus aequus thema vado subito repellat facilis. Read more... benchmark spike\":\n    - /url: \"#/article/qui-corrupti-calco-conitor-tabella-\"\n    - heading \"Qui corrupti calco conitor tabella.\" [level=1]\n    - paragraph: Trepide cavus aequus thema vado subito repellat facilis.\n    - text: Read more...\n    - list:\n      - listitem: benchmark\n      - listitem: spike\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf141 ( 0 )\"\n  - link \"Alice's post 3 Post 3 by alice Read more... design postgres\":\n    - /url: \"#/article/alice-s-post-3\"\n    - heading \"Alice's post 3\" [level=1]\n    - paragraph: Post 3 by alice\n    - text: Read more...\n    - list:\n      - listitem: design\n      - listitem: postgres\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf141 ( 0 )\"\n  - link \"Alice's post 2 Post 2 by alice Read more... postgres react\":\n    - /url: \"#/article/alice-s-post-2\"\n    - heading \"Alice's post 2\" [level=1]\n    - paragraph: Post 2 by alice\n    - text: Read more...\n    - list:\n      - listitem: postgres\n      - listitem: react\n  - navigation \"Pagination\":\n    - listitem:\n      - button \"Previous page\" [disabled]: \uf107\n    - listitem:\n      - button \"Page 1 is your current page\": \"1\"\n    - listitem:\n      - button \"Page 2\": \"2\"\n    - listitem:\n      - button \"Next page\": \uf10a\n- contentinfo:\n  - link \"conduit\":\n    - /url: \"#/\"\n  - text: An interactive learning project from\n  - link \"Thinkster\":\n    - /url: https://thinkster.io\n  - text: . Code & design licensed under MIT.\n  - list:\n    - listitem:\n      - link \"\uf233 Source code\":\n        - /url: https://github.com/TonyMckes/conduit-realworld-example-app",
+  "id": "case08"
+ },
+ {
+  "label": "noise",
+  "variant": "noise-analytics",
+  "kind": "signal-on-passing-test",
+  "test": "ref01-login",
+  "flow": "Log in as alice; the navigation bar then shows her username 'alice'.",
+  "signal": {
+   "kind": "requestfailed",
+   "text": "net::ERR_NAME_NOT_RESOLVED",
+   "url": "http://analytics.invalid/beacon.js"
+  },
+  "attempts": [
+   "passed"
+  ],
+  "other_signals": [
+   {
+    "kind": "console",
+    "text": "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+    "url": "http://analytics.invalid/beacon.js"
+   }
+  ],
+  "id": "case09"
+ },
+ {
+  "label": "noise",
+  "variant": "noise-analytics",
+  "kind": "signal-on-passing-test",
+  "test": "ref01-login",
+  "flow": "Log in as alice; the navigation bar then shows her username 'alice'.",
+  "signal": {
+   "kind": "console",
+   "text": "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+   "url": "http://analytics.invalid/beacon.js"
+  },
+  "attempts": [
+   "passed"
+  ],
+  "other_signals": [
+   {
+    "kind": "requestfailed",
+    "text": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "http://analytics.invalid/beacon.js"
+   }
+  ],
+  "id": "case10"
+ },
+ {
+  "label": "noise",
+  "variant": "noise-analytics",
+  "kind": "signal-on-passing-test",
+  "test": "ref02-wrong-password",
+  "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page.",
+  "signal": {
+   "kind": "http",
+   "text": "POST 422",
+   "url": "http://localhost:4100/api/users/login",
+   "status": 422
+  },
+  "attempts": [
+   "passed"
+  ],
+  "other_signals": [
+   {
+    "kind": "requestfailed",
+    "text": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "http://analytics.invalid/beacon.js"
+   },
+   {
+    "kind": "console",
+    "text": "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+    "url": "http://analytics.invalid/beacon.js"
+   },
+   {
+    "kind": "console",
+    "text": "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)",
+    "url": "http://localhost:4100/api/users/login"
+   }
+  ],
+  "id": "case11"
+ },
+ {
+  "label": "noise",
+  "variant": "noise-analytics",
+  "kind": "signal-on-passing-test",
+  "test": "ref02-wrong-password",
+  "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page.",
+  "signal": {
+   "kind": "console",
+   "text": "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)",
+   "url": "http://localhost:4100/api/users/login"
+  },
+  "attempts": [
+   "passed"
+  ],
+  "other_signals": [
+   {
+    "kind": "requestfailed",
+    "text": "net::ERR_NAME_NOT_RESOLVED",
+    "url": "http://analytics.invalid/beacon.js"
+   },
+   {
+    "kind": "console",
+    "text": "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+    "url": "http://analytics.invalid/beacon.js"
+   },
+   {
+    "kind": "http",
+    "text": "POST 422",
+    "url": "http://localhost:4100/api/users/login",
+    "status": 422
+   }
+  ],
+  "id": "case12"
+ },
+ {
+  "label": "noise",
+  "variant": "noise-console-warning",
+  "kind": "signal-on-passing-test",
+  "test": "ref01-login",
+  "flow": "Log in as alice; the navigation bar then shows her username 'alice'.",
+  "signal": {
+   "kind": "console",
+   "text": "Warning: findDOMNode is deprecated and will be removed in the next major release.",
+   "url": "http://localhost:4100/assets/index-BcZbTk3a.js"
+  },
+  "attempts": [
+   "passed"
+  ],
+  "other_signals": [],
+  "id": "case13"
+ },
+ {
+  "label": "noise",
+  "variant": "noise-console-warning",
+  "kind": "signal-on-passing-test",
+  "test": "ref02-wrong-password",
+  "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page.",
+  "signal": {
+   "kind": "http",
+   "text": "POST 422",
+   "url": "http://localhost:4100/api/users/login",
+   "status": 422
+  },
+  "attempts": [
+   "passed"
+  ],
+  "other_signals": [
+   {
+    "kind": "console",
+    "text": "Warning: findDOMNode is deprecated and will be removed in the next major release.",
+    "url": "http://localhost:4100/assets/index-BcZbTk3a.js"
+   },
+   {
+    "kind": "console",
+    "text": "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)",
+    "url": "http://localhost:4100/api/users/login"
+   }
+  ],
+  "id": "case14"
+ },
+ {
+  "label": "noise",
+  "variant": "noise-console-warning",
+  "kind": "signal-on-passing-test",
+  "test": "ref02-wrong-password",
+  "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page.",
+  "signal": {
+   "kind": "console",
+   "text": "Failed to load resource: the server responded with a status of 422 (Unprocessable Entity)",
+   "url": "http://localhost:4100/api/users/login"
+  },
+  "attempts": [
+   "passed"
+  ],
+  "other_signals": [
+   {
+    "kind": "console",
+    "text": "Warning: findDOMNode is deprecated and will be removed in the next major release.",
+    "url": "http://localhost:4100/assets/index-BcZbTk3a.js"
+   },
+   {
+    "kind": "http",
+    "text": "POST 422",
+    "url": "http://localhost:4100/api/users/login",
+    "status": 422
+   }
+  ],
+  "id": "case15"
+ },
+ {
+  "label": "flaky",
+  "variant": "flaky-slow-articles",
+  "kind": "failed-test",
+  "test": "ref07-favorite",
+  "flow": "As alice, favorite the article \"Dave's post 3\"; its favorite count goes from 0 to 1.",
+  "failing_step": 7,
+  "step": {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Favorite ( 0 )",
+    "nth": 0
+   }
+  },
+  "attempts": [
+   "failed",
+   "passed"
+  ],
+  "error": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Favorite ( 0 )' }).first()\n",
+  "signals": [],
+  "aria": "- banner:\n  - navigation:\n    - link \"conduit\":\n      - /url: \"#/\"\n    - list:\n      - listitem:\n        - link \"\uf233 Source code\":\n          - /url: https://github.com/TonyMckes/conduit-realworld-example-app\n    - list:\n      - listitem:\n        - link \"\uf12c Home\":\n          - /url: \"#/\"\n      - listitem:\n        - link \"\uf12c New Article\":\n          - /url: \"#/editor\"\n      - listitem:\n        - img \"alice\"\n        - text: alice\n- main:\n  - heading [level=1]\n  - link \"placeholder\":\n    - /url: \"#/profile/undefined\"\n    - img \"placeholder\"\n  - link:\n    - /url: \"#/profile/undefined\"\n  - text: Invalid Date\n  - button \"\uf217 Follow ( )\"\n  - button \"\uf141 Favorite ( )\"\n  - separator\n  - link \"placeholder\":\n    - /url: \"#/profile/undefined\"\n    - img \"placeholder\"\n  - link:\n    - /url: \"#/profile/undefined\"\n  - text: Invalid Date\n  - button \"\uf217 Follow ( )\"\n  - button \"\uf141 Favorite ( )\"\n  - textbox \"Write a comment...\"\n  - img \"alice\"\n  - button \"Post Comment\"\n  - paragraph: Comment from alice\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf252\"\n  - paragraph: Vallum abduco ambitus vesco quo videlicet aggredior terra.\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf252\"\n- contentinfo:\n  - link \"conduit\":\n    - /url: \"#/\"\n  - text: An interactive learning project from\n  - link \"Thinkster\":\n    - /url: https://thinkster.io\n  - text: . Code & design licensed under MIT.\n  - list:\n    - listitem:\n      - link \"\uf233 Source code\":\n        - /url: https://github.com/TonyMckes/conduit-realworld-example-app",
+  "id": "case16"
+ },
+ {
+  "label": "flaky",
+  "variant": "flaky-slow-articles",
+  "kind": "failed-test",
+  "test": "ref07-favorite",
+  "flow": "As alice, favorite the article \"Dave's post 3\"; its favorite count goes from 0 to 1.",
+  "failing_step": 7,
+  "step": {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Favorite ( 0 )",
+    "nth": 0
+   }
+  },
+  "attempts": [
+   "failed",
+   "failed"
+  ],
+  "error": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Favorite ( 0 )' }).first()\n",
+  "signals": [],
+  "aria": "- banner:\n  - navigation:\n    - link \"conduit\":\n      - /url: \"#/\"\n    - list:\n      - listitem:\n        - link \"\uf233 Source code\":\n          - /url: https://github.com/TonyMckes/conduit-realworld-example-app\n    - list:\n      - listitem:\n        - link \"\uf12c Home\":\n          - /url: \"#/\"\n      - listitem:\n        - link \"\uf12c New Article\":\n          - /url: \"#/editor\"\n      - listitem:\n        - img \"alice\"\n        - text: alice\n- main:\n  - heading [level=1]\n  - link \"placeholder\":\n    - /url: \"#/profile/undefined\"\n    - img \"placeholder\"\n  - link:\n    - /url: \"#/profile/undefined\"\n  - text: Invalid Date\n  - button \"\uf217 Follow ( )\"\n  - button \"\uf141 Favorite ( )\"\n  - separator\n  - link \"placeholder\":\n    - /url: \"#/profile/undefined\"\n    - img \"placeholder\"\n  - link:\n    - /url: \"#/profile/undefined\"\n  - text: Invalid Date\n  - button \"\uf217 Follow ( )\"\n  - button \"\uf141 Favorite ( )\"\n  - textbox \"Write a comment...\"\n  - img \"alice\"\n  - button \"Post Comment\"\n  - paragraph: Comment from alice\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf252\"\n  - paragraph: Averto arca verecundia suspendo adipisci contabesco.\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf252\"\n- contentinfo:\n  - link \"conduit\":\n    - /url: \"#/\"\n  - text: An interactive learning project from\n  - link \"Thinkster\":\n    - /url: https://thinkster.io\n  - text: . Code & design licensed under MIT.\n  - list:\n    - listitem:\n      - link \"\uf233 Source code\":\n        - /url: https://github.com/TonyMckes/conduit-realworld-example-app",
+  "id": "case17"
+ },
+ {
+  "label": "flaky",
+  "variant": "flaky-slow-articles",
+  "kind": "failed-test",
+  "test": "ref07-favorite",
+  "flow": "As alice, favorite the article \"Dave's post 3\"; its favorite count goes from 0 to 1.",
+  "failing_step": 7,
+  "step": {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Favorite ( 0 )",
+    "nth": 0
+   }
+  },
+  "attempts": [
+   "failed",
+   "failed"
+  ],
+  "error": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Favorite ( 0 )' }).first()\n",
+  "signals": [],
+  "aria": "- banner:\n  - navigation:\n    - link \"conduit\":\n      - /url: \"#/\"\n    - list:\n      - listitem:\n        - link \"\uf233 Source code\":\n          - /url: https://github.com/TonyMckes/conduit-realworld-example-app\n    - list:\n      - listitem:\n        - link \"\uf12c Home\":\n          - /url: \"#/\"\n      - listitem:\n        - link \"\uf12c New Article\":\n          - /url: \"#/editor\"\n      - listitem:\n        - img \"alice\"\n        - text: alice\n- main:\n  - heading [level=1]\n  - link \"placeholder\":\n    - /url: \"#/profile/undefined\"\n    - img \"placeholder\"\n  - link:\n    - /url: \"#/profile/undefined\"\n  - text: Invalid Date\n  - button \"\uf217 Follow ( )\"\n  - button \"\uf141 Favorite ( )\"\n  - separator\n  - link \"placeholder\":\n    - /url: \"#/profile/undefined\"\n    - img \"placeholder\"\n  - link:\n    - /url: \"#/profile/undefined\"\n  - text: Invalid Date\n  - button \"\uf217 Follow ( )\"\n  - button \"\uf141 Favorite ( )\"\n  - textbox \"Write a comment...\"\n  - img \"alice\"\n  - button \"Post Comment\"\n  - paragraph: Comment from alice\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf252\"\n  - paragraph: Consuasor certe nam templum vado possimus deprimo tandem ulciscor tempore.\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf252\"\n- contentinfo:\n  - link \"conduit\":\n    - /url: \"#/\"\n  - text: An interactive learning project from\n  - link \"Thinkster\":\n    - /url: https://thinkster.io\n  - text: . Code & design licensed under MIT.\n  - list:\n    - listitem:\n      - link \"\uf233 Source code\":\n        - /url: https://github.com/TonyMckes/conduit-realworld-example-app",
+  "id": "case18"
+ },
+ {
+  "label": "test_issue",
+  "variant": "generated:specgen_qwen3_4b_v1",
+  "kind": "failed-test",
+  "test": "flow02",
+  "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page.",
+  "failing_step": 5,
+  "step": {
+   "action": "wait_for",
+   "target": {
+    "role": "paragraph",
+    "name": "Error"
+   },
+   "state": "visible"
+  },
+  "attempts": [
+   "failed"
+  ],
+  "error": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('paragraph', { name: 'Error' }) to be visible\n",
+  "signals": [],
+  "aria": "- banner:\n  - navigation:\n    - link \"conduit\":\n      - /url: \"#/\"\n    - list:\n      - listitem:\n        - link \"\uf233 Source code\":\n          - /url: https://github.com/TonyMckes/conduit-realworld-example-app\n    - list:\n      - listitem:\n        - link \"\uf12c Home\":\n          - /url: \"#/\"\n      - listitem:\n        - link \"\uf29e Login\":\n          - /url: \"#/login\"\n      - listitem:\n        - link \"Sign up\":\n          - /url: \"#/register\"\n- main:\n  - heading \"Sign in\" [level=1]\n  - paragraph:\n    - link \"Need an account?\":\n      - /url: \"#/register\"\n  - list:\n    - listitem: Wrong email/password combination\n  - group:\n    - textbox \"Email\": alice@conduit.test\n  - group:\n    - textbox \"Password\": wrong_password\n  - button \"Login\"\n- contentinfo:\n  - link \"conduit\":\n    - /url: \"#/\"\n  - text: An interactive learning project from\n  - link \"Thinkster\":\n    - /url: https://thinkster.io\n  - text: . Code & design licensed under MIT.\n  - list:\n    - listitem:\n      - link \"\uf233 Source code\":\n        - /url: https://github.com/TonyMckes/conduit-realworld-example-app",
+  "id": "case19"
+ },
+ {
+  "label": "test_issue",
+  "variant": "generated:specgen_qwen3_4b_v1",
+  "kind": "failed-test",
+  "test": "flow05",
+  "flow": "As alice, open the article \"Dave's post 3\" and post a comment; the comment appears on the page.",
+  "failing_step": 9,
+  "step": {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "paragraph",
+    "name": "Comment from alice"
+   }
+  },
+  "attempts": [
+   "failed"
+  ],
+  "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('paragraph', { name: 'Comment from alice' }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('paragraph', { name: 'Comment from alice' }).first() with timeout 5000ms\n  - waiting for getByRole('paragraph', { name: 'Comment from alice' }).first()\n",
+  "signals": [],
+  "aria": "- banner:\n  - navigation:\n    - link \"conduit\":\n      - /url: \"#/\"\n    - list:\n      - listitem:\n        - link \"\uf233 Source code\":\n          - /url: https://github.com/TonyMckes/conduit-realworld-example-app\n    - list:\n      - listitem:\n        - link \"\uf12c Home\":\n          - /url: \"#/\"\n      - listitem:\n        - link \"\uf12c New Article\":\n          - /url: \"#/editor\"\n      - listitem:\n        - img \"alice\"\n        - text: alice\n- main:\n  - heading \"Dave's post 3\" [level=1]\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n    - img \"dave\"\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n  - text: October 4, 2026\n  - button \"\uf217 Follow dave ( 0 )\"\n  - button \"\uf141 Favorite ( 0 )\"\n  - heading \"Heading\" [level=1]\n  - paragraph:\n    - text: Body of post 3 by\n    - strong: dave\n    - text: .\n  - list:\n    - listitem: one\n    - listitem: two\n  - list:\n    - listitem: playwright\n    - listitem: react\n  - separator\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n    - img \"dave\"\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n  - text: October 4, 2026\n  - button \"\uf217 Follow dave ( 0 )\"\n  - button \"\uf141 Favorite ( 0 )\"\n  - textbox \"Write a comment...\"\n  - img \"alice\"\n  - button \"Post Comment\"\n  - paragraph: Comment from alice\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf252\"\n  - paragraph: Hello, Dave!\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf252\"\n- contentinfo:\n  - link \"conduit\":\n    - /url: \"#/\"\n  - text: An interactive learning project from\n  - link \"Thinkster\":\n    - /url: https://thinkster.io\n  - text: . Code & design licensed under MIT.\n  - list:\n    - listitem:\n      - link \"\uf233 Source code\":\n        - /url: https://github.com/TonyMckes/conduit-realworld-example-app",
+  "id": "case20"
+ },
+ {
+  "label": "test_issue",
+  "variant": "generated:specgen_qwen3_4b_v1",
+  "kind": "failed-test",
+  "test": "flow06",
+  "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'.",
+  "failing_step": 2,
+  "step": {
+   "action": "click",
+   "target": {
+    "role": "listitem",
+    "name": "react"
+   }
+  },
+  "attempts": [
+   "failed"
+  ],
+  "error": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByRole('listitem', { name: 'react' })\n",
+  "signals": [],
+  "aria": "- banner:\n  - navigation:\n    - link \"conduit\":\n      - /url: \"#/\"\n    - list:\n      - listitem:\n        - link \"\uf233 Source code\":\n          - /url: https://github.com/TonyMckes/conduit-realworld-example-app\n    - list:\n      - listitem:\n        - link \"\uf12c Home\":\n          - /url: \"#/\"\n      - listitem:\n        - link \"\uf29e Login\":\n          - /url: \"#/login\"\n      - listitem:\n        - link \"Sign up\":\n          - /url: \"#/register\"\n- main:\n  - heading \"conduit\" [level=1]\n  - paragraph: A place to share your knowledge.\n  - list:\n    - listitem:\n      - button \"Global Feed\"\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n    - img \"dave\"\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n  - text: October 4, 2026\n  - button \"\uf141 ( 0 )\"\n  - link \"Dave's post 3 Post 3 by dave Read more... playwright react\":\n    - /url: \"#/article/dave-s-post-3\"\n    - heading \"Dave's post 3\" [level=1]\n    - paragraph: Post 3 by dave\n    - text: Read more...\n    - list:\n      - listitem: playwright\n      - listitem: react\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n    - img \"dave\"\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n  - text: October 4, 2026\n  - button \"\uf141 ( 0 )\"\n  - link \"Dave's post 2 Post 2 by dave Read more... playwright testing\":\n    - /url: \"#/article/dave-s-post-2\"\n    - heading \"Dave's post 2\" [level=1]\n    - paragraph: Post 2 by dave\n    - text: Read more...\n    - list:\n      - listitem: playwright\n      - listitem: testing\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n    - img \"dave\"\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n  - text: October 4, 2026\n  - button \"\uf141 ( 1 )\"\n  - link \"Dave's post 1 Post 1 by dave Read more... design testing\":\n    - /url: \"#/article/dave-s-post-1\"\n    - heading \"Dave's post 1\" [level=1]\n    - paragraph: Post 1 by dave\n    - text: Read more...\n    - list:\n      - listitem: design\n      - listitem: testing\n  - navigation \"Pagination\":\n    - listitem:\n      - button \"Previous page\" [disabled]: \uf107\n    - listitem:\n      - button \"Page 1 is your current page\": \"1\"\n    - listitem:\n      - button \"Page 2\": \"2\"\n    - listitem:\n      - button \"Page 3\": \"3\"\n    - listitem:\n      - button \"Page 4\": \"4\"\n    - listitem:\n      - button \"Next page\": \uf10a\n  - complementary:\n    - heading \"Popular Tags\" [level=6]\n    - button \"playwright\"\n    - button \"react\"\n    - button \"postgres\"\n    - button \"design\"\n    - button \"testing\"\n- contentinfo:\n  - link \"conduit\":\n    - /url: \"#/\"\n  - text: An interactive learning project from\n  - link \"Thinkster\":\n    - /url: https://thinkster.io\n  - text: . Code & design licensed under MIT.\n  - list:\n    - listitem:\n      - link \"\uf233 Source code\":\n        - /url: https://github.com/TonyMckes/conduit-realworld-example-app",
+  "id": "case21"
+ },
+ {
+  "label": "test_issue",
+  "variant": "generated:specgen_qwen3_4b_v1",
+  "kind": "failed-test",
+  "test": "flow08",
+  "flow": "As alice, open 'Your Feed'; it lists articles by bob and carol (whom she follows) and none by dave.",
+  "failing_step": 7,
+  "step": {
+   "action": "expect",
+   "assert": "visible",
+   "target": {
+    "role": "heading",
+    "name": "bob"
+   }
+  },
+  "attempts": [
+   "failed"
+  ],
+  "error": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('heading', { name: 'bob' }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('heading', { name: 'bob' }).first() with timeout 5000ms\n  - waiting for getByRole('heading', { name: 'bob' }).first()\n",
+  "signals": [],
+  "aria": "- banner:\n  - navigation:\n    - link \"conduit\":\n      - /url: \"#/\"\n    - list:\n      - listitem:\n        - link \"\uf233 Source code\":\n          - /url: https://github.com/TonyMckes/conduit-realworld-example-app\n    - list:\n      - listitem:\n        - link \"\uf12c Home\":\n          - /url: \"#/\"\n      - listitem:\n        - link \"\uf12c New Article\":\n          - /url: \"#/editor\"\n      - listitem:\n        - img \"alice\"\n        - text: alice\n- main:\n  - list:\n    - listitem:\n      - button \"Your Feed\"\n    - listitem:\n      - button \"Global Feed\"\n  - link \"carol\":\n    - /url: \"#/profile/carol\"\n    - img \"carol\"\n  - link \"carol\":\n    - /url: \"#/profile/carol\"\n  - text: October 4, 2026\n  - button \"\uf141 ( 0 )\"\n  - link \"Carol's post 3 Post 3 by carol Read more... playwright testing\":\n    - /url: \"#/article/carol-s-post-3\"\n    - heading \"Carol's post 3\" [level=1]\n    - paragraph: Post 3 by carol\n    - text: Read more...\n    - list:\n      - listitem: playwright\n      - listitem: testing\n  - link \"carol\":\n    - /url: \"#/profile/carol\"\n    - img \"carol\"\n  - link \"carol\":\n    - /url: \"#/profile/carol\"\n  - text: October 4, 2026\n  - button \"\uf141 ( 0 )\"\n  - link \"Carol's post 2 Post 2 by carol Read more... design testing\":\n    - /url: \"#/article/carol-s-post-2\"\n    - heading \"Carol's post 2\" [level=1]\n    - paragraph: Post 2 by carol\n    - text: Read more...\n    - list:\n      - listitem: design\n      - listitem: testing\n  - link \"carol\":\n    - /url: \"#/profile/carol\"\n    - img \"carol\"\n  - link \"carol\":\n    - /url: \"#/profile/carol\"\n  - text: October 4, 2026\n  - button \"\uf141 ( 1 )\"\n  - link \"Carol's post 1 Post 1 by carol Read more... design postgres\":\n    - /url: \"#/article/carol-s-post-1\"\n    - heading \"Carol's post 1\" [level=1]\n    - paragraph: Post 1 by carol\n    - text: Read more...\n    - list:\n      - listitem: design\n      - listitem: postgres\n  - navigation \"Pagination\":\n    - listitem:\n      - button \"Previous page\" [disabled]: \uf107\n    - listitem:\n      - button \"Page 1 is your current page\": \"1\"\n    - listitem:\n      - button \"Page 2\": \"2\"\n    - listitem:\n      - button \"Next page\": \uf10a\n  - complementary:\n    - heading \"Popular Tags\" [level=6]\n    - button \"playwright\"\n    - button \"react\"\n    - button \"postgres\"\n    - button \"design\"\n    - button \"testing\"\n- contentinfo:\n  - link \"conduit\":\n    - /url: \"#/\"\n  - text: An interactive learning project from\n  - link \"Thinkster\":\n    - /url: https://thinkster.io\n  - text: . Code & design licensed under MIT.\n  - list:\n    - listitem:\n      - link \"\uf233 Source code\":\n        - /url: https://github.com/TonyMckes/conduit-realworld-example-app",
+  "id": "case22"
+ },
+ {
+  "label": "test_issue",
+  "variant": "generated:specgen_qwen3_4b_v1",
+  "kind": "failed-test",
+  "test": "flow10",
+  "flow": "As alice, change her bio in settings to some generated text; her profile page then shows that bio.",
+  "failing_step": 10,
+  "step": {
+   "action": "expect",
+   "assert": "hasText",
+   "target": {
+    "role": "paragraph"
+   },
+   "value": "Generated bio text"
+  },
+  "attempts": [
+   "failed"
+  ],
+  "error": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('paragraph').first()\nExpected substring: \"Generated bio text\"\nReceived string:    \"Post 3 by alice\"\nTimeout: 5000ms\n\nCall log:\n  - Expect \"toContainText\" getByRole('paragraph').first() with timeout 5000ms\n  - waiting for getByRole('paragraph').first()\n    13 \u00d7 locator resolved to <p>Post 3 by alice</p>\n       - unexpected value \"Post 3 by alice\"\n",
+  "signals": [],
+  "aria": "- banner:\n  - navigation:\n    - link \"conduit\":\n      - /url: \"#/\"\n    - list:\n      - listitem:\n        - link \"\uf233 Source code\":\n          - /url: https://github.com/TonyMckes/conduit-realworld-example-app\n    - list:\n      - listitem:\n        - link \"\uf12c Home\":\n          - /url: \"#/\"\n      - listitem:\n        - link \"\uf12c New Article\":\n          - /url: \"#/editor\"\n      - listitem:\n        - img \"alice\"\n        - text: alice\n- main:\n  - img \"alice\"\n  - heading \"alice\" [level=4]\n  - link \"\uf13d Edit Profile Settings\":\n    - /url: \"#/settings\"\n  - list:\n    - listitem:\n      - link \"My Articles\":\n        - /url: \"#/profile/alice\"\n    - listitem:\n      - link \"Favorited Articles\":\n        - /url: \"#/profile/alice/favorites\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf141 ( 0 )\"\n  - link \"Alice's post 3 Post 3 by alice Read more... design postgres\":\n    - /url: \"#/article/alice-s-post-3\"\n    - heading \"Alice's post 3\" [level=1]\n    - paragraph: Post 3 by alice\n    - text: Read more...\n    - list:\n      - listitem: design\n      - listitem: postgres\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf141 ( 0 )\"\n  - link \"Alice's post 2 Post 2 by alice Read more... postgres react\":\n    - /url: \"#/article/alice-s-post-2\"\n    - heading \"Alice's post 2\" [level=1]\n    - paragraph: Post 2 by alice\n    - text: Read more...\n    - list:\n      - listitem: postgres\n      - listitem: react\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf141 ( 1 )\"\n  - link \"Alice's post 1 Post 1 by alice Read more... playwright react\":\n    - /url: \"#/article/alice-s-post-1\"\n    - heading \"Alice's post 1\" [level=1]\n    - paragraph: Post 1 by alice\n    - text: Read more...\n    - list:\n      - listitem: playwright\n      - listitem: react\n  - navigation \"Pagination\":\n    - listitem:\n      - button \"Previous page\" [disabled]: \uf107\n    - listitem:\n      - button \"Page 1 is your current page\": \"1\"\n    - listitem:\n      - button \"Next page\" [disabled]: \uf10a\n- contentinfo:\n  - link \"conduit\":\n    - /url: \"#/\"\n  - text: An interactive learning project from\n  - link \"Thinkster\":\n    - /url: https://thinkster.io\n  - text: . Code & design licensed under MIT.\n  - list:\n    - listitem:\n      - link \"\uf233 Source code\":\n        - /url: https://github.com/TonyMckes/conduit-realworld-example-app",
+  "id": "case23"
+ },
+ {
+  "label": "test_issue",
+  "variant": "generated:specgen_qwen3_4b_v1",
+  "kind": "failed-test",
+  "test": "flow07",
+  "flow": "As alice, favorite the article \"Dave's post 3\"; its favorite count goes from 0 to 1.",
+  "failing_step": 7,
+  "step": {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Favorite ( 0 )"
+   }
+  },
+  "attempts": [
+   "failed"
+  ],
+  "error": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: 'Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">\u2026</button> aka getByRole('button', { name: '\uf141 Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-primary  \">\u2026</button> aka getByRole('button', { name: '\uf141 Favorite ( 0 )' }).nth(1)\n\nCall log:\n  - waiting for getByRole('button', { name: 'Favorite ( 0 )' })\n",
+  "signals": [],
+  "aria": "- banner:\n  - navigation:\n    - link \"conduit\":\n      - /url: \"#/\"\n    - list:\n      - listitem:\n        - link \"\uf233 Source code\":\n          - /url: https://github.com/TonyMckes/conduit-realworld-example-app\n    - list:\n      - listitem:\n        - link \"\uf12c Home\":\n          - /url: \"#/\"\n      - listitem:\n        - link \"\uf12c New Article\":\n          - /url: \"#/editor\"\n      - listitem:\n        - img \"alice\"\n        - text: alice\n- main:\n  - heading \"Dave's post 3\" [level=1]\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n    - img \"dave\"\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n  - text: October 4, 2026\n  - button \"\uf217 Follow dave ( 0 )\"\n  - button \"\uf141 Favorite ( 0 )\"\n  - heading \"Heading\" [level=1]\n  - paragraph:\n    - text: Body of post 3 by\n    - strong: dave\n    - text: .\n  - list:\n    - listitem: one\n    - listitem: two\n  - list:\n    - listitem: playwright\n    - listitem: react\n  - separator\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n    - img \"dave\"\n  - link \"dave\":\n    - /url: \"#/profile/dave\"\n  - text: October 4, 2026\n  - button \"\uf217 Follow dave ( 0 )\"\n  - button \"\uf141 Favorite ( 0 )\"\n  - textbox \"Write a comment...\"\n  - img \"alice\"\n  - button \"Post Comment\"\n  - paragraph: Comment from alice\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf252\"\n  - paragraph: Hello, Dave!\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n    - img \"alice\"\n  - link \"alice\":\n    - /url: \"#/profile/alice\"\n  - text: October 4, 2026\n  - button \"\uf252\"\n- contentinfo:\n  - link \"conduit\":\n    - /url: \"#/\"\n  - text: An interactive learning project from\n  - link \"Thinkster\":\n    - /url: https://thinkster.io\n  - text: . Code & design licensed under MIT.\n  - list:\n    - listitem:\n      - link \"\uf233 Source code\":\n        - /url: https://github.com/TonyMckes/conduit-realworld-example-app",
+  "id": "case24"
+ }
+]

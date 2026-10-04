@@ -12,7 +12,7 @@ small local models, which are easy to make worse by accident.
 | Part | What |
 |---|---|
 | **Target app** | One small but realistic web app (auth, forms, CRUD, lists), run locally with a seeded database: **Conduit** (RealWorld; React + Express + Postgres), vendored in `bench/app/` (D37). `bench/app/conduit.sh up` / `reset` start it on `:4100` and restore the seed in ~2 s. |
-| **Hand-planted bugs** | ~20 across categories (below), each with an id, category, expected report and a `held_out` flag. |
+| **Hand-planted bugs** | 8 so far (target ~20) across categories, plus 2 noise and 1 flaky variant, in `bench/catalogue.toml`, each with a `held_out` flag. |
 | **Mutation bugs** | A mutation-testing tool such as Stryker adds many small automatic bugs. **Only detectable mutants count**: ones the hand-written reference spec suite kills. The rest change nothing a user could see and would only drag recall down. |
 | **Toggles** | Every bug can be switched on/off (env flag or patch), so the same app runs clean or bugged. |
 | **Replay bundles** | For each bug, the recorded evidence of its failure (`result` row + evidence folder + expected label), in `bench/replay/<bug-id>/`. Re-recorded when the app or the catalogue changes. |
@@ -30,7 +30,23 @@ small local models, which are easy to make worse by accident.
 | Intentional flake | Element appears after a random delay |
 | **Harmless noise** | Analytics request blocked — must **not** be reported |
 
-## Two tiers
+## Running it (phase 0 — implemented)
+
+- `bench/catalogue.toml` lists every variant: `id`, `kind` (`bug` / `noise` / `flaky`), `category`,
+  `catches` (the reference spec that must fail for a bug), `held_out`.
+- `bench/reference/` holds the hand-written reference suite (one spec per flow).
+- `testomation bench [--runs 3]` runs the reference suite on the clean app and under each variant
+  and reports clean pass rate, kill rate (overall and held-out), collateral failures, noise false
+  alarms and flaky failure rate — each as mean and min–max. Results: `bench/results/<ts>-full.json`.
+- `testomation bench --replay` scores triage on `bench/replay/cases.json` (24 recorded cases). Until
+  the analyzer exists (phase 2) it reports the baseline to beat.
+
+**Baseline (3 runs):** clean 10/10, kill rate 8/8 (held-out 2/2), no collateral failures, no
+noise false alarms, flaky variant fails 0–20% of specs per run.
+
+Not done yet: Stryker mutants (the detectable-mutant filter needs a JS mutation run against the
+reference suite).
+
 
 | Tier | Command | What runs | Takes | Gates |
 |---|---|---|---|---|
@@ -80,9 +96,9 @@ by more than the run-to-run range.
 | Spike | A handful of planted bugs and ~20 captured failures — enough to judge feasibility |
 | 0 | Built; mutants filtered; replay bundles recorded; scores a hand-written spec suite |
 | 2 | Baseline for the rules-only analyzer (both tiers) |
-| 3 | Spec success rate; decides the `large` tier |
+| 3 | **Kill rate** of assisted drafts (and of any model in the generation bake-off, D43) |
 | 5 | Calibrates neighbours, logprob gate and budget; scores model-in-the-loop triage |
-| 6 | Measures what exploration finds that specs didn't |
+| 6 | Gate for exploration (≥ 5/8 generation kill rate); then what exploration finds that specs didn't |
 
 ## Guard against overfitting
 

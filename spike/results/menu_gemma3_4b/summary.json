@@ -1,0 +1,77 @@
+{
+ "model": "gemma3:4b",
+ "flows": {
+  "flow05": {
+   "flow": "As alice, open the article \"Dave's post 3\" and post a comment; the comment appears on the page.",
+   "as_user": "alice",
+   "menu": [
+    "text \"This is a great post!\" appeared",
+    "heading \"Dave's post 3\" is shown",
+    "heading \"Heading\" is shown",
+    "text \"alice\" is shown",
+    "text \"October 4, 2026\" is shown",
+    "text \"Body of post 3 by\" is shown",
+    "text \"playwright\" is shown",
+    "text \"react\" is shown",
+    "text \"Comment from alice\" is shown"
+   ],
+   "picked": [
+    "text \"This is a great post!\" appeared",
+    "heading \"Dave's post 3\" is shown",
+    "text \"Comment from alice\" is shown"
+   ],
+   "clean": "passed",
+   "kills_bug": true
+  },
+  "flow01": {
+   "flow": "Log in as alice; the navigation bar then shows her username 'alice'.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow02": {
+   "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow03": {
+   "flow": "Sign up a brand-new user with generated data; afterwards the navigation bar shows the new username.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow04": {
+   "flow": "As alice, publish a new article with a title, description, body and two tags; the article page then shows the title.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow06": {
+   "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow07": {
+   "flow": "As alice, favorite the article \"Dave's post 3\"; its favorite count goes from 0 to 1.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow08": {
+   "flow": "As alice, open 'Your Feed'; it lists articles by bob and carol (whom she follows) and none by dave.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow09": {
+   "flow": "Without logging in, open bob's profile; it lists his three articles.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow10": {
+   "flow": "As alice, change her bio in settings to some generated text; her profile page then shows that bio.",
+   "clean": "no-spec",
+   "kills_bug": null
+  }
+ },
+ "summary": {
+  "actions_ran": 1,
+  "clean_pass": 1,
+  "kill_rate": "1/8"
+ }
+}

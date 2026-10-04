@@ -1,0 +1,156 @@
+{
+ "model": "qwen2.5:7b",
+ "flows": {
+  "flow08": {
+   "flow": "As alice, open 'Your Feed'; it lists articles by bob and carol (whom she follows) and none by dave.",
+   "as_user": "alice",
+   "menu": [
+    "heading \"Carol's post 3\" is shown",
+    "heading \"Carol's post 2\" is shown",
+    "heading \"Carol's post 1\" is shown",
+    "heading \"Popular Tags\" is shown",
+    "text \"alice\" is shown",
+    "text \"October 4, 2026\" is shown",
+    "text \"Post 3 by carol\" is shown",
+    "text \"Read more...\" is shown",
+    "text \"playwright\" is shown",
+    "text \"testing\" is shown",
+    "text \"Post 2 by carol\" is shown",
+    "text \"design\" is shown",
+    "text \"Post 1 by carol\" is shown",
+    "text \"postgres\" is shown"
+   ],
+   "picked": [
+    "heading \"Carol's post 2\" is shown",
+    "heading \"Carol's post 1\" is shown",
+    "text \"Post 3 by carol\" is shown",
+    "text \"Read more...\" is shown"
+   ],
+   "clean": "passed",
+   "kills_bug": null
+  },
+  "flow09": {
+   "flow": "Without logging in, open bob's profile; it lists his three articles.",
+   "as_user": "nobody",
+   "menu": [
+    "heading \"bob\" appeared",
+    "heading \"Bob's post 3\" appeared",
+    "text \"Post 3 by bob\" appeared",
+    "text \"design\" appeared",
+    "heading \"Bob's post 2\" appeared",
+    "text \"Post 2 by bob\" appeared",
+    "text \"postgres\" appeared",
+    "heading \"Bob's post 1\" appeared",
+    "text \"Post 1 by bob\" appeared",
+    "button \"Followers ( 1 )\" appeared",
+    "link \"My Articles\" appeared",
+    "link \"Favorited Articles\" appeared",
+    "link \"bob\" appeared",
+    "link \"Bob's post 3 Post 3 by bob Read more... design testing\" appeared",
+    "link \"Bob's post 2 Post 2 by bob Read more... design postgres\" appeared",
+    "button \"\uf141 ( 1 )\" appeared",
+    "link \"Bob's post 1 Post 1 by bob Read more... postgres react\" appeared",
+    "heading \"conduit\" disappeared",
+    "button \"Global Feed\" disappeared",
+    "link \"alice\" disappeared",
+    "link \"Tatyana83 Clamo vilicus cicuta. Read more... tag1 tag2\" disappeared",
+    "heading \"Tatyana83\" disappeared",
+    "link \"dave\" disappeared",
+    "link \"Dave's post 3 Post 3 by dave Read more... playwright react\" disappeared",
+    "heading \"Dave's post 3\" disappeared",
+    "link \"Dave's post 2 Post 2 by dave Read more... playwright testing\" disappeared",
+    "heading \"Dave's post 2\" disappeared",
+    "button \"Page 2\" disappeared",
+    "button \"Page 3\" disappeared",
+    "button \"Page 4\" disappeared"
+   ],
+   "picked": [
+    "heading \"Bob's post 3\" appeared",
+    "heading \"Bob's post 2\" appeared",
+    "heading \"Bob's post 1\" appeared",
+    "link \"Bob's post 3 Post 3 by bob Read more... design testing\" appeared"
+   ],
+   "clean": "passed",
+   "kills_bug": true
+  },
+  "flow06": {
+   "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'.",
+   "as_user": "nobody",
+   "menu": [
+    "heading \"Bob's post 1\" appeared",
+    "text \"Post 1 by bob\" appeared",
+    "text \"postgres\" appeared",
+    "heading \"Alice's post 2\" appeared",
+    "text \"Post 2 by alice\" appeared",
+    "button \"\uf219 react\" appeared",
+    "link \"bob\" appeared",
+    "button \"\uf141 ( 1 )\" appeared",
+    "link \"Bob's post 1 Post 1 by bob Read more... postgres react\" appeared",
+    "link \"Alice's post 2 Post 2 by alice Read more... postgres react\" appeared",
+    "link \"Sierra_Hayes Thermae cultellus studio cur bibo vereor. Read more... tag1 tag2\" disappeared",
+    "heading \"Sierra_Hayes\" disappeared",
+    "link \"Dave's post 2 Post 2 by dave Read more... playwright testing\" disappeared",
+    "heading \"Dave's post 2\" disappeared",
+    "button \"Page 3\" disappeared",
+    "button \"Page 4\" disappeared",
+    "button \"Page 5\" disappeared",
+    "heading \"conduit\" is shown",
+    "heading \"Dave's post 3\" is shown",
+    "heading \"Popular Tags\" is shown",
+    "text \"A place to share your knowledge.\" is shown",
+    "text \"October 4, 2026\" is shown",
+    "text \"Post 3 by dave\" is shown",
+    "text \"Read more...\" is shown",
+    "text \"playwright\" is shown",
+    "text \"react\" is shown"
+   ],
+   "picked": [
+    "link \"Bob's post 1 Post 1 by bob Read more... postgres react\" appeared",
+    "link \"Alice's post 2 Post 2 by alice Read more... postgres react\" appeared",
+    "text \"react\" is shown"
+   ],
+   "clean": "passed",
+   "kills_bug": true
+  },
+  "flow01": {
+   "flow": "Log in as alice; the navigation bar then shows her username 'alice'.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow02": {
+   "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow03": {
+   "flow": "Sign up a brand-new user with generated data; afterwards the navigation bar shows the new username.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow04": {
+   "flow": "As alice, publish a new article with a title, description, body and two tags; the article page then shows the title.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow05": {
+   "flow": "As alice, open the article \"Dave's post 3\" and post a comment; the comment appears on the page.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow07": {
+   "flow": "As alice, favorite the article \"Dave's post 3\"; its favorite count goes from 0 to 1.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow10": {
+   "flow": "As alice, change her bio in settings to some generated text; her profile page then shows that bio.",
+   "clean": "no-spec",
+   "kills_bug": null
+  }
+ },
+ "summary": {
+  "actions_ran": 3,
+  "clean_pass": 3,
+  "kill_rate": "2/8"
+ }
+}

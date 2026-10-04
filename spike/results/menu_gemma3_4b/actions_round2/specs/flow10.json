@@ -1,0 +1,148 @@
+{
+ "spec_version": 1,
+ "id": "flow10",
+ "flow": "As alice, change her bio in settings to some generated text; her profile page then shows that bio.",
+ "_observe_after": 6,
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": "alice@conduit.test"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": {
+    "$secret": "ALICE_PASSWORD"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "goto",
+   "url": "/#/settings"
+  },
+  {
+   "action": "goto",
+   "url": "/#/settings"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "textbox",
+    "name": "Your Name"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Your Name"
+   },
+   "value": {
+    "$faker": "person.fullName",
+    "as": "gen1"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "textbox",
+    "name": "Short bio about you"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Short bio about you"
+   },
+   "value": {
+    "$faker": "lorem.paragraph",
+    "as": "gen2"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": {
+    "$faker": "internet.email",
+    "as": "gen3"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Update Settings"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "paragraph",
+    "nth": 0
+   },
+   "state": "visible"
+  },
+  {
+   "action": "check",
+   "target": {
+    "role": "paragraph",
+    "nth": 0
+   }
+  },
+  {
+   "action": "goto",
+   "url": "/#/profile/alice"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "paragraph",
+    "nth": 0
+   },
+   "state": "visible"
+  },
+  {
+   "action": "check",
+   "target": {
+    "role": "paragraph",
+    "nth": 0
+   }
+  }
+ ]
+}

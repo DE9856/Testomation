@@ -1,0 +1,49 @@
+{
+ "spec_version": 1,
+ "id": "flow06",
+ "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'.",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "react"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "heading",
+    "name": "Popular Tags"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "link",
+    "name": "Bob's post 1 Post 1 by bob Read more... postgres react"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "link",
+    "name": "Alice's post 2 Post 2 by alice Read more... postgres react"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "text": "react"
+   },
+   "assert": "visible"
+  }
+ ]
+}

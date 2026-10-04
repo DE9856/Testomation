@@ -1,0 +1,152 @@
+{
+ "spec_version": 1,
+ "id": "flow04",
+ "flow": "As alice, publish a new article with a title, description, body and two tags; the article page then shows the title.",
+ "_observe_after": 6,
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": "alice@conduit.test"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": {
+    "$secret": "ALICE_PASSWORD"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "goto",
+   "url": "/#/editor"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Article Title"
+   },
+   "value": {
+    "$faker": "lorem.word",
+    "as": "title"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "What's this article about?"
+   },
+   "value": {
+    "$faker": "lorem.sentence",
+    "as": "description"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Write your article (in markdown)"
+   },
+   "value": {
+    "$faker": "lorem.paragraph",
+    "as": "body"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Enter tags"
+   },
+   "value": "playwright,react"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Publish Article"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "text": "Post 3 by alice Read more..."
+   },
+   "state": "visible"
+  },
+  {
+   "action": "click",
+   "target": {
+    "text": "Post 3 by alice Read more..."
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "text": "Heading"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "text": "Body of post 3 by alice."
+   },
+   "state": "visible"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "text": "one"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "text": "two"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "text": "playwright"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "text": "react"
+   },
+   "state": "visible"
+  }
+ ]
+}

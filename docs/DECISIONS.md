@@ -1,8 +1,8 @@
 # Decisions
 
 Tracks what's been decided, what's still open, and gaps found in the brief.
-Current brief: `index.html` **v0.6** (previous: `archive/testomation-v0.5.html`,
-`archive/testomation-v0.4.html`).
+Current brief: `index.html` **v0.7** (previous: `archive/testomation-v0.6.html`,
+`archive/testomation-v0.5.html`, `archive/testomation-v0.4.html`).
 
 ## Decided
 
@@ -49,6 +49,8 @@ Current brief: `index.html` **v0.6** (previous: `archive/testomation-v0.5.html`,
 | D39 | **The llm client derives a decoder view of every schema**: patterns are rewritten into the form Ollama's grammar handles (e.g. `(.\|\n)*` → `.*`); the schema file keeps the validator-correct form and stays the single source | Spike: the validator-correct multi-line pattern broke Ollama's grammar (JSON invalid on 8/10 flows); Ollama's `.` already allows newlines | v0.6 | [SPIKE_RESULTS](SPIKE_RESULTS.md) |
 | D40 | In spec targets, **`name` is only allowed on roles that can have an accessible name**; paragraphs, list items, generic text etc. are targeted by `text` | The 4B model kept writing `{role: paragraph, name: …}` (never matches) despite prompt rules; as a schema constraint the decoder made it impossible and the comment flow started passing | v0.6 | [TEST_SPEC](TEST_SPEC.md) |
 | D41 | Spec targets take an optional **`nth`** (0-based) to pick one of several matching elements | Conduit shows the same "Favorite ( 0 )" button twice on every article; without `nth` the favorite flow could not be written at all. Decoder-enforceable (integer 0–20) | v0.6 | [TEST_SPEC](TEST_SPEC.md) |
+| D42 | ~~Phase 3: generate specs from plain English~~ → **Phase 3: assisted authoring.** Actions come from templates (login, sign-up, form, CRUD, "as <user>") and recorded flows; the model suggests assertions by picking from a deterministic before/after menu and names flows; **every draft is approved by a human**; drafts are scored by seeded-bug kill rate | Spike: five autonomous-generation approaches at 4B caught at best 1/8 seeded bugs vs 8/8 for hand-written specs; every fix that worked was deterministic. Drafts needed human approval anyway (lifecycle) | v0.7 | [ROADMAP](ROADMAP.md), [SPIKE_RESULTS](SPIKE_RESULTS.md#final-verdict-q22) |
+| D43 | **Exploration (phase 6) is research**, gated on the benchmark: it starts only when a local model passes the kill-rate benchmark for generation (≥ 5/8) | The exploratory agent needs the same action-planning ability that failed in the spike (5/10 plans never ran) | v0.7 | [ROADMAP](ROADMAP.md) |
 
 ## Open questions
 
@@ -83,7 +85,9 @@ Current brief: `index.html` **v0.6** (previous: `archive/testomation-v0.5.html`,
 | Q27 | ~~How should a spec pick one of several identical elements?~~ | **Closed (D41):** optional `nth` on targets. Scoping inside a region (`within`) may come later. |
 | Q28 | May a draft repair change an `expect`'s *target* if its `assert` and `value` stay the same? | Open. Tested in the spike (v3a): recovered no flows. Keep the stricter rule until evidence says otherwise. *(new)* |
 | Q29 | How is a generated spec's quality measured? | **Proposed:** by seeded-bug kill rate — a spec counts only if it passes on the clean app **and fails** with its flow's seeded bug on. Pass rate alone rewarded always-true assertions in every spike run. *(new)* |
-| Q30 | Phase 3 scope after the spike: autonomous generation → **assisted authoring** (templates/recorded flows for actions, model-suggested assertions from the before/after menu, human approval of every draft)? | **Open — needs a decision.** Evidence: [SPIKE_RESULTS](SPIKE_RESULTS.md#final-verdict-q22). *(new)* |
+| Q30 | ~~Phase 3 scope after the spike~~ | **Closed (D42, D43):** assisted authoring; exploration becomes gated research. |
+| Q31 | How are flows recorded for assisted authoring? | Open. Options: Playwright's codegen recorder with a converter to JSON specs, or a small recorder in the runner that logs role/name targets as a human clicks. *(new)* |
+| Q32 | ~~Which local models pass the kill-rate benchmark?~~ | **Closed for now:** none. Seven models (3B–7.6B) scored 0–2/8 vs the ≥ 5/8 gate ([SPIKE_RESULTS](SPIKE_RESULTS.md)). Re-run `spike/bakeoff.sh` when a new local model appears. |
 
 ## Gaps found in the v0.5 brief
 

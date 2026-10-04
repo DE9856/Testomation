@@ -488,7 +488,7 @@
       <li><a href="#design"><span class="nav-num">15</span>Design roadmap</a></li>
     </ul>
     <div class="sidebar-foot">
-      v0.6 — project brief
+      v0.7 — project brief
       <br>
       <button class="theme-toggle" id="themeToggle" type="button">toggle theme</button>
     </div>
@@ -511,7 +511,7 @@
         <p>Traditional test automation still needs a human to decide what to test and to write the script. Testomation moves both of those jobs to an AI agent: one that reasons about the application the way a QA engineer would, generates its own coverage, and only asks for a human when it isn't sure whether something is actually broken.</p>
         <p class="muted">The goal isn't to replace scripted regression testing — it's to sit alongside it, filling the gap between "what we remembered to test" and "what the app can actually do."</p>
 
-        <h3 style="margin-top:28px">Ground rules for v0.6</h3>
+        <h3 style="margin-top:28px">Ground rules for v0.7</h3>
         <ul class="choice-list">
           <li><strong>Free and local</strong> — everything runs on one laptop. No paid APIs or hosted services in the product.</li>
           <li><strong>Ollama at runtime</strong> — every model call the product makes goes to local models served by Ollama.</li>
@@ -519,7 +519,16 @@
           <li><strong>Playwright does the running</strong> — Playwright Test handles execution, parallel workers, retries, traces and screenshots. Testomation doesn't rebuild any of that.</li>
         </ul>
 
-        <h3 style="margin-top:28px">What changed since v0.5</h3>
+        <h3 style="margin-top:28px">What changed in v0.7 — after the feasibility spike</h3>
+        <ul class="choice-list">
+          <li><strong>Phase 3 is assisted authoring</strong> — templates and recorded flows give the actions, the model suggests assertions by picking from what changed on the page, and a human approves every draft. Autonomous generation caught at best 1 of 8 seeded bugs, against 8 of 8 for hand-written specs. <a href="#roadmap">§14</a></li>
+          <li><strong>Exploration is gated research</strong> — it needs the same action planning that failed in the spike, so it waits until a local model passes the kill-rate benchmark. <a href="#roadmap">§14</a></li>
+          <li><strong>The model works in triage</strong> — 58% against a 33% baseline on 24 real cases; with rules and a confidence gate, 16 right, 1 wrong, 7 sent to review. <a href="#runtime">§09</a></li>
+          <li><strong>Specs are scored by kill rate</strong> — a spec counts only if it fails when its flow's seeded bug is on; pass rate alone rewarded always-true checks. <a href="#evaluation">§11</a></li>
+        </ul>
+        <p class="muted" style="margin-top:12px">The vision is unchanged; for now the model <em>assists</em> writing tests and <em>decides</em> triage rather than writing the suite on its own.</p>
+
+        <h3 style="margin-top:28px">What changed in v0.6</h3>
         <ul class="choice-list">
           <li><strong>Spike before infrastructure</strong> — a throwaway feasibility spike tests whether local models are good enough before any plumbing is built. <a href="#design">§15</a></li>
           <li><strong>Triage for any Playwright suite</strong> — <code>testomation import</code> points the analyzer at an existing Playwright report, so it's useful from phase 2. <a href="#components">§04</a></li>
@@ -583,8 +592,8 @@
           <div class="step">
             <div class="step-num">03</div>
             <div>
-              <h3>Generate</h3>
-              <p>Each planned flow becomes a JSON test spec: a list of steps with role- or label-based targets and assertions, validated against a schema.</p>
+              <h3>Author</h3>
+              <p>Each planned flow becomes a JSON test spec: actions from templates or a recorded flow, assertions suggested by the model from what changed on the page, approved by a human.</p>
             </div>
           </div>
           <div class="step">
@@ -619,7 +628,8 @@
           </div>
           <ul class="feature-grid">
             <li><strong>Autonomous flow discovery</strong><span>Crawls or reads the app and proposes the user flows worth testing, without being told what they are.</span></li>
-            <li><strong>Natural-language test authoring</strong><span>A human types "test that guest checkout fails without an email" and gets a runnable spec.</span></li>
+            <li><strong>Assisted test authoring</strong> <span class="new-badge">v0.7</span><span>Templates and recorded flows give the actions; the model suggests assertions from what changed on the page; a human approves each draft.</span></li>
+            <li class="tag-later"><strong>Natural-language test authoring</strong><span>"Test that guest checkout fails without an email" → a runnable spec. Research: gated on the kill-rate benchmark.</span></li>
             <li><strong>Structured test specs</strong><span>Tests are JSON specs run by one Playwright runner. The model fills a schema; it never writes executable code. Named helper steps cover what the vocabulary can't.</span></li>
             <li><strong>Edge-case &amp; negative-path enumeration</strong><span>Generates boundary values, invalid inputs, and error states alongside the happy path.</span></li>
             <li><strong>Coverage gap analysis</strong><span>Flags flows and routes that exist in the app but have no test touching them.</span></li>
@@ -658,7 +668,7 @@
             <li><strong>Auth &amp; session handling</strong><span>Saved Playwright storage state, so every test doesn't have to log in from scratch.</span></li>
             <li><strong>Third-party mocking</strong><span>Route interception and HAR replay stub flaky or rate-limited services, so failures are the app's fault, not a dependency's.</span></li>
             <li class="tag-later"><strong>Per-branch environments</strong><span>A throwaway local compose environment per branch, so tests run against that exact change.</span></li>
-            <li class="stretch"><strong>Exploratory session recording</strong><span>The agent free-roams the app like a curious user, never leaving its origin, and every click, scroll, and state change is logged — findings replay as draft specs. This is how it finds the bugs no one thought to write a test for.</span></li>
+            <li class="stretch tag-later"><strong>Exploratory session recording</strong><span>Research, gated on the benchmark. The agent free-roams the app like a curious user, never leaving its origin, and every click, scroll, and state change is logged — findings replay as draft specs. This is how it finds the bugs no one thought to write a test for.</span></li>
           </ul>
         </div>
 
@@ -832,14 +842,15 @@
         </div>
 
         <div class="component">
-          <span class="component-tag">Test generation agent</span><span class="new-badge">changed</span>
-          <h3>Converts a flow into a JSON test spec</h3>
+          <span class="component-tag">Test authoring (assisted)</span><span class="new-badge">changed</span>
+          <h3>Helps a human produce good specs quickly</h3>
+          <p>The spike showed a 4B model can't write useful specs on its own: five approaches caught at best 1 of 8 seeded bugs, against 8 of 8 for hand-written specs. So the work is split by what each side does well:</p>
           <ul class="choice-list">
-            <li><strong>Spec, not code</strong> — the model fills a JSON schema (steps, role/label targets, assertions). Ollama's structured output constrains decoding to that schema, so small models can't produce invalid tests.</li>
-            <li><strong>Deterministic execution</strong> — one generic Playwright runner executes every spec. Same determinism and speed as scripted tests, no generated code on the host.</li>
-            <li><strong>Agents for exploration only</strong> — live, unscripted bug-hunting stays a separate executor mode.</li>
+            <li><strong>Actions — no model</strong> — templates for login, sign-up, form submit, CRUD and "as &lt;user&gt;" preconditions; a recorder for the rest.</li>
+            <li><strong>Assertion menu — no model</strong> — the runner records the page before and after the actions; candidate checks come from the difference, and generated values become <code>$var</code> automatically.</li>
+            <li><strong>Picks — small model</strong> — the model chooses the candidates that match the flow's stated expectation, and names flows.</li>
+            <li><strong>Approval — human</strong> — every draft goes through <code>testomation approve</code>; drafts are scored by seeded-bug kill rate.</li>
           </ul>
-          <p class="muted" style="margin-top:14px">Before generating, it pulls targets that worked before and similar specs from memory to use as templates. Common patterns (login, form submit, CRUD) come from templates with no model call at all. Novel flows use the small model (the large tier only if the benchmark earns it) and go through up to three <strong>batched repair rounds</strong>: generate or repair every pending draft, unload the model, run every draft, repeat. Repairs may change targets and add waits; changing or removing an assertion goes to review. See <a href="#spec">§05</a>.</p>
         </div>
 
         <div class="component">
@@ -1642,7 +1653,7 @@ def decide(item, decision):
         </div>
         <div class="roadmap">
           <div class="phase">
-            <div class="phase-label">SPIKE <span class="new-badge">new</span></div>
+            <div class="phase-label">SPIKE · DONE</div>
             <h3>Prove the models</h3>
             <p>One to two throwaway weeks: Conduit, a minimal spec runner, Ollama and a script — no Postgres, Langfuse, LangGraph or memory. Measure how many generated specs pass on the clean app (small vs large tier), how well one-call triage with logprobs works on about twenty captured failures, and peak RAM with a model and two workers. Confirm structured output and logprobs through the client. The result is a short report with numbers; see §15 for the targets.</p>
           </div>
@@ -1663,8 +1674,8 @@ def decide(item, decision):
           </div>
           <div class="phase">
             <div class="phase-label">PHASE 3</div>
-            <h3>Generate specs from plain English</h3>
-            <p>Langfuse comes up. Test gen with the small model: described flow → JSON spec under constrained decoding, up to three batched repair rounds with the model unloaded while drafts run, and drafts promoted with <code>testomation approve</code>. The large tier is tried on the benchmark and kept only if it earns its place.</p>
+            <h3>Assisted authoring</h3>
+            <p>Langfuse comes up. Actions come from templates and recorded flows; the runner observes the page before and after; the small model picks assertions from the resulting menu; a human approves every draft with <code>testomation approve</code>. Drafts are scored by kill rate — they must fail when their flow's seeded bug is on.</p>
           </div>
           <div class="phase">
             <div class="phase-label">PHASE 4</div>
@@ -1678,8 +1689,8 @@ def decide(item, decision):
           </div>
           <div class="phase">
             <div class="phase-label">PHASE 6</div>
-            <h3>Go exploratory</h3>
-            <p>Fuzzing and coverage-guided crawling with invariant checks first, then a text-based exploratory agent over aria snapshots — the one LangGraph loop, checkpointed, choosing spec steps on the target origin and stopping when budget or new states run out — an optional small vision model, plus flaky-test quarantine and visual baselines.</p>
+            <h3>Go exploratory — research, gated</h3>
+            <p>Starts only when a local model reaches 5 of 8 on the generation kill-rate benchmark, because the exploratory agent needs the action planning that failed in the spike. Fuzzing and coverage-guided crawling with invariant checks, flaky-test quarantine and visual baselines need no model and can come earlier.</p>
           </div>
           <div class="phase">
             <div class="phase-label">LATER</div>
@@ -1713,7 +1724,7 @@ def decide(item, decision):
           <tr><td>3 · Benchmark</td><td class="opt">Target app, bug catalogue format, reference suite, replay bundles, scoring with ranges</td><td class="opt">Phase 0</td><td class="opt">Scores stable within ±1 bug across 3 runs; replay runs in minutes</td></tr>
           <tr><td>4 · Execution</td><td class="opt">Runner fixtures, evidence retention, the importer, stage state, machine load, file traces</td><td class="opt">Phase 1</td><td class="opt">Spec-runner and imported results land as result rows; a crashed run resumes</td></tr>
           <tr><td>5 · Rules</td><td class="opt">Rule catalogue with ids and fixed confidences, noise signature kinds, dedup, report template</td><td class="opt">Phase 2</td><td class="opt">Baseline numbers on both benchmark tiers</td></tr>
-          <tr><td>6 · Generation</td><td class="opt">Prompts, templates, repair-round state, approval flow, requirement inference; Langfuse wiring</td><td class="opt">Phase 3</td><td class="opt">Spec success rate measured; large tier kept or dropped</td></tr>
+          <tr><td>6 · Authoring</td><td class="opt">Templates, recorder, assertion menu, pick prompt, approval flow; Langfuse wiring</td><td class="opt">Phase 3</td><td class="opt">Spec success rate measured; large tier kept or dropped</td></tr>
           <tr><td>7 · Planner</td><td class="opt">Crawler choice, natural keys, aria normalisation, basis policy, plan format</td><td class="opt">Phase 4</td><td class="opt">Second-run memory hit rate measured; a one-file change re-plans only affected pages</td></tr>
           <tr><td>8 · Model in loop</td><td class="opt">Neighbour vote, logprob extraction, score calibration, gate values, budget, review flow</td><td class="opt">Phase 5</td><td class="opt">Thresholds fitted; held-out recall within the run-to-run range</td></tr>
           <tr><td>9 · Exploration</td><td class="opt">The LangGraph loop, invariants, novelty measure, Python ↔ TypeScript bridge</td><td class="opt">Phase 6</td><td class="opt">Finds a seeded bug no approved spec caught, within budget, never leaving the origin</td></tr>
@@ -1736,7 +1747,7 @@ def decide(item, decision):
       </section>
 
       <footer>
-        Testomation — project brief v0.6 · local-first: Ollama models, JSON test specs, Playwright Test, plain-Python agents, traces from day one, seeded-bug benchmark with a replay tier
+        Testomation — project brief v0.7 · local-first: Ollama models, JSON test specs, Playwright Test, plain-Python agents, traces from day one, seeded-bug benchmark with a replay tier
       </footer>
 
     </div>

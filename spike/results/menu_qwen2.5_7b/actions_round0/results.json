@@ -1,0 +1,1389 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node-22",
+      "/home/deepesh/Desktop/Testomation/runner/node_modules/.bin/playwright",
+      "test",
+      "--output",
+      "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results"
+    ],
+    "configFile": "/home/deepesh/Desktop/Testomation/runner/playwright.config.ts",
+    "rootDir": "/home/deepesh/Desktop/Testomation/runner",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/deepesh/Desktop/Testomation/runner",
+        "testIgnore": [],
+        "testMatch": [
+          "spec-runner.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "spec-runner.spec.ts",
+      "file": "spec-runner.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "flow01",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "8"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1702,
+                  "error": {
+                    "message": "Error: $var \"alice_email\" used before it was set",
+                    "stack": "Error: $var \"alice_email\" used before it was set\n    at resolve (/home/deepesh/Desktop/Testomation/runner/steps.ts:35:34)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:88:43)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 34,
+                      "line": 35
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:35\n\n  33 |   }\n  34 |   if ('$var' in v) {\n> 35 |     if (!vars.has(v.$var)) throw new Error(`$var \"${v.$var}\" used before it was set`);\n     |                                  ^\n  36 |     return vars.get(v.$var);\n  37 |   }\n  38 |   if ('$secret' in v) {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 34,
+                        "line": 35
+                      },
+                      "message": "Error: $var \"alice_email\" used before it was set\n\n   at steps.ts:35\n\n  33 |   }\n  34 |   if ('$var' in v) {\n> 35 |     if (!vars.has(v.$var)) throw new Error(`$var \"${v.$var}\" used before it was set`);\n     |                                  ^\n  36 |     return vars.get(v.$var);\n  37 |   }\n  38 |   if ('$secret' in v) {\n    at resolve (/home/deepesh/Desktop/Testomation/runner/steps.ts:35:34)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:88:43)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 447
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 40
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 509
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 13
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 428
+                    },
+                    {
+                      "title": "7. goto",
+                      "duration": 7
+                    },
+                    {
+                      "title": "8. fill",
+                      "duration": 9,
+                      "error": {
+                        "message": "Error: $var \"alice_email\" used before it was set",
+                        "stack": "Error: $var \"alice_email\" used before it was set\n    at resolve (/home/deepesh/Desktop/Testomation/runner/steps.ts:35:34)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:88:43)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 34,
+                          "line": 35
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:35\n\n  33 |   }\n  34 |   if ('$var' in v) {\n> 35 |     if (!vars.has(v.$var)) throw new Error(`$var \"${v.$var}\" used before it was set`);\n     |                                  ^\n  36 |     return vars.get(v.$var);\n  37 |   }\n  38 |   if ('$secret' in v) {"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:40:55.110Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "8"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIllvdXIgRmVlZCIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJHbG9iYWwgRmVlZCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAgIC0gaW1nICJjYXJvbCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLvhYEgKCAwICkiCiAgLSBsaW5rICJDYXJvbCdzIHBvc3QgMyBQb3N0IDMgYnkgY2Fyb2wgUmVhZCBtb3JlLi4uIHBsYXl3cmlnaHQgdGVzdGluZyI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvY2Fyb2wtcy1wb3N0LTMiCiAgICAtIGhlYWRpbmcgIkNhcm9sJ3MgcG9zdCAzIiBbbGV2ZWw9MV0KICAgIC0gcGFyYWdyYXBoOiBQb3N0IDMgYnkgY2Fyb2wKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAyIFBvc3QgMiBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHRlc3RpbmciOgogICAgLSAvdXJsOiAiIy9hcnRpY2xlL2Nhcm9sLXMtcG9zdC0yIgogICAgLSBoZWFkaW5nICJDYXJvbCdzIHBvc3QgMiIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAyIGJ5IGNhcm9sCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiBkZXNpZ24KICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDEgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAxIFBvc3QgMSBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHBvc3RncmVzIjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS9jYXJvbC1zLXBvc3QtMSIKICAgIC0gaGVhZGluZyAiQ2Fyb2wncyBwb3N0IDEiIFtsZXZlbD0xXQogICAgLSBwYXJhZ3JhcGg6IFBvc3QgMSBieSBjYXJvbAogICAgLSB0ZXh0OiBSZWFkIG1vcmUuLi4KICAgIC0gbGlzdDoKICAgICAgLSBsaXN0aXRlbTogZGVzaWduCiAgICAgIC0gbGlzdGl0ZW06IHBvc3RncmVzCiAgLSBuYXZpZ2F0aW9uICJQYWdpbmF0aW9uIjoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQcmV2aW91cyBwYWdlIiBbZGlzYWJsZWRdOiDvhIcKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDEgaXMgeW91ciBjdXJyZW50IHBhZ2UiOiAiMSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDIiOiAiMiIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJOZXh0IHBhZ2UiOiDvhIoKICAtIGNvbXBsZW1lbnRhcnk6CiAgICAtIGhlYWRpbmcgIlBvcHVsYXIgVGFncyIgW2xldmVsPTZdCiAgICAtIGJ1dHRvbiAicGxheXdyaWdodCIKICAgIC0gYnV0dG9uICJyZWFjdCIKICAgIC0gYnV0dG9uICJwb3N0Z3JlcyIKICAgIC0gYnV0dG9uICJkZXNpZ24iCiAgICAtIGJ1dHRvbiAidGVzdGluZyIKLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBoZWFkaW5nICJTaWduIGluIiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDoKICAgIC0gbGluayAiTmVlZCBhbiBhY2NvdW50PyI6CiAgICAgIC0gL3VybDogIiMvcmVnaXN0ZXIiCiAgLSBncm91cDoKICAgIC0gdGV4dGJveCAiRW1haWwiCiAgLSBncm91cDoKICAgIC0gdGV4dGJveCAiUGFzc3dvcmQiCiAgLSBidXR0b24gIkxvZ2luIgotIGNvbnRlbnRpbmZvOgogIC0gbGluayAiY29uZHVpdCI6CiAgICAtIC91cmw6ICIjLyIKICAtIHRleHQ6IEFuIGludGVyYWN0aXZlIGxlYXJuaW5nIHByb2plY3QgZnJvbQogIC0gbGluayAiVGhpbmtzdGVyIjoKICAgIC0gL3VybDogaHR0cHM6Ly90aGlua3N0ZXIuaW8KICAtIHRleHQ6IC4gQ29kZSAmIGRlc2lnbiBsaWNlbnNlZCB1bmRlciBNSVQuCiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgIC0gL3VybDogaHR0cHM6Ly9naXRodWIuY29tL1RvbnlNY2tlcy9jb25kdWl0LXJlYWx3b3JsZC1leGFtcGxlLWFwcA=="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow01-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow01-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow01-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow01-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 34,
+                    "line": 35
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-5b45cd1778b1d7594c9b",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow02",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "3"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1131,
+                  "error": {
+                    "message": "Error: $secret WRONG_PASSWORD is not set in the environment",
+                    "stack": "Error: $secret WRONG_PASSWORD is not set in the environment\n    at resolve (/home/deepesh/Desktop/Testomation/runner/steps.ts:40:32)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:88:43)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 32,
+                      "line": 40
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:40\n\n  38 |   if ('$secret' in v) {\n  39 |     const s = process.env[v.$secret];\n> 40 |     if (s === undefined) throw new Error(`$secret ${v.$secret} is not set in the environment`);\n     |                                ^\n  41 |     return s;\n  42 |   }\n  43 |   return value;"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 32,
+                        "line": 40
+                      },
+                      "message": "Error: $secret WRONG_PASSWORD is not set in the environment\n\n   at steps.ts:40\n\n  38 |   if ('$secret' in v) {\n  39 |     const s = process.env[v.$secret];\n> 40 |     if (s === undefined) throw new Error(`$secret ${v.$secret} is not set in the environment`);\n     |                                ^\n  41 |     return s;\n  42 |   }\n  43 |   return value;\n    at resolve (/home/deepesh/Desktop/Testomation/runner/steps.ts:40:32)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:88:43)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 876
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 12
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 8,
+                      "error": {
+                        "message": "Error: $secret WRONG_PASSWORD is not set in the environment",
+                        "stack": "Error: $secret WRONG_PASSWORD is not set in the environment\n    at resolve (/home/deepesh/Desktop/Testomation/runner/steps.ts:40:32)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:88:43)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 32,
+                          "line": 40
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:40\n\n  38 |   if ('$secret' in v) {\n  39 |     const s = process.env[v.$secret];\n> 40 |     if (s === undefined) throw new Error(`$secret ${v.$secret} is not set in the environment`);\n     |                                ^\n  41 |     return s;\n  42 |   }\n  43 |   return value;"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:40:57.643Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "3"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+KniBMb2dpbiI6CiAgICAgICAgICAtIC91cmw6ICIjL2xvZ2luIgogICAgICAtIGxpc3RpdGVtOgogICAgICAgIC0gbGluayAiU2lnbiB1cCI6CiAgICAgICAgICAtIC91cmw6ICIjL3JlZ2lzdGVyIgotIG1haW46CiAgLSBoZWFkaW5nICJTaWduIGluIiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDoKICAgIC0gbGluayAiTmVlZCBhbiBhY2NvdW50PyI6CiAgICAgIC0gL3VybDogIiMvcmVnaXN0ZXIiCiAgLSBncm91cDoKICAgIC0gdGV4dGJveCAiRW1haWwiCiAgLSBncm91cDoKICAgIC0gdGV4dGJveCAiUGFzc3dvcmQiCiAgLSBidXR0b24gIkxvZ2luIgotIGNvbnRlbnRpbmZvOgogIC0gbGluayAiY29uZHVpdCI6CiAgICAtIC91cmw6ICIjLyIKICAtIHRleHQ6IEFuIGludGVyYWN0aXZlIGxlYXJuaW5nIHByb2plY3QgZnJvbQogIC0gbGluayAiVGhpbmtzdGVyIjoKICAgIC0gL3VybDogaHR0cHM6Ly90aGlua3N0ZXIuaW8KICAtIHRleHQ6IC4gQ29kZSAmIGRlc2lnbiBsaWNlbnNlZCB1bmRlciBNSVQuCiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgIC0gL3VybDogaHR0cHM6Ly9naXRodWIuY29tL1RvbnlNY2tlcy9jb25kdWl0LXJlYWx3b3JsZC1leGFtcGxlLWFwcA=="
+                    },
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+KniBMb2dpbiI6CiAgICAgICAgICAtIC91cmw6ICIjL2xvZ2luIgogICAgICAtIGxpc3RpdGVtOgogICAgICAgIC0gbGluayAiU2lnbiB1cCI6CiAgICAgICAgICAtIC91cmw6ICIjL3JlZ2lzdGVyIgotIG1haW46CiAgLSBoZWFkaW5nICJTaWduIGluIiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDoKICAgIC0gbGluayAiTmVlZCBhbiBhY2NvdW50PyI6CiAgICAgIC0gL3VybDogIiMvcmVnaXN0ZXIiCiAgLSBncm91cDoKICAgIC0gdGV4dGJveCAiRW1haWwiOiBhbGljZUBjb25kdWl0LnRlc3QKICAtIGdyb3VwOgogICAgLSB0ZXh0Ym94ICJQYXNzd29yZCIKICAtIGJ1dHRvbiAiTG9naW4iCi0gY29udGVudGluZm86CiAgLSBsaW5rICJjb25kdWl0IjoKICAgIC0gL3VybDogIiMvIgogIC0gdGV4dDogQW4gaW50ZXJhY3RpdmUgbGVhcm5pbmcgcHJvamVjdCBmcm9tCiAgLSBsaW5rICJUaGlua3N0ZXIiOgogICAgLSAvdXJsOiBodHRwczovL3RoaW5rc3Rlci5pbwogIC0gdGV4dDogLiBDb2RlICYgZGVzaWduIGxpY2Vuc2VkIHVuZGVyIE1JVC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGxpbmsgIu+IsyBTb3VyY2UgY29kZSI6CiAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBw"
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow02-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow02-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow02-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow02-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 32,
+                    "line": 40
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-c4c0d94a444531ee672c",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow03",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "3"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6339,
+                  "error": {
+                    "message": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Your Name')\u001b[22m\n",
+                    "stack": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Your Name')\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:88:34)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 34,
+                      "line": 88
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:88\n\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();\n> 88 |     case 'fill': return target().fill(str(resolve(step.value, vars)));\n     |                                  ^\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));\n  90 |     case 'press': return step.target ? target().press(step.key) : page.keyboard.press(step.key);\n  91 |     case 'wait_for': return target().waitFor({ state: step.state });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 34,
+                        "line": 88
+                      },
+                      "message": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Your Name')\u001b[22m\n\n\n   at steps.ts:88\n\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();\n> 88 |     case 'fill': return target().fill(str(resolve(step.value, vars)));\n     |                                  ^\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));\n  90 |     case 'press': return step.target ? target().press(step.key) : page.keyboard.press(step.key);\n  91 |     case 'wait_for': return target().waitFor({ state: step.state });\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:88:34)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 887
+                    },
+                    {
+                      "title": "2. goto",
+                      "duration": 11
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 5015,
+                      "error": {
+                        "message": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Your Name')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.fill: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Your Name')\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:88:34)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 34,
+                          "line": 88
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:88\n\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();\n> 88 |     case 'fill': return target().fill(str(resolve(step.value, vars)));\n     |                                  ^\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));\n  90 |     case 'press': return step.target ? target().press(step.key) : page.keyboard.press(step.key);\n  91 |     case 'wait_for': return target().waitFor({ state: step.state });"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:40:59.578Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "3"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+KniBMb2dpbiI6CiAgICAgICAgICAtIC91cmw6ICIjL2xvZ2luIgogICAgICAtIGxpc3RpdGVtOgogICAgICAgIC0gbGluayAiU2lnbiB1cCI6CiAgICAgICAgICAtIC91cmw6ICIjL3JlZ2lzdGVyIgotIG1haW46CiAgLSBoZWFkaW5nICJjb25kdWl0IiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDogQSBwbGFjZSB0byBzaGFyZSB5b3VyIGtub3dsZWRnZS4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGJ1dHRvbiAiR2xvYmFsIEZlZWQiCiAgLSBsaW5rICJkYXZlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9kYXZlIgogICAgLSBpbWcgImRhdmUiCiAgLSBsaW5rICJkYXZlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9kYXZlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkRhdmUncyBwb3N0IDMgUG9zdCAzIGJ5IGRhdmUgUmVhZCBtb3JlLi4uIHBsYXl3cmlnaHQgcmVhY3QiOgogICAgLSAvdXJsOiAiIy9hcnRpY2xlL2RhdmUtcy1wb3N0LTMiCiAgICAtIGhlYWRpbmcgIkRhdmUncyBwb3N0IDMiIFtsZXZlbD0xXQogICAgLSBwYXJhZ3JhcGg6IFBvc3QgMyBieSBkYXZlCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiBwbGF5d3JpZ2h0CiAgICAgIC0gbGlzdGl0ZW06IHJlYWN0CiAgLSBsaW5rICJkYXZlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9kYXZlIgogICAgLSBpbWcgImRhdmUiCiAgLSBsaW5rICJkYXZlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9kYXZlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkRhdmUncyBwb3N0IDIgUG9zdCAyIGJ5IGRhdmUgUmVhZCBtb3JlLi4uIHBsYXl3cmlnaHQgdGVzdGluZyI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvZGF2ZS1zLXBvc3QtMiIKICAgIC0gaGVhZGluZyAiRGF2ZSdzIHBvc3QgMiIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAyIGJ5IGRhdmUKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiZGF2ZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvZGF2ZSIKICAgIC0gaW1nICJkYXZlIgogIC0gbGluayAiZGF2ZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvZGF2ZSIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLvhYEgKCAxICkiCiAgLSBsaW5rICJEYXZlJ3MgcG9zdCAxIFBvc3QgMSBieSBkYXZlIFJlYWQgbW9yZS4uLiBkZXNpZ24gdGVzdGluZyI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvZGF2ZS1zLXBvc3QtMSIKICAgIC0gaGVhZGluZyAiRGF2ZSdzIHBvc3QgMSIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAxIGJ5IGRhdmUKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IGRlc2lnbgogICAgICAtIGxpc3RpdGVtOiB0ZXN0aW5nCiAgLSBuYXZpZ2F0aW9uICJQYWdpbmF0aW9uIjoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQcmV2aW91cyBwYWdlIiBbZGlzYWJsZWRdOiDvhIcKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDEgaXMgeW91ciBjdXJyZW50IHBhZ2UiOiAiMSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDIiOiAiMiIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDMiOiAiMyIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDQiOiAiNCIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJOZXh0IHBhZ2UiOiDvhIoKICAtIGNvbXBsZW1lbnRhcnk6CiAgICAtIGhlYWRpbmcgIlBvcHVsYXIgVGFncyIgW2xldmVsPTZdCiAgICAtIGJ1dHRvbiAicGxheXdyaWdodCIKICAgIC0gYnV0dG9uICJyZWFjdCIKICAgIC0gYnV0dG9uICJwb3N0Z3JlcyIKICAgIC0gYnV0dG9uICJkZXNpZ24iCiAgICAtIGJ1dHRvbiAidGVzdGluZyIKLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+KniBMb2dpbiI6CiAgICAgICAgICAtIC91cmw6ICIjL2xvZ2luIgogICAgICAtIGxpc3RpdGVtOgogICAgICAgIC0gbGluayAiU2lnbiB1cCI6CiAgICAgICAgICAtIC91cmw6ICIjL3JlZ2lzdGVyIgotIG1haW46CiAgLSBoZWFkaW5nICJTaWduIHVwIiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDoKICAgIC0gbGluayAiU2lnbiBpbiB0byB5b3VyIGFjY291bnQiOgogICAgICAtIC91cmw6ICIjL2xvZ2luIgogIC0gZ3JvdXA6CiAgICAtIHRleHRib3ggIllvdXIgTmFtZSIKICAtIGdyb3VwOgogICAgLSB0ZXh0Ym94ICJFbWFpbCIKICAtIGdyb3VwOgogICAgLSB0ZXh0Ym94ICJQYXNzd29yZCIKICAtIGJ1dHRvbiAiU2lnbiB1cCIKLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "eyJuZXdfdXNlcl9uYW1lIjoiU2hlcmkyMyJ9"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow03-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow03-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow03-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow03-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 34,
+                    "line": 88
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-0c1a7b9dc1eff1ac5d45",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow04",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "13"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8451,
+                  "error": {
+                    "message": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('heading', { name: 'title' }) to be visible\u001b[22m\n",
+                    "stack": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('heading', { name: 'title' }) to be visible\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:91:38)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 38,
+                      "line": 91
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:91\n\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));\n  90 |     case 'press': return step.target ? target().press(step.key) : page.keyboard.press(step.key);\n> 91 |     case 'wait_for': return target().waitFor({ state: step.state });\n     |                                      ^\n  92 |     case 'viewport': return page.setViewportSize(VIEWPORTS[step.preset as keyof typeof VIEWPORTS]);\n  93 |     case 'upload': throw new Error('upload: $fixture files not supported yet');\n  94 |     case 'helper': throw new Error(`helper \"${step.name}\": no helpers are registered`);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 38,
+                        "line": 91
+                      },
+                      "message": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('heading', { name: 'title' }) to be visible\u001b[22m\n\n\n   at steps.ts:91\n\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));\n  90 |     case 'press': return step.target ? target().press(step.key) : page.keyboard.press(step.key);\n> 91 |     case 'wait_for': return target().waitFor({ state: step.state });\n     |                                      ^\n  92 |     case 'viewport': return page.setViewportSize(VIEWPORTS[step.preset as keyof typeof VIEWPORTS]);\n  93 |     case 'upload': throw new Error('upload: $fixture files not supported yet');\n  94 |     case 'helper': throw new Error(`helper \"${step.name}\": no helpers are registered`);\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:91:38)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 398
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 37
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 8
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 1627
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 11
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 433
+                    },
+                    {
+                      "title": "7. goto",
+                      "duration": 8
+                    },
+                    {
+                      "title": "8. fill",
+                      "duration": 12
+                    },
+                    {
+                      "title": "9. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "10. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "11. fill",
+                      "duration": 12
+                    },
+                    {
+                      "title": "12. click",
+                      "duration": 420
+                    },
+                    {
+                      "title": "13. wait_for",
+                      "duration": 5018,
+                      "error": {
+                        "message": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('heading', { name: 'title' }) to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('heading', { name: 'title' }) to be visible\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:91:38)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 38,
+                          "line": 91
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:91\n\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));\n  90 |     case 'press': return step.target ? target().press(step.key) : page.keyboard.press(step.key);\n> 91 |     case 'wait_for': return target().waitFor({ state: step.state });\n     |                                      ^\n  92 |     case 'viewport': return page.setViewportSize(VIEWPORTS[step.preset as keyof typeof VIEWPORTS]);\n  93 |     case 'upload': throw new Error('upload: $fixture files not supported yet');\n  94 |     case 'helper': throw new Error(`helper \"${step.name}\": no helpers are registered`);"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:41:06.711Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "13"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIllvdXIgRmVlZCIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJHbG9iYWwgRmVlZCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAgIC0gaW1nICJjYXJvbCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLvhYEgKCAwICkiCiAgLSBsaW5rICJDYXJvbCdzIHBvc3QgMyBQb3N0IDMgYnkgY2Fyb2wgUmVhZCBtb3JlLi4uIHBsYXl3cmlnaHQgdGVzdGluZyI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvY2Fyb2wtcy1wb3N0LTMiCiAgICAtIGhlYWRpbmcgIkNhcm9sJ3MgcG9zdCAzIiBbbGV2ZWw9MV0KICAgIC0gcGFyYWdyYXBoOiBQb3N0IDMgYnkgY2Fyb2wKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAyIFBvc3QgMiBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHRlc3RpbmciOgogICAgLSAvdXJsOiAiIy9hcnRpY2xlL2Nhcm9sLXMtcG9zdC0yIgogICAgLSBoZWFkaW5nICJDYXJvbCdzIHBvc3QgMiIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAyIGJ5IGNhcm9sCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiBkZXNpZ24KICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDEgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAxIFBvc3QgMSBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHBvc3RncmVzIjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS9jYXJvbC1zLXBvc3QtMSIKICAgIC0gaGVhZGluZyAiQ2Fyb2wncyBwb3N0IDEiIFtsZXZlbD0xXQogICAgLSBwYXJhZ3JhcGg6IFBvc3QgMSBieSBjYXJvbAogICAgLSB0ZXh0OiBSZWFkIG1vcmUuLi4KICAgIC0gbGlzdDoKICAgICAgLSBsaXN0aXRlbTogZGVzaWduCiAgICAgIC0gbGlzdGl0ZW06IHBvc3RncmVzCiAgLSBuYXZpZ2F0aW9uICJQYWdpbmF0aW9uIjoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQcmV2aW91cyBwYWdlIiBbZGlzYWJsZWRdOiDvhIcKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDEgaXMgeW91ciBjdXJyZW50IHBhZ2UiOiAiMSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDIiOiAiMiIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJOZXh0IHBhZ2UiOiDvhIoKICAtIGNvbXBsZW1lbnRhcnk6CiAgICAtIGhlYWRpbmcgIlBvcHVsYXIgVGFncyIgW2xldmVsPTZdCiAgICAtIGJ1dHRvbiAicGxheXdyaWdodCIKICAgIC0gYnV0dG9uICJyZWFjdCIKICAgIC0gYnV0dG9uICJwb3N0Z3JlcyIKICAgIC0gYnV0dG9uICJkZXNpZ24iCiAgICAtIGJ1dHRvbiAidGVzdGluZyIKLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBoZWFkaW5nICJUYXR5YW5hODMiIFtsZXZlbD0xXQogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogICAgLSBpbWcgImFsaWNlIgogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+JkiBEZWxldGUgQXJ0aWNsZSIKICAtIGJ1dHRvbiAi74q/IEVkaXQgQXJ0aWNsZSI6CiAgICAtIGxpbmsgIu+KvyBFZGl0IEFydGljbGUiOgogICAgICAtIC91cmw6ICIjL2VkaXRvci90YXR5YW5hODMiCiAgLSBwYXJhZ3JhcGg6IElwc2FtIGFudGlxdXVzIGNhdGVuYSBhcGVyaW8gY2FsY3VsdXMgZGVsZWN0dXMgcGVjdG8gYm9udXMuIEluZml0IHRlcnJlbyBzdXNjaXBpdCBhZ28gdm9taWNhIHN1bW1hIGFkaW1wbGVvIHZhbGV0dWRvIHVuZGUuIERlYml0aXMgc29sdXRpbyBjcmluaXMgY3JlcHVzY3VsdW0gYXJ0aWZpY2lvc2UgdGV4byB2dWxhcml0ZXIgZG9sb3IgY29tbW9kby4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOiB0YWcxCiAgICAtIGxpc3RpdGVtOiB0YWcyCiAgLSBzZXBhcmF0b3IKICAtIGxpbmsgImFsaWNlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9hbGljZSIKICAgIC0gaW1nICJhbGljZSIKICAtIGxpbmsgImFsaWNlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9hbGljZSIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLviZIgRGVsZXRlIEFydGljbGUiCiAgLSBidXR0b24gIu+KvyBFZGl0IEFydGljbGUiOgogICAgLSBsaW5rICLvir8gRWRpdCBBcnRpY2xlIjoKICAgICAgLSAvdXJsOiAiIy9lZGl0b3IvdGF0eWFuYTgzIgogIC0gdGV4dGJveCAiV3JpdGUgYSBjb21tZW50Li4uIgogIC0gaW1nICJhbGljZSIKICAtIGJ1dHRvbiAiUG9zdCBDb21tZW50IgogIC0gdGV4dDogVGhlcmUgYXJlIG5vIGNvbW1lbnRzIHlldC4uLgotIGNvbnRlbnRpbmZvOgogIC0gbGluayAiY29uZHVpdCI6CiAgICAtIC91cmw6ICIjLyIKICAtIHRleHQ6IEFuIGludGVyYWN0aXZlIGxlYXJuaW5nIHByb2plY3QgZnJvbQogIC0gbGluayAiVGhpbmtzdGVyIjoKICAgIC0gL3VybDogaHR0cHM6Ly90aGlua3N0ZXIuaW8KICAtIHRleHQ6IC4gQ29kZSAmIGRlc2lnbiBsaWNlbnNlZCB1bmRlciBNSVQuCiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgIC0gL3VybDogaHR0cHM6Ly9naXRodWIuY29tL1RvbnlNY2tlcy9jb25kdWl0LXJlYWx3b3JsZC1leGFtcGxlLWFwcA=="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "eyJ0aXRsZSI6IlRhdHlhbmE4MyIsImRlc2NyaXB0aW9uIjoiQ2xhbW8gdmlsaWN1cyBjaWN1dGEuIiwiYm9keSI6Iklwc2FtIGFudGlxdXVzIGNhdGVuYSBhcGVyaW8gY2FsY3VsdXMgZGVsZWN0dXMgcGVjdG8gYm9udXMuIEluZml0IHRlcnJlbyBzdXNjaXBpdCBhZ28gdm9taWNhIHN1bW1hIGFkaW1wbGVvIHZhbGV0dWRvIHVuZGUuIERlYml0aXMgc29sdXRpbyBjcmluaXMgY3JlcHVzY3VsdW0gYXJ0aWZpY2lvc2UgdGV4byB2dWxhcml0ZXIgZG9sb3IgY29tbW9kby4ifQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow04-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow04-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow04-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow04-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 38,
+                    "line": 91
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-a8a7e752380bc2dfc66a",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow05",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "7"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6810,
+                  "error": {
+                    "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Dave\\'s post 3 Read more...')\u001b[22m\n",
+                    "stack": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Dave\\'s post 3 Read more...')\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 35,
+                      "line": 84
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 35,
+                        "line": 84
+                      },
+                      "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Dave\\'s post 3 Read more...')\u001b[22m\n\n\n   at steps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 394
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 42
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 14
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 487
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 13
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 439
+                    },
+                    {
+                      "title": "7. click",
+                      "duration": 5017,
+                      "error": {
+                        "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Dave\\'s post 3 Read more...')\u001b[22m\n",
+                        "stack": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Dave\\'s post 3 Read more...')\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 35,
+                          "line": 84
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:41:15.973Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "7"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBoZWFkaW5nICJEYXZlJ3MgcG9zdCAzIiBbbGV2ZWw9MV0KICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74iXIEZvbGxvdyBkYXZlICggMCApIgogIC0gYnV0dG9uICLvhYEgRmF2b3JpdGUgKCAwICkiCiAgLSBoZWFkaW5nICJIZWFkaW5nIiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDoKICAgIC0gdGV4dDogQm9keSBvZiBwb3N0IDMgYnkKICAgIC0gc3Ryb25nOiBkYXZlCiAgICAtIHRleHQ6IC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOiBvbmUKICAgIC0gbGlzdGl0ZW06IHR3bwogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgIC0gbGlzdGl0ZW06IHJlYWN0CiAgLSBzZXBhcmF0b3IKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74iXIEZvbGxvdyBkYXZlICggMCApIgogIC0gYnV0dG9uICLvhYEgRmF2b3JpdGUgKCAwICkiCiAgLSB0ZXh0Ym94ICJXcml0ZSBhIGNvbW1lbnQuLi4iCiAgLSBpbWcgImFsaWNlIgogIC0gYnV0dG9uICJQb3N0IENvbW1lbnQiCiAgLSBwYXJhZ3JhcGg6IENvbW1lbnQgZnJvbSBhbGljZQogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogICAgLSBpbWcgImFsaWNlIgogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+JkiIKLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBoZWFkaW5nICJEYXZlJ3MgcG9zdCAzIiBbbGV2ZWw9MV0KICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74iXIEZvbGxvdyBkYXZlICggMCApIgogIC0gYnV0dG9uICLvhYEgRmF2b3JpdGUgKCAwICkiCiAgLSBoZWFkaW5nICJIZWFkaW5nIiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDoKICAgIC0gdGV4dDogQm9keSBvZiBwb3N0IDMgYnkKICAgIC0gc3Ryb25nOiBkYXZlCiAgICAtIHRleHQ6IC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOiBvbmUKICAgIC0gbGlzdGl0ZW06IHR3bwogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgIC0gbGlzdGl0ZW06IHJlYWN0CiAgLSBzZXBhcmF0b3IKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74iXIEZvbGxvdyBkYXZlICggMCApIgogIC0gYnV0dG9uICLvhYEgRmF2b3JpdGUgKCAwICkiCiAgLSB0ZXh0Ym94ICJXcml0ZSBhIGNvbW1lbnQuLi4iCiAgLSBpbWcgImFsaWNlIgogIC0gYnV0dG9uICJQb3N0IENvbW1lbnQiCiAgLSBwYXJhZ3JhcGg6IENvbW1lbnQgZnJvbSBhbGljZQogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogICAgLSBpbWcgImFsaWNlIgogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+JkiIKLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow05-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow05-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow05-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow05-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 35,
+                    "line": 84
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-329b45d6243599b0fcf4",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow06",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "2"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1044,
+                  "error": {
+                    "message": "Error: locator.click: Error: strict mode violation: getByText('react') resolved to 2 elements:\n    1) <li class=\"tag-default tag-pill tag-outline\">react</li> aka getByRole('link', { name: 'Dave\\'s post 3 Post 3 by dave' })\n    2) <button class=\"tag-pill tag-default\">react</button> aka getByRole('button', { name: 'react' })\n\nCall log:\n\u001b[2m  - waiting for getByText('react')\u001b[22m\n",
+                    "stack": "Error: locator.click: Error: strict mode violation: getByText('react') resolved to 2 elements:\n    1) <li class=\"tag-default tag-pill tag-outline\">react</li> aka getByRole('link', { name: 'Dave\\'s post 3 Post 3 by dave' })\n    2) <button class=\"tag-pill tag-default\">react</button> aka getByRole('button', { name: 'react' })\n\nCall log:\n\u001b[2m  - waiting for getByText('react')\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 35,
+                      "line": 84
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 35,
+                        "line": 84
+                      },
+                      "message": "Error: locator.click: Error: strict mode violation: getByText('react') resolved to 2 elements:\n    1) <li class=\"tag-default tag-pill tag-outline\">react</li> aka getByRole('link', { name: 'Dave\\'s post 3 Post 3 by dave' })\n    2) <button class=\"tag-pill tag-default\">react</button> aka getByRole('button', { name: 'react' })\n\nCall log:\n\u001b[2m  - waiting for getByText('react')\u001b[22m\n\n\n   at steps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 780
+                    },
+                    {
+                      "title": "2. click",
+                      "duration": 23,
+                      "error": {
+                        "message": "Error: locator.click: Error: strict mode violation: getByText('react') resolved to 2 elements:\n    1) <li class=\"tag-default tag-pill tag-outline\">react</li> aka getByRole('link', { name: 'Dave\\'s post 3 Post 3 by dave' })\n    2) <button class=\"tag-pill tag-default\">react</button> aka getByRole('button', { name: 'react' })\n\nCall log:\n\u001b[2m  - waiting for getByText('react')\u001b[22m\n",
+                        "stack": "Error: locator.click: Error: strict mode violation: getByText('react') resolved to 2 elements:\n    1) <li class=\"tag-default tag-pill tag-outline\">react</li> aka getByRole('link', { name: 'Dave\\'s post 3 Post 3 by dave' })\n    2) <button class=\"tag-pill tag-default\">react</button> aka getByRole('button', { name: 'react' })\n\nCall log:\n\u001b[2m  - waiting for getByText('react')\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 35,
+                          "line": 84
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:41:23.603Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "2"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+KniBMb2dpbiI6CiAgICAgICAgICAtIC91cmw6ICIjL2xvZ2luIgogICAgICAtIGxpc3RpdGVtOgogICAgICAgIC0gbGluayAiU2lnbiB1cCI6CiAgICAgICAgICAtIC91cmw6ICIjL3JlZ2lzdGVyIgotIG1haW46CiAgLSBoZWFkaW5nICJjb25kdWl0IiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDogQSBwbGFjZSB0byBzaGFyZSB5b3VyIGtub3dsZWRnZS4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGJ1dHRvbiAiR2xvYmFsIEZlZWQiCiAgLSBsaW5rICJhbGljZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvYWxpY2UiCiAgICAtIGltZyAiYWxpY2UiCiAgLSBsaW5rICJhbGljZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvYWxpY2UiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74WBICggMCApIgogIC0gbGluayAiVGF0eWFuYTgzIENsYW1vIHZpbGljdXMgY2ljdXRhLiBSZWFkIG1vcmUuLi4gdGFnMSB0YWcyIjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS90YXR5YW5hODMiCiAgICAtIGhlYWRpbmcgIlRhdHlhbmE4MyIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogQ2xhbW8gdmlsaWN1cyBjaWN1dGEuCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiB0YWcxCiAgICAgIC0gbGlzdGl0ZW06IHRhZzIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74WBICggMCApIgogIC0gbGluayAiRGF2ZSdzIHBvc3QgMyBQb3N0IDMgYnkgZGF2ZSBSZWFkIG1vcmUuLi4gcGxheXdyaWdodCByZWFjdCI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvZGF2ZS1zLXBvc3QtMyIKICAgIC0gaGVhZGluZyAiRGF2ZSdzIHBvc3QgMyIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAzIGJ5IGRhdmUKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgICAgLSBsaXN0aXRlbTogcmVhY3QKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74WBICggMCApIgogIC0gbGluayAiRGF2ZSdzIHBvc3QgMiBQb3N0IDIgYnkgZGF2ZSBSZWFkIG1vcmUuLi4gcGxheXdyaWdodCB0ZXN0aW5nIjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS9kYXZlLXMtcG9zdC0yIgogICAgLSBoZWFkaW5nICJEYXZlJ3MgcG9zdCAyIiBbbGV2ZWw9MV0KICAgIC0gcGFyYWdyYXBoOiBQb3N0IDIgYnkgZGF2ZQogICAgLSB0ZXh0OiBSZWFkIG1vcmUuLi4KICAgIC0gbGlzdDoKICAgICAgLSBsaXN0aXRlbTogcGxheXdyaWdodAogICAgICAtIGxpc3RpdGVtOiB0ZXN0aW5nCiAgLSBuYXZpZ2F0aW9uICJQYWdpbmF0aW9uIjoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQcmV2aW91cyBwYWdlIiBbZGlzYWJsZWRdOiDvhIcKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDEgaXMgeW91ciBjdXJyZW50IHBhZ2UiOiAiMSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDIiOiAiMiIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDMiOiAiMyIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDQiOiAiNCIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDUiOiAiNSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJOZXh0IHBhZ2UiOiDvhIoKICAtIGNvbXBsZW1lbnRhcnk6CiAgICAtIGhlYWRpbmcgIlBvcHVsYXIgVGFncyIgW2xldmVsPTZdCiAgICAtIGJ1dHRvbiAicGxheXdyaWdodCIKICAgIC0gYnV0dG9uICJyZWFjdCIKICAgIC0gYnV0dG9uICJwb3N0Z3JlcyIKICAgIC0gYnV0dG9uICJkZXNpZ24iCiAgICAtIGJ1dHRvbiAidGVzdGluZyIKICAgIC0gYnV0dG9uICJ0YWcxIgogICAgLSBidXR0b24gInRhZzIiCi0gY29udGVudGluZm86CiAgLSBsaW5rICJjb25kdWl0IjoKICAgIC0gL3VybDogIiMvIgogIC0gdGV4dDogQW4gaW50ZXJhY3RpdmUgbGVhcm5pbmcgcHJvamVjdCBmcm9tCiAgLSBsaW5rICJUaGlua3N0ZXIiOgogICAgLSAvdXJsOiBodHRwczovL3RoaW5rc3Rlci5pbwogIC0gdGV4dDogLiBDb2RlICYgZGVzaWduIGxpY2Vuc2VkIHVuZGVyIE1JVC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGxpbmsgIu+IsyBTb3VyY2UgY29kZSI6CiAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBw"
+                    },
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+KniBMb2dpbiI6CiAgICAgICAgICAtIC91cmw6ICIjL2xvZ2luIgogICAgICAtIGxpc3RpdGVtOgogICAgICAgIC0gbGluayAiU2lnbiB1cCI6CiAgICAgICAgICAtIC91cmw6ICIjL3JlZ2lzdGVyIgotIG1haW46CiAgLSBoZWFkaW5nICJjb25kdWl0IiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDogQSBwbGFjZSB0byBzaGFyZSB5b3VyIGtub3dsZWRnZS4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGJ1dHRvbiAiR2xvYmFsIEZlZWQiCiAgLSBsaW5rICJhbGljZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvYWxpY2UiCiAgICAtIGltZyAiYWxpY2UiCiAgLSBsaW5rICJhbGljZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvYWxpY2UiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74WBICggMCApIgogIC0gbGluayAiVGF0eWFuYTgzIENsYW1vIHZpbGljdXMgY2ljdXRhLiBSZWFkIG1vcmUuLi4gdGFnMSB0YWcyIjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS90YXR5YW5hODMiCiAgICAtIGhlYWRpbmcgIlRhdHlhbmE4MyIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogQ2xhbW8gdmlsaWN1cyBjaWN1dGEuCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiB0YWcxCiAgICAgIC0gbGlzdGl0ZW06IHRhZzIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74WBICggMCApIgogIC0gbGluayAiRGF2ZSdzIHBvc3QgMyBQb3N0IDMgYnkgZGF2ZSBSZWFkIG1vcmUuLi4gcGxheXdyaWdodCByZWFjdCI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvZGF2ZS1zLXBvc3QtMyIKICAgIC0gaGVhZGluZyAiRGF2ZSdzIHBvc3QgMyIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAzIGJ5IGRhdmUKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgICAgLSBsaXN0aXRlbTogcmVhY3QKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74WBICggMCApIgogIC0gbGluayAiRGF2ZSdzIHBvc3QgMiBQb3N0IDIgYnkgZGF2ZSBSZWFkIG1vcmUuLi4gcGxheXdyaWdodCB0ZXN0aW5nIjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS9kYXZlLXMtcG9zdC0yIgogICAgLSBoZWFkaW5nICJEYXZlJ3MgcG9zdCAyIiBbbGV2ZWw9MV0KICAgIC0gcGFyYWdyYXBoOiBQb3N0IDIgYnkgZGF2ZQogICAgLSB0ZXh0OiBSZWFkIG1vcmUuLi4KICAgIC0gbGlzdDoKICAgICAgLSBsaXN0aXRlbTogcGxheXdyaWdodAogICAgICAtIGxpc3RpdGVtOiB0ZXN0aW5nCiAgLSBuYXZpZ2F0aW9uICJQYWdpbmF0aW9uIjoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQcmV2aW91cyBwYWdlIiBbZGlzYWJsZWRdOiDvhIcKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDEgaXMgeW91ciBjdXJyZW50IHBhZ2UiOiAiMSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDIiOiAiMiIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDMiOiAiMyIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDQiOiAiNCIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDUiOiAiNSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJOZXh0IHBhZ2UiOiDvhIoKICAtIGNvbXBsZW1lbnRhcnk6CiAgICAtIGhlYWRpbmcgIlBvcHVsYXIgVGFncyIgW2xldmVsPTZdCiAgICAtIGJ1dHRvbiAicGxheXdyaWdodCIKICAgIC0gYnV0dG9uICJyZWFjdCIKICAgIC0gYnV0dG9uICJwb3N0Z3JlcyIKICAgIC0gYnV0dG9uICJkZXNpZ24iCiAgICAtIGJ1dHRvbiAidGVzdGluZyIKICAgIC0gYnV0dG9uICJ0YWcxIgogICAgLSBidXR0b24gInRhZzIiCi0gY29udGVudGluZm86CiAgLSBsaW5rICJjb25kdWl0IjoKICAgIC0gL3VybDogIiMvIgogIC0gdGV4dDogQW4gaW50ZXJhY3RpdmUgbGVhcm5pbmcgcHJvamVjdCBmcm9tCiAgLSBsaW5rICJUaGlua3N0ZXIiOgogICAgLSAvdXJsOiBodHRwczovL3RoaW5rc3Rlci5pbwogIC0gdGV4dDogLiBDb2RlICYgZGVzaWduIGxpY2Vuc2VkIHVuZGVyIE1JVC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGxpbmsgIu+IsyBTb3VyY2UgY29kZSI6CiAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBw"
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow06-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow06-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow06-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow06-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 35,
+                    "line": 84
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-5dfad0e19937ee7fae25",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow07",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "7"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1600,
+                  "error": {
+                    "message": "Error: locator.click: Error: strict mode violation: getByText('Favorite ( 0 )') resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).nth(1)\n\nCall log:\n\u001b[2m  - waiting for getByText('Favorite ( 0 )')\u001b[22m\n",
+                    "stack": "Error: locator.click: Error: strict mode violation: getByText('Favorite ( 0 )') resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).nth(1)\n\nCall log:\n\u001b[2m  - waiting for getByText('Favorite ( 0 )')\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 35,
+                      "line": 84
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 35,
+                        "line": 84
+                      },
+                      "message": "Error: locator.click: Error: strict mode violation: getByText('Favorite ( 0 )') resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).nth(1)\n\nCall log:\n\u001b[2m  - waiting for getByText('Favorite ( 0 )')\u001b[22m\n\n\n   at steps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 335
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 42
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 11
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 492
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 11
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 439
+                    },
+                    {
+                      "title": "7. click",
+                      "duration": 22,
+                      "error": {
+                        "message": "Error: locator.click: Error: strict mode violation: getByText('Favorite ( 0 )') resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).nth(1)\n\nCall log:\n\u001b[2m  - waiting for getByText('Favorite ( 0 )')\u001b[22m\n",
+                        "stack": "Error: locator.click: Error: strict mode violation: getByText('Favorite ( 0 )') resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).nth(1)\n\nCall log:\n\u001b[2m  - waiting for getByText('Favorite ( 0 )')\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 35,
+                          "line": 84
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:41:25.438Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "7"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBoZWFkaW5nICJEYXZlJ3MgcG9zdCAzIiBbbGV2ZWw9MV0KICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74iXIEZvbGxvdyBkYXZlICggMCApIgogIC0gYnV0dG9uICLvhYEgRmF2b3JpdGUgKCAwICkiCiAgLSBoZWFkaW5nICJIZWFkaW5nIiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDoKICAgIC0gdGV4dDogQm9keSBvZiBwb3N0IDMgYnkKICAgIC0gc3Ryb25nOiBkYXZlCiAgICAtIHRleHQ6IC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOiBvbmUKICAgIC0gbGlzdGl0ZW06IHR3bwogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgIC0gbGlzdGl0ZW06IHJlYWN0CiAgLSBzZXBhcmF0b3IKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74iXIEZvbGxvdyBkYXZlICggMCApIgogIC0gYnV0dG9uICLvhYEgRmF2b3JpdGUgKCAwICkiCiAgLSB0ZXh0Ym94ICJXcml0ZSBhIGNvbW1lbnQuLi4iCiAgLSBpbWcgImFsaWNlIgogIC0gYnV0dG9uICJQb3N0IENvbW1lbnQiCiAgLSBwYXJhZ3JhcGg6IENvbW1lbnQgZnJvbSBhbGljZQogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogICAgLSBpbWcgImFsaWNlIgogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+JkiIKLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBoZWFkaW5nICJEYXZlJ3MgcG9zdCAzIiBbbGV2ZWw9MV0KICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74iXIEZvbGxvdyBkYXZlICggMCApIgogIC0gYnV0dG9uICLvhYEgRmF2b3JpdGUgKCAwICkiCiAgLSBoZWFkaW5nICJIZWFkaW5nIiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDoKICAgIC0gdGV4dDogQm9keSBvZiBwb3N0IDMgYnkKICAgIC0gc3Ryb25nOiBkYXZlCiAgICAtIHRleHQ6IC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOiBvbmUKICAgIC0gbGlzdGl0ZW06IHR3bwogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgIC0gbGlzdGl0ZW06IHJlYWN0CiAgLSBzZXBhcmF0b3IKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74iXIEZvbGxvdyBkYXZlICggMCApIgogIC0gYnV0dG9uICLvhYEgRmF2b3JpdGUgKCAwICkiCiAgLSB0ZXh0Ym94ICJXcml0ZSBhIGNvbW1lbnQuLi4iCiAgLSBpbWcgImFsaWNlIgogIC0gYnV0dG9uICJQb3N0IENvbW1lbnQiCiAgLSBwYXJhZ3JhcGg6IENvbW1lbnQgZnJvbSBhbGljZQogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogICAgLSBpbWcgImFsaWNlIgogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+JkiIKLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow07-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow07-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow07-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow07-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 35,
+                    "line": 84
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-c3ce68e9e2989e39a6d1",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow08",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2439,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 385
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 40
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 12
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 499
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 13
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 430
+                    },
+                    {
+                      "title": "7. click",
+                      "duration": 355
+                    },
+                    {
+                      "title": "8. wait_for",
+                      "duration": 6
+                    },
+                    {
+                      "title": "9. wait_for",
+                      "duration": 5
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:41:27.843Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIllvdXIgRmVlZCIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJHbG9iYWwgRmVlZCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAgIC0gaW1nICJjYXJvbCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLvhYEgKCAwICkiCiAgLSBsaW5rICJDYXJvbCdzIHBvc3QgMyBQb3N0IDMgYnkgY2Fyb2wgUmVhZCBtb3JlLi4uIHBsYXl3cmlnaHQgdGVzdGluZyI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvY2Fyb2wtcy1wb3N0LTMiCiAgICAtIGhlYWRpbmcgIkNhcm9sJ3MgcG9zdCAzIiBbbGV2ZWw9MV0KICAgIC0gcGFyYWdyYXBoOiBQb3N0IDMgYnkgY2Fyb2wKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAyIFBvc3QgMiBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHRlc3RpbmciOgogICAgLSAvdXJsOiAiIy9hcnRpY2xlL2Nhcm9sLXMtcG9zdC0yIgogICAgLSBoZWFkaW5nICJDYXJvbCdzIHBvc3QgMiIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAyIGJ5IGNhcm9sCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiBkZXNpZ24KICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDEgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAxIFBvc3QgMSBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHBvc3RncmVzIjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS9jYXJvbC1zLXBvc3QtMSIKICAgIC0gaGVhZGluZyAiQ2Fyb2wncyBwb3N0IDEiIFtsZXZlbD0xXQogICAgLSBwYXJhZ3JhcGg6IFBvc3QgMSBieSBjYXJvbAogICAgLSB0ZXh0OiBSZWFkIG1vcmUuLi4KICAgIC0gbGlzdDoKICAgICAgLSBsaXN0aXRlbTogZGVzaWduCiAgICAgIC0gbGlzdGl0ZW06IHBvc3RncmVzCiAgLSBuYXZpZ2F0aW9uICJQYWdpbmF0aW9uIjoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQcmV2aW91cyBwYWdlIiBbZGlzYWJsZWRdOiDvhIcKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDEgaXMgeW91ciBjdXJyZW50IHBhZ2UiOiAiMSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDIiOiAiMiIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJOZXh0IHBhZ2UiOiDvhIoKICAtIGNvbXBsZW1lbnRhcnk6CiAgICAtIGhlYWRpbmcgIlBvcHVsYXIgVGFncyIgW2xldmVsPTZdCiAgICAtIGJ1dHRvbiAicGxheXdyaWdodCIKICAgIC0gYnV0dG9uICJyZWFjdCIKICAgIC0gYnV0dG9uICJwb3N0Z3JlcyIKICAgIC0gYnV0dG9uICJkZXNpZ24iCiAgICAtIGJ1dHRvbiAidGVzdGluZyIKICAgIC0gYnV0dG9uICJ0YWcxIgogICAgLSBidXR0b24gInRhZzIiCi0gY29udGVudGluZm86CiAgLSBsaW5rICJjb25kdWl0IjoKICAgIC0gL3VybDogIiMvIgogIC0gdGV4dDogQW4gaW50ZXJhY3RpdmUgbGVhcm5pbmcgcHJvamVjdCBmcm9tCiAgLSBsaW5rICJUaGlua3N0ZXIiOgogICAgLSAvdXJsOiBodHRwczovL3RoaW5rc3Rlci5pbwogIC0gdGV4dDogLiBDb2RlICYgZGVzaWduIGxpY2Vuc2VkIHVuZGVyIE1JVC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGxpbmsgIu+IsyBTb3VyY2UgY29kZSI6CiAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBw"
+                    },
+                    {
+                      "name": "final-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIllvdXIgRmVlZCIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJHbG9iYWwgRmVlZCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAgIC0gaW1nICJjYXJvbCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLvhYEgKCAwICkiCiAgLSBsaW5rICJDYXJvbCdzIHBvc3QgMyBQb3N0IDMgYnkgY2Fyb2wgUmVhZCBtb3JlLi4uIHBsYXl3cmlnaHQgdGVzdGluZyI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvY2Fyb2wtcy1wb3N0LTMiCiAgICAtIGhlYWRpbmcgIkNhcm9sJ3MgcG9zdCAzIiBbbGV2ZWw9MV0KICAgIC0gcGFyYWdyYXBoOiBQb3N0IDMgYnkgY2Fyb2wKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAyIFBvc3QgMiBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHRlc3RpbmciOgogICAgLSAvdXJsOiAiIy9hcnRpY2xlL2Nhcm9sLXMtcG9zdC0yIgogICAgLSBoZWFkaW5nICJDYXJvbCdzIHBvc3QgMiIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAyIGJ5IGNhcm9sCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiBkZXNpZ24KICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDEgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAxIFBvc3QgMSBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHBvc3RncmVzIjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS9jYXJvbC1zLXBvc3QtMSIKICAgIC0gaGVhZGluZyAiQ2Fyb2wncyBwb3N0IDEiIFtsZXZlbD0xXQogICAgLSBwYXJhZ3JhcGg6IFBvc3QgMSBieSBjYXJvbAogICAgLSB0ZXh0OiBSZWFkIG1vcmUuLi4KICAgIC0gbGlzdDoKICAgICAgLSBsaXN0aXRlbTogZGVzaWduCiAgICAgIC0gbGlzdGl0ZW06IHBvc3RncmVzCiAgLSBuYXZpZ2F0aW9uICJQYWdpbmF0aW9uIjoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQcmV2aW91cyBwYWdlIiBbZGlzYWJsZWRdOiDvhIcKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDEgaXMgeW91ciBjdXJyZW50IHBhZ2UiOiAiMSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDIiOiAiMiIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJOZXh0IHBhZ2UiOiDvhIoKICAtIGNvbXBsZW1lbnRhcnk6CiAgICAtIGhlYWRpbmcgIlBvcHVsYXIgVGFncyIgW2xldmVsPTZdCiAgICAtIGJ1dHRvbiAicGxheXdyaWdodCIKICAgIC0gYnV0dG9uICJyZWFjdCIKICAgIC0gYnV0dG9uICJwb3N0Z3JlcyIKICAgIC0gYnV0dG9uICJkZXNpZ24iCiAgICAtIGJ1dHRvbiAidGVzdGluZyIKICAgIC0gYnV0dG9uICJ0YWcxIgogICAgLSBidXR0b24gInRhZzIiCi0gY29udGVudGluZm86CiAgLSBsaW5rICJjb25kdWl0IjoKICAgIC0gL3VybDogIiMvIgogIC0gdGV4dDogQW4gaW50ZXJhY3RpdmUgbGVhcm5pbmcgcHJvamVjdCBmcm9tCiAgLSBsaW5rICJUaGlua3N0ZXIiOgogICAgLSAvdXJsOiBodHRwczovL3RoaW5rc3Rlci5pbwogIC0gdGV4dDogLiBDb2RlICYgZGVzaWduIGxpY2Vuc2VkIHVuZGVyIE1JVC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGxpbmsgIu+IsyBTb3VyY2UgY29kZSI6CiAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBw"
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-3d3fc9f4b75ca061f9c3",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow09",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1901,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 740
+                    },
+                    {
+                      "title": "2. goto",
+                      "duration": 12
+                    },
+                    {
+                      "title": "3. wait_for",
+                      "duration": 28
+                    },
+                    {
+                      "title": "4. wait_for",
+                      "duration": 6
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 6
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:41:30.384Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+KniBMb2dpbiI6CiAgICAgICAgICAtIC91cmw6ICIjL2xvZ2luIgogICAgICAtIGxpc3RpdGVtOgogICAgICAgIC0gbGluayAiU2lnbiB1cCI6CiAgICAgICAgICAtIC91cmw6ICIjL3JlZ2lzdGVyIgotIG1haW46CiAgLSBoZWFkaW5nICJjb25kdWl0IiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDogQSBwbGFjZSB0byBzaGFyZSB5b3VyIGtub3dsZWRnZS4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGJ1dHRvbiAiR2xvYmFsIEZlZWQiCiAgLSBsaW5rICJhbGljZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvYWxpY2UiCiAgICAtIGltZyAiYWxpY2UiCiAgLSBsaW5rICJhbGljZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvYWxpY2UiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74WBICggMCApIgogIC0gbGluayAiVGF0eWFuYTgzIENsYW1vIHZpbGljdXMgY2ljdXRhLiBSZWFkIG1vcmUuLi4gdGFnMSB0YWcyIjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS90YXR5YW5hODMiCiAgICAtIGhlYWRpbmcgIlRhdHlhbmE4MyIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogQ2xhbW8gdmlsaWN1cyBjaWN1dGEuCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiB0YWcxCiAgICAgIC0gbGlzdGl0ZW06IHRhZzIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74WBICggMCApIgogIC0gbGluayAiRGF2ZSdzIHBvc3QgMyBQb3N0IDMgYnkgZGF2ZSBSZWFkIG1vcmUuLi4gcGxheXdyaWdodCByZWFjdCI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvZGF2ZS1zLXBvc3QtMyIKICAgIC0gaGVhZGluZyAiRGF2ZSdzIHBvc3QgMyIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAzIGJ5IGRhdmUKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgICAgLSBsaXN0aXRlbTogcmVhY3QKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74WBICggMCApIgogIC0gbGluayAiRGF2ZSdzIHBvc3QgMiBQb3N0IDIgYnkgZGF2ZSBSZWFkIG1vcmUuLi4gcGxheXdyaWdodCB0ZXN0aW5nIjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS9kYXZlLXMtcG9zdC0yIgogICAgLSBoZWFkaW5nICJEYXZlJ3MgcG9zdCAyIiBbbGV2ZWw9MV0KICAgIC0gcGFyYWdyYXBoOiBQb3N0IDIgYnkgZGF2ZQogICAgLSB0ZXh0OiBSZWFkIG1vcmUuLi4KICAgIC0gbGlzdDoKICAgICAgLSBsaXN0aXRlbTogcGxheXdyaWdodAogICAgICAtIGxpc3RpdGVtOiB0ZXN0aW5nCiAgLSBuYXZpZ2F0aW9uICJQYWdpbmF0aW9uIjoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQcmV2aW91cyBwYWdlIiBbZGlzYWJsZWRdOiDvhIcKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDEgaXMgeW91ciBjdXJyZW50IHBhZ2UiOiAiMSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDIiOiAiMiIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDMiOiAiMyIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDQiOiAiNCIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDUiOiAiNSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJOZXh0IHBhZ2UiOiDvhIoKICAtIGNvbXBsZW1lbnRhcnk6CiAgICAtIGhlYWRpbmcgIlBvcHVsYXIgVGFncyIgW2xldmVsPTZdCiAgICAtIGJ1dHRvbiAicGxheXdyaWdodCIKICAgIC0gYnV0dG9uICJyZWFjdCIKICAgIC0gYnV0dG9uICJwb3N0Z3JlcyIKICAgIC0gYnV0dG9uICJkZXNpZ24iCiAgICAtIGJ1dHRvbiAidGVzdGluZyIKICAgIC0gYnV0dG9uICJ0YWcxIgogICAgLSBidXR0b24gInRhZzIiCi0gY29udGVudGluZm86CiAgLSBsaW5rICJjb25kdWl0IjoKICAgIC0gL3VybDogIiMvIgogIC0gdGV4dDogQW4gaW50ZXJhY3RpdmUgbGVhcm5pbmcgcHJvamVjdCBmcm9tCiAgLSBsaW5rICJUaGlua3N0ZXIiOgogICAgLSAvdXJsOiBodHRwczovL3RoaW5rc3Rlci5pbwogIC0gdGV4dDogLiBDb2RlICYgZGVzaWduIGxpY2Vuc2VkIHVuZGVyIE1JVC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGxpbmsgIu+IsyBTb3VyY2UgY29kZSI6CiAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBw"
+                    },
+                    {
+                      "name": "final-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+KniBMb2dpbiI6CiAgICAgICAgICAtIC91cmw6ICIjL2xvZ2luIgogICAgICAtIGxpc3RpdGVtOgogICAgICAgIC0gbGluayAiU2lnbiB1cCI6CiAgICAgICAgICAtIC91cmw6ICIjL3JlZ2lzdGVyIgotIG1haW46CiAgLSBpbWcgImJvYiIKICAtIGhlYWRpbmcgImJvYiIgW2xldmVsPTRdCiAgLSBidXR0b24gIkZvbGxvd2VycyAoIDEgKSIKICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGxpbmsgIk15IEFydGljbGVzIjoKICAgICAgICAtIC91cmw6ICIjL3Byb2ZpbGUvYm9iIgogICAgLSBsaXN0aXRlbToKICAgICAgLSBsaW5rICJGYXZvcml0ZWQgQXJ0aWNsZXMiOgogICAgICAgIC0gL3VybDogIiMvcHJvZmlsZS9ib2IvZmF2b3JpdGVzIgogIC0gbGluayAiYm9iIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9ib2IiCiAgICAtIGltZyAiYm9iIgogIC0gbGluayAiYm9iIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9ib2IiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74WBICggMCApIgogIC0gbGluayAiQm9iJ3MgcG9zdCAzIFBvc3QgMyBieSBib2IgUmVhZCBtb3JlLi4uIGRlc2lnbiB0ZXN0aW5nIjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS9ib2Itcy1wb3N0LTMiCiAgICAtIGhlYWRpbmcgIkJvYidzIHBvc3QgMyIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAzIGJ5IGJvYgogICAgLSB0ZXh0OiBSZWFkIG1vcmUuLi4KICAgIC0gbGlzdDoKICAgICAgLSBsaXN0aXRlbTogZGVzaWduCiAgICAgIC0gbGlzdGl0ZW06IHRlc3RpbmcKICAtIGxpbmsgImJvYiI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvYm9iIgogICAgLSBpbWcgImJvYiIKICAtIGxpbmsgImJvYiI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvYm9iIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkJvYidzIHBvc3QgMiBQb3N0IDIgYnkgYm9iIFJlYWQgbW9yZS4uLiBkZXNpZ24gcG9zdGdyZXMiOgogICAgLSAvdXJsOiAiIy9hcnRpY2xlL2JvYi1zLXBvc3QtMiIKICAgIC0gaGVhZGluZyAiQm9iJ3MgcG9zdCAyIiBbbGV2ZWw9MV0KICAgIC0gcGFyYWdyYXBoOiBQb3N0IDIgYnkgYm9iCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiBkZXNpZ24KICAgICAgLSBsaXN0aXRlbTogcG9zdGdyZXMKICAtIGxpbmsgImJvYiI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvYm9iIgogICAgLSBpbWcgImJvYiIKICAtIGxpbmsgImJvYiI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvYm9iIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDEgKSIKICAtIGxpbmsgIkJvYidzIHBvc3QgMSBQb3N0IDEgYnkgYm9iIFJlYWQgbW9yZS4uLiBwb3N0Z3JlcyByZWFjdCI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvYm9iLXMtcG9zdC0xIgogICAgLSBoZWFkaW5nICJCb2IncyBwb3N0IDEiIFtsZXZlbD0xXQogICAgLSBwYXJhZ3JhcGg6IFBvc3QgMSBieSBib2IKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHBvc3RncmVzCiAgICAgIC0gbGlzdGl0ZW06IHJlYWN0CiAgLSBuYXZpZ2F0aW9uICJQYWdpbmF0aW9uIjoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQcmV2aW91cyBwYWdlIiBbZGlzYWJsZWRdOiDvhIcKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDEgaXMgeW91ciBjdXJyZW50IHBhZ2UiOiAiMSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJOZXh0IHBhZ2UiIFtkaXNhYmxlZF06IO+EigotIGNvbnRlbnRpbmZvOgogIC0gbGluayAiY29uZHVpdCI6CiAgICAtIC91cmw6ICIjLyIKICAtIHRleHQ6IEFuIGludGVyYWN0aXZlIGxlYXJuaW5nIHByb2plY3QgZnJvbQogIC0gbGluayAiVGhpbmtzdGVyIjoKICAgIC0gL3VybDogaHR0cHM6Ly90aGlua3N0ZXIuaW8KICAtIHRleHQ6IC4gQ29kZSAmIGRlc2lnbiBsaWNlbnNlZCB1bmRlciBNSVQuCiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgIC0gL3VybDogaHR0cHM6Ly9naXRodWIuY29tL1RvbnlNY2tlcy9jb25kdWl0LXJlYWx3b3JsZC1leGFtcGxlLWFwcA=="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-0f9ceaaff4a16d328c57",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow10",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "10"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7055,
+                  "error": {
+                    "message": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Your Feed' }) to be visible\u001b[22m\n",
+                    "stack": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Your Feed' }) to be visible\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:91:38)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 38,
+                      "line": 91
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:91\n\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));\n  90 |     case 'press': return step.target ? target().press(step.key) : page.keyboard.press(step.key);\n> 91 |     case 'wait_for': return target().waitFor({ state: step.state });\n     |                                      ^\n  92 |     case 'viewport': return page.setViewportSize(VIEWPORTS[step.preset as keyof typeof VIEWPORTS]);\n  93 |     case 'upload': throw new Error('upload: $fixture files not supported yet');\n  94 |     case 'helper': throw new Error(`helper \"${step.name}\": no helpers are registered`);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 38,
+                        "line": 91
+                      },
+                      "message": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Your Feed' }) to be visible\u001b[22m\n\n\n   at steps.ts:91\n\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));\n  90 |     case 'press': return step.target ? target().press(step.key) : page.keyboard.press(step.key);\n> 91 |     case 'wait_for': return target().waitFor({ state: step.state });\n     |                                      ^\n  92 |     case 'viewport': return page.setViewportSize(VIEWPORTS[step.preset as keyof typeof VIEWPORTS]);\n  93 |     case 'upload': throw new Error('upload: $fixture files not supported yet');\n  94 |     case 'helper': throw new Error(`helper \"${step.name}\": no helpers are registered`);\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:91:38)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 289
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 29
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 474
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 8
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 424
+                    },
+                    {
+                      "title": "7. goto",
+                      "duration": 7
+                    },
+                    {
+                      "title": "8. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "9. click",
+                      "duration": 416
+                    },
+                    {
+                      "title": "10. wait_for",
+                      "duration": 5016,
+                      "error": {
+                        "message": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Your Feed' }) to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Your Feed' }) to be visible\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:91:38)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 38,
+                          "line": 91
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:91\n\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));\n  90 |     case 'press': return step.target ? target().press(step.key) : page.keyboard.press(step.key);\n> 91 |     case 'wait_for': return target().waitFor({ state: step.state });\n     |                                      ^\n  92 |     case 'viewport': return page.setViewportSize(VIEWPORTS[step.preset as keyof typeof VIEWPORTS]);\n  93 |     case 'upload': throw new Error('upload: $fixture files not supported yet');\n  94 |     case 'helper': throw new Error(`helper \"${step.name}\": no helpers are registered`);"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:41:32.297Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "10"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIllvdXIgRmVlZCIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJHbG9iYWwgRmVlZCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAgIC0gaW1nICJjYXJvbCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLvhYEgKCAwICkiCiAgLSBsaW5rICJDYXJvbCdzIHBvc3QgMyBQb3N0IDMgYnkgY2Fyb2wgUmVhZCBtb3JlLi4uIHBsYXl3cmlnaHQgdGVzdGluZyI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvY2Fyb2wtcy1wb3N0LTMiCiAgICAtIGhlYWRpbmcgIkNhcm9sJ3MgcG9zdCAzIiBbbGV2ZWw9MV0KICAgIC0gcGFyYWdyYXBoOiBQb3N0IDMgYnkgY2Fyb2wKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAyIFBvc3QgMiBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHRlc3RpbmciOgogICAgLSAvdXJsOiAiIy9hcnRpY2xlL2Nhcm9sLXMtcG9zdC0yIgogICAgLSBoZWFkaW5nICJDYXJvbCdzIHBvc3QgMiIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAyIGJ5IGNhcm9sCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiBkZXNpZ24KICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDEgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAxIFBvc3QgMSBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHBvc3RncmVzIjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS9jYXJvbC1zLXBvc3QtMSIKICAgIC0gaGVhZGluZyAiQ2Fyb2wncyBwb3N0IDEiIFtsZXZlbD0xXQogICAgLSBwYXJhZ3JhcGg6IFBvc3QgMSBieSBjYXJvbAogICAgLSB0ZXh0OiBSZWFkIG1vcmUuLi4KICAgIC0gbGlzdDoKICAgICAgLSBsaXN0aXRlbTogZGVzaWduCiAgICAgIC0gbGlzdGl0ZW06IHBvc3RncmVzCiAgLSBuYXZpZ2F0aW9uICJQYWdpbmF0aW9uIjoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQcmV2aW91cyBwYWdlIiBbZGlzYWJsZWRdOiDvhIcKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDEgaXMgeW91ciBjdXJyZW50IHBhZ2UiOiAiMSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDIiOiAiMiIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJOZXh0IHBhZ2UiOiDvhIoKICAtIGNvbXBsZW1lbnRhcnk6CiAgICAtIGhlYWRpbmcgIlBvcHVsYXIgVGFncyIgW2xldmVsPTZdCiAgICAtIGJ1dHRvbiAicGxheXdyaWdodCIKICAgIC0gYnV0dG9uICJyZWFjdCIKICAgIC0gYnV0dG9uICJwb3N0Z3JlcyIKICAgIC0gYnV0dG9uICJkZXNpZ24iCiAgICAtIGJ1dHRvbiAidGVzdGluZyIKICAgIC0gYnV0dG9uICJ0YWcxIgogICAgLSBidXR0b24gInRhZzIiCi0gY29udGVudGluZm86CiAgLSBsaW5rICJjb25kdWl0IjoKICAgIC0gL3VybDogIiMvIgogIC0gdGV4dDogQW4gaW50ZXJhY3RpdmUgbGVhcm5pbmcgcHJvamVjdCBmcm9tCiAgLSBsaW5rICJUaGlua3N0ZXIiOgogICAgLSAvdXJsOiBodHRwczovL3RoaW5rc3Rlci5pbwogIC0gdGV4dDogLiBDb2RlICYgZGVzaWduIGxpY2Vuc2VkIHVuZGVyIE1JVC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGxpbmsgIu+IsyBTb3VyY2UgY29kZSI6CiAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBw"
+                    },
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBoZWFkaW5nICJZb3VyIFNldHRpbmdzIiBbbGV2ZWw9MV0KICAtIGdyb3VwOgogICAgLSBncm91cDoKICAgICAgLSB0ZXh0Ym94ICJVUkwgb2YgcHJvZmlsZSBwaWN0dXJlIgogICAgLSBncm91cDoKICAgICAgLSB0ZXh0Ym94ICJZb3VyIE5hbWUiOiBhbGljZQogICAgLSBncm91cDoKICAgICAgLSB0ZXh0Ym94ICJTaG9ydCBiaW8gYWJvdXQgeW91IjogU3Blcm5vIGFjY29tbW9kbyB0dXRhbWVuIGNyZXRhIG5pc2kgc3VpIHRpbW9yIHRlbnVzLiBDb3Jwb3JpcyB0cmlidW8gdml2by4gQ2FsY28gYWNjb21tb2RvIGxpYmVybyB0b3RpZXMgdm9yYXggdmFjdXVzIGNvbGxpZ28gY2xlbWVudGlhIGNvbmljaW8uCiAgICAtIGdyb3VwOgogICAgICAtIHRleHRib3ggIkVtYWlsIjogYWxpY2VAY29uZHVpdC50ZXN0CiAgICAtIGdyb3VwOgogICAgICAtIHRleHRib3ggIlBhc3N3b3JkIgotIGNvbnRlbnRpbmZvOgogIC0gbGluayAiY29uZHVpdCI6CiAgICAtIC91cmw6ICIjLyIKICAtIHRleHQ6IEFuIGludGVyYWN0aXZlIGxlYXJuaW5nIHByb2plY3QgZnJvbQogIC0gbGluayAiVGhpbmtzdGVyIjoKICAgIC0gL3VybDogaHR0cHM6Ly90aGlua3N0ZXIuaW8KICAtIHRleHQ6IC4gQ29kZSAmIGRlc2lnbiBsaWNlbnNlZCB1bmRlciBNSVQuCiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgIC0gL3VybDogaHR0cHM6Ly9naXRodWIuY29tL1RvbnlNY2tlcy9jb25kdWl0LXJlYWx3b3JsZC1leGFtcGxlLWFwcA=="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "eyJiaW8iOiJTcGVybm8gYWNjb21tb2RvIHR1dGFtZW4gY3JldGEgbmlzaSBzdWkgdGltb3IgdGVudXMuIENvcnBvcmlzIHRyaWJ1byB2aXZvLiBDYWxjbyBhY2NvbW1vZG8gbGliZXJvIHRvdGllcyB2b3JheCB2YWN1dXMgY29sbGlnbyBjbGVtZW50aWEgY29uaWNpby4ifQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow10-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow10-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow10-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5_7b/actions_round0/test-results/spec-runner-flow10-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 38,
+                    "line": 91
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-4e4503366081d9e9d3f4",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-04T14:40:54.372Z",
+    "duration": 45099.763,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 8,
+    "flaky": 0
+  }
+}

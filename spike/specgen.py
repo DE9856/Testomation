@@ -168,7 +168,7 @@ def chat(model: str, messages: list[dict]) -> tuple[dict, dict]:
 
 
 PROMPT = "v1"
-NUM_GPU = {"qwen3:8b": -1, "qwen2.5:7b": -1}  # large models: let Ollama place layers (-1 = default)
+NUM_GPU = {"qwen3:8b": -1, "qwen2.5:7b": -1, "qwen2.5-coder:7b": -1, "gemma3n:e4b": -1, "gemma3:4b": -1}  # >4 GB models: Ollama places layers (-1)
 
 
 def generate(model: str, flow: str, idx: int) -> tuple[dict, dict]:

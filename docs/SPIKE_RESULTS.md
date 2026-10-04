@@ -302,7 +302,7 @@ if it passes on the clean app **and fails with its flow's seeded bug on** (8 flo
 | Specs from plain English (≥ 7/10 useful) | Best **1/8 bugs caught** vs 8/8 for hand-written specs; ~2/10 meaningful specs by any method | **Missed, by far** |
 | Triage beats "everything is a bug"; probabilities separate right from wrong | 58% vs 33%; p 0.97 right vs 0.78 wrong; with the cascade 16 right / 1 wrong / 7 review of 24 | **Met** |
 | Toolchain (structured output, logprobs, `langfuse.openai`) | Works with a decoder-friendly schema (D38–D41) | **Met** |
-| Fits the laptop | `qwen3:4b` fully on GPU at 8k context, 55 tok/s; large tier not needed | **Met** (peak RAM with browsers not yet measured) |
+| Fits the laptop | `qwen3:4b` fully on GPU at 8k context, 55 tok/s; worst case 5.0 GB RAM, no swap | **Met** |
 
 **What this means for the plan:**
 
@@ -318,6 +318,40 @@ if it passes on the clean app **and fails with its flow's seeded bug on** (8 flo
 4. Exploration (phase 6) relies on the same planning ability that failed here; treat it as
    research until a stronger local model passes the same kill-rate benchmark.
 
+## Model bake-off on the kill-rate benchmark (Q32) — `spike/bakeoff.sh`
+
+The templates + assertion-menu harness (`spike/menu.py`), unchanged, run once per model. Gate to
+re-open autonomous generation / exploration (D43): **≥ 5/8**. Reference suite: 8/8.
+
+| Model | Size | Actions ran | Pass on clean | **Kill rate** |
+|---|---|---|---|---|
+| `qwen3:4b` | 4.0B | 5/10 | 3/10 | 1/8 |
+| `phi4-mini` | 3.8B | 4/10 | 3/10 | **2/8** |
+| `llama3.2:3b` | 3.2B | 4/10 | 4/10 | **2/8** |
+| `gemma3:4b` | 4.3B | 1/10 | 1/10 | 1/8 |
+| `gemma3n:e4b` | ~4B effective | 3/10 | 3/10 | 0/8 |
+| `qwen2.5-coder:7b` | 7.6B (partial offload) | 1/10 | 1/10 | 0/8 |
+| `qwen2.5:7b` | 7.6B (partial offload) | 3/10 | 3/10 | **2/8** |
+
+**No model is near the gate.** Differences of one bug are within noise (one run each; the prompt
+and examples were developed against `qwen3:4b`), so the honest reading is that every local model
+that fits this laptop scores 0–2/8, and size (3B → 7B) doesn't change it. This confirms D42/D43.
+The bake-off is re-runnable in one command whenever a new local model appears — that is the gate.
+
+## Peak RAM — `spike/ram_check.py`
+
+Phase 0–2 stack (Postgres + Conduit, no Langfuse), sampled every 0.5 s; 15.3 GB total.
+
+| Scenario | Peak used | Lowest available | Swap growth | GPU |
+|---|---|---|---|---|
+| Idle | 4.2 GB | 11.1 GB | none | — |
+| `qwen3:4b` generating (all layers on GPU) | 4.5 GB | 10.8 GB | none | 3.7 GB |
+| Reference suite, 2 workers, model unloaded | 4.5 GB | 10.8 GB | none | — |
+| **Suite on 2 workers while the model generates** | **5.0 GB** | **10.3 GB** | **none** | 3.7 GB |
+
+Well inside the design's 5–7 GB estimate for phases 0–2, leaving ~10 GB — room for Langfuse
+(2–3 GB) in phase 3 and for more Playwright workers when no model is loaded.
+
 ## Still to do
 
 - [x] Toolchain: structured output, logprobs, `langfuse.openai` (Q13) — works with a
@@ -332,5 +366,5 @@ if it passes on the clean app **and fails with its flow's seeded bug on** (8 flo
 - [x] Templates + assertion menu from the before/after diff, scored by seeded-bug kill rate — 1/8
 - [x] ~20 captured failures → one-call triage with label probabilities — 24 cases, target met
 - [x] Seeded bugs with toggles + reference suite (kill matrix 8/8)
-- [ ] Peak RAM / swap with model + 2 Playwright workers + Conduit
+- [x] Peak RAM / swap with model + 2 Playwright workers + Conduit — 5.0 GB worst case, no swap
 - [x] Verdict against the targets (Q22) — see Final verdict

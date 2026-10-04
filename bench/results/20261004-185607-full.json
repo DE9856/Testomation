@@ -1,0 +1,277 @@
+{
+ "tier": "full",
+ "runs": 3,
+ "summary": {
+  "clean_pass_rate": {
+   "mean": 1.0,
+   "min": 1.0,
+   "max": 1.0
+  },
+  "kill_rate": {
+   "mean": 1.0,
+   "min": 1.0,
+   "max": 1.0
+  },
+  "kill_rate_held_out": {
+   "mean": 1.0,
+   "min": 1.0,
+   "max": 1.0
+  },
+  "collateral_failures": {
+   "mean": 0.0,
+   "min": 0,
+   "max": 0
+  },
+  "noise_false_alarms": {
+   "mean": 0.0,
+   "min": 0,
+   "max": 0
+  },
+  "flaky_failure_rate": {
+   "mean": 0.133,
+   "min": 0.0,
+   "max": 0.2
+  }
+ },
+ "kill_matrix": {
+  "login-error-hidden": {
+   "catches": "ref02-wrong-password",
+   "caught_in_runs": 3
+  },
+  "signup-500": {
+   "catches": "ref03-signup",
+   "caught_in_runs": 3
+  },
+  "publish-500": {
+   "catches": "ref04-publish",
+   "caught_in_runs": 3
+  },
+  "comment-not-shown": {
+   "catches": "ref05-comment",
+   "caught_in_runs": 3
+  },
+  "tag-filter-ignored": {
+   "catches": "ref06-tag-filter",
+   "caught_in_runs": 3
+  },
+  "favorite-count-stuck": {
+   "catches": "ref07-favorite",
+   "caught_in_runs": 3
+  },
+  "profile-articles-empty": {
+   "catches": "ref09-profile",
+   "caught_in_runs": 3
+  },
+  "bio-not-saved": {
+   "catches": "ref10-bio",
+   "caught_in_runs": 3
+  }
+ },
+ "per_run": [
+  {
+   "clean": {
+    "failed": [],
+    "total": 10
+   },
+   "login-error-hidden": {
+    "failed": [
+     "ref02-wrong-password"
+    ],
+    "total": 10
+   },
+   "signup-500": {
+    "failed": [
+     "ref03-signup"
+    ],
+    "total": 10
+   },
+   "publish-500": {
+    "failed": [
+     "ref04-publish"
+    ],
+    "total": 10
+   },
+   "comment-not-shown": {
+    "failed": [
+     "ref05-comment"
+    ],
+    "total": 10
+   },
+   "tag-filter-ignored": {
+    "failed": [
+     "ref06-tag-filter"
+    ],
+    "total": 10
+   },
+   "favorite-count-stuck": {
+    "failed": [
+     "ref07-favorite"
+    ],
+    "total": 10
+   },
+   "profile-articles-empty": {
+    "failed": [
+     "ref09-profile"
+    ],
+    "total": 10
+   },
+   "bio-not-saved": {
+    "failed": [
+     "ref10-bio"
+    ],
+    "total": 10
+   },
+   "noise-analytics": {
+    "failed": [],
+    "total": 10
+   },
+   "noise-console-warning": {
+    "failed": [],
+    "total": 10
+   },
+   "flaky-slow-articles": {
+    "failed": [
+     "ref06-tag-filter",
+     "ref07-favorite"
+    ],
+    "total": 10
+   }
+  },
+  {
+   "clean": {
+    "failed": [],
+    "total": 10
+   },
+   "login-error-hidden": {
+    "failed": [
+     "ref02-wrong-password"
+    ],
+    "total": 10
+   },
+   "signup-500": {
+    "failed": [
+     "ref03-signup"
+    ],
+    "total": 10
+   },
+   "publish-500": {
+    "failed": [
+     "ref04-publish"
+    ],
+    "total": 10
+   },
+   "comment-not-shown": {
+    "failed": [
+     "ref05-comment"
+    ],
+    "total": 10
+   },
+   "tag-filter-ignored": {
+    "failed": [
+     "ref06-tag-filter"
+    ],
+    "total": 10
+   },
+   "favorite-count-stuck": {
+    "failed": [
+     "ref07-favorite"
+    ],
+    "total": 10
+   },
+   "profile-articles-empty": {
+    "failed": [
+     "ref09-profile"
+    ],
+    "total": 10
+   },
+   "bio-not-saved": {
+    "failed": [
+     "ref10-bio"
+    ],
+    "total": 10
+   },
+   "noise-analytics": {
+    "failed": [],
+    "total": 10
+   },
+   "noise-console-warning": {
+    "failed": [],
+    "total": 10
+   },
+   "flaky-slow-articles": {
+    "failed": [
+     "ref06-tag-filter",
+     "ref09-profile"
+    ],
+    "total": 10
+   }
+  },
+  {
+   "clean": {
+    "failed": [],
+    "total": 10
+   },
+   "login-error-hidden": {
+    "failed": [
+     "ref02-wrong-password"
+    ],
+    "total": 10
+   },
+   "signup-500": {
+    "failed": [
+     "ref03-signup"
+    ],
+    "total": 10
+   },
+   "publish-500": {
+    "failed": [
+     "ref04-publish"
+    ],
+    "total": 10
+   },
+   "comment-not-shown": {
+    "failed": [
+     "ref05-comment"
+    ],
+    "total": 10
+   },
+   "tag-filter-ignored": {
+    "failed": [
+     "ref06-tag-filter"
+    ],
+    "total": 10
+   },
+   "favorite-count-stuck": {
+    "failed": [
+     "ref07-favorite"
+    ],
+    "total": 10
+   },
+   "profile-articles-empty": {
+    "failed": [
+     "ref09-profile"
+    ],
+    "total": 10
+   },
+   "bio-not-saved": {
+    "failed": [
+     "ref10-bio"
+    ],
+    "total": 10
+   },
+   "noise-analytics": {
+    "failed": [],
+    "total": 10
+   },
+   "noise-console-warning": {
+    "failed": [],
+    "total": 10
+   },
+   "flaky-slow-articles": {
+    "failed": [],
+    "total": 10
+   }
+  }
+ ],
+ "timestamp": "20261004-185607"
+}

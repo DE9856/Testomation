@@ -1,0 +1,15 @@
+{
+ "tier": "replay",
+ "cases": 24,
+ "labels": {
+  "bug": 8,
+  "noise": 7,
+  "flaky": 3,
+  "test_issue": 6
+ },
+ "analyzer": "not implemented yet (phase 2)",
+ "baselines": {
+  "everything_is_a_bug": 0.333
+ },
+ "timestamp": "20261004-185532"
+}

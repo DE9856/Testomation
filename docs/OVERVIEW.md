@@ -16,7 +16,7 @@ actually broken.
 It is meant to sit **alongside** scripted regression testing — filling the gap between
 "what we remembered to test" and "what the app can actually do."
 
-## Ground rules (v0.6)
+## Ground rules (v0.7)
 
 | Rule | Meaning |
 |---|---|
@@ -35,7 +35,7 @@ It is meant to sit **alongside** scripted regression testing — filling the gap
 |---|---|---|---|
 | 01 | **Ingest** | MVP: a locally running web app (URL) + its repo. For triage alone: any Playwright project's JSON report and traces. OpenAPI, design files, user stories later. | Planner (input side), Importer |
 | 02 | **Plan** | Reason about what to test — flows, edge cases, boundaries, negative paths → coverage plan | Planner agent |
-| 03 | **Generate** | Each planned flow → a **JSON test spec** validated against a schema | Test-gen agent |
+| 03 | **Author** | Each planned flow → a **JSON test spec**: actions from templates/recordings, assertions suggested by the model, approved by a human | Test authoring (assisted) |
 | 04 | **Execute** | Playwright Test runs every approved spec via one spec runner; traces, screenshots, DOM, console, network captured | Executor |
 | 05 | **Analyze & report** | Compare evidence to expected behaviour, classify, dedupe, write a local report with repro steps | Analyzer + Reporter |
 
@@ -52,7 +52,21 @@ check memory graph (fresh claims only)
 In code, that loop is a plain-Python cascade in each agent. LangGraph is used only for the
 exploration loop.
 
-## What changed since v0.5
+## What changed in v0.7 — after the spike
+
+| Change | Why | Detail |
+|---|---|---|
+| **Phase 3 is assisted authoring**, not autonomous generation (D42) | Five approaches at 4B caught at best 1/8 seeded bugs vs 8/8 for hand-written specs | [SPIKE_RESULTS.md](SPIKE_RESULTS.md#final-verdict-q22) |
+| **Exploration is gated research** (D43) | It needs the action planning that failed in the spike | [ROADMAP.md](ROADMAP.md) |
+| **Model where it works: triage** | 58% vs 33% baseline; with rules + gate, 16 right / 1 wrong / 7 review of 24 | [SPIKE_RESULTS.md](SPIKE_RESULTS.md) |
+| **Schema absorbs model mistakes** (D38–D41) | Decoder-enforced rules worked; prompt rules were ignored | [TEST_SPEC.md](TEST_SPEC.md) |
+| **Specs scored by kill rate** (Q29) | Pass rate rewarded always-true assertions | [EVALUATION.md](EVALUATION.md) |
+
+The vision is unchanged — fill the gap between what we remembered to test and what the app
+can do — but for now the model *assists* writing tests and *decides* triage; it doesn't write
+the test suite by itself.
+
+## What changed in v0.6
 
 | Change | Why | Detail |
 |---|---|---|

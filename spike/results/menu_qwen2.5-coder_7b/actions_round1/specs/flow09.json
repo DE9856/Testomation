@@ -1,0 +1,44 @@
+{
+ "spec_version": 1,
+ "id": "flow09",
+ "flow": "Without logging in, open bob's profile; it lists his three articles.",
+ "_observe_after": 1,
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/profile/bob"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "heading",
+    "name": "bob"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "listitem",
+    "nth": 1
+   },
+   "state": "visible"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "listitem",
+    "nth": 2
+   },
+   "state": "visible"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "listitem",
+    "nth": 3
+   },
+   "state": "visible"
+  }
+ ]
+}

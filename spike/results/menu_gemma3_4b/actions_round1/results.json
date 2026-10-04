@@ -1,0 +1,1441 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node-22",
+      "/home/deepesh/Desktop/Testomation/runner/node_modules/.bin/playwright",
+      "test",
+      "--output",
+      "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results"
+    ],
+    "configFile": "/home/deepesh/Desktop/Testomation/runner/playwright.config.ts",
+    "rootDir": "/home/deepesh/Desktop/Testomation/runner",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/deepesh/Desktop/Testomation/runner",
+        "testIgnore": [],
+        "testMatch": [
+          "spec-runner.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "spec-runner.spec.ts",
+      "file": "spec-runner.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "flow01",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "12"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7455,
+                  "error": {
+                    "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'Your Feed' })\u001b[22m\n",
+                    "stack": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'Your Feed' })\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 35,
+                      "line": 84
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 35,
+                        "line": 84
+                      },
+                      "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'Your Feed' })\u001b[22m\n\n\n   at steps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 482
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 42
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 11
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 536
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 13
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 424
+                    },
+                    {
+                      "title": "7. goto",
+                      "duration": 7
+                    },
+                    {
+                      "title": "8. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "9. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "10. click",
+                      "duration": 476
+                    },
+                    {
+                      "title": "11. wait_for",
+                      "duration": 8
+                    },
+                    {
+                      "title": "12. click",
+                      "duration": 5015,
+                      "error": {
+                        "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'Your Feed' })\u001b[22m\n",
+                        "stack": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'Your Feed' })\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 35,
+                          "line": 84
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:02:05.556Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "12"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBoZWFkaW5nICJZb3VyIFNldHRpbmdzIiBbbGV2ZWw9MV0KICAtIGdyb3VwOgogICAgLSBncm91cDoKICAgICAgLSB0ZXh0Ym94ICJVUkwgb2YgcHJvZmlsZSBwaWN0dXJlIgogICAgLSBncm91cDoKICAgICAgLSB0ZXh0Ym94ICJZb3VyIE5hbWUiOiBhbGljZQogICAgLSBncm91cDoKICAgICAgLSB0ZXh0Ym94ICJTaG9ydCBiaW8gYWJvdXQgeW91IgogICAgLSBncm91cDoKICAgICAgLSB0ZXh0Ym94ICJFbWFpbCI6IGFsaWNlQGNvbmR1aXQudGVzdAogICAgLSBncm91cDoKICAgICAgLSB0ZXh0Ym94ICJQYXNzd29yZCIKICAgIC0gYnV0dG9uICJVcGRhdGUgU2V0dGluZ3MiCi0gY29udGVudGluZm86CiAgLSBsaW5rICJjb25kdWl0IjoKICAgIC0gL3VybDogIiMvIgogIC0gdGV4dDogQW4gaW50ZXJhY3RpdmUgbGVhcm5pbmcgcHJvamVjdCBmcm9tCiAgLSBsaW5rICJUaGlua3N0ZXIiOgogICAgLSAvdXJsOiBodHRwczovL3RoaW5rc3Rlci5pbwogIC0gdGV4dDogLiBDb2RlICYgZGVzaWduIGxpY2Vuc2VkIHVuZGVyIE1JVC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGxpbmsgIu+IsyBTb3VyY2UgY29kZSI6CiAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBw"
+                    },
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIllvdXIgRmVlZCIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJHbG9iYWwgRmVlZCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAgIC0gaW1nICJjYXJvbCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLvhYEgKCAwICkiCiAgLSBsaW5rICJDYXJvbCdzIHBvc3QgMyBQb3N0IDMgYnkgY2Fyb2wgUmVhZCBtb3JlLi4uIHBsYXl3cmlnaHQgdGVzdGluZyI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvY2Fyb2wtcy1wb3N0LTMiCiAgICAtIGhlYWRpbmcgIkNhcm9sJ3MgcG9zdCAzIiBbbGV2ZWw9MV0KICAgIC0gcGFyYWdyYXBoOiBQb3N0IDMgYnkgY2Fyb2wKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAyIFBvc3QgMiBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHRlc3RpbmciOgogICAgLSAvdXJsOiAiIy9hcnRpY2xlL2Nhcm9sLXMtcG9zdC0yIgogICAgLSBoZWFkaW5nICJDYXJvbCdzIHBvc3QgMiIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAyIGJ5IGNhcm9sCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiBkZXNpZ24KICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDEgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAxIFBvc3QgMSBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHBvc3RncmVzIjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS9jYXJvbC1zLXBvc3QtMSIKICAgIC0gaGVhZGluZyAiQ2Fyb2wncyBwb3N0IDEiIFtsZXZlbD0xXQogICAgLSBwYXJhZ3JhcGg6IFBvc3QgMSBieSBjYXJvbAogICAgLSB0ZXh0OiBSZWFkIG1vcmUuLi4KICAgIC0gbGlzdDoKICAgICAgLSBsaXN0aXRlbTogZGVzaWduCiAgICAgIC0gbGlzdGl0ZW06IHBvc3RncmVzCiAgLSBuYXZpZ2F0aW9uICJQYWdpbmF0aW9uIjoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQcmV2aW91cyBwYWdlIiBbZGlzYWJsZWRdOiDvhIcKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDEgaXMgeW91ciBjdXJyZW50IHBhZ2UiOiAiMSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDIiOiAiMiIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJOZXh0IHBhZ2UiOiDvhIoKICAtIGNvbXBsZW1lbnRhcnk6CiAgICAtIGhlYWRpbmcgIlBvcHVsYXIgVGFncyIgW2xldmVsPTZdCiAgICAtIGJ1dHRvbiAicGxheXdyaWdodCIKICAgIC0gYnV0dG9uICJyZWFjdCIKICAgIC0gYnV0dG9uICJwb3N0Z3JlcyIKICAgIC0gYnV0dG9uICJkZXNpZ24iCiAgICAtIGJ1dHRvbiAidGVzdGluZyIKLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow01-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow01-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow01-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow01-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 35,
+                    "line": 84
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-5b45cd1778b1d7594c9b",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow02",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "8"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 2787,
+                  "error": {
+                    "message": "Error: $var \"alice\" used before it was set",
+                    "stack": "Error: $var \"alice\" used before it was set\n    at resolve (/home/deepesh/Desktop/Testomation/runner/steps.ts:35:34)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:88:43)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 34,
+                      "line": 35
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:35\n\n  33 |   }\n  34 |   if ('$var' in v) {\n> 35 |     if (!vars.has(v.$var)) throw new Error(`$var \"${v.$var}\" used before it was set`);\n     |                                  ^\n  36 |     return vars.get(v.$var);\n  37 |   }\n  38 |   if ('$secret' in v) {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 34,
+                        "line": 35
+                      },
+                      "message": "Error: $var \"alice\" used before it was set\n\n   at steps.ts:35\n\n  33 |   }\n  34 |   if ('$var' in v) {\n> 35 |     if (!vars.has(v.$var)) throw new Error(`$var \"${v.$var}\" used before it was set`);\n     |                                  ^\n  36 |     return vars.get(v.$var);\n  37 |   }\n  38 |   if ('$secret' in v) {\n    at resolve (/home/deepesh/Desktop/Testomation/runner/steps.ts:35:34)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:88:43)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 374
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 37
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 8
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 1627
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 12
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 429
+                    },
+                    {
+                      "title": "7. goto",
+                      "duration": 3
+                    },
+                    {
+                      "title": "8. fill",
+                      "duration": 7,
+                      "error": {
+                        "message": "Error: $var \"alice\" used before it was set",
+                        "stack": "Error: $var \"alice\" used before it was set\n    at resolve (/home/deepesh/Desktop/Testomation/runner/steps.ts:35:34)\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:88:43)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 34,
+                          "line": 35
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:35\n\n  33 |   }\n  34 |   if ('$var' in v) {\n> 35 |     if (!vars.has(v.$var)) throw new Error(`$var \"${v.$var}\" used before it was set`);\n     |                                  ^\n  36 |     return vars.get(v.$var);\n  37 |   }\n  38 |   if ('$secret' in v) {"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:02:13.865Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "8"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBoZWFkaW5nICJTaWduIGluIiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDoKICAgIC0gbGluayAiTmVlZCBhbiBhY2NvdW50PyI6CiAgICAgIC0gL3VybDogIiMvcmVnaXN0ZXIiCiAgLSBncm91cDoKICAgIC0gdGV4dGJveCAiRW1haWwiCiAgLSBncm91cDoKICAgIC0gdGV4dGJveCAiUGFzc3dvcmQiCiAgLSBidXR0b24gIkxvZ2luIgotIGNvbnRlbnRpbmZvOgogIC0gbGluayAiY29uZHVpdCI6CiAgICAtIC91cmw6ICIjLyIKICAtIHRleHQ6IEFuIGludGVyYWN0aXZlIGxlYXJuaW5nIHByb2plY3QgZnJvbQogIC0gbGluayAiVGhpbmtzdGVyIjoKICAgIC0gL3VybDogaHR0cHM6Ly90aGlua3N0ZXIuaW8KICAtIHRleHQ6IC4gQ29kZSAmIGRlc2lnbiBsaWNlbnNlZCB1bmRlciBNSVQuCiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgIC0gL3VybDogaHR0cHM6Ly9naXRodWIuY29tL1RvbnlNY2tlcy9jb25kdWl0LXJlYWx3b3JsZC1leGFtcGxlLWFwcA=="
+                    },
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBoZWFkaW5nICJTaWduIGluIiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDoKICAgIC0gbGluayAiTmVlZCBhbiBhY2NvdW50PyI6CiAgICAgIC0gL3VybDogIiMvcmVnaXN0ZXIiCiAgLSBncm91cDoKICAgIC0gdGV4dGJveCAiRW1haWwiCiAgLSBncm91cDoKICAgIC0gdGV4dGJveCAiUGFzc3dvcmQiCiAgLSBidXR0b24gIkxvZ2luIgotIGNvbnRlbnRpbmZvOgogIC0gbGluayAiY29uZHVpdCI6CiAgICAtIC91cmw6ICIjLyIKICAtIHRleHQ6IEFuIGludGVyYWN0aXZlIGxlYXJuaW5nIHByb2plY3QgZnJvbQogIC0gbGluayAiVGhpbmtzdGVyIjoKICAgIC0gL3VybDogaHR0cHM6Ly90aGlua3N0ZXIuaW8KICAtIHRleHQ6IC4gQ29kZSAmIGRlc2lnbiBsaWNlbnNlZCB1bmRlciBNSVQuCiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgIC0gL3VybDogaHR0cHM6Ly9naXRodWIuY29tL1RvbnlNY2tlcy9jb25kdWl0LXJlYWx3b3JsZC1leGFtcGxlLWFwcA=="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow02-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow02-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow02-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow02-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 34,
+                    "line": 35
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-c4c0d94a444531ee672c",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow03",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "7"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6770,
+                  "error": {
+                    "message": "TimeoutError: locator.check: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('paragraph').first()\u001b[22m\n",
+                    "stack": "TimeoutError: locator.check: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('paragraph').first()\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:86:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 35,
+                      "line": 86
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:86\n\n  84 |     case 'click': return target().click();\n  85 |     case 'hover': return target().hover();\n> 86 |     case 'check': return target().check();\n     |                                   ^\n  87 |     case 'uncheck': return target().uncheck();\n  88 |     case 'fill': return target().fill(str(resolve(step.value, vars)));\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 35,
+                        "line": 86
+                      },
+                      "message": "TimeoutError: locator.check: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('paragraph').first()\u001b[22m\n\n\n   at steps.ts:86\n\n  84 |     case 'click': return target().click();\n  85 |     case 'hover': return target().hover();\n> 86 |     case 'check': return target().check();\n     |                                   ^\n  87 |     case 'uncheck': return target().uncheck();\n  88 |     case 'fill': return target().fill(str(resolve(step.value, vars)));\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:86:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 816
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 15
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 12
+                    },
+                    {
+                      "title": "4. fill",
+                      "duration": 11
+                    },
+                    {
+                      "title": "5. click",
+                      "duration": 493
+                    },
+                    {
+                      "title": "6. wait_for",
+                      "duration": 6
+                    },
+                    {
+                      "title": "7. check",
+                      "duration": 5018,
+                      "error": {
+                        "message": "TimeoutError: locator.check: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('paragraph').first()\u001b[22m\n",
+                        "stack": "TimeoutError: locator.check: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('paragraph').first()\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:86:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 35,
+                          "line": 86
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:86\n\n  84 |     case 'click': return target().click();\n  85 |     case 'hover': return target().hover();\n> 86 |     case 'check': return target().check();\n     |                                   ^\n  87 |     case 'uncheck': return target().uncheck();\n  88 |     case 'fill': return target().fill(str(resolve(step.value, vars)));\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:02:17.468Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "7"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+KniBMb2dpbiI6CiAgICAgICAgICAtIC91cmw6ICIjL2xvZ2luIgogICAgICAtIGxpc3RpdGVtOgogICAgICAgIC0gbGluayAiU2lnbiB1cCI6CiAgICAgICAgICAtIC91cmw6ICIjL3JlZ2lzdGVyIgotIG1haW46CiAgLSBoZWFkaW5nICJTaWduIHVwIiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDoKICAgIC0gbGluayAiU2lnbiBpbiB0byB5b3VyIGFjY291bnQiOgogICAgICAtIC91cmw6ICIjL2xvZ2luIgogIC0gZ3JvdXA6CiAgICAtIHRleHRib3ggIllvdXIgTmFtZSIKICAtIGdyb3VwOgogICAgLSB0ZXh0Ym94ICJFbWFpbCIKICAtIGdyb3VwOgogICAgLSB0ZXh0Ym94ICJQYXNzd29yZCIKICAtIGJ1dHRvbiAiU2lnbiB1cCIKLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiTWFkYWxpbmUiCiAgICAgICAgLSB0ZXh0OiBNYWRhbGluZQotIG1haW46CiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIllvdXIgRmVlZCIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJHbG9iYWwgRmVlZCIKICAtIHRleHQ6IEFydGljbGVzIG5vdCBhdmFpbGFibGUuCiAgLSBjb21wbGVtZW50YXJ5OgogICAgLSBoZWFkaW5nICJQb3B1bGFyIFRhZ3MiIFtsZXZlbD02XQogICAgLSBidXR0b24gInBsYXl3cmlnaHQiCiAgICAtIGJ1dHRvbiAicmVhY3QiCiAgICAtIGJ1dHRvbiAicG9zdGdyZXMiCiAgICAtIGJ1dHRvbiAiZGVzaWduIgogICAgLSBidXR0b24gInRlc3RpbmciCi0gY29udGVudGluZm86CiAgLSBsaW5rICJjb25kdWl0IjoKICAgIC0gL3VybDogIiMvIgogIC0gdGV4dDogQW4gaW50ZXJhY3RpdmUgbGVhcm5pbmcgcHJvamVjdCBmcm9tCiAgLSBsaW5rICJUaGlua3N0ZXIiOgogICAgLSAvdXJsOiBodHRwczovL3RoaW5rc3Rlci5pbwogIC0gdGV4dDogLiBDb2RlICYgZGVzaWduIGxpY2Vuc2VkIHVuZGVyIE1JVC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGxpbmsgIu+IsyBTb3VyY2UgY29kZSI6CiAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBw"
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "eyJuYW1lIjoiTWFkYWxpbmUiLCJlbWFpbCI6Ikpld2VsbDQ5QGhvdG1haWwuY29tIiwicGFzc3dvcmQiOiJZMG9FR0pCOFB3cmZqY0oifQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow03-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow03-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow03-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow03-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 35,
+                    "line": 86
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-0c1a7b9dc1eff1ac5d45",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow04",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "8"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6781,
+                  "error": {
+                    "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Login' })\u001b[22m\n",
+                    "stack": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Login' })\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 35,
+                      "line": 84
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 35,
+                        "line": 84
+                      },
+                      "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Login' })\u001b[22m\n\n\n   at steps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 372
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 40
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 485
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 8
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 426
+                    },
+                    {
+                      "title": "7. goto",
+                      "duration": 9
+                    },
+                    {
+                      "title": "8. click",
+                      "duration": 5020,
+                      "error": {
+                        "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Login' })\u001b[22m\n",
+                        "stack": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Login' })\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 35,
+                          "line": 84
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:02:25.040Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "8"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBoZWFkaW5nICJTaWduIGluIiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDoKICAgIC0gbGluayAiTmVlZCBhbiBhY2NvdW50PyI6CiAgICAgIC0gL3VybDogIiMvcmVnaXN0ZXIiCiAgLSBncm91cDoKICAgIC0gdGV4dGJveCAiRW1haWwiCiAgLSBncm91cDoKICAgIC0gdGV4dGJveCAiUGFzc3dvcmQiCiAgLSBidXR0b24gIkxvZ2luIgotIGNvbnRlbnRpbmZvOgogIC0gbGluayAiY29uZHVpdCI6CiAgICAtIC91cmw6ICIjLyIKICAtIHRleHQ6IEFuIGludGVyYWN0aXZlIGxlYXJuaW5nIHByb2plY3QgZnJvbQogIC0gbGluayAiVGhpbmtzdGVyIjoKICAgIC0gL3VybDogaHR0cHM6Ly90aGlua3N0ZXIuaW8KICAtIHRleHQ6IC4gQ29kZSAmIGRlc2lnbiBsaWNlbnNlZCB1bmRlciBNSVQuCiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgIC0gL3VybDogaHR0cHM6Ly9naXRodWIuY29tL1RvbnlNY2tlcy9jb25kdWl0LXJlYWx3b3JsZC1leGFtcGxlLWFwcA=="
+                    },
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIllvdXIgRmVlZCIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJHbG9iYWwgRmVlZCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAgIC0gaW1nICJjYXJvbCIKICAtIGxpbmsgImNhcm9sIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9jYXJvbCIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLvhYEgKCAwICkiCiAgLSBsaW5rICJDYXJvbCdzIHBvc3QgMyBQb3N0IDMgYnkgY2Fyb2wgUmVhZCBtb3JlLi4uIHBsYXl3cmlnaHQgdGVzdGluZyI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvY2Fyb2wtcy1wb3N0LTMiCiAgICAtIGhlYWRpbmcgIkNhcm9sJ3MgcG9zdCAzIiBbbGV2ZWw9MV0KICAgIC0gcGFyYWdyYXBoOiBQb3N0IDMgYnkgY2Fyb2wKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAyIFBvc3QgMiBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHRlc3RpbmciOgogICAgLSAvdXJsOiAiIy9hcnRpY2xlL2Nhcm9sLXMtcG9zdC0yIgogICAgLSBoZWFkaW5nICJDYXJvbCdzIHBvc3QgMiIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAyIGJ5IGNhcm9sCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiBkZXNpZ24KICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogICAgLSBpbWcgImNhcm9sIgogIC0gbGluayAiY2Fyb2wiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2Nhcm9sIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDEgKSIKICAtIGxpbmsgIkNhcm9sJ3MgcG9zdCAxIFBvc3QgMSBieSBjYXJvbCBSZWFkIG1vcmUuLi4gZGVzaWduIHBvc3RncmVzIjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS9jYXJvbC1zLXBvc3QtMSIKICAgIC0gaGVhZGluZyAiQ2Fyb2wncyBwb3N0IDEiIFtsZXZlbD0xXQogICAgLSBwYXJhZ3JhcGg6IFBvc3QgMSBieSBjYXJvbAogICAgLSB0ZXh0OiBSZWFkIG1vcmUuLi4KICAgIC0gbGlzdDoKICAgICAgLSBsaXN0aXRlbTogZGVzaWduCiAgICAgIC0gbGlzdGl0ZW06IHBvc3RncmVzCiAgLSBuYXZpZ2F0aW9uICJQYWdpbmF0aW9uIjoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQcmV2aW91cyBwYWdlIiBbZGlzYWJsZWRdOiDvhIcKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDEgaXMgeW91ciBjdXJyZW50IHBhZ2UiOiAiMSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDIiOiAiMiIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJOZXh0IHBhZ2UiOiDvhIoKICAtIGNvbXBsZW1lbnRhcnk6CiAgICAtIGhlYWRpbmcgIlBvcHVsYXIgVGFncyIgW2xldmVsPTZdCiAgICAtIGJ1dHRvbiAicGxheXdyaWdodCIKICAgIC0gYnV0dG9uICJyZWFjdCIKICAgIC0gYnV0dG9uICJwb3N0Z3JlcyIKICAgIC0gYnV0dG9uICJkZXNpZ24iCiAgICAtIGJ1dHRvbiAidGVzdGluZyIKLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow04-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow04-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow04-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow04-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 35,
+                    "line": 84
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-a8a7e752380bc2dfc66a",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow06",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "8"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6748,
+                  "error": {
+                    "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'react' })\u001b[22m\n",
+                    "stack": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'react' })\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 35,
+                      "line": 84
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 35,
+                        "line": 84
+                      },
+                      "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'react' })\u001b[22m\n\n\n   at steps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 340
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 42
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 13
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 445
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 10
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 424
+                    },
+                    {
+                      "title": "7. goto",
+                      "duration": 3
+                    },
+                    {
+                      "title": "8. click",
+                      "duration": 5018,
+                      "error": {
+                        "message": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'react' })\u001b[22m\n",
+                        "stack": "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'react' })\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 35,
+                          "line": 84
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:02:32.649Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "8"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBoZWFkaW5nICI0MDQgTm90IEZvdW5kIiBbbGV2ZWw9MV0KLSBsaW5rICJHbyB0byBob21lIHBhZ2UiOgogIC0gL3VybDogIiMvIg=="
+                    },
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBoZWFkaW5nICI0MDQgTm90IEZvdW5kIiBbbGV2ZWw9MV0KLSBsaW5rICJHbyB0byBob21lIHBhZ2UiOgogIC0gL3VybDogIiMvIg=="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow06-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow06-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow06-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow06-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 35,
+                    "line": 84
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-5dfad0e19937ee7fae25",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow07",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "7"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 2001,
+                  "error": {
+                    "message": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: ' Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).nth(1)\n\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: ' Favorite ( 0 )' })\u001b[22m\n",
+                    "stack": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: ' Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).nth(1)\n\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: ' Favorite ( 0 )' })\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 35,
+                      "line": 84
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 35,
+                        "line": 84
+                      },
+                      "message": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: ' Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).nth(1)\n\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: ' Favorite ( 0 )' })\u001b[22m\n\n\n   at steps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 755
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 39
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 10
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 465
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 10
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 441
+                    },
+                    {
+                      "title": "7. click",
+                      "duration": 22,
+                      "error": {
+                        "message": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: ' Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).nth(1)\n\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: ' Favorite ( 0 )' })\u001b[22m\n",
+                        "stack": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: ' Favorite ( 0 )' }) resolved to 2 elements:\n    1) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).first()\n    2) <button class=\"btn btn-sm btn-outline-primary  \">…</button> aka getByRole('button', { name: ' Favorite ( 0 )' }).nth(1)\n\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: ' Favorite ( 0 )' })\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 35,
+                          "line": 84
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:02:40.198Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "7"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBoZWFkaW5nICJEYXZlJ3MgcG9zdCAzIiBbbGV2ZWw9MV0KICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74iXIEZvbGxvdyBkYXZlICggMCApIgogIC0gYnV0dG9uICLvhYEgRmF2b3JpdGUgKCAwICkiCiAgLSBoZWFkaW5nICJIZWFkaW5nIiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDoKICAgIC0gdGV4dDogQm9keSBvZiBwb3N0IDMgYnkKICAgIC0gc3Ryb25nOiBkYXZlCiAgICAtIHRleHQ6IC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOiBvbmUKICAgIC0gbGlzdGl0ZW06IHR3bwogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgIC0gbGlzdGl0ZW06IHJlYWN0CiAgLSBzZXBhcmF0b3IKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74iXIEZvbGxvdyBkYXZlICggMCApIgogIC0gYnV0dG9uICLvhYEgRmF2b3JpdGUgKCAwICkiCiAgLSB0ZXh0Ym94ICJXcml0ZSBhIGNvbW1lbnQuLi4iCiAgLSBpbWcgImFsaWNlIgogIC0gYnV0dG9uICJQb3N0IENvbW1lbnQiCiAgLSBwYXJhZ3JhcGg6IENvbW1lbnQgZnJvbSBhbGljZQogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogICAgLSBpbWcgImFsaWNlIgogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+JkiIKLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBoZWFkaW5nICJEYXZlJ3MgcG9zdCAzIiBbbGV2ZWw9MV0KICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74iXIEZvbGxvdyBkYXZlICggMCApIgogIC0gYnV0dG9uICLvhYEgRmF2b3JpdGUgKCAwICkiCiAgLSBoZWFkaW5nICJIZWFkaW5nIiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDoKICAgIC0gdGV4dDogQm9keSBvZiBwb3N0IDMgYnkKICAgIC0gc3Ryb25nOiBkYXZlCiAgICAtIHRleHQ6IC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOiBvbmUKICAgIC0gbGlzdGl0ZW06IHR3bwogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgIC0gbGlzdGl0ZW06IHJlYWN0CiAgLSBzZXBhcmF0b3IKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgICAtIGltZyAiZGF2ZSIKICAtIGxpbmsgImRhdmUiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2RhdmUiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74iXIEZvbGxvdyBkYXZlICggMCApIgogIC0gYnV0dG9uICLvhYEgRmF2b3JpdGUgKCAwICkiCiAgLSB0ZXh0Ym94ICJXcml0ZSBhIGNvbW1lbnQuLi4iCiAgLSBpbWcgImFsaWNlIgogIC0gYnV0dG9uICJQb3N0IENvbW1lbnQiCiAgLSBwYXJhZ3JhcGg6IENvbW1lbnQgZnJvbSBhbGljZQogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogICAgLSBpbWcgImFsaWNlIgogIC0gbGluayAiYWxpY2UiOgogICAgLSAvdXJsOiAiIy9wcm9maWxlL2FsaWNlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+JkiIKLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow07-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow07-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow07-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow07-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 35,
+                    "line": 84
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-c3ce68e9e2989e39a6d1",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow08",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "8"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7225,
+                  "error": {
+                    "message": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('listitem').first() to be visible\u001b[22m\n",
+                    "stack": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('listitem').first() to be visible\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:91:38)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 38,
+                      "line": 91
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:91\n\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));\n  90 |     case 'press': return step.target ? target().press(step.key) : page.keyboard.press(step.key);\n> 91 |     case 'wait_for': return target().waitFor({ state: step.state });\n     |                                      ^\n  92 |     case 'viewport': return page.setViewportSize(VIEWPORTS[step.preset as keyof typeof VIEWPORTS]);\n  93 |     case 'upload': throw new Error('upload: $fixture files not supported yet');\n  94 |     case 'helper': throw new Error(`helper \"${step.name}\": no helpers are registered`);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 38,
+                        "line": 91
+                      },
+                      "message": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('listitem').first() to be visible\u001b[22m\n\n\n   at steps.ts:91\n\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));\n  90 |     case 'press': return step.target ? target().press(step.key) : page.keyboard.press(step.key);\n> 91 |     case 'wait_for': return target().waitFor({ state: step.state });\n     |                                      ^\n  92 |     case 'viewport': return page.setViewportSize(VIEWPORTS[step.preset as keyof typeof VIEWPORTS]);\n  93 |     case 'upload': throw new Error('upload: $fixture files not supported yet');\n  94 |     case 'helper': throw new Error(`helper \"${step.name}\": no helpers are registered`);\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:91:38)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 811
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 39
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 430
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 10
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 424
+                    },
+                    {
+                      "title": "7. goto",
+                      "duration": 4
+                    },
+                    {
+                      "title": "8. wait_for",
+                      "duration": 5017,
+                      "error": {
+                        "message": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('listitem').first() to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('listitem').first() to be visible\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:91:38)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 38,
+                          "line": 91
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:91\n\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));\n  90 |     case 'press': return step.target ? target().press(step.key) : page.keyboard.press(step.key);\n> 91 |     case 'wait_for': return target().waitFor({ state: step.state });\n     |                                      ^\n  92 |     case 'viewport': return page.setViewportSize(VIEWPORTS[step.preset as keyof typeof VIEWPORTS]);\n  93 |     case 'upload': throw new Error('upload: $fixture files not supported yet');\n  94 |     case 'helper': throw new Error(`helper \"${step.name}\": no helpers are registered`);"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:02:43.006Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "8"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBoZWFkaW5nICI0MDQgTm90IEZvdW5kIiBbbGV2ZWw9MV0KLSBsaW5rICJHbyB0byBob21lIHBhZ2UiOgogIC0gL3VybDogIiMvIg=="
+                    },
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBoZWFkaW5nICI0MDQgTm90IEZvdW5kIiBbbGV2ZWw9MV0KLSBsaW5rICJHbyB0byBob21lIHBhZ2UiOgogIC0gL3VybDogIiMvIg=="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow08-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow08-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow08-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow08-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 38,
+                    "line": 91
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-3d3fc9f4b75ca061f9c3",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow09",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "3"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 2173,
+                  "error": {
+                    "message": "Error: locator.click: Error: strict mode violation: getByRole('link', { name: 'dave' }) resolved to 9 elements:\n    1) <a data-discover=\"true\" href=\"#/profile/dave\">…</a> aka getByRole('link', { name: 'dave' }).first()\n    2) <a class=\"author\" data-discover=\"true\" href=\"#/profile/dave\">dave</a> aka getByRole('link', { name: 'dave' }).nth(1)\n    3) <a class=\"preview-link\" data-discover=\"true\" href=\"#/article/dave-s-post-3\">…</a> aka getByRole('link', { name: 'Dave\\'s post 3 Post 3 by dave' })\n    4) <a data-discover=\"true\" href=\"#/profile/dave\">…</a> aka getByRole('link', { name: 'dave' }).nth(3)\n    5) <a class=\"author\" data-discover=\"true\" href=\"#/profile/dave\">dave</a> aka getByRole('link', { name: 'dave' }).nth(4)\n    6) <a class=\"preview-link\" data-discover=\"true\" href=\"#/article/dave-s-post-2\">…</a> aka getByRole('link', { name: 'Dave\\'s post 2 Post 2 by dave' })\n    7) <a data-discover=\"true\" href=\"#/profile/dave\">…</a> aka getByRole('link', { name: 'dave', exact: true }).nth(4)\n    8) <a class=\"author\" data-discover=\"true\" href=\"#/profile/dave\">dave</a> aka getByRole('link', { name: 'dave', exact: true }).nth(5)\n    9) <a class=\"preview-link\" data-discover=\"true\" href=\"#/article/dave-s-post-1\">…</a> aka getByRole('link', { name: 'Dave\\'s post 1 Post 1 by dave' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'dave' })\u001b[22m\n",
+                    "stack": "Error: locator.click: Error: strict mode violation: getByRole('link', { name: 'dave' }) resolved to 9 elements:\n    1) <a data-discover=\"true\" href=\"#/profile/dave\">…</a> aka getByRole('link', { name: 'dave' }).first()\n    2) <a class=\"author\" data-discover=\"true\" href=\"#/profile/dave\">dave</a> aka getByRole('link', { name: 'dave' }).nth(1)\n    3) <a class=\"preview-link\" data-discover=\"true\" href=\"#/article/dave-s-post-3\">…</a> aka getByRole('link', { name: 'Dave\\'s post 3 Post 3 by dave' })\n    4) <a data-discover=\"true\" href=\"#/profile/dave\">…</a> aka getByRole('link', { name: 'dave' }).nth(3)\n    5) <a class=\"author\" data-discover=\"true\" href=\"#/profile/dave\">dave</a> aka getByRole('link', { name: 'dave' }).nth(4)\n    6) <a class=\"preview-link\" data-discover=\"true\" href=\"#/article/dave-s-post-2\">…</a> aka getByRole('link', { name: 'Dave\\'s post 2 Post 2 by dave' })\n    7) <a data-discover=\"true\" href=\"#/profile/dave\">…</a> aka getByRole('link', { name: 'dave', exact: true }).nth(4)\n    8) <a class=\"author\" data-discover=\"true\" href=\"#/profile/dave\">dave</a> aka getByRole('link', { name: 'dave', exact: true }).nth(5)\n    9) <a class=\"preview-link\" data-discover=\"true\" href=\"#/article/dave-s-post-1\">…</a> aka getByRole('link', { name: 'Dave\\'s post 1 Post 1 by dave' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'dave' })\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 35,
+                      "line": 84
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 35,
+                        "line": 84
+                      },
+                      "message": "Error: locator.click: Error: strict mode violation: getByRole('link', { name: 'dave' }) resolved to 9 elements:\n    1) <a data-discover=\"true\" href=\"#/profile/dave\">…</a> aka getByRole('link', { name: 'dave' }).first()\n    2) <a class=\"author\" data-discover=\"true\" href=\"#/profile/dave\">dave</a> aka getByRole('link', { name: 'dave' }).nth(1)\n    3) <a class=\"preview-link\" data-discover=\"true\" href=\"#/article/dave-s-post-3\">…</a> aka getByRole('link', { name: 'Dave\\'s post 3 Post 3 by dave' })\n    4) <a data-discover=\"true\" href=\"#/profile/dave\">…</a> aka getByRole('link', { name: 'dave' }).nth(3)\n    5) <a class=\"author\" data-discover=\"true\" href=\"#/profile/dave\">dave</a> aka getByRole('link', { name: 'dave' }).nth(4)\n    6) <a class=\"preview-link\" data-discover=\"true\" href=\"#/article/dave-s-post-2\">…</a> aka getByRole('link', { name: 'Dave\\'s post 2 Post 2 by dave' })\n    7) <a data-discover=\"true\" href=\"#/profile/dave\">…</a> aka getByRole('link', { name: 'dave', exact: true }).nth(4)\n    8) <a class=\"author\" data-discover=\"true\" href=\"#/profile/dave\">dave</a> aka getByRole('link', { name: 'dave', exact: true }).nth(5)\n    9) <a class=\"preview-link\" data-discover=\"true\" href=\"#/article/dave-s-post-1\">…</a> aka getByRole('link', { name: 'Dave\\'s post 1 Post 1 by dave' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'dave' })\u001b[22m\n\n\n   at steps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 1321
+                    },
+                    {
+                      "title": "2. goto",
+                      "duration": 6
+                    },
+                    {
+                      "title": "3. click",
+                      "duration": 34,
+                      "error": {
+                        "message": "Error: locator.click: Error: strict mode violation: getByRole('link', { name: 'dave' }) resolved to 9 elements:\n    1) <a data-discover=\"true\" href=\"#/profile/dave\">…</a> aka getByRole('link', { name: 'dave' }).first()\n    2) <a class=\"author\" data-discover=\"true\" href=\"#/profile/dave\">dave</a> aka getByRole('link', { name: 'dave' }).nth(1)\n    3) <a class=\"preview-link\" data-discover=\"true\" href=\"#/article/dave-s-post-3\">…</a> aka getByRole('link', { name: 'Dave\\'s post 3 Post 3 by dave' })\n    4) <a data-discover=\"true\" href=\"#/profile/dave\">…</a> aka getByRole('link', { name: 'dave' }).nth(3)\n    5) <a class=\"author\" data-discover=\"true\" href=\"#/profile/dave\">dave</a> aka getByRole('link', { name: 'dave' }).nth(4)\n    6) <a class=\"preview-link\" data-discover=\"true\" href=\"#/article/dave-s-post-2\">…</a> aka getByRole('link', { name: 'Dave\\'s post 2 Post 2 by dave' })\n    7) <a data-discover=\"true\" href=\"#/profile/dave\">…</a> aka getByRole('link', { name: 'dave', exact: true }).nth(4)\n    8) <a class=\"author\" data-discover=\"true\" href=\"#/profile/dave\">dave</a> aka getByRole('link', { name: 'dave', exact: true }).nth(5)\n    9) <a class=\"preview-link\" data-discover=\"true\" href=\"#/article/dave-s-post-1\">…</a> aka getByRole('link', { name: 'Dave\\'s post 1 Post 1 by dave' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'dave' })\u001b[22m\n",
+                        "stack": "Error: locator.click: Error: strict mode violation: getByRole('link', { name: 'dave' }) resolved to 9 elements:\n    1) <a data-discover=\"true\" href=\"#/profile/dave\">…</a> aka getByRole('link', { name: 'dave' }).first()\n    2) <a class=\"author\" data-discover=\"true\" href=\"#/profile/dave\">dave</a> aka getByRole('link', { name: 'dave' }).nth(1)\n    3) <a class=\"preview-link\" data-discover=\"true\" href=\"#/article/dave-s-post-3\">…</a> aka getByRole('link', { name: 'Dave\\'s post 3 Post 3 by dave' })\n    4) <a data-discover=\"true\" href=\"#/profile/dave\">…</a> aka getByRole('link', { name: 'dave' }).nth(3)\n    5) <a class=\"author\" data-discover=\"true\" href=\"#/profile/dave\">dave</a> aka getByRole('link', { name: 'dave' }).nth(4)\n    6) <a class=\"preview-link\" data-discover=\"true\" href=\"#/article/dave-s-post-2\">…</a> aka getByRole('link', { name: 'Dave\\'s post 2 Post 2 by dave' })\n    7) <a data-discover=\"true\" href=\"#/profile/dave\">…</a> aka getByRole('link', { name: 'dave', exact: true }).nth(4)\n    8) <a class=\"author\" data-discover=\"true\" href=\"#/profile/dave\">dave</a> aka getByRole('link', { name: 'dave', exact: true }).nth(5)\n    9) <a class=\"preview-link\" data-discover=\"true\" href=\"#/article/dave-s-post-1\">…</a> aka getByRole('link', { name: 'Dave\\'s post 1 Post 1 by dave' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'dave' })\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:84:35)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 35,
+                          "line": 84
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:84\n\n  82 |   switch (step.action) {\n  83 |     case 'goto': return void (await page.goto(step.url));\n> 84 |     case 'click': return target().click();\n     |                                   ^\n  85 |     case 'hover': return target().hover();\n  86 |     case 'check': return target().check();\n  87 |     case 'uncheck': return target().uncheck();"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:02:51.035Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "3"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+KniBMb2dpbiI6CiAgICAgICAgICAtIC91cmw6ICIjL2xvZ2luIgogICAgICAtIGxpc3RpdGVtOgogICAgICAgIC0gbGluayAiU2lnbiB1cCI6CiAgICAgICAgICAtIC91cmw6ICIjL3JlZ2lzdGVyIgotIG1haW46CiAgLSBoZWFkaW5nICJjb25kdWl0IiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDogQSBwbGFjZSB0byBzaGFyZSB5b3VyIGtub3dsZWRnZS4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGJ1dHRvbiAiR2xvYmFsIEZlZWQiCiAgLSBsaW5rICJkYXZlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9kYXZlIgogICAgLSBpbWcgImRhdmUiCiAgLSBsaW5rICJkYXZlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9kYXZlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkRhdmUncyBwb3N0IDMgUG9zdCAzIGJ5IGRhdmUgUmVhZCBtb3JlLi4uIHBsYXl3cmlnaHQgcmVhY3QiOgogICAgLSAvdXJsOiAiIy9hcnRpY2xlL2RhdmUtcy1wb3N0LTMiCiAgICAtIGhlYWRpbmcgIkRhdmUncyBwb3N0IDMiIFtsZXZlbD0xXQogICAgLSBwYXJhZ3JhcGg6IFBvc3QgMyBieSBkYXZlCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiBwbGF5d3JpZ2h0CiAgICAgIC0gbGlzdGl0ZW06IHJlYWN0CiAgLSBsaW5rICJkYXZlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9kYXZlIgogICAgLSBpbWcgImRhdmUiCiAgLSBsaW5rICJkYXZlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9kYXZlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkRhdmUncyBwb3N0IDIgUG9zdCAyIGJ5IGRhdmUgUmVhZCBtb3JlLi4uIHBsYXl3cmlnaHQgdGVzdGluZyI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvZGF2ZS1zLXBvc3QtMiIKICAgIC0gaGVhZGluZyAiRGF2ZSdzIHBvc3QgMiIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAyIGJ5IGRhdmUKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiZGF2ZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvZGF2ZSIKICAgIC0gaW1nICJkYXZlIgogIC0gbGluayAiZGF2ZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvZGF2ZSIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLvhYEgKCAxICkiCiAgLSBsaW5rICJEYXZlJ3MgcG9zdCAxIFBvc3QgMSBieSBkYXZlIFJlYWQgbW9yZS4uLiBkZXNpZ24gdGVzdGluZyI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvZGF2ZS1zLXBvc3QtMSIKICAgIC0gaGVhZGluZyAiRGF2ZSdzIHBvc3QgMSIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAxIGJ5IGRhdmUKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IGRlc2lnbgogICAgICAtIGxpc3RpdGVtOiB0ZXN0aW5nCiAgLSBuYXZpZ2F0aW9uICJQYWdpbmF0aW9uIjoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQcmV2aW91cyBwYWdlIiBbZGlzYWJsZWRdOiDvhIcKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDEgaXMgeW91ciBjdXJyZW50IHBhZ2UiOiAiMSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDIiOiAiMiIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDMiOiAiMyIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDQiOiAiNCIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJOZXh0IHBhZ2UiOiDvhIoKICAtIGNvbXBsZW1lbnRhcnk6CiAgICAtIGhlYWRpbmcgIlBvcHVsYXIgVGFncyIgW2xldmVsPTZdCiAgICAtIGJ1dHRvbiAicGxheXdyaWdodCIKICAgIC0gYnV0dG9uICJyZWFjdCIKICAgIC0gYnV0dG9uICJwb3N0Z3JlcyIKICAgIC0gYnV0dG9uICJkZXNpZ24iCiAgICAtIGJ1dHRvbiAidGVzdGluZyIKLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+KniBMb2dpbiI6CiAgICAgICAgICAtIC91cmw6ICIjL2xvZ2luIgogICAgICAtIGxpc3RpdGVtOgogICAgICAgIC0gbGluayAiU2lnbiB1cCI6CiAgICAgICAgICAtIC91cmw6ICIjL3JlZ2lzdGVyIgotIG1haW46CiAgLSBoZWFkaW5nICJjb25kdWl0IiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDogQSBwbGFjZSB0byBzaGFyZSB5b3VyIGtub3dsZWRnZS4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGJ1dHRvbiAiR2xvYmFsIEZlZWQiCiAgLSBsaW5rICJkYXZlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9kYXZlIgogICAgLSBpbWcgImRhdmUiCiAgLSBsaW5rICJkYXZlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9kYXZlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkRhdmUncyBwb3N0IDMgUG9zdCAzIGJ5IGRhdmUgUmVhZCBtb3JlLi4uIHBsYXl3cmlnaHQgcmVhY3QiOgogICAgLSAvdXJsOiAiIy9hcnRpY2xlL2RhdmUtcy1wb3N0LTMiCiAgICAtIGhlYWRpbmcgIkRhdmUncyBwb3N0IDMiIFtsZXZlbD0xXQogICAgLSBwYXJhZ3JhcGg6IFBvc3QgMyBieSBkYXZlCiAgICAtIHRleHQ6IFJlYWQgbW9yZS4uLgogICAgLSBsaXN0OgogICAgICAtIGxpc3RpdGVtOiBwbGF5d3JpZ2h0CiAgICAgIC0gbGlzdGl0ZW06IHJlYWN0CiAgLSBsaW5rICJkYXZlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9kYXZlIgogICAgLSBpbWcgImRhdmUiCiAgLSBsaW5rICJkYXZlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9kYXZlIgogIC0gdGV4dDogT2N0b2JlciA0LCAyMDI2CiAgLSBidXR0b24gIu+FgSAoIDAgKSIKICAtIGxpbmsgIkRhdmUncyBwb3N0IDIgUG9zdCAyIGJ5IGRhdmUgUmVhZCBtb3JlLi4uIHBsYXl3cmlnaHQgdGVzdGluZyI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvZGF2ZS1zLXBvc3QtMiIKICAgIC0gaGVhZGluZyAiRGF2ZSdzIHBvc3QgMiIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAyIGJ5IGRhdmUKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IHBsYXl3cmlnaHQKICAgICAgLSBsaXN0aXRlbTogdGVzdGluZwogIC0gbGluayAiZGF2ZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvZGF2ZSIKICAgIC0gaW1nICJkYXZlIgogIC0gbGluayAiZGF2ZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvZGF2ZSIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLvhYEgKCAxICkiCiAgLSBsaW5rICJEYXZlJ3MgcG9zdCAxIFBvc3QgMSBieSBkYXZlIFJlYWQgbW9yZS4uLiBkZXNpZ24gdGVzdGluZyI6CiAgICAtIC91cmw6ICIjL2FydGljbGUvZGF2ZS1zLXBvc3QtMSIKICAgIC0gaGVhZGluZyAiRGF2ZSdzIHBvc3QgMSIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAxIGJ5IGRhdmUKICAgIC0gdGV4dDogUmVhZCBtb3JlLi4uCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06IGRlc2lnbgogICAgICAtIGxpc3RpdGVtOiB0ZXN0aW5nCiAgLSBuYXZpZ2F0aW9uICJQYWdpbmF0aW9uIjoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQcmV2aW91cyBwYWdlIiBbZGlzYWJsZWRdOiDvhIcKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDEgaXMgeW91ciBjdXJyZW50IHBhZ2UiOiAiMSIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDIiOiAiMiIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDMiOiAiMyIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJQYWdlIDQiOiAiNCIKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gYnV0dG9uICJOZXh0IHBhZ2UiOiDvhIoKICAtIGNvbXBsZW1lbnRhcnk6CiAgICAtIGhlYWRpbmcgIlBvcHVsYXIgVGFncyIgW2xldmVsPTZdCiAgICAtIGJ1dHRvbiAicGxheXdyaWdodCIKICAgIC0gYnV0dG9uICJyZWFjdCIKICAgIC0gYnV0dG9uICJwb3N0Z3JlcyIKICAgIC0gYnV0dG9uICJkZXNpZ24iCiAgICAtIGJ1dHRvbiAidGVzdGluZyIKLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow09-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow09-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow09-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow09-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 35,
+                    "line": 84
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-0f9ceaaff4a16d328c57",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        },
+        {
+          "title": "flow10",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [
+                {
+                  "type": "failing-step",
+                  "description": "16"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7905,
+                  "error": {
+                    "message": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('paragraph').first() to be visible\u001b[22m\n",
+                    "stack": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('paragraph').first() to be visible\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:91:38)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                    "location": {
+                      "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                      "column": 38,
+                      "line": 91
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msteps.ts:91\n\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));\n  90 |     case 'press': return step.target ? target().press(step.key) : page.keyboard.press(step.key);\n> 91 |     case 'wait_for': return target().waitFor({ state: step.state });\n     |                                      ^\n  92 |     case 'viewport': return page.setViewportSize(VIEWPORTS[step.preset as keyof typeof VIEWPORTS]);\n  93 |     case 'upload': throw new Error('upload: $fixture files not supported yet');\n  94 |     case 'helper': throw new Error(`helper \"${step.name}\": no helpers are registered`);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                        "column": 38,
+                        "line": 91
+                      },
+                      "message": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('paragraph').first() to be visible\u001b[22m\n\n\n   at steps.ts:91\n\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));\n  90 |     case 'press': return step.target ? target().press(step.key) : page.keyboard.press(step.key);\n> 91 |     case 'wait_for': return target().waitFor({ state: step.state });\n     |                                      ^\n  92 |     case 'viewport': return page.setViewportSize(VIEWPORTS[step.preset as keyof typeof VIEWPORTS]);\n  93 |     case 'upload': throw new Error('upload: $fixture files not supported yet');\n  94 |     case 'helper': throw new Error(`helper \"${step.name}\": no helpers are registered`);\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:91:38)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 794
+                    },
+                    {
+                      "title": "2. fill",
+                      "duration": 39
+                    },
+                    {
+                      "title": "3. fill",
+                      "duration": 11
+                    },
+                    {
+                      "title": "4. click",
+                      "duration": 473
+                    },
+                    {
+                      "title": "5. wait_for",
+                      "duration": 9
+                    },
+                    {
+                      "title": "6. goto",
+                      "duration": 432
+                    },
+                    {
+                      "title": "7. goto",
+                      "duration": 4
+                    },
+                    {
+                      "title": "8. click",
+                      "duration": 106
+                    },
+                    {
+                      "title": "9. fill",
+                      "duration": 12
+                    },
+                    {
+                      "title": "10. click",
+                      "duration": 92
+                    },
+                    {
+                      "title": "11. fill",
+                      "duration": 9
+                    },
+                    {
+                      "title": "12. click",
+                      "duration": 89
+                    },
+                    {
+                      "title": "13. fill",
+                      "duration": 11
+                    },
+                    {
+                      "title": "14. click",
+                      "duration": 357
+                    },
+                    {
+                      "title": "15. goto",
+                      "duration": 6
+                    },
+                    {
+                      "title": "16. wait_for",
+                      "duration": 5016,
+                      "error": {
+                        "message": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('paragraph').first() to be visible\u001b[22m\n",
+                        "stack": "TimeoutError: locator.waitFor: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('paragraph').first() to be visible\u001b[22m\n\n    at act (/home/deepesh/Desktop/Testomation/runner/steps.ts:91:38)\n    at runStep (/home/deepesh/Desktop/Testomation/runner/steps.ts:76:9)\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:61:17\n    at /home/deepesh/Desktop/Testomation/runner/spec-runner.spec.ts:59:7",
+                        "location": {
+                          "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                          "column": 38,
+                          "line": 91
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39msteps.ts:91\n\n  89 |     case 'select': return void (await target().selectOption(str(resolve(step.value, vars))));\n  90 |     case 'press': return step.target ? target().press(step.key) : page.keyboard.press(step.key);\n> 91 |     case 'wait_for': return target().waitFor({ state: step.state });\n     |                                      ^\n  92 |     case 'viewport': return page.setViewportSize(VIEWPORTS[step.preset as keyof typeof VIEWPORTS]);\n  93 |     case 'upload': throw new Error('upload: $fixture files not supported yet');\n  94 |     case 'helper': throw new Error(`helper \"${step.name}\": no helpers are registered`);"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:02:53.993Z",
+                  "annotations": [
+                    {
+                      "type": "failing-step",
+                      "description": "16"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "before-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiYWxpY2UiCiAgICAgICAgLSB0ZXh0OiBhbGljZQotIG1haW46CiAgLSBoZWFkaW5nICJZb3VyIFNldHRpbmdzIiBbbGV2ZWw9MV0KICAtIGdyb3VwOgogICAgLSBncm91cDoKICAgICAgLSB0ZXh0Ym94ICJVUkwgb2YgcHJvZmlsZSBwaWN0dXJlIgogICAgLSBncm91cDoKICAgICAgLSB0ZXh0Ym94ICJZb3VyIE5hbWUiOiBhbGljZQogICAgLSBncm91cDoKICAgICAgLSB0ZXh0Ym94ICJTaG9ydCBiaW8gYWJvdXQgeW91IgogICAgLSBncm91cDoKICAgICAgLSB0ZXh0Ym94ICJFbWFpbCI6IGFsaWNlQGNvbmR1aXQudGVzdAogICAgLSBncm91cDoKICAgICAgLSB0ZXh0Ym94ICJQYXNzd29yZCIKICAgIC0gYnV0dG9uICJVcGRhdGUgU2V0dGluZ3MiCi0gY29udGVudGluZm86CiAgLSBsaW5rICJjb25kdWl0IjoKICAgIC0gL3VybDogIiMvIgogIC0gdGV4dDogQW4gaW50ZXJhY3RpdmUgbGVhcm5pbmcgcHJvamVjdCBmcm9tCiAgLSBsaW5rICJUaGlua3N0ZXIiOgogICAgLSAvdXJsOiBodHRwczovL3RoaW5rc3Rlci5pbwogIC0gdGV4dDogLiBDb2RlICYgZGVzaWduIGxpY2Vuc2VkIHVuZGVyIE1JVC4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGxpbmsgIu+IsyBTb3VyY2UgY29kZSI6CiAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBw"
+                    },
+                    {
+                      "name": "aria-snapshot",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+ErCBOZXcgQXJ0aWNsZSI6CiAgICAgICAgICAtIC91cmw6ICIjL2VkaXRvciIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGltZyAiS2lhbiBCb3NjbyIKICAgICAgICAtIHRleHQ6IEtpYW4gQm9zY28KLSBtYWluOgogIC0gaGVhZGluZyAiWW91ciBTZXR0aW5ncyIgW2xldmVsPTFdCiAgLSBncm91cDoKICAgIC0gZ3JvdXA6CiAgICAgIC0gdGV4dGJveCAiVVJMIG9mIHByb2ZpbGUgcGljdHVyZSIKICAgIC0gZ3JvdXA6CiAgICAgIC0gdGV4dGJveCAiWW91ciBOYW1lIjogS2lhbiBCb3NjbwogICAgLSBncm91cDoKICAgICAgLSB0ZXh0Ym94ICJTaG9ydCBiaW8gYWJvdXQgeW91IjogQ29lcGkgZXJyb3IgdHJpY2VzaW11cyBkZWxpbnF1by4gU29uaXR1cyBhZGFtbyBtYWduYW0gZGVwcmltbyBkZWZlbmRvIHN0aXBlcyBhZGlwaXNjb3IgYW5pbXVzLiBEZXB1dG8gZGVtdW0gYXJ0aWZpY2lvc2Ugc3RhYmlsaXMgbW9sZXN0aWFzLgogICAgLSBncm91cDoKICAgICAgLSB0ZXh0Ym94ICJFbWFpbCI6IENvbGxlZW4uUG91cm9zLUJyZWtrZUBob3RtYWlsLmNvbQogICAgLSBncm91cDoKICAgICAgLSB0ZXh0Ym94ICJQYXNzd29yZCIKLSBjb250ZW50aW5mbzoKICAtIGxpbmsgImNvbmR1aXQiOgogICAgLSAvdXJsOiAiIy8iCiAgLSB0ZXh0OiBBbiBpbnRlcmFjdGl2ZSBsZWFybmluZyBwcm9qZWN0IGZyb20KICAtIGxpbmsgIlRoaW5rc3RlciI6CiAgICAtIC91cmw6IGh0dHBzOi8vdGhpbmtzdGVyLmlvCiAgLSB0ZXh0OiAuIENvZGUgJiBkZXNpZ24gbGljZW5zZWQgdW5kZXIgTUlULgogIC0gbGlzdDoKICAgIC0gbGlzdGl0ZW06CiAgICAgIC0gbGluayAi74izIFNvdXJjZSBjb2RlIjoKICAgICAgICAtIC91cmw6IGh0dHBzOi8vZ2l0aHViLmNvbS9Ub255TWNrZXMvY29uZHVpdC1yZWFsd29ybGQtZXhhbXBsZS1hcHA="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "eyJnZW4xIjoiS2lhbiBCb3NjbyIsImdlbjIiOiJDb2VwaSBlcnJvciB0cmljZXNpbXVzIGRlbGlucXVvLiBTb25pdHVzIGFkYW1vIG1hZ25hbSBkZXByaW1vIGRlZmVuZG8gc3RpcGVzIGFkaXBpc2NvciBhbmltdXMuIERlcHV0byBkZW11bSBhcnRpZmljaW9zZSBzdGFiaWxpcyBtb2xlc3RpYXMuIiwiZ2VuMyI6IkNvbGxlZW4uUG91cm9zLUJyZWtrZUBob3RtYWlsLmNvbSJ9"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow10-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow10-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow10-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/deepesh/Desktop/Testomation/spike/results/menu_gemma3_4b/actions_round1/test-results/spec-runner-flow10-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/deepesh/Desktop/Testomation/runner/steps.ts",
+                    "column": 38,
+                    "line": 91
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-4e4503366081d9e9d3f4",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-04T14:02:04.794Z",
+    "duration": 57335.716,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 9,
+    "flaky": 0
+  }
+}

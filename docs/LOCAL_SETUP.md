@@ -47,7 +47,12 @@ large tier earns its place, `TESTO_MODEL_LARGE` points at the small model. If Ge
 the small tier, it can double as the vision tier and save a model swap. If a Qwen3 model is a
 candidate, check in the spike how its thinking mode interacts with structured output.
 
-## RAM budget (estimates)
+## RAM budget
+
+**Measured (spike, `spike/ram_check.py`):** with Postgres + Conduit up, the reference suite on 2
+workers *while* `qwen3:4b` generates, peak use was **5.0 GB of 15.3 GB, no swap growth**; GPU 3.7 GB.
+The estimates below stay as the planning budget for later phases (Langfuse, more workers).
+
 
 | Consumer | Phases 0–2 | From phase 3 |
 |---|---|---|

@@ -1,0 +1,37 @@
+{
+ "spec_version": 1,
+ "id": "flow09",
+ "flow": "Without logging in, open bob's profile; it lists his three articles.",
+ "_observe_after": 1,
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/profile/bob"
+  },
+  {
+   "action": "goto",
+   "url": "/#/profile/bob"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "text": "Dave's post 3 Post 3 by dave Read more... playwright testing"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "text": "Dave's post 2 Post 2 by dave Read more... design testing"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "text": "Dave's post 1 Post 1 by dave Read more... design postgres"
+   },
+   "state": "visible"
+  }
+ ]
+}

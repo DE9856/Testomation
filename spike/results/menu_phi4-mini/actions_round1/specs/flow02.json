@@ -1,0 +1,49 @@
+{
+ "spec_version": 1,
+ "id": "flow02",
+ "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page.",
+ "_observe_after": 1,
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "text": "alice@conduit.test"
+   },
+   "value": {
+    "$faker": "internet.email",
+    "as": "Email"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "text": "wrongpassword"
+   },
+   "value": {
+    "$secret": "ALICE_PASSWORD"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "text": "Wrong email/password combination"
+   },
+   "state": "visible"
+  }
+ ]
+}

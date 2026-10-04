@@ -12,12 +12,15 @@ groundwork for the next. What has to be **designed** before each phase is in
 | 0 | Set the stage | No | No | — (benchmark + infra) |
 | 1 | Prove the plumbing | No | No | Schema (nodes, typed tables, `result`, edges, claims, basis); `TestCase`, `Run`, static `touches` |
 | 2 | Tell bugs from noise — rules only | No | No | Rule claims, `Bug`, `NoiseSignature` |
-| 3 | Generate specs from plain English | Small (large only if it earns it) | No (batched rounds) | `TestCase` drafts → `covers` → `Flow`; inferred `Requirement` |
+| 3 | Assisted authoring | Small (suggests assertions, names flows) | No | `TestCase` drafts (human-approved) → `covers` → `Flow`; `Requirement` |
 | 4 | Plan the coverage | Small | No | `Page`, `Component`, `Element`, `Flow`, `ApiEndpoint`; aria basis hashes |
 | 5 | Put the model in the loop | Small + embed | No | LLM, `knn` and human claims; `HumanDecision` |
-| 6 | Go exploratory | Small, vision optional | **Exploration loop (the only graph)** | States from crawling |
+| 6 | Go exploratory — **research, gated (D43)** | Small, vision optional | **Exploration loop (the only graph)** | States from crawling |
 | Later | Platformize | — | — | Dashboards from graph + Langfuse |
 
+> Changes in v0.7 (after the spike): phase 3 becomes **assisted authoring** (D42) and phase 6 is
+> **gated research** (D43). The spike itself is done ([SPIKE_RESULTS.md](SPIKE_RESULTS.md)).
+>
 > Changes from v0.5: a **spike** comes first; Langfuse waits for phase 3; the analyzer stays
 > plain Python in phase 5; test gen uses the small model by default; the importer for
 > existing Playwright suites lands with the rules-only analyzer; exploration is the only
@@ -25,18 +28,20 @@ groundwork for the next. What has to be **designed** before each phase is in
 
 ---
 
-## Spike — Prove the models (1–2 weeks, throwaway)
+## Spike — Prove the models — *done*
 
-- Conduit in a container, a minimal spec runner, Ollama and a script. **No** Postgres,
-  Langfuse, LangGraph or memory.
-- Measure: share of generated specs that pass on the clean app (small vs large tier),
-  triage accuracy on ~20 captured failures with label probabilities, peak RAM / swap with a
-  model and 2 workers, tokens/s per tier.
-- Confirm the toolchain: structured output with the spec schema's discriminated union;
-  logprobs through `/v1` and `langfuse.openai` (Q13).
-- Output: `docs/SPIKE_RESULTS.md`. Spike code lives in `spike/` and is never imported.
+Results in [SPIKE_RESULTS.md](SPIKE_RESULTS.md): `qwen3:4b` fits fully on GPU; structured
+output and logprobs work with a decoder-friendly schema; **triage meets its target; autonomous
+spec generation does not** (best 1/8 seeded bugs caught vs 8/8 hand-written). The spike also
+produced seeded-bug toggles, a reference suite and a working runner — the start of phase 0–1.
 
-## Phase 0 — Set the stage
+## Phase 0 — Set the stage — *mostly done*
+
+> Done: Postgres + pgvector compose, Ollama with the spike's model, Conduit with seed + ~2 s reset,
+> 8 seeded bugs + noise + flaky toggles, reference suite, `testomation bench` (full and replay
+> tiers) with a 3-run baseline. Left: Stryker mutants with the detectable-mutant filter; more bugs
+> toward ~20.
+
 
 - `deploy/compose.yaml`: Postgres + pgvector. (The Langfuse stack is added in phase 3.)
 - Native Ollama with the model(s) the spike picked; `OLLAMA_MAX_LOADED_MODELS=1`.
@@ -65,15 +70,17 @@ groundwork for the next. What has to be **designed** before each phase is in
 - Writes rule claims, `Bug`, `NoiseSignature`; local report + desktop notification.
 - Benchmark scores here (both tiers) are the **baseline** every model-based feature has to beat.
 
-## Phase 3 — Generate specs from plain English
+## Phase 3 — Assisted authoring (D42)
 
 - Bring up the self-hosted **Langfuse** stack; existing stage spans flow into it.
-- Test gen with the **small** model: described flow → JSON spec under constrained decoding.
-  Try the large tier on the full benchmark; keep it only if it earns its place.
-- **Batched repair rounds** (≤ 3) with the model unloaded while drafts run; repairs can't
-  touch assertions.
-- Drafts promoted with `testomation approve`, which also confirms inferred requirements.
-- Benchmark: spec success rate.
+- **Actions from templates and recordings, not from the model:** templates for login, sign-up,
+  form submit, CRUD and "as <user>" preconditions; a recorder for the rest (Q31).
+- **Assertions suggested from a menu:** the runner records the page before and after the actions;
+  candidate assertions are derived deterministically from the difference (generated values become
+  `$var` automatically); the small model **picks** candidates that match the flow's expectation.
+- **Every draft is human-approved** with `testomation approve`, which also confirms requirements.
+- Benchmark: **spec kill rate** — drafts must pass on the clean app and fail with their flow's
+  seeded bug. Pass rate alone is not a target (spike, Q29).
 
 ## Phase 4 — Plan the coverage
 
@@ -90,13 +97,12 @@ groundwork for the next. What has to be **designed** before each phase is in
   new labelled neighbours.
 - Gates, neighbour `k`/similarity, score combination and budget calibrated on the benchmark.
 
-## Phase 6 — Go exploratory
+## Phase 6 — Go exploratory — *research, gated (D43)*
 
-- Fuzzing + coverage-guided crawling with invariant checks first.
-- Text-based exploratory agent over aria snapshots — the **one LangGraph loop** (stops on
-  budget or no new states; checkpointed); actions are spec steps; on-origin only; optional
-  small vision model.
-- Flaky-test quarantine and visual baselines.
+Starts only when a local model reaches ≥ 5/8 on the generation kill-rate benchmark, because the
+exploratory agent needs the action planning that failed in the spike. Until then, the cheap
+parts can still be built: fuzzing and coverage-guided crawling with invariant checks (no model),
+flaky-test quarantine and visual baselines. The LangGraph exploration loop waits for the gate.
 
 ## Later — Platformize
 
@@ -120,9 +126,9 @@ Phase 1  spec schema + spec runner + evidence + importer + memory schema + file 
    │       │
    │       └──► Phase 5  model-in-the-loop analyzer + review queue
    │                │
-   │                └──► Phase 6  exploration  (the one LangGraph loop)
+   │                └──► Phase 6  exploration  (research, gated — D43)
    │
-   └──► Phase 3  spec generation (small model) + Langfuse
+   └──► Phase 3  assisted authoring (templates, assertion menu, human approval) + Langfuse
            │
            └──► Phase 4  planner (feeds generation with flows)
 ```

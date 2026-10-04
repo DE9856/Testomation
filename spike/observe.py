@@ -72,7 +72,8 @@ def chat(model: str, messages: list[dict], schema: dict) -> tuple[dict, dict]:
         r = post("/api/chat", {
             "model": model, "stream": False, "think": False, "format": decoder_view(schema),
             "messages": messages,
-            "options": {"num_ctx": 8192, "num_gpu": 99, "temperature": 0, "num_predict": 2000},
+            "options": {"num_ctx": 8192, "num_gpu": specgen.NUM_GPU.get(model, 99), "temperature": 0,
+                        "num_predict": 2000},
         })
     except Exception as e:
         return {"_call_error": str(e)[:200]}, {"seconds": 0}

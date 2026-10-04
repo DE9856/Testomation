@@ -16,7 +16,8 @@ Items marked *(later)* inside a core group are individually later.
 | Feature | Description |
 |---|---|
 | Autonomous flow discovery | Crawls or reads the app and proposes the user flows worth testing. |
-| Natural-language test authoring | "Test that guest checkout fails without an email" → runnable **spec**. |
+| Assisted test authoring *(changed in v0.7)* | Templates and recorded flows give the actions; the model suggests assertions from what changed on the page; a human approves each draft. |
+| Natural-language test authoring *(research)* | "Test that guest checkout fails without an email" → runnable spec. Gated on the kill-rate benchmark (D43). |
 | Structured test specs | Tests are JSON specs run by one Playwright runner; the model never writes executable code. Named helper steps cover what the core vocabulary can't. |
 | Edge-case & negative-path enumeration | Boundary values, invalid inputs, error states alongside the happy path. |
 | Coverage gap analysis | Flows/routes with no test touching them. *(graph query)* |
@@ -47,7 +48,7 @@ Items marked *(later)* inside a core group are individually later.
 | Auth & session handling | Saved Playwright storage state. |
 | Third-party mocking | Route interception and HAR replay. |
 | Per-branch environments *(later)* | Throwaway local compose environment per branch. |
-| Exploratory session recording | Agent free-roams the target origin; every action and state change logged, and findings replay as draft specs — finds bugs nobody wrote a test for. |
+| Exploratory session recording *(research, gated — D43)* | Agent free-roams the target origin; every action and state change logged, and findings replay as draft specs. Fuzzing and crawling with invariants (no model) can come first. |
 
 ## Bug detection & analysis — core
 
@@ -79,7 +80,7 @@ Items marked *(later)* inside a core group are individually later.
 
 | Feature | Description |
 |---|---|
-| Seeded-bug benchmark | Local target app with toggleable known bugs; only detectable mutants count. |
+| Seeded-bug benchmark | Local target app with toggleable known bugs; only detectable mutants count. Generated drafts are scored by **kill rate**. |
 | Regression runs on every change | Replay tier (recorded evidence through the analyzer, minutes) for analyzer changes; full tier for generation and model changes, and nightly. |
 | Threshold calibration | Confidence gates set from benchmark precision/recall (reported as ranges over 3 runs), refined with review scores. |
 

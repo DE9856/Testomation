@@ -1,0 +1,92 @@
+{
+ "model": "qwen2.5-coder:7b",
+ "flows": {
+  "flow06": {
+   "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'.",
+   "as_user": "nobody",
+   "menu": [
+    "heading \"Bob's post 1\" appeared",
+    "text \"Post 1 by bob\" appeared",
+    "text \"postgres\" appeared",
+    "button \"\uf219 react\" appeared",
+    "link \"bob\" appeared",
+    "button \"\uf141 ( 1 )\" appeared",
+    "link \"Bob's post 1 Post 1 by bob Read more... postgres react\" appeared",
+    "link \"Dave's post 2 Post 2 by dave Read more... playwright testing\" disappeared",
+    "heading \"Dave's post 2\" disappeared",
+    "button \"Page 3\" disappeared",
+    "button \"Page 4\" disappeared",
+    "button \"Page 5\" disappeared",
+    "heading \"conduit\" is shown",
+    "heading \"amicitia\" is shown",
+    "heading \"Dave's post 3\" is shown",
+    "heading \"Popular Tags\" is shown",
+    "text \"A place to share your knowledge.\" is shown",
+    "text \"October 4, 2026\" is shown",
+    "text \"Id amicitia sortitus nulla deficio tempora comedo demulceo attonbitus \" is shown",
+    "text \"Read more...\" is shown",
+    "text \"playwright\" is shown",
+    "text \"react\" is shown",
+    "text \"Post 3 by dave\" is shown"
+   ],
+   "picked": [
+    "button \"\uf219 react\" appeared",
+    "text \"react\" is shown",
+    "text \"Post 3 by dave\" is shown",
+    "text \"playwright\" is shown"
+   ],
+   "clean": "passed",
+   "kills_bug": false
+  },
+  "flow01": {
+   "flow": "Log in as alice; the navigation bar then shows her username 'alice'.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow02": {
+   "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow03": {
+   "flow": "Sign up a brand-new user with generated data; afterwards the navigation bar shows the new username.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow04": {
+   "flow": "As alice, publish a new article with a title, description, body and two tags; the article page then shows the title.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow05": {
+   "flow": "As alice, open the article \"Dave's post 3\" and post a comment; the comment appears on the page.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow07": {
+   "flow": "As alice, favorite the article \"Dave's post 3\"; its favorite count goes from 0 to 1.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow08": {
+   "flow": "As alice, open 'Your Feed'; it lists articles by bob and carol (whom she follows) and none by dave.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow09": {
+   "flow": "Without logging in, open bob's profile; it lists his three articles.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow10": {
+   "flow": "As alice, change her bio in settings to some generated text; her profile page then shows that bio.",
+   "clean": "no-spec",
+   "kills_bug": null
+  }
+ },
+ "summary": {
+  "actions_ran": 1,
+  "clean_pass": 1,
+  "kill_rate": "0/8"
+ }
+}

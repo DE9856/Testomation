@@ -28,28 +28,24 @@ e.g. `signup → verify email → onboarding`, `add to cart → checkout → pay
 
 ---
 
-## Test generation agent — *changed in v0.6*
+## Test authoring (assisted) — *changed in v0.7*
 
-**Job:** convert a flow into a **JSON test spec**.
+**Job:** help a human produce good JSON specs quickly. It does not write specs on its own (D42).
 
-| Decision | Why |
-|---|---|
-| **Spec, not code** | Model fills a JSON schema; Ollama constrains decoding to it, so small models can't emit invalid tests |
-| **Deterministic execution** | One spec runner executes every spec — determinism of scripted tests, no generated code on the host |
-| **Agents for exploration only** | Live unscripted bug hunting is a separate executor mode |
+| Piece | How | Model? |
+|---|---|---|
+| Actions | Templates (login, sign-up, form submit, CRUD, "as <user>") and recorded flows (Q31) | No |
+| Assertion menu | The runner records the page before and after the actions; candidates come from the difference — new or removed headings, text, values; generated values become `$var` | No |
+| Assertion picks | The small model picks the candidates that match the flow's stated expectation | Small |
+| Flow names, requirements | The model names flows and proposes the business rule a spec checks | Small |
+| Approval | Every draft goes to `testomation approve`; nothing runs in regression until a human approves it | — |
 
-- **Before generating:** pulls targets that worked before and similar specs from memory as templates.
-- **No-model path:** common patterns (login, form submit, CRUD) come from spec templates.
-- **Model path (small tier; large only if the benchmark earns it):** novel flows → spec.
-- **Batched repair rounds (≤ 3):** generate or repair all pending drafts → unload model →
-  run all drafts → failures go back to the model with the failing step, error and aria
-  snapshot. Still failing after round 3 → review queue.
-- **Repair rules:** may change targets, add waits/steps; changing or removing an `expect`
-  needs review (the failure might be a real bug).
-- **Reads:** working targets, similar specs, test data that passed a form's validation,
-  registered helper names.
-- **Writes:** `TestCase` (spec + `status: draft`) linked to `Flow` (`covers`) and, when known,
-  `Requirement` (`justified_by`).
+- **Why not autonomous generation:** the spike tried five approaches; the best caught 1/8 seeded
+  bugs vs 8/8 for hand-written specs ([SPIKE_RESULTS.md](SPIKE_RESULTS.md#final-verdict-q22)).
+- **Measured by kill rate:** a draft is useful only if it fails with its flow's seeded bug on.
+- **Repair rounds (≤ 3, batched)** still apply to drafts whose recorded actions break; repairs
+  may change targets, never assertions.
+- **Writes:** `TestCase` (spec + `status: draft`) linked to `Flow` and `Requirement`.
 - **Runtime:** plain code; the rounds are driven by the pipeline runner.
 
 Full format → [TEST_SPEC.md](TEST_SPEC.md)
@@ -195,7 +191,7 @@ returns the label probability from logprobs, and is traced via `langfuse.openai`
 | Component | Reads before acting | Writes after |
 |---|---|---|
 | Planner | Existing flows, uncovered pages, bug-prone components | `Page`, `Component`, `Element`, `Flow`, `ApiEndpoint`, `Requirement` |
-| Test gen | Working targets, similar specs, valid test data, helper names | `TestCase` (spec, draft) → `Flow`, `Requirement` |
+| Test authoring | Working targets, templates, recorded flows, before/after snapshots | `TestCase` (draft, human-approved) → `Flow`, `Requirement` |
 | Executor | Auth state, endpoints to mock | `Run`, `result` rows, `touches`, aria hashes |
 | Importer | — | `Run` (import), `result` rows |
 | Analyzer | Noise signatures, labelled neighbours, past bugs on component, recent commits | `Bug`, `NoiseSignature`, verdict claims, `duplicate_of`, `review_item` |

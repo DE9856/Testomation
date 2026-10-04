@@ -1,0 +1,45 @@
+{
+ "mem_total_mib": 15313,
+ "scenarios": {
+  "idle": {
+   "samples": 7,
+   "peak_used_mib": 4236,
+   "min_available_mib": 11077,
+   "swap_used_mib": {
+    "start": 858,
+    "peak": 858
+   },
+   "peak_gpu_mib": 12
+  },
+  "model": {
+   "samples": 61,
+   "peak_used_mib": 4508,
+   "min_available_mib": 10805,
+   "swap_used_mib": {
+    "start": 858,
+    "peak": 858
+   },
+   "peak_gpu_mib": 3718
+  },
+  "suite": {
+   "samples": 26,
+   "peak_used_mib": 4548,
+   "min_available_mib": 10765,
+   "swap_used_mib": {
+    "start": 858,
+    "peak": 858
+   },
+   "peak_gpu_mib": 3718
+  },
+  "both": {
+   "samples": 48,
+   "peak_used_mib": 4990,
+   "min_available_mib": 10323,
+   "swap_used_mib": {
+    "start": 858,
+    "peak": 858
+   },
+   "peak_gpu_mib": 3718
+  }
+ }
+}

@@ -138,7 +138,7 @@ testomation run --pr 412              pipeline runner · stage state in Postgres
  ├─ stage: refresh basis + scope       plain code · git blob SHAs · memory-graph query
  ├─ stage: run approved specs          model unloaded · npx playwright test · retries=1
  ├─ stage: triage failures             plain code · memory → rules → neighbours → model
- ├─ stage: generate missing tests      plain code · ≤3 rounds: generate → unload → run → repair
+ ├─ stage: suggest drafts               plain code · templates + assertion menu → drafts for approval
  └─ stage: report                      plain code · local HTML / Markdown
 ```
 
@@ -153,9 +153,9 @@ testomation run --pr 412              pipeline runner · stage state in Postgres
    are ingested as `Run`, `result` rows and `touches`; visited pages update their aria hashes.
 6. **Triage.** Each failure goes through the analyzer cascade: memory → rules → neighbours →
    small model (if budget left) → confidence gate → claim, or a `review_item` row.
-7. **Fill gaps.** Planner and Test gen handle in-scope and uncovered flows. Drafts go through
-   up to 3 batched rounds (generate → unload → run → repair) and land as **drafts** for
-   `testomation approve`.
+7. **Suggest drafts.** For in-scope and uncovered flows, templates and recordings give the
+   actions, the runner observes before/after, and the model picks assertions from the menu.
+   Drafts land for `testomation approve` (D42).
 8. **Report.** Confirmed bugs go into the local report with repro steps and trace links;
    desktop notification.
 9. **Learn.** Review decisions become human claims and trace scores, and new labelled
@@ -170,9 +170,9 @@ exploration.
 ```
                        uses LangGraph?   calls a model?
 Planner                no                small: naming/ranking flows, inferring business rules
-Test gen               no                small (large if the benchmark earns it): novel flows → spec; repair
+Test authoring         no                small: picks assertions from the before/after menu; names flows
 Executor (specs)       no                never
-Executor (exploratory) yes (only one)    small: next action over aria snapshots; vision optional
+Executor (exploratory) yes (only one)    small: next action over aria snapshots — research, gated (D43)
 Analyzer               no                embed: neighbour vote · small ×1 with logprobs: unsettled failures
 Reporter               no                optional summary
 Pipeline runner        no                never

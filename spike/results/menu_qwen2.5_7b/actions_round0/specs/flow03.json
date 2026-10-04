@@ -1,0 +1,98 @@
+{
+ "spec_version": 1,
+ "id": "flow03",
+ "flow": "Sign up a brand-new user with generated data; afterwards the navigation bar shows the new username.",
+ "_observe_after": 1,
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/"
+  },
+  {
+   "action": "goto",
+   "url": "/#/register"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "text": "Your Name"
+   },
+   "value": {
+    "$faker": "internet.username",
+    "as": "new_user_name"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "text": "Email"
+   },
+   "value": {
+    "$faker": "internet.email",
+    "as": "new_user_email"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "text": "Password"
+   },
+   "value": {
+    "$faker": "internet.password",
+    "as": "new_user_password"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "text": "Sign up"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "text": "conduit"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "click",
+   "target": {
+    "text": "New Article"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "text": "Your Feed"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "click",
+   "target": {
+    "text": "Your Feed"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "text": "New Article"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "click",
+   "target": {
+    "text": "New Article"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "text": "Global Feed"
+   },
+   "state": "visible"
+  }
+ ]
+}

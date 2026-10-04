@@ -8,7 +8,7 @@ def test_no_command_prints_help(capsys):
     assert "usage: testomation" in capsys.readouterr().out
 
 
-@pytest.mark.parametrize("command", ["run", "review", "approve", "bench", "explore"])
+@pytest.mark.parametrize("command", ["run", "review", "approve", "explore"])
 def test_stub_commands_report_not_implemented(command, capsys):
     assert main([command]) == 2
     assert "not implemented yet" in capsys.readouterr().err

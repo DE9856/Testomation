@@ -1,0 +1,71 @@
+{
+ "spec_version": 1,
+ "id": "flow09",
+ "flow": "Without logging in, open bob's profile; it lists his three articles.",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/"
+  },
+  {
+   "action": "goto",
+   "url": "/#/profile/bob"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 3"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 2"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 1"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 3"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 2"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "heading",
+    "name": "Bob's post 1"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "link",
+    "name": "Bob's post 3 Post 3 by bob Read more... design testing"
+   },
+   "assert": "visible"
+  }
+ ]
+}

@@ -1,0 +1,83 @@
+{
+ "spec_version": 1,
+ "id": "flow08",
+ "flow": "As alice, open 'Your Feed'; it lists articles by bob and carol (whom she follows) and none by dave.",
+ "_observe_after": 6,
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": "alice@conduit.test"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": {
+    "$secret": "ALICE_PASSWORD"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "goto",
+   "url": "/#/feed"
+  },
+  {
+   "action": "goto",
+   "url": "/#/feed"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "listitem",
+    "nth": 0
+   },
+   "state": "visible"
+  },
+  {
+   "action": "check",
+   "target": {
+    "role": "listitem",
+    "nth": 0
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "listitem",
+    "nth": 1
+   },
+   "state": "visible"
+  },
+  {
+   "action": "check",
+   "target": {
+    "role": "listitem",
+    "nth": 1
+   }
+  }
+ ]
+}

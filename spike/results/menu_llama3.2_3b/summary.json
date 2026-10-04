@@ -1,0 +1,178 @@
+{
+ "model": "llama3.2:3b",
+ "flows": {
+  "flow04": {
+   "flow": "As alice, publish a new article with a title, description, body and two tags; the article page then shows the title.",
+   "as_user": "alice",
+   "menu": [
+    "heading \"My New Article\" appeared",
+    "text \"October 4, 2026\" appeared",
+    "text \"This is my new article body\" appeared",
+    "text \"tag1\" appeared",
+    "text \"tag2\" appeared",
+    "text \"There are no comments yet...\" appeared",
+    "field \"Write a comment...\" now contains \"\"",
+    "link \"alice\" appeared",
+    "button \"\uf252 Delete Article\" appeared",
+    "button \"\uf2bf Edit Article\" appeared",
+    "link \"\uf2bf Edit Article\" appeared",
+    "button \"Post Comment\" appeared",
+    "button \"Publish Article\" disappeared",
+    "text \"alice\" is shown"
+   ],
+   "picked": [
+    "heading \"My New Article\" appeared",
+    "text \"October 4, 2026\" appeared",
+    "text \"This is my new article body\" appeared",
+    "text \"tag1\" appeared"
+   ],
+   "clean": "passed",
+   "kills_bug": true
+  },
+  "flow05": {
+   "flow": "As alice, open the article \"Dave's post 3\" and post a comment; the comment appears on the page.",
+   "as_user": "alice",
+   "menu": [
+    "the generated value \"alice\" (Shanon_Buckridge68) is shown on the page",
+    "heading \"Dave's post 3\" is shown",
+    "heading \"Heading\" is shown",
+    "text \"alice\" is shown",
+    "text \"October 4, 2026\" is shown",
+    "text \"Body of post 3 by\" is shown",
+    "text \"playwright\" is shown",
+    "text \"react\" is shown",
+    "text \"Comment from alice\" is shown"
+   ],
+   "picked": [
+    "the generated value \"alice\" (Shanon_Buckridge68) is shown on the page",
+    "heading \"Dave's post 3\" is shown",
+    "heading \"Heading\" is shown",
+    "text \"alice\" is shown"
+   ],
+   "clean": "passed",
+   "kills_bug": true
+  },
+  "flow06": {
+   "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'.",
+   "as_user": "nobody",
+   "menu": [
+    "heading \"Sign in\" appeared",
+    "field \"Email\" now contains \"\"",
+    "field \"Password\" now contains \"\"",
+    "link \"Need an account?\" appeared",
+    "button \"Login\" appeared",
+    "heading \"conduit\" disappeared",
+    "button \"Global Feed\" disappeared",
+    "link \"alice\" disappeared",
+    "button \"\uf141 ( 0 )\" disappeared",
+    "link \"My New Article This is my new article Read more... tag1 tag2\" disappeared",
+    "heading \"My New Article\" disappeared",
+    "link \"dave\" disappeared",
+    "link \"Dave's post 3 Post 3 by dave Read more... playwright react\" disappeared",
+    "heading \"Dave's post 3\" disappeared",
+    "link \"Dave's post 2 Post 2 by dave Read more... playwright testing\" disappeared",
+    "heading \"Dave's post 2\" disappeared",
+    "button \"Previous page\" disappeared",
+    "button \"Page 1 is your current page\" disappeared",
+    "button \"Page 2\" disappeared",
+    "button \"Page 3\" disappeared",
+    "button \"Page 4\" disappeared",
+    "button \"Page 5\" disappeared",
+    "button \"Next page\" disappeared",
+    "heading \"Popular Tags\" disappeared",
+    "button \"playwright\" disappeared",
+    "button \"react\" disappeared",
+    "button \"postgres\" disappeared",
+    "button \"design\" disappeared",
+    "button \"testing\" disappeared",
+    "button \"tag1\" disappeared"
+   ],
+   "picked": [
+    "field \"Email\" now contains \"\"",
+    "field \"Password\" now contains \"\"",
+    "link \"Need an account?\" appeared",
+    "button \"Login\" appeared"
+   ],
+   "clean": "passed",
+   "kills_bug": false
+  },
+  "flow01": {
+   "flow": "Log in as alice; the navigation bar then shows her username 'alice'.",
+   "as_user": "alice",
+   "menu": [
+    "heading \"alice\" appeared",
+    "text \"October 4, 2026\" appeared",
+    "heading \"Alice's post 3\" appeared",
+    "text \"Post 3 by alice\" appeared",
+    "text \"Read more...\" appeared",
+    "text \"design\" appeared",
+    "text \"postgres\" appeared",
+    "heading \"Alice's post 2\" appeared",
+    "text \"Post 2 by alice\" appeared",
+    "text \"react\" appeared",
+    "heading \"Alice's post 1\" appeared",
+    "text \"Post 1 by alice\" appeared",
+    "text \"playwright\" appeared",
+    "link \"\uf13d Edit Profile Settings\" appeared",
+    "link \"My Articles\" appeared",
+    "link \"Favorited Articles\" appeared",
+    "link \"alice\" appeared",
+    "button \"\uf141 ( 0 )\" appeared",
+    "link \"Alice's post 3 Post 3 by alice Read more... design postgres\" appeared",
+    "link \"Alice's post 2 Post 2 by alice Read more... postgres react\" appeared",
+    "button \"\uf141 ( 1 )\" appeared",
+    "link \"Alice's post 1 Post 1 by alice Read more... playwright react\" appeared",
+    "button \"Previous page\" appeared",
+    "button \"Page 1 is your current page\" appeared",
+    "button \"Next page\" appeared",
+    "heading \"Sign in\" disappeared",
+    "link \"Need an account?\" disappeared",
+    "button \"Login\" disappeared",
+    "text \"alice\" is shown"
+   ],
+   "picked": [
+    "link \"Alice's post 3 Post 3 by alice Read more... design postgres\" appeared",
+    "link \"Alice's post 2 Post 2 by alice Read more... postgres react\" appeared",
+    "button \"\uf141 ( 1 )\" appeared",
+    "link \"Alice's post 1 Post 1 by alice Read more... playwright react\" appeared"
+   ],
+   "clean": "passed",
+   "kills_bug": null
+  },
+  "flow02": {
+   "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow03": {
+   "flow": "Sign up a brand-new user with generated data; afterwards the navigation bar shows the new username.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow07": {
+   "flow": "As alice, favorite the article \"Dave's post 3\"; its favorite count goes from 0 to 1.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow08": {
+   "flow": "As alice, open 'Your Feed'; it lists articles by bob and carol (whom she follows) and none by dave.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow09": {
+   "flow": "Without logging in, open bob's profile; it lists his three articles.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow10": {
+   "flow": "As alice, change her bio in settings to some generated text; her profile page then shows that bio.",
+   "clean": "no-spec",
+   "kills_bug": null
+  }
+ },
+ "summary": {
+  "actions_ran": 4,
+  "clean_pass": 4,
+  "kill_rate": "2/8"
+ }
+}

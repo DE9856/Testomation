@@ -1,0 +1,69 @@
+{
+ "spec_version": 1,
+ "id": "flow09",
+ "flow": "Without logging in, open bob's profile; it lists his three articles.",
+ "_observe_after": 1,
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "goto",
+   "url": "/#/login"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": {
+    "$faker": "internet.username",
+    "as": "bob"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": {
+    "$secret": "BOB_PASSWORD"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Login"
+   }
+  },
+  {
+   "action": "goto",
+   "url": "/#/profile/bob"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "listitem",
+    "nth": 0
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "listitem",
+    "nth": 1
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "listitem",
+    "nth": 2
+   }
+  }
+ ]
+}

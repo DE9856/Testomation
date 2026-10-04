@@ -1,0 +1,99 @@
+{
+ "spec_version": 1,
+ "id": "flow03",
+ "flow": "Sign up a brand-new user with generated data; afterwards the navigation bar shows the new username.",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/"
+  },
+  {
+   "action": "goto",
+   "url": "/#/register"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Name"
+   },
+   "value": {
+    "$faker": "internet.username",
+    "as": "name"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": {
+    "$faker": "internet.email",
+    "as": "email"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": {
+    "$secret": "ALICE_PASSWORD"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Sign up"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   },
+   "state": "visible"
+  },
+  {
+   "action": "goto",
+   "url": "/#/"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "main"
+   },
+   "assert": "hasText",
+   "value": {
+    "$var": "name"
+   }
+  },
+  {
+   "action": "expect",
+   "target": {
+    "text": "Articles not available."
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "button",
+    "name": "Your Feed"
+   },
+   "assert": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "role": "link",
+    "name": "\uf29e Login"
+   },
+   "assert": "hidden"
+  }
+ ]
+}

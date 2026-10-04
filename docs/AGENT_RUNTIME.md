@@ -45,7 +45,7 @@ testomation run --pr 412              pipeline runner · stage state in Postgres
  ├─ stage: refresh basis + scope       plain code · git blob SHAs · memory-graph query
  ├─ stage: run approved specs          model unloaded · npx playwright test · retries=1
  ├─ stage: triage failures             plain code · memory → rules → neighbours → model
- ├─ stage: generate missing tests      plain code · ≤3 rounds: generate → unload → run → repair
+ ├─ stage: suggest drafts               plain code · templates + assertion menu → drafts for approval
  └─ stage: report                      plain code · local HTML / Markdown
 
 testomation explore --budget 15m      LangGraph loop · checkpointed · its own run

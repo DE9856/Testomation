@@ -1,0 +1,99 @@
+{
+ "spec_version": 1,
+ "id": "flow03",
+ "flow": "Sign up a brand-new user with generated data; afterwards the navigation bar shows the new username.",
+ "_observe_after": 1,
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/register"
+  },
+  {
+   "action": "goto",
+   "url": "/#/register"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Your Name"
+   },
+   "value": {
+    "$faker": "internet.username",
+    "as": "username"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Email"
+   },
+   "value": {
+    "$faker": "internet.username",
+    "as": "email"
+   }
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Password"
+   },
+   "value": {
+    "$secret": "ALICE_PASSWORD"
+   }
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "button",
+    "name": "Sign up"
+   }
+  },
+  {
+   "action": "goto",
+   "url": "/#/profile/alice"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "paragraph",
+    "nth": 1
+   },
+   "state": "visible"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Your Name"
+   },
+   "value": {
+    "$var": "username"
+   }
+  },
+  {
+   "action": "goto",
+   "url": "/#/profile/alice"
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "paragraph",
+    "nth": 2
+   },
+   "state": "visible"
+  },
+  {
+   "action": "fill",
+   "target": {
+    "role": "textbox",
+    "name": "Your Name"
+   },
+   "value": {
+    "$var": "username"
+   }
+  }
+ ]
+}

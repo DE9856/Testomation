@@ -8,10 +8,10 @@ Guidance for Claude (and humans) working in this repository.
 Testomation plus a bare skeleton (packaging, CLI stubs, draft spec schema, runner stub,
 compose, draft memory DDL) and a working step executor in `runner/` (`steps.ts`: all actions
 except `upload`/`helper`, origin guard, failing-step annotation + aria snapshot on failure).
-No agent logic yet — the feasibility spike is in progress (`docs/SPIKE_RESULTS.md`). The source of truth is the project brief `index.html` (**v0.6**, served on
+No agent logic yet — the feasibility spike is done (`docs/SPIKE_RESULTS.md`); phase 0 is next. The source of truth is the project brief `index.html` (**v0.7**, served on
 GitHub Pages); the Markdown files in `docs/` are a split-out, editable version of it. Keep the
 two in sync. If they disagree, flag it rather than silently picking one. Previous briefs are
-kept at `archive/testomation-v0.5.html` and `archive/testomation-v0.4.html`.
+kept in `archive/` (v0.4–v0.6).
 
 ## What Testomation is
 
@@ -19,10 +19,15 @@ An autonomous software testing platform. It reads a codebase or app, decides wha
 testing, writes the tests itself, drives a real browser to run them, tells real bugs apart
 from noise, and reports back — asking a human only when it isn't sure.
 
+**After the spike (v0.7):** the model *assists* test authoring (templates/recordings give the
+actions, the model picks assertions, a human approves every draft — D42) and *decides* triage.
+Autonomous generation and exploration wait until a local model passes the kill-rate benchmark
+(D43).
+
 It sits **alongside** scripted regression testing, not instead of it: it fills the gap
 between "what we remembered to test" and "what the app can actually do."
 
-## Ground rules (v0.6)
+## Ground rules (v0.7)
 
 - **Free and local.** Everything runs on one laptop (Ryzen 7 5800H, 16 GB RAM, RTX 3050 4 GB
   VRAM, Fedora). No paid APIs or hosted services in the product.
@@ -35,6 +40,9 @@ between "what we remembered to test" and "what the app can actually do."
   file; self-hosted Langfuse (Docker Compose) arrives with the first model call.
 
 ## Doc map
+
+**Picking up work? Read [CHANGELOG.md](CHANGELOG.md) first** — the last session's state, how to
+bring the services up, and the ordered next steps.
 
 | File | Read it when you need… |
 |---|---|
@@ -117,7 +125,9 @@ between "what we remembered to test" and "what the app can actually do."
 - `uv sync` · `uv run pytest` · `uv run ruff check .` · `uv run testomation --help`
 - `cd runner && npm install && npm run typecheck && npm run validate-examples`
 - `docker compose -f deploy/compose.yaml up -d` (Postgres + pgvector; applies `deploy/sql/`)
-- `bench/app/conduit.sh up | reset | down` (benchmark target app on :4100)
+- `bench/app/conduit.sh up | reset | down` (benchmark target app on :4100; `BUGS=<id,...>` before
+  `reset` switches seeded bugs on)
+- `uv run testomation bench [--runs N]` (full tier, ~12 min) · `uv run testomation bench --replay`
 
 ## Working conventions for this repo
 

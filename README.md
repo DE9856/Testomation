@@ -7,10 +7,12 @@ from noise, and reports back — asking a human only when it isn't sure.
 It sits **alongside** scripted regression testing, not instead of it: it fills the gap
 between "what we remembered to test" and "what the app can actually do."
 
-**📄 Project brief (v0.6): https://de9856.github.io/Testomation/**
+**📄 Project brief (v0.7): https://de9856.github.io/Testomation/**
 
-> **Status: design stage.** The repo holds the idea documentation plus a bare scaffold —
-> no agent logic yet. Next up is the feasibility spike ([DESIGN_ROADMAP](docs/DESIGN_ROADMAP.md)).
+> **Status: design stage → phase 0.** The feasibility spike is done ([SPIKE_RESULTS](docs/SPIKE_RESULTS.md)):
+> triage with a local model works; autonomous test generation doesn't yet, so phase 3 is
+> assisted authoring. The repo has a working spec runner, a seeded-bug benchmark app and a
+> reference suite.
 
 ## Getting started
 
@@ -20,6 +22,8 @@ uv sync && uv run pytest              # Python 3.12 (uv fetches it)
 uv run testomation --help             # commands are stubs until their phase lands
 cd runner && npm install && npm run typecheck && npm run validate-examples
 docker compose -f deploy/compose.yaml up -d   # Postgres + pgvector with the draft memory schema
+bench/app/conduit.sh up                       # benchmark app on :4100 (seeded, resettable)
+uv run testomation bench                      # reference suite × seeded bugs → kill rate
 ```
 
 ## The pipeline
@@ -63,10 +67,11 @@ suite's report.
 | [`schemas/`](schemas/) | Draft spec JSON Schema + valid/invalid examples |
 | [`deploy/`](deploy/) | Compose file (Postgres + pgvector) and draft memory DDL |
 | [`bench/`](bench/), [`spike/`](spike/) | Benchmark and feasibility spike (placeholders) |
-| [`index.html`](index.html) | The project brief (v0.6) — source of truth, served on GitHub Pages |
+| [`index.html`](index.html) | The project brief (v0.7) — source of truth, served on GitHub Pages |
 | [`docs/`](docs/) | The brief split into editable Markdown files |
-| [`archive/`](archive/) | Previous briefs (v0.4, v0.5) |
+| [`archive/`](archive/) | Previous briefs (v0.4–v0.6) |
 | [`CLAUDE.md`](CLAUDE.md) | Guidance for working in this repo |
+| [`CHANGELOG.md`](CHANGELOG.md) | Session log: what was done, current state, next steps |
 
 ## Docs
 

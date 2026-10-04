@@ -29,7 +29,7 @@ its phase starts, and later steps stay rough until then.
 | 3 | Benchmark | Phase 0 | Q12 | Stable scores across 3 runs on clean and bugged variants |
 | 4 | Execution & ingest | Phase 1 | Q24 | Spec-runner and imported results land as `result` rows; crashed run resumes |
 | 5 | Rules-only analyzer | Phase 2 | — | Baseline recall / false positives on both benchmark tiers |
-| 6 | Generation | Phase 3 | Q2, Q13 (Langfuse wiring) | Spec success rate measured; `large` tier kept or dropped |
+| 6 | Assisted authoring | Phase 3 | Q13 (Langfuse wiring), Q31 | Templates + recorder + assertion menu; draft kill rate measured |
 | 7 | Planner & freshness | Phase 4 | Q4, Q15, Q17, Q18, Q21, Q23 | Second-run memory hit rate measured; a one-file change re-plans only affected pages |
 | 8 | Model in the loop | Phase 5 | Q5, Q6, Q19 | Thresholds fitted on the benchmark; held-out recall within the run-to-run range |
 | 9 | Exploration | Phase 6 | Q25 | Finds a seeded bug the approved specs missed, within budget, with no off-origin navigation |
@@ -43,7 +43,10 @@ its phase starts, and later steps stay rough until then.
 
 ---
 
-## Step 1 — Feasibility spike
+## Step 1 — Feasibility spike — *done*
+
+> Results: [SPIKE_RESULTS.md](SPIKE_RESULTS.md). Generation missed its target; triage, toolchain
+> and fit met theirs. Phase 3 changed to assisted authoring (D42).
 
 **Goal:** find out whether local models on this laptop are good enough before building any
 infrastructure. It's the riskiest assumption in the project.
@@ -145,15 +148,16 @@ as the bar every model feature must beat.
 
 ---
 
-## Step 6 — Generation (before phase 3)
+## Step 6 — Assisted authoring (before phase 3)
 
-**Design work:** prompts (versioned files); spec templates for login / form / CRUD; the
-batched repair-round state (which drafts are in which round); `testomation approve`
-(writes `HumanDecision`, sets status, confirms the requirement); inferring requirements
-(D34). Bring up Langfuse and check that the existing spans arrive (Q13).
+**Design work:** the template set (login, sign-up, form submit, CRUD, "as <user>") and how templates
+take parameters; the recorder (Q31); the assertion menu (before/after diff rules, ranking, how many
+candidates, `$var` substitution, which elements count as "chrome"); the pick prompt; the approval
+flow (`testomation approve` writes `HumanDecision`, sets status, confirms the requirement). Bring up
+Langfuse and check that the existing spans arrive (Q13).
 
-**Exit gate:** spec success rate measured on the full benchmark; the `large` tier kept or
-dropped on the numbers (D15).
+**Exit gate:** on the 8 seeded-bug flows, approved drafts reach the reference suite's kill rate, and
+the menu's suggestions get accepted without edits for at least half the flows (measured).
 
 ---
 
@@ -191,6 +195,8 @@ range of tuned recall; review-queue rate tracked next to model calls.
 **Design work:** the LangGraph loop (state, stop conditions, checkpoints); the invariant list;
 the novelty measure (new normalised aria hashes); actions limited to the spec step
 vocabulary so findings replay as draft specs; the Python ↔ TypeScript bridge (Q25).
+
+**Gate to start (D43):** a local model reaches ≥ 5/8 on the generation kill-rate benchmark.
 
 **Exit gate:** within its budget, exploration finds at least one seeded bug the approved
 specs missed, and makes no off-origin navigation.

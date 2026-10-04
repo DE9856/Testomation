@@ -1,0 +1,160 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node-22",
+      "/home/deepesh/Desktop/Testomation/runner/node_modules/.bin/playwright",
+      "test",
+      "--output",
+      "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5-coder_7b/verify_clean/test-results"
+    ],
+    "configFile": "/home/deepesh/Desktop/Testomation/runner/playwright.config.ts",
+    "rootDir": "/home/deepesh/Desktop/Testomation/runner",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5-coder_7b/verify_clean/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/deepesh/Desktop/Testomation/runner",
+        "testIgnore": [],
+        "testMatch": [
+          "spec-runner.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json",
+        {
+          "outputFile": "/home/deepesh/Desktop/Testomation/spike/results/menu_qwen2.5-coder_7b/verify_clean/results.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "spec-runner.spec.ts",
+      "file": "spec-runner.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "flow06",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4613,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "1. goto",
+                      "duration": 2929
+                    },
+                    {
+                      "title": "2. click",
+                      "duration": 456
+                    },
+                    {
+                      "title": "3. expect",
+                      "duration": 15
+                    },
+                    {
+                      "title": "4. expect",
+                      "duration": 6
+                    },
+                    {
+                      "title": "5. expect",
+                      "duration": 4
+                    },
+                    {
+                      "title": "6. expect",
+                      "duration": 7
+                    }
+                  ],
+                  "startTime": "2026-10-04T14:37:49.925Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "final-aria",
+                      "contentType": "text/yaml",
+                      "body": "LSBiYW5uZXI6CiAgLSBuYXZpZ2F0aW9uOgogICAgLSBsaW5rICJjb25kdWl0IjoKICAgICAgLSAvdXJsOiAiIy8iCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgICAgLSAvdXJsOiBodHRwczovL2dpdGh1Yi5jb20vVG9ueU1ja2VzL2NvbmR1aXQtcmVhbHdvcmxkLWV4YW1wbGUtYXBwCiAgICAtIGxpc3Q6CiAgICAgIC0gbGlzdGl0ZW06CiAgICAgICAgLSBsaW5rICLvhKwgSG9tZSI6CiAgICAgICAgICAtIC91cmw6ICIjLyIKICAgICAgLSBsaXN0aXRlbToKICAgICAgICAtIGxpbmsgIu+KniBMb2dpbiI6CiAgICAgICAgICAtIC91cmw6ICIjL2xvZ2luIgogICAgICAtIGxpc3RpdGVtOgogICAgICAgIC0gbGluayAiU2lnbiB1cCI6CiAgICAgICAgICAtIC91cmw6ICIjL3JlZ2lzdGVyIgotIG1haW46CiAgLSBoZWFkaW5nICJjb25kdWl0IiBbbGV2ZWw9MV0KICAtIHBhcmFncmFwaDogQSBwbGFjZSB0byBzaGFyZSB5b3VyIGtub3dsZWRnZS4KICAtIGxpc3Q6CiAgICAtIGxpc3RpdGVtOgogICAgICAtIGJ1dHRvbiAiR2xvYmFsIEZlZWQiCiAgICAtIGxpc3RpdGVtOgogICAgICAtIGJ1dHRvbiAi74iZIHJlYWN0IgogIC0gbGluayAiZGF2ZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvZGF2ZSIKICAgIC0gaW1nICJkYXZlIgogIC0gbGluayAiZGF2ZSI6CiAgICAtIC91cmw6ICIjL3Byb2ZpbGUvZGF2ZSIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLvhYEgKCAwICkiCiAgLSBsaW5rICJEYXZlJ3MgcG9zdCAzIFBvc3QgMyBieSBkYXZlIFJlYWQgbW9yZS4uLiBwbGF5d3JpZ2h0IHJlYWN0IjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS9kYXZlLXMtcG9zdC0zIgogICAgLSBoZWFkaW5nICJEYXZlJ3MgcG9zdCAzIiBbbGV2ZWw9MV0KICAgIC0gcGFyYWdyYXBoOiBQb3N0IDMgYnkgZGF2ZQogICAgLSB0ZXh0OiBSZWFkIG1vcmUuLi4KICAgIC0gbGlzdDoKICAgICAgLSBsaXN0aXRlbTogcGxheXdyaWdodAogICAgICAtIGxpc3RpdGVtOiByZWFjdAogIC0gbGluayAiYm9iIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9ib2IiCiAgICAtIGltZyAiYm9iIgogIC0gbGluayAiYm9iIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9ib2IiCiAgLSB0ZXh0OiBPY3RvYmVyIDQsIDIwMjYKICAtIGJ1dHRvbiAi74WBICggMSApIgogIC0gbGluayAiQm9iJ3MgcG9zdCAxIFBvc3QgMSBieSBib2IgUmVhZCBtb3JlLi4uIHBvc3RncmVzIHJlYWN0IjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS9ib2Itcy1wb3N0LTEiCiAgICAtIGhlYWRpbmcgIkJvYidzIHBvc3QgMSIgW2xldmVsPTFdCiAgICAtIHBhcmFncmFwaDogUG9zdCAxIGJ5IGJvYgogICAgLSB0ZXh0OiBSZWFkIG1vcmUuLi4KICAgIC0gbGlzdDoKICAgICAgLSBsaXN0aXRlbTogcG9zdGdyZXMKICAgICAgLSBsaXN0aXRlbTogcmVhY3QKICAtIGxpbmsgImFsaWNlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9hbGljZSIKICAgIC0gaW1nICJhbGljZSIKICAtIGxpbmsgImFsaWNlIjoKICAgIC0gL3VybDogIiMvcHJvZmlsZS9hbGljZSIKICAtIHRleHQ6IE9jdG9iZXIgNCwgMjAyNgogIC0gYnV0dG9uICLvhYEgKCAwICkiCiAgLSBsaW5rICJBbGljZSdzIHBvc3QgMiBQb3N0IDIgYnkgYWxpY2UgUmVhZCBtb3JlLi4uIHBvc3RncmVzIHJlYWN0IjoKICAgIC0gL3VybDogIiMvYXJ0aWNsZS9hbGljZS1zLXBvc3QtMiIKICAgIC0gaGVhZGluZyAiQWxpY2UncyBwb3N0IDIiIFtsZXZlbD0xXQogICAgLSBwYXJhZ3JhcGg6IFBvc3QgMiBieSBhbGljZQogICAgLSB0ZXh0OiBSZWFkIG1vcmUuLi4KICAgIC0gbGlzdDoKICAgICAgLSBsaXN0aXRlbTogcG9zdGdyZXMKICAgICAgLSBsaXN0aXRlbTogcmVhY3QKICAtIG5hdmlnYXRpb24gIlBhZ2luYXRpb24iOgogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIlByZXZpb3VzIHBhZ2UiIFtkaXNhYmxlZF06IO+EhwogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIlBhZ2UgMSBpcyB5b3VyIGN1cnJlbnQgcGFnZSI6ICIxIgogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIlBhZ2UgMiI6ICIyIgogICAgLSBsaXN0aXRlbToKICAgICAgLSBidXR0b24gIk5leHQgcGFnZSI6IO+EigogIC0gY29tcGxlbWVudGFyeToKICAgIC0gaGVhZGluZyAiUG9wdWxhciBUYWdzIiBbbGV2ZWw9Nl0KICAgIC0gYnV0dG9uICJwbGF5d3JpZ2h0IgogICAgLSBidXR0b24gInJlYWN0IgogICAgLSBidXR0b24gInBvc3RncmVzIgogICAgLSBidXR0b24gImRlc2lnbiIKICAgIC0gYnV0dG9uICJ0ZXN0aW5nIgotIGNvbnRlbnRpbmZvOgogIC0gbGluayAiY29uZHVpdCI6CiAgICAtIC91cmw6ICIjLyIKICAtIHRleHQ6IEFuIGludGVyYWN0aXZlIGxlYXJuaW5nIHByb2plY3QgZnJvbQogIC0gbGluayAiVGhpbmtzdGVyIjoKICAgIC0gL3VybDogaHR0cHM6Ly90aGlua3N0ZXIuaW8KICAtIHRleHQ6IC4gQ29kZSAmIGRlc2lnbiBsaWNlbnNlZCB1bmRlciBNSVQuCiAgLSBsaXN0OgogICAgLSBsaXN0aXRlbToKICAgICAgLSBsaW5rICLviLMgU291cmNlIGNvZGUiOgogICAgICAgIC0gL3VybDogaHR0cHM6Ly9naXRodWIuY29tL1RvbnlNY2tlcy9jb25kdWl0LXJlYWx3b3JsZC1leGFtcGxlLWFwcA=="
+                    },
+                    {
+                      "name": "vars",
+                      "contentType": "application/json",
+                      "body": "e30="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4697a551a370085d66c7-5dfad0e19937ee7fae25",
+          "file": "spec-runner.spec.ts",
+          "line": 56,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-04T14:37:49.194Z",
+    "duration": 5494.411,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

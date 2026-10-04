@@ -1,0 +1,33 @@
+{
+ "spec_version": 1,
+ "id": "flow06",
+ "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'.",
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "listitem",
+    "nth": 1
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "listitem",
+    "nth": 1
+   },
+   "state": "visible"
+  },
+  {
+   "action": "expect",
+   "target": {
+    "text": "react"
+   },
+   "assert": "visible"
+  }
+ ]
+}

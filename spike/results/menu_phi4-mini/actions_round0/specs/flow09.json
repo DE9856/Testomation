@@ -1,0 +1,16 @@
+{
+ "spec_version": 1,
+ "id": "flow09",
+ "flow": "Without logging in, open bob's profile; it lists his three articles.",
+ "_observe_after": 1,
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/profile/bob"
+  },
+  {
+   "action": "goto",
+   "url": "/#/profile/bob"
+  }
+ ]
+}

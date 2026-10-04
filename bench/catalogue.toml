@@ -1,0 +1,82 @@
+# Seeded-bug catalogue (docs/EVALUATION.md). Each entry is switched on with
+#   BUGS=<id> bench/app/conduit.sh reset
+# kind = "bug"   → the app is broken; `catches` names the reference spec that must fail
+# kind = "noise" → harmless console/network errors; every reference spec must still pass
+# kind = "flaky" → intermittent slowness; measures how often specs fail without a bug
+# held_out = true → never used for tuning prompts or thresholds (overfitting guard)
+
+[[variant]]
+id = "login-error-hidden"
+kind = "bug"
+category = "missing feedback"
+catches = "ref02-wrong-password"
+description = "Wrong password shows no error message"
+
+[[variant]]
+id = "signup-500"
+kind = "bug"
+category = "server error"
+catches = "ref03-signup"
+description = "Sign-up returns 500"
+
+[[variant]]
+id = "publish-500"
+kind = "bug"
+category = "server error"
+catches = "ref04-publish"
+description = "Publishing an article returns 500"
+
+[[variant]]
+id = "comment-not-shown"
+kind = "bug"
+category = "broken flow"
+catches = "ref05-comment"
+description = "A posted comment never appears"
+held_out = true
+
+[[variant]]
+id = "tag-filter-ignored"
+kind = "bug"
+category = "broken flow"
+catches = "ref06-tag-filter"
+description = "Clicking a tag does not filter the feed"
+
+[[variant]]
+id = "favorite-count-stuck"
+kind = "bug"
+category = "data not saved"
+catches = "ref07-favorite"
+description = "Favoriting does not change the count"
+
+[[variant]]
+id = "profile-articles-empty"
+kind = "bug"
+category = "missing data"
+catches = "ref09-profile"
+description = "A profile lists none of the user's articles"
+held_out = true
+
+[[variant]]
+id = "bio-not-saved"
+kind = "bug"
+category = "data not saved"
+catches = "ref10-bio"
+description = "Changing the bio in settings is silently dropped"
+
+[[variant]]
+id = "noise-analytics"
+kind = "noise"
+category = "harmless noise"
+description = "A blocked third-party analytics script on every page"
+
+[[variant]]
+id = "noise-console-warning"
+kind = "noise"
+category = "harmless noise"
+description = "A library deprecation warning in the console"
+
+[[variant]]
+id = "flaky-slow-articles"
+kind = "flaky"
+category = "intentional flake"
+description = "~40% of article-list requests take 6 s"

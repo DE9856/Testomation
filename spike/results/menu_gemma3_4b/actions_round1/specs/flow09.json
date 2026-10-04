@@ -1,0 +1,38 @@
+{
+ "spec_version": 1,
+ "id": "flow09",
+ "flow": "Without logging in, open bob's profile; it lists his three articles.",
+ "_observe_after": 1,
+ "steps": [
+  {
+   "action": "goto",
+   "url": "/#/settings"
+  },
+  {
+   "action": "goto",
+   "url": "/#/"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "link",
+    "name": "dave"
+   }
+  },
+  {
+   "action": "wait_for",
+   "target": {
+    "role": "listitem",
+    "nth": 0
+   },
+   "state": "visible"
+  },
+  {
+   "action": "click",
+   "target": {
+    "role": "link",
+    "name": "Dave's post 3 Post 3 by dave Read more... playwright react"
+   }
+  }
+ ]
+}

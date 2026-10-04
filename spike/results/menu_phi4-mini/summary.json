@@ -1,0 +1,151 @@
+{
+ "model": "phi4-mini",
+ "flows": {
+  "flow06": {
+   "flow": "On the home page, click the 'react' tag under Popular Tags; the feed then only lists articles tagged 'react'.",
+   "as_user": "nobody",
+   "menu": [
+    "heading \"conduit\" is shown",
+    "heading \"Dave's post 3\" is shown",
+    "heading \"Dave's post 2\" is shown",
+    "heading \"Dave's post 1\" is shown",
+    "heading \"Popular Tags\" is shown",
+    "text \"A place to share your knowledge.\" is shown",
+    "text \"October 4, 2026\" is shown",
+    "text \"Post 3 by dave\" is shown",
+    "text \"Read more...\" is shown",
+    "text \"playwright\" is shown",
+    "text \"react\" is shown",
+    "text \"Post 2 by dave\" is shown",
+    "text \"testing\" is shown",
+    "text \"Post 1 by dave\" is shown",
+    "text \"design\" is shown"
+   ],
+   "picked": [
+    "text \"react\" is shown"
+   ],
+   "clean": "passed",
+   "kills_bug": false
+  },
+  "flow09": {
+   "flow": "Without logging in, open bob's profile; it lists his three articles.",
+   "as_user": "nobody",
+   "menu": [
+    "heading \"bob\" is shown",
+    "heading \"Bob's post 3\" is shown",
+    "heading \"Bob's post 2\" is shown",
+    "heading \"Bob's post 1\" is shown",
+    "text \"October 4, 2026\" is shown",
+    "text \"Post 3 by bob\" is shown",
+    "text \"Read more...\" is shown",
+    "text \"design\" is shown",
+    "text \"testing\" is shown",
+    "text \"Post 2 by bob\" is shown",
+    "text \"postgres\" is shown",
+    "text \"Post 1 by bob\" is shown",
+    "text \"react\" is shown"
+   ],
+   "picked": [
+    "heading \"bob\" is shown",
+    "heading \"Bob's post 3\" is shown",
+    "heading \"Bob's post 2\" is shown",
+    "text \"Post 3 by bob\" is shown"
+   ],
+   "clean": "passed",
+   "kills_bug": true
+  },
+  "flow03": {
+   "flow": "Sign up a brand-new user with generated data; afterwards the navigation bar shows the new username.",
+   "as_user": "nobody",
+   "menu": [
+    "the generated value \"name\" (Ursula.Schuppe39) is shown on the page",
+    "text \"Articles not available.\" appeared",
+    "link \"\uf12c New Article\" appeared",
+    "button \"Your Feed\" appeared",
+    "link \"\uf29e Login\" disappeared",
+    "link \"Sign up\" disappeared",
+    "heading \"conduit\" disappeared",
+    "link \"dave\" disappeared",
+    "button \"\uf141 ( 0 )\" disappeared",
+    "link \"Dave's post 3 Post 3 by dave Read more... playwright react\" disappeared",
+    "heading \"Dave's post 3\" disappeared",
+    "link \"Dave's post 2 Post 2 by dave Read more... playwright testing\" disappeared",
+    "heading \"Dave's post 2\" disappeared",
+    "button \"\uf141 ( 1 )\" disappeared",
+    "link \"Dave's post 1 Post 1 by dave Read more... design testing\" disappeared",
+    "heading \"Dave's post 1\" disappeared",
+    "button \"Previous page\" disappeared",
+    "button \"Page 1 is your current page\" disappeared",
+    "button \"Page 2\" disappeared",
+    "button \"Page 3\" disappeared",
+    "button \"Page 4\" disappeared",
+    "button \"Next page\" disappeared",
+    "heading \"Popular Tags\" is shown"
+   ],
+   "picked": [
+    "the generated value \"name\" (Ursula.Schuppe39) is shown on the page",
+    "text \"Articles not available.\" appeared",
+    "button \"Your Feed\" appeared",
+    "link \"\uf29e Login\" disappeared"
+   ],
+   "clean": "failed",
+   "kills_bug": null
+  },
+  "flow05": {
+   "flow": "As alice, open the article \"Dave's post 3\" and post a comment; the comment appears on the page.",
+   "as_user": "alice",
+   "menu": [
+    "the generated value \"comment\" (Decretum delinquo cavus decretum culpo t) is shown on the page",
+    "heading \"Dave's post 3\" is shown",
+    "heading \"Heading\" is shown",
+    "text \"alice\" is shown",
+    "text \"October 4, 2026\" is shown",
+    "text \"Body of post 3 by\" is shown",
+    "text \"playwright\" is shown",
+    "text \"react\" is shown",
+    "text \"Comment from alice\" is shown"
+   ],
+   "picked": [
+    "the generated value \"comment\" (Decretum delinquo cavus decretum culpo t) is shown on the page",
+    "text \"alice\" is shown"
+   ],
+   "clean": "passed",
+   "kills_bug": true
+  },
+  "flow01": {
+   "flow": "Log in as alice; the navigation bar then shows her username 'alice'.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow02": {
+   "flow": "Try to log in as alice with a wrong password; an error is shown and the user stays on the login page.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow04": {
+   "flow": "As alice, publish a new article with a title, description, body and two tags; the article page then shows the title.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow07": {
+   "flow": "As alice, favorite the article \"Dave's post 3\"; its favorite count goes from 0 to 1.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow08": {
+   "flow": "As alice, open 'Your Feed'; it lists articles by bob and carol (whom she follows) and none by dave.",
+   "clean": "no-spec",
+   "kills_bug": null
+  },
+  "flow10": {
+   "flow": "As alice, change her bio in settings to some generated text; her profile page then shows that bio.",
+   "clean": "no-spec",
+   "kills_bug": null
+  }
+ },
+ "summary": {
+  "actions_ran": 4,
+  "clean_pass": 3,
+  "kill_rate": "2/8"
+ }
+}

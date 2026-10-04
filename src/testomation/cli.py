@@ -37,6 +37,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     bench = sub.add_parser("bench", help=COMMANDS["bench"][0])
     bench.add_argument("--replay", action="store_true", help="replay tier: analyzer only")
+    bench.add_argument("--runs", type=int, default=3, help="full tier: runs per variant")
 
     explore = sub.add_parser("explore", help=COMMANDS["explore"][0])
     explore.add_argument("--budget", default="15m", help="wall-clock budget, e.g. 15m")
@@ -50,6 +51,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.command is None:
         parser.print_help()
         return 0
+    if args.command == "bench":
+        from testomation import bench
+        return bench.main(runs=args.runs, replay=args.replay)
     _, phase = COMMANDS[args.command]
     print(f"testomation {args.command}: not implemented yet (arrives in phase {phase})",
           file=sys.stderr)
