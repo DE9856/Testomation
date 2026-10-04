@@ -485,9 +485,10 @@
       <li><a href="#risks"><span class="nav-num">12</span>Design risks</a></li>
       <li><a href="#stack"><span class="nav-num">13</span>Tech stack</a></li>
       <li><a href="#roadmap"><span class="nav-num">14</span>Build order</a></li>
+      <li><a href="#design"><span class="nav-num">15</span>Design roadmap</a></li>
     </ul>
     <div class="sidebar-foot">
-      v0.5 — project brief
+      v0.6 — project brief
       <br>
       <button class="theme-toggle" id="themeToggle" type="button">toggle theme</button>
     </div>
@@ -510,7 +511,7 @@
         <p>Traditional test automation still needs a human to decide what to test and to write the script. Testomation moves both of those jobs to an AI agent: one that reasons about the application the way a QA engineer would, generates its own coverage, and only asks for a human when it isn't sure whether something is actually broken.</p>
         <p class="muted">The goal isn't to replace scripted regression testing — it's to sit alongside it, filling the gap between "what we remembered to test" and "what the app can actually do."</p>
 
-        <h3 style="margin-top:28px">Ground rules for v0.5</h3>
+        <h3 style="margin-top:28px">Ground rules for v0.6</h3>
         <ul class="choice-list">
           <li><strong>Free and local</strong> — everything runs on one laptop. No paid APIs or hosted services in the product.</li>
           <li><strong>Ollama at runtime</strong> — every model call the product makes goes to local models served by Ollama.</li>
@@ -518,26 +519,45 @@
           <li><strong>Playwright does the running</strong> — Playwright Test handles execution, parallel workers, retries, traces and screenshots. Testomation doesn't rebuild any of that.</li>
         </ul>
 
-        <h3 style="margin-top:28px">What changed since v0.4</h3>
+        <h3 style="margin-top:28px">What changed since v0.5</h3>
         <ul class="choice-list">
-          <li><strong>Tests are JSON specs, not code</strong> — the model fills a strict schema and one Playwright runner executes it. Nothing the model writes is ever executed. <a href="#spec">§05</a></li>
-          <li><strong>Local models</strong> — the Claude API is replaced by Ollama with a small and a large local model tier plus a local embedding model. <a href="#local">§10</a></li>
-          <li><strong>No Temporal for now</strong> — a plain Python pipeline runner plus Playwright Test workers replace it on a single machine. <a href="#runtime">§09</a></li>
-          <li><strong>Budget is compute, not money</strong> — the per-run cap is LLM calls and wall-clock time, because VRAM, RAM and time are the scarce things now. <a href="#cost">§07</a></li>
-          <li><strong>Claims in memory</strong> — human, rules and model verdicts about the same thing are stored side by side, so "human beats model" can actually be enforced. <a href="#memory">§06</a></li>
-          <li><strong>Seeded-bug benchmark</strong> — a local target app with known bugs gives ground truth from day one. <a href="#evaluation">§11</a></li>
-          <li><strong>App state reset</strong> — a seeded database is restored before each run, so results and flake signals mean something. <a href="#local">§10</a></li>
+          <li><strong>Spike before infrastructure</strong> — a throwaway feasibility spike tests whether local models are good enough before any plumbing is built. <a href="#design">§15</a></li>
+          <li><strong>Triage for any Playwright suite</strong> — <code>testomation import</code> points the analyzer at an existing Playwright report, so it's useful from phase 2. <a href="#components">§04</a></li>
+          <li><strong>All approved specs run every run</strong> — a wrong impact map can't hide a regression; impact analysis now only scopes model work. <a href="#architecture">§03</a></li>
+          <li><strong>Freshness from basis hashes</strong> — memory records the file and page-structure hashes it was based on, so invalidation is precise and a revert makes memory fresh again. <a href="#memory">§06</a></li>
+          <li><strong>Confidence from logprobs and labelled neighbours</strong> — one model call instead of three samples, and a score that can be calibrated. <a href="#runtime">§09</a></li>
+          <li><strong>Batched repair rounds and one model by default</strong> — the model and the browsers never compete for RAM, and the large tier must earn its place. <a href="#spec">§05</a> <a href="#local">§10</a></li>
+          <li><strong>LangGraph only for exploration</strong> — the analyzer is a plain-Python cascade; review is asynchronous, so nothing pauses or resumes. <a href="#runtime">§09</a></li>
+          <li><strong>Typed tables and claims on edges</strong> — constraints where the volume is, and humans can overrule inferred links. <a href="#memory">§06</a></li>
+          <li><strong>Langfuse from phase 3</strong> — OpenTelemetry spans go to a local file until the first model call, saving 2–3 GB of RAM. <a href="#observability">§08</a></li>
+          <li><strong>Replay benchmark tier</strong> — analyzer changes are gated in minutes on recorded evidence. <a href="#evaluation">§11</a></li>
+          <li><strong>One schema source, origin guard, helper steps</strong> — no drift between Python and TypeScript, specs stay on the target, and the vocabulary can grow without becoming code. <a href="#spec">§05</a></li>
         </ul>
+
+        <h3 style="margin-top:28px">How it differs from Playwright Test Agents</h3>
+        <p>Playwright ships official Planner, Generator and Healer agents. They explore an app, write a Markdown test plan, generate tests and repair failing ones. They run inside a coding-agent tool, using that tool's model. That overlaps Testomation's planning and generation, so the differences are deliberate:</p>
+        <div class="table-wrap">
+        <table>
+          <tr><th></th><th>Playwright Test Agents</th><th>Testomation</th></tr>
+          <tr><td>Test output</td><td class="opt"><code>.spec.ts</code> code</td><td class="opt">JSON specs; nothing a model writes is executed</td></tr>
+          <tr><td>Failing tests</td><td class="opt">Healer repairs them</td><td class="opt">Approved specs never self-heal; drift is a review item</td></tr>
+          <tr><td>Models</td><td class="opt">Whatever the coding tool uses</td><td class="opt">Local Ollama models only</td></tr>
+          <tr><td>Memory</td><td class="opt">—</td><td class="opt">Memory graph with claims, provenance and freshness</td></tr>
+          <tr><td>Bug vs noise</td><td class="opt">—</td><td class="opt">Analyzer cascade with a review queue</td></tr>
+          <tr><td>Measuring itself</td><td class="opt">—</td><td class="opt">Seeded-bug benchmark gates every change</td></tr>
+        </table>
+        </div>
+        <p class="muted">Their Generator and Healer aren't reused, because they'd break the "no model-written code" and "no self-healing" principles. Whether the planner should emit a human-editable Markdown plan the way theirs does is an open question.</p>
 
         <h3 style="margin-top:28px">Cross-cutting layers</h3>
         <p>None of them adds a new pipeline step; they change how every existing step behaves.</p>
         <ul class="choice-list">
           <li><strong>Memory graph</strong> — a shared, persistent map of the app under test and everything Testomation has learned about it. Every agent reads it before acting and writes back after. <a href="#memory">§06</a></li>
           <li><strong>Cost &amp; compute strategy</strong> — the LLM authors and interprets tests but never runs them. Deterministic tools go first; the model only sees what they couldn't settle. <a href="#cost">§07</a></li>
-          <li><strong>Observability</strong> — self-hosted Langfuse traces every agent job, including the ones that never called a model, so tokens, latency, cache rate and analyzer accuracy are measurable. <a href="#observability">§08</a></li>
-          <li><strong>Agent runtime</strong> — LangGraph runs the branching logic inside each reasoning agent (memory → rules → LLM → human review), while the pipeline runner and Playwright Test run the jobs around them. <a href="#runtime">§09</a></li>
+          <li><strong>Observability</strong> — every agent job is traced, including the ones that never called a model: an OpenTelemetry file first, self-hosted Langfuse from phase 3. <a href="#observability">§08</a></li>
+          <li><strong>Agent runtime</strong> — the pipeline runner and Playwright Test run the jobs; plain-Python agents make the decisions (memory → rules → neighbours → model → human review); LangGraph runs only the exploration loop. <a href="#runtime">§09</a></li>
         </ul>
-        <p class="muted" style="margin-top:16px">They reinforce each other: memory is what makes most LLM calls unnecessary, LangGraph is what enforces "memory and rules before the model" in code, Langfuse is how you prove it's working, and the benchmark is how you know it's right.</p>
+        <p class="muted" style="margin-top:16px">They reinforce each other: memory is what makes most LLM calls unnecessary, the analyzer's cascade enforces "memory and rules before the model" in code, traces prove it's working, and the benchmark is how you know it's right.</p>
       </section>
 
       <section id="pipeline">
@@ -550,7 +570,7 @@
             <div class="step-num">01</div>
             <div>
               <h3>Ingest</h3>
-              <p>Pull in the target. For the MVP: a locally running web app (URL) and its repository. OpenAPI specs, design files and user stories come later.</p>
+              <p>Pull in the target. For the MVP: a locally running web app (URL) and its repository. For triage alone, an existing Playwright project's report is enough. OpenAPI specs, design files and user stories come later.</p>
             </div>
           </div>
           <div class="step">
@@ -571,7 +591,7 @@
             <div class="step-num">04</div>
             <div>
               <h3>Execute</h3>
-              <p>Playwright Test runs the specs through one generic spec runner. Traces, screenshots, DOM snapshots, console output and network traffic are captured.</p>
+              <p>Playwright Test runs every approved spec through one generic spec runner, with no model loaded. Traces, screenshots, DOM snapshots, console output and network traffic are captured.</p>
             </div>
           </div>
           <div class="step">
@@ -582,7 +602,7 @@
             </div>
           </div>
         </div>
-        <div class="note"><strong>Every step, same loop:</strong> check the memory graph → try deterministic tools → call a local model only for what's still unanswered → write the result back to memory as a claim with provenance → log the whole job to Langfuse. In code, that loop is a small LangGraph graph per reasoning agent. Details in <a href="#memory">§06</a> and <a href="#runtime">§09</a>.</div>
+        <div class="note"><strong>Every step, same loop:</strong> check the memory graph → try deterministic tools → call a local model only for what's still unanswered → write the result back to memory as a claim with provenance → trace the whole job. In code, that loop is a plain-Python cascade in each agent; LangGraph runs only the exploration loop. Details in <a href="#memory">§06</a> and <a href="#runtime">§09</a>.</div>
       </section>
 
       <section id="features">
@@ -600,12 +620,12 @@
           <ul class="feature-grid">
             <li><strong>Autonomous flow discovery</strong><span>Crawls or reads the app and proposes the user flows worth testing, without being told what they are.</span></li>
             <li><strong>Natural-language test authoring</strong><span>A human types "test that guest checkout fails without an email" and gets a runnable spec.</span></li>
-            <li><strong>Structured test specs</strong><span>Tests are JSON specs run by one Playwright runner. The model fills a schema; it never writes executable code.</span></li>
+            <li><strong>Structured test specs</strong><span>Tests are JSON specs run by one Playwright runner. The model fills a schema; it never writes executable code. Named helper steps cover what the vocabulary can't.</span></li>
             <li><strong>Edge-case &amp; negative-path enumeration</strong><span>Generates boundary values, invalid inputs, and error states alongside the happy path.</span></li>
             <li><strong>Coverage gap analysis</strong><span>Flags flows and routes that exist in the app but have no test touching them.</span></li>
-            <li><strong>Requirement-to-test traceability</strong><span>Links each generated test back to the user story or spec line that justified it.</span></li>
+            <li><strong>Requirement-to-test traceability</strong><span>Links each generated test to the business rule that justified it — inferred by the planner and confirmed at approval in the MVP; user stories later.</span></li>
             <li><strong>Synthetic test data generation</strong><span>Faker references in specs produce realistic names, emails and files at run time, without real PII.</span></li>
-            <li><strong>Test impact analysis</strong><span>Given a code diff, works out which tests are affected and only reruns those. Starts from a static route → file map; runtime coverage refines it.</span></li>
+            <li><strong>Change-scoped model work</strong><span>Given a code diff, works out which flows to re-plan and which specs to regenerate. Every approved spec still runs. Starts from a static route → file map; runtime coverage refines it.</span></li>
           </ul>
         </div>
 
@@ -617,8 +637,8 @@
           <ul class="feature-grid">
             <li><strong>Persistent app knowledge graph</strong><span>Pages, flows, tests, bugs, commits and human decisions stored as linked nodes, so related things stay together across runs.</span></li>
             <li><strong>Memory-first lookups</strong><span>Agents check what's already known before reasoning from scratch; answers get cached as graph facts.</span></li>
-            <li><strong>Claims with provenance</strong><span>Every verdict records who asserted it (rules, LLM, human), how sure it is, and the Langfuse trace behind it. Conflicting claims coexist.</span></li>
-            <li><strong>Change-aware invalidation</strong><span>A commit that touches a file marks dependent memory as stale until it's re-verified.</span></li>
+            <li><strong>Claims with provenance</strong><span>Every verdict — and every disputed link — records who asserted it (rules, neighbour vote, LLM, human), how sure it is, and the trace behind it. Conflicting claims coexist.</span></li>
+            <li><strong>Change-aware freshness</strong><span>Each claim records the file and page-structure hashes it was based on. It's stale once they change, and fresh again after a revert.</span></li>
           </ul>
         </div>
 
@@ -628,7 +648,7 @@
             <span class="feature-tag tag-core">core</span>
           </div>
           <ul class="feature-grid">
-            <li><strong>Parallel runs</strong><span>Playwright Test workers fan specs out on the laptop — two workers while a model is loaded, more when it isn't.</span></li>
+            <li><strong>Parallel runs</strong><span>Playwright Test workers fan specs out on the laptop. The model is unloaded while specs run, so more workers fit; two while one is loaded (exploration).</span></li>
             <li><strong>App state reset</strong><span>The target app's seeded database is restored before each run, and each test gets its own synthetic user so parallel workers don't collide.</span></li>
             <li><strong>Browser matrix</strong><span>Chromium and Firefox on the laptop. WebKit through the official Playwright container, since Playwright doesn't officially support Fedora.</span></li>
             <li><strong>Responsive viewport testing</strong><span>Reruns flows at phone, tablet, and desktop breakpoints.</span></li>
@@ -638,7 +658,7 @@
             <li><strong>Auth &amp; session handling</strong><span>Saved Playwright storage state, so every test doesn't have to log in from scratch.</span></li>
             <li><strong>Third-party mocking</strong><span>Route interception and HAR replay stub flaky or rate-limited services, so failures are the app's fault, not a dependency's.</span></li>
             <li class="tag-later"><strong>Per-branch environments</strong><span>A throwaway local compose environment per branch, so tests run against that exact change.</span></li>
-            <li class="stretch"><strong>Exploratory session recording</strong><span>The agent free-roams the app like a curious user, and every click, scroll, and state change is logged for later review — this is how it finds the bugs no one thought to write a test for.</span></li>
+            <li class="stretch"><strong>Exploratory session recording</strong><span>The agent free-roams the app like a curious user, never leaving its origin, and every click, scroll, and state change is logged — findings replay as draft specs. This is how it finds the bugs no one thought to write a test for.</span></li>
           </ul>
         </div>
 
@@ -648,12 +668,13 @@
             <span class="feature-tag tag-core">core</span>
           </div>
           <ul class="feature-grid">
+            <li><strong>Triage for existing Playwright suites</strong> <span class="new-badge">new</span><span><code>testomation import</code> points the analyzer at any Playwright project's report and traces — no Testomation specs needed.</span></li>
             <li><strong>Console &amp; network error classification</strong><span>Separates real application errors from expected noise (ad blockers, analytics failures).</span></li>
             <li><strong>Severity &amp; priority scoring</strong><span>Ranks findings so a blocked checkout outranks a misaligned footer.</span></li>
-            <li><strong>Deduplication</strong><span>Matches a new failure against known bugs by error-signature hash first, local embeddings for borderline cases.</span></li>
-            <li><strong>Confidence scoring</strong><span>Confidence comes from agreement across repeated model samples plus the rules signal, calibrated on the benchmark — not the model's self-report.</span></li>
+            <li><strong>Deduplication</strong><span>Matches a new failure against known bugs by error-signature hash first, local embeddings for borderline cases — as duplicate links a human can reject.</span></li>
+            <li><strong>Confidence scoring</strong><span>The label probability from one model call (logprobs), a vote of similar failures humans already labelled, and the rules signal — calibrated on the benchmark, not the model's self-report.</span></li>
             <li><strong>Flaky test detection &amp; quarantine</strong><span>Tracks pass/fail history per test and isolates ones that fail inconsistently. Runs under heavy machine load are excluded from the flake signal.</span></li>
-            <li class="tag-later"><strong>Multimodal visual bug detection</strong><span>A small local vision model looks at suspected layout bugs that a pixel diff flagged but can't explain.</span></li>
+            <li class="stretch tag-later"><strong>Multimodal visual bug detection</strong><span>A small local vision model looks at suspected layout bugs that a pixel diff flagged but can't explain.</span></li>
             <li class="stretch tag-later"><strong>Root-cause suggestion</strong><span>Correlates a failure's timing against recent commits and proposes which change likely caused it.</span></li>
             <li class="stretch tag-later"><strong>Regression clustering</strong><span>Groups multiple failures that stem from the same underlying bug into one report instead of ten.</span></li>
           </ul>
@@ -681,9 +702,9 @@
             <span class="feature-tag tag-core">core</span>
           </div>
           <ul class="feature-grid">
-            <li><strong>Seeded-bug benchmark</strong><span>A local target app with a catalogue of known bugs, each switchable on or off, gives ground truth.</span></li>
-            <li><strong>Regression runs on every change</strong><span>Any prompt, model or threshold change reruns the benchmark before it's kept.</span></li>
-            <li class="stretch"><strong>Threshold calibration</strong><span>Confidence gates are set from benchmark precision and recall instead of guessed, then refined with review-queue scores.</span></li>
+            <li><strong>Seeded-bug benchmark</strong><span>A local target app with a catalogue of known bugs, each switchable on or off, gives ground truth. Only mutants a user could notice count.</span></li>
+            <li><strong>Regression runs on every change</strong><span>Analyzer changes rerun the replay tier (minutes); generation and model changes rerun the full benchmark, which also runs nightly.</span></li>
+            <li class="stretch"><strong>Threshold calibration</strong><span>Confidence gates are set from benchmark precision and recall — reported as ranges over three runs — instead of guessed, then refined with review-queue scores.</span></li>
           </ul>
         </div>
 
@@ -714,6 +735,7 @@
             <li><strong>Multi-project support</strong><span>Several apps under test with isolated memory. The schema carries a <code>project</code> column from day one.</span></li>
             <li><strong>Production synthetic monitoring</strong><span>Runs a light version of the suite continuously against production to catch live incidents, not just pre-release bugs.</span></li>
             <li><strong>Plugin architecture</strong><span>Lets teams add custom checks (brand guidelines, internal compliance rules) without forking the core.</span></li>
+            <li class="stretch"><strong>Test selection</strong><span>Run only the specs a diff affects, once running every approved spec gets too slow.</span></li>
           </ul>
         </div>
 
@@ -726,7 +748,7 @@
             <li><strong>Secrets management</strong><span>Specs reference credentials as <code>$secret</code> names; values are injected from the environment at run time and never stored.</span></li>
             <li><strong>PII redaction</strong><span>Masks sensitive data in screenshots and logs before they're stored or shared.</span></li>
             <li><strong>Role-based access control</strong><span>Controls who can approve tests, view evidence, or change production-monitoring schedules.</span></li>
-            <li><strong>Sandboxed execution</strong><span>Every browser session runs isolated, and because tests are specs rather than code, nothing a model writes is executed on the host.</span></li>
+            <li><strong>Sandboxed execution</strong><span>Every browser session runs isolated, and because tests are specs rather than code, nothing a model writes is executed on the host. Specs and exploration never leave the target origin.</span></li>
           </ul>
         </div>
       </section>
@@ -736,7 +758,7 @@
           <span class="section-num">03</span>
           <h2>System architecture</h2>
         </div>
-        <p>Five agents and the review queue sit behind a pipeline runner. They all share one memory graph, which in turn points out to the two places heavy data lives: raw evidence in a local folder, and model reasoning in Langfuse.</p>
+        <p>Five agents and the review queue sit behind a pipeline runner. They all share one memory graph, which in turn points out to the two places heavy data lives: raw evidence in a local folder, and model reasoning in traces.</p>
         <div class="diagram">
 <pre>                 ┌───────────────────────────────────────┐
                  │            PIPELINE RUNNER            │
@@ -748,7 +770,7 @@
  ┌────▼─────┐ ┌────▼─────┐ ┌────▼─────┐ ┌────▼─────┐ ┌────▼─────┐ ┌────▼─────┐
  │ Planner  │ │ Test gen │ │ Executor │ │ Analyzer │ │ Reporter │ │  Review  │
  │  agent   │ │  → spec  │ │Playwright│ │  agent   │ │local html│ │queue CLI │
- │LangGraph │ │LangGraph │ │   Test   │ │LangGraph │ │  plain   │ │ resumes  │
+ │  plain   │ │  plain   │ │+explore* │ │  plain   │ │  plain   │ │  async   │
  └────┬─────┘ └────┬─────┘ └────┬─────┘ └────┬─────┘ └────┬─────┘ └────┬─────┘
       │            │            │            │            │            │
       └────────────┴────────────┴────┬───────┴────────────┴────────────┘
@@ -756,8 +778,9 @@
                ┌─────────────────────▼─────────────────────┐
                │                MEMORY GRAPH               │
                │   pages · flows · specs · bugs · claims   │
-               │    noise signatures · commits · reviews   │
-               │     run state · LangGraph checkpoints     │
+               │   results · noise signatures · commits    │
+               │    reviews · basis hashes · run state     │
+               │    LangGraph checkpoints (exploration)    │
                │            Postgres + pgvector            │
                └────────┬───────────────────────────┬──────┘
         evidence paths  │                           │ trace ids
@@ -765,21 +788,34 @@
            │ Evidence (local folder) │  │ Langfuse (self-hosted)│
            │   Playwright traces ·   │  │   traces · tokens ·   │
            │   screenshots · video   │  │   scores · datasets   │
-           └─────────────────────────┘  └───────────────────────┘</pre>
+           └─────────────────────────┘  └───────────────────────┘
+
+ * the exploratory mode is the one LangGraph loop</pre>
         </div>
-        <p class="diagram-caption">Everything runs on one laptop. Test specs live in the graph as <code>TestCase</code> nodes; the executor runs them with Playwright Test. The pipeline runner is plain Python; agents that branch run as LangGraph graphs inside its stages. The review queue resumes paused graphs.</p>
+        <p class="diagram-caption">Everything runs on one laptop. Test specs live in the graph as <code>TestCase</code> nodes; the executor runs every approved one with Playwright Test. The pipeline runner and the agents are plain Python; the exploration loop is the only LangGraph graph. The review queue lists open <code>review_item</code> rows. Langfuse starts in phase 3 — until then, stage spans go to a local OpenTelemetry file.</p>
 
         <div class="subhead">// the model path</div>
         <div class="diagram"><pre> Planner  ──┐
- Test gen ──┼──► llm client ─────────► Ollama · localhost:11434
- Analyzer ──┘    OpenAI-compatible     small · large · embed models
+ Test gen ──┤
+ Analyzer ──┼──► llm client ─────────► Ollama · localhost:11434
+ Explorer ──┘    OpenAI-compatible     small (default) · large (optional) · embed
                  via langfuse.openai
                         │
-                        └──► Langfuse generation: model · tokens · latency · prompt version</pre></div>
-        <p class="diagram-caption">One small client wraps every model call. Swapping Ollama for any other OpenAI-compatible server later is a config change.</p>
+                        └──► generation span: model · tokens · latency · prompt version</pre></div>
+        <p class="diagram-caption">One small client wraps every model call. It returns the parsed value plus the label probability (from logprobs) when the schema has a label. Swapping Ollama for any other OpenAI-compatible server later is a config change.</p>
+
+        <div class="subhead">// how a run flows</div>
+        <div class="code"><pre>testomation run --pr 412              pipeline runner · stage state in Postgres
+ ├─ stage: refresh basis + scope       plain code · git blob SHAs · memory-graph query
+ ├─ stage: run approved specs          model unloaded · npx playwright test · retries=1
+ ├─ stage: triage failures             plain code · memory → rules → neighbours → model
+ ├─ stage: generate missing tests      plain code · ≤3 rounds: generate → unload → run → repair
+ └─ stage: report                      plain code · local HTML / Markdown</pre></div>
+        <p><strong>Every approved spec runs every run</strong> — execution is cheap and a wrong impact map must never hide a regression. Impact analysis (a static route → file map, refined by coverage) only decides which flows to re-plan and which specs to regenerate. The model is unloaded whenever browsers run, except during exploration.</p>
 
         <div class="subhead">// two languages, one boundary</div>
-        <p>Agents, memory, the pipeline and LangGraph are Python. The spec runner is TypeScript, because Playwright Test's TypeScript runner has the most features. They meet only through files: Python writes the run's specs as JSON, Playwright writes a JSON results file plus traces, and Python ingests both.</p>
+        <p>Agents, memory, the pipeline and the exploration graph are Python. The spec runner is TypeScript, because Playwright Test's TypeScript runner has the most features. They meet only through files: Python writes the run's specs as JSON, Playwright writes a JSON results file plus traces, and Python ingests both — or ingests any other Playwright project's report through <code>testomation import</code>.</p>
+        <p class="muted">The spec schema has one source, <code>schemas/test-spec.schema.json</code>. Pydantic models and TypeScript types are generated from it, and shared example specs are validated by both sides, so the brain and the hands can't drift.</p>
       </section>
 
       <section id="components">
@@ -791,20 +827,19 @@
         <div class="component">
           <span class="component-tag">Planner agent</span>
           <h3>Turns the app into a flow graph</h3>
-          <p>Reads routes, components, API schema, or a live crawl of the app to build a map of user flows — "signup → verify email → onboarding," "add to cart → checkout → payment failure." The structural map comes from deterministic parsing, a state-graph crawler and Playwright aria snapshots; the local model's job is narrower — naming flows, ranking what matters, and inferring business rules a crawler can't see ("checkout should fail without an email").</p>
-          <p class="muted">Writes <code>Page</code>, <code>Component</code>, <code>Element</code>, <code>Flow</code> and <code>ApiEndpoint</code> nodes to memory, and only re-plans areas a diff actually touched.</p>
+          <p>Reads routes, components, API schema, or a live crawl of the app to build a map of user flows — "signup → verify email → onboarding," "add to cart → checkout → payment failure." The structural map comes from deterministic parsing, a state-graph crawler and Playwright aria snapshots; the small local model's job is narrower — naming flows, ranking what matters, and inferring business rules a crawler can't see ("checkout should fail without an email"). Inferred rules become <code>Requirement</code> nodes that a human confirms at approval.</p>
+          <p class="muted">Plain code. Writes <code>Page</code>, <code>Component</code>, <code>Element</code>, <code>Flow</code> and <code>ApiEndpoint</code> nodes with an aria basis, and only re-plans pages whose basis changed.</p>
         </div>
 
         <div class="component">
           <span class="component-tag">Test generation agent</span><span class="new-badge">changed</span>
           <h3>Converts a flow into a JSON test spec</h3>
-          <p>v0.4 left the test format open: scripted code, natural language resolved at runtime, or a hybrid. v0.5 settles it with a structured spec:</p>
           <ul class="choice-list">
             <li><strong>Spec, not code</strong> — the model fills a JSON schema (steps, role/label targets, assertions). Ollama's structured output constrains decoding to that schema, so small models can't produce invalid tests.</li>
             <li><strong>Deterministic execution</strong> — one generic Playwright runner executes every spec. Same determinism and speed as scripted tests, no generated code on the host.</li>
-            <li><strong>Agents for exploration only</strong> — live, unscripted bug-hunting stays a separate executor mode (§09), as v0.4's hybrid recommended.</li>
+            <li><strong>Agents for exploration only</strong> — live, unscripted bug-hunting stays a separate executor mode.</li>
           </ul>
-          <p class="muted" style="margin-top:14px">Before generating, it pulls targets that worked before and similar specs from memory to use as templates. Common patterns (login, form submit, CRUD) come from templates with no model call at all. Novel flows go through a generate → run → read error → repair loop with a hard retry cap. Repairs may change targets and add waits; changing or removing an assertion goes to review. See <a href="#spec">§05</a>.</p>
+          <p class="muted" style="margin-top:14px">Before generating, it pulls targets that worked before and similar specs from memory to use as templates. Common patterns (login, form submit, CRUD) come from templates with no model call at all. Novel flows use the small model (the large tier only if the benchmark earns it) and go through up to three <strong>batched repair rounds</strong>: generate or repair every pending draft, unload the model, run every draft, repeat. Repairs may change targets and add waits; changing or removing an assertion goes to review. See <a href="#spec">§05</a>.</p>
         </div>
 
         <div class="component">
@@ -812,17 +847,23 @@
           <h3>Actually drives the browser</h3>
           <p>Two modes, kept separate rather than merged into one agent:</p>
           <ul class="choice-list">
-            <li><strong>Playwright Test + spec runner</strong> — runs approved specs with workers and retries. Fast and repeatable; the right choice for regression gates.</li>
-            <li><strong>Exploratory agent loop</strong> — aria snapshot → local model picks the next action → execute → repeat, with invariant checks on every state. A small vision model is optional. Slower, but it finds the bugs a spec wasn't written to look for.</li>
+            <li><strong>Playwright Test + spec runner</strong> — runs every approved spec with workers and retries, with no model loaded. Fast and repeatable; the right choice for regression gates.</li>
+            <li><strong>Exploratory agent loop</strong> — aria snapshot → local model picks the next spec step → execute → repeat, with invariant checks on every state. The one LangGraph loop; a small vision model is optional. Slower, but it finds the bugs a spec wasn't written to look for.</li>
           </ul>
-          <p>Evidence comes from Playwright itself: the trace file (screenshots, DOM snapshots, console, network), failure screenshots and video, axe results, and Chromium JS coverage per test. Evidence is written to <code>data/evidence/&lt;run&gt;/</code>; coverage becomes the <code>touches</code> edges that power test impact analysis.</p>
+          <p>Evidence comes from Playwright itself: the trace file (screenshots, DOM snapshots, console, network), failure screenshots and video, axe results, and Chromium JS coverage per test. Evidence is written to <code>data/evidence/&lt;run&gt;/</code> and recorded on <code>result</code> rows; coverage becomes the <code>touches</code> edges that scope model work. In both modes, navigation off the target origin is aborted.</p>
         </div>
 
         <div class="component">
-          <span class="component-tag">Analyzer agent</span>
+          <span class="component-tag">Importer</span><span class="new-badge">new</span>
+          <h3>Lets the analyzer work on suites Testomation didn't write</h3>
+          <p><code>testomation import</code> reads any Playwright project's JSON report with its traces and attachments, writes a <code>Run</code> and <code>result</code> rows, and hands them to the normal triage and report stages. Failures map to steps through <code>test.step</code> titles when present, otherwise through the failing locator and the trace's last action.</p>
+        </div>
+
+        <div class="component">
+          <span class="component-tag">Analyzer agent</span><span class="new-badge">changed</span>
           <h3>Decides what's actually a bug</h3>
-          <p>Reasons over the evidence bundle rather than a single assertion. Signal sources include failed assertions, console exceptions, 4xx/5xx network responses, visual regressions, dead-end navigation states, and accessibility violations.</p>
-          <p class="muted">Runs as a rules engine first — known noise signatures, status codes, axe-core, screenshot diffs, flake history — and escalates to the small local model only for failures nothing else could classify. The model is sampled three times; agreement, not self-reported certainty, sets confidence. This is the first agent built as a LangGraph graph (§09).</p>
+          <p>Reasons over the evidence bundle rather than a single assertion. Signal sources include failed assertions, console exceptions, 4xx/5xx network responses, visual regressions, dead-end navigation states, and accessibility violations. Input is a result from the spec runner or from an imported Playwright suite.</p>
+          <p class="muted">A plain-Python cascade: memory, then a rules engine (known noise signatures, status codes, axe-core, screenshot diffs, flake history), then a vote of labelled neighbours — similar failures humans already decided. Only what's still unsettled reaches the small local model, in one call whose label probability comes from logprobs. Confidence is a calibrated mix of that probability, the neighbour vote and the rules signal — never the model's self-report (§09).</p>
         </div>
 
         <div class="component">
@@ -832,33 +873,33 @@
         </div>
 
         <div class="component">
-          <span class="component-tag">Review queue</span><span class="new-badge">new</span>
+          <span class="component-tag">Review queue</span><span class="new-badge">changed</span>
           <h3>Where uncertain decisions wait for a human</h3>
-          <p>An interrupted LangGraph thread <em>is</em> a review item. A small <code>review_item</code> table lists them, because checkpoints aren't built for listing. <code>testomation review</code> shows each item with its evidence, opens the trace with <code>npx playwright show-trace</code>, and resumes the graph with the decision. Decisions become human claims in memory and scores in Langfuse.</p>
+          <p>A review item is a row in a <code>review_item</code> table: what the agent would have decided, its score, the evidence and the trace. <code>testomation review</code> shows each item, opens the trace with <code>npx playwright show-trace</code>, and records the decision. The decision becomes a human claim and a <code>HumanDecision</code> node, goes to traces as a score, and is applied with the same function the analyzer uses. No graph is paused or resumed. <code>testomation approve</code> promotes draft specs and confirms their requirement.</p>
         </div>
 
         <div class="component">
           <span class="component-tag">Pipeline runner</span><span class="new-badge">changed</span>
           <h3>Keeps everything coordinated</h3>
-          <p>Replaces the v0.4 orchestrator on a single machine. <code>testomation run</code> executes a fixed sequence of stages, records each stage's state in Postgres so a crashed run resumes from the last completed stage, enforces the per-run compute budget, and uses the memory graph to decide which specs a diff needs. Fan-out and retries are Playwright Test's job; reasoning inside each agent is LangGraph's. Temporal returns only if Testomation spreads across machines.</p>
+          <p><code>testomation run</code> executes a fixed sequence of stages and records each stage's state in Postgres, so a crashed run resumes from the last completed stage. It refreshes file hashes, runs every approved spec, enforces the per-run compute budget, uses the memory graph to decide which flows to re-plan and which specs to regenerate, unloads the model before any stage that runs browsers, and drives the repair rounds. Fan-out and retries are Playwright Test's job. Temporal returns only if Testomation spreads across machines.</p>
         </div>
 
         <div class="component">
-          <span class="component-tag">Agent runtime (LangGraph)</span>
-          <h3>Runs the decision loop inside each reasoning agent</h3>
-          <p>Each reasoning agent is a small graph: plain-Python nodes for memory and rules, one node that calls a local model, conditional edges on confidence, and a pause point for human review. See <a href="#runtime">§09</a>.</p>
+          <span class="component-tag">Exploration runtime (LangGraph)</span>
+          <h3>Runs the one long loop</h3>
+          <p>Snapshot → check invariants → choose an action → act, checkpointed to Postgres so a long session resumes where it stopped. This is the only place LangGraph is used. See <a href="#runtime">§09</a>.</p>
         </div>
 
         <div class="component">
           <span class="component-tag">Memory graph</span>
           <h3>Shared knowledge every agent reads and writes</h3>
-          <p>Not an agent — a store. It holds the relationships between pages, flows, specs, bugs, commits and human decisions, plus the claims each source made about them. See <a href="#memory">§06</a>.</p>
+          <p>Not an agent — a store. It holds the relationships between pages, flows, specs, bugs, commits and human decisions, typed tables for the core records, result rows, and the claims each source made about them. See <a href="#memory">§06</a>.</p>
         </div>
 
         <div class="component">
-          <span class="component-tag">Observability (Langfuse)</span>
+          <span class="component-tag">Observability</span>
           <h3>Records what every agent did and how long it took</h3>
-          <p>Self-hosted. Wraps each agent job in a trace. Model calls appear as generations with tokens and latency; deterministic steps appear as spans, so skipped model calls are visible too. See <a href="#observability">§08</a>.</p>
+          <p>OpenTelemetry spans to a local file in phases 0–2; self-hosted Langfuse from phase 3. Each agent job is a trace. Model calls appear as generations with tokens and latency; deterministic steps appear as spans, so skipped model calls are visible too. See <a href="#observability">§08</a>.</p>
         </div>
       </section>
 
@@ -873,7 +914,7 @@
   "spec_version": 1,
   "id": "checkout.guest.no-email",
   "flow": "guest-checkout",
-  "requirement": "REQ-142",
+  "requirement": "checkout.email-required",
   "steps": [
     { "action": "goto",   "url": "/cart" },
     { "action": "click",  "target": { "role": "button", "name": "Checkout" } },
@@ -883,12 +924,13 @@
     { "action": "expect", "target": { "role": "alert" },  "assert": "hasText", "value": "Email is required" }
   ]
 }</pre></div>
+        <p class="muted"><code>requirement</code> is optional. In the MVP it names a business rule the planner inferred or a human added at approval.</p>
 
         <div class="subhead">// step vocabulary</div>
         <div class="table-wrap">
         <table>
           <tr><th>Action</th><th>Fields</th><th>Notes</th></tr>
-          <tr><td>goto</td><td class="opt"><code>url</code></td><td class="opt">Relative to the target's base URL</td></tr>
+          <tr><td>goto</td><td class="opt"><code>url</code></td><td class="opt">A path relative to the target's base URL — must start with <code>/</code></td></tr>
           <tr><td>click · hover</td><td class="opt"><code>target</code></td><td class="opt"></td></tr>
           <tr><td>fill · select</td><td class="opt"><code>target</code>, <code>value</code></td><td class="opt">Value may be a literal or a reference</td></tr>
           <tr><td>check · uncheck</td><td class="opt"><code>target</code></td><td class="opt"></td></tr>
@@ -896,8 +938,9 @@
           <tr><td>upload</td><td class="opt"><code>target</code>, <code>file</code></td><td class="opt">File is a <code>$fixture</code> reference</td></tr>
           <tr><td>wait_for</td><td class="opt"><code>target</code>, <code>state</code></td><td class="opt">visible · hidden</td></tr>
           <tr><td>expect</td><td class="opt"><code>target</code> or page, <code>assert</code>, <code>value</code></td><td class="opt">visible · hidden · hasText · hasValue · count · url · ariaSnapshot</td></tr>
-          <tr><td>api</td><td class="opt"><code>method</code>, <code>path</code>, <code>body</code>, optional <code>expect</code></td><td class="opt">Backend setup and verification through Playwright's request context</td></tr>
+          <tr><td>api</td><td class="opt"><code>method</code>, <code>path</code>, <code>body</code>, optional <code>expect</code></td><td class="opt">Backend setup and verification through Playwright's request context; <code>path</code> must start with <code>/</code></td></tr>
           <tr><td>viewport</td><td class="opt"><code>preset</code></td><td class="opt">phone · tablet · desktop</td></tr>
+          <tr><td>helper <span class="new-badge">new</span></td><td class="opt"><code>name</code>, <code>args</code></td><td class="opt">Runs a registered, hand-written TypeScript helper</td></tr>
         </table>
         </div>
 
@@ -909,12 +952,19 @@
           <li><strong><code>$fixture</code></strong> — a file from the project's fixtures folder.</li>
         </ul>
 
+        <div class="subhead">// one schema, helpers, origin guard</div>
+        <ul class="choice-list">
+          <li><strong>One schema source</strong> — <code>schemas/test-spec.schema.json</code> is the only definition of a spec. Pydantic models and TypeScript types are generated from it; example specs in <code>schemas/examples/</code> are validated by both sides.</li>
+          <li><strong>Helper steps</strong> — when specs need something the vocabulary can't express (dialogs, downloads, iframes, network assertions), a human writes a helper in <code>runner/helpers/</code>. Registered helper names are injected into the schema as an enum, so models can only name helpers that exist — they never write one. A widely used helper can be promoted into the core vocabulary with a <code>spec_version</code> bump.</li>
+          <li><strong>Origin guard</strong> — <code>goto</code> and <code>api</code> paths must be relative, and the runner aborts top-level navigation to any origin other than the target app's. Exploration uses the same guard.</li>
+        </ul>
+
         <div class="subhead">// runner, lifecycle, repair</div>
         <ul class="choice-list">
-          <li><strong>Spec runner</strong> — one Playwright test file registers a <code>test()</code> per spec and wraps each step in <code>test.step()</code>, so steps show up by name in traces and reports. Fixtures add axe checks, coverage and an aria snapshot on failure.</li>
+          <li><strong>Spec runner</strong> — one Playwright test file registers a <code>test()</code> per spec and wraps each step in <code>test.step()</code>, so steps show up by name in traces and reports. Fixtures add axe checks, coverage, an aria snapshot on failure, the origin guard and the helper registry.</li>
           <li><strong>Exporter</strong> <span class="muted">(later)</span> — turns a spec into a readable <code>.spec.ts</code> for anyone who wants to own a test outside Testomation.</li>
-          <li><strong>Lifecycle</strong> — <code>draft → approved → quarantined → retired</code>, stored on the <code>TestCase</code> node. Only approved specs run in regression.</li>
-          <li><strong>Repair</strong> — a failing draft goes back to the large model with the failing step, the error and the aria snapshot, capped at three attempts. Repairs may change targets or add waits. Changing or removing an <code>expect</code> needs review, because the failure might be a real bug.</li>
+          <li><strong>Lifecycle</strong> — <code>draft → approved → quarantined → retired</code>, stored on the <code>test_case</code> row. Only approved specs run in regression — and all of them run, every run.</li>
+          <li><strong>Batched repair rounds</strong> <span class="new-badge">changed</span> — up to three rounds: the model generates or repairs every pending draft, the model is unloaded, every draft runs, and failures go into the next round with the failing step, the error and the aria snapshot. Repairs may change targets or add waits. Changing or removing an <code>expect</code> needs review, because the failure might be a real bug. Still failing after round three → review queue.</li>
           <li><strong>Approved specs never self-heal</strong> — any change to an approved spec is a drift signal for the analyzer and a review item.</li>
         </ul>
       </section>
@@ -924,14 +974,15 @@
           <span class="section-num">06</span>
           <h2>Memory graph</h2>
         </div>
-        <p>The memory graph is Testomation's long-term knowledge about the app under test: what exists, what's been tested, what broke, why, and what humans decided. It keeps useful things connected — a bug is linked to the component it affects, the commit that likely caused it, the test that found it and the evidence that proves it — so any agent can follow those links instead of re-deriving them.</p>
+        <p>The memory graph is Testomation's long-term knowledge about the app under test: what exists, what's been tested, what broke, why, and what humans decided. It keeps useful things connected — a bug is linked to the component it affects, the commit that likely caused it, the run that found it and the result that proves it — so any agent can follow those links instead of re-deriving them.</p>
 
         <div class="subhead">// what it stores</div>
         <ul class="feature-grid">
           <li><strong>App structure</strong><span><code>Page</code>, <code>Component</code>, <code>Element</code>, <code>ApiEndpoint</code>, <code>SourceFile</code></span></li>
-          <li><strong>Test knowledge</strong><span><code>Flow</code>, <code>TestCase</code> (holds the spec and its status), <code>Run</code>, <code>Evidence</code> (a path in the evidence folder)</span></li>
-          <li><strong>Findings</strong><span><code>Bug</code>, <code>NoiseSignature</code> (errors known to be harmless), <code>Requirement</code></span></li>
-          <li><strong>History</strong><span><code>Commit</code>, <code>HumanDecision</code> (approve / reject / annotate)</span></li>
+          <li><strong>Test knowledge</strong><span><code>Flow</code>, <code>TestCase</code> (typed: spec and status), <code>Run</code> (typed)</span></li>
+          <li><strong>Findings</strong><span><code>Bug</code> (typed), <code>NoiseSignature</code> (typed; errors known to be harmless), <code>Requirement</code></span></li>
+          <li><strong>History</strong><span><code>Commit</code> (typed), <code>HumanDecision</code> (approve / reject / annotate)</span></li>
+          <li class="stretch"><strong>Result rows, not nodes</strong> <span class="new-badge">new</span><span>One row per test per run — outcome, failing step, error signature, evidence paths. They replace v0.5's <code>Evidence</code> nodes, because results are high-volume and nobody disputes them.</span></li>
         </ul>
 
         <p style="margin-top:24px">The edges are what make it useful:</p>
@@ -940,98 +991,140 @@
           <li><b>Page</b> <em>—renders→</em> <b>Component</b> <em>—contains→</em> <b>Element</b></li>
           <li><b>TestCase</b> <em>—covers→</em> <b>Flow</b> · <b>TestCase</b> <em>—justified_by→</em> <b>Requirement</b></li>
           <li><b>TestCase</b> <em>—touches→</em> <b>SourceFile</b> <span class="muted">(static map first, then coverage)</span></li>
-          <li><b>Commit</b> <em>—changes→</em> <b>SourceFile</b> <span class="new-badge">new</span></li>
+          <li><b>Commit</b> <em>—changes→</em> <b>SourceFile</b></li>
           <li><b>Bug</b> <em>—found_in→</em> <b>Run</b> · <b>Bug</b> <em>—affects→</em> <b>Component</b> · <b>Bug</b> <em>—likely_caused_by→</em> <b>Commit</b></li>
-          <li><b>Evidence</b> <em>—matches→</em> <b>NoiseSignature</b></li>
+          <li><b>Bug</b> <em>—duplicate_of→</em> <b>Bug</b> <span class="new-badge">new</span></li>
           <li><b>HumanDecision</b> <em>—confirmed | rejected→</em> <b>Bug</b> / <b>TestCase</b></li>
         </ul>
+        <p class="muted">A result row points at its <code>Bug</code> or <code>NoiseSignature</code> through its <code>signature</code> column, not through an edge.</p>
+
+        <div class="subhead">// typed tables and claims</div>
+        <ul class="choice-list">
+          <li><strong>Typed tables</strong> — <code>test_case</code>, <code>run</code>, <code>bug</code>, <code>noise_signature</code> and <code>git_commit</code> sit 1:1 next to <code>mem_node</code>, with real constraints. They hold facts no source disputes: the spec, its status, timestamps, paths.</li>
+          <li><strong>Claims</strong> — anything a source can get wrong (a verdict, a severity, whether a link holds) is a claim, stamped with its source (<code>rules</code> / <code>knn</code> / <code>llm</code> / <code>human</code>), confidence, trace ID and basis.</li>
+          <li><strong>Claims on edges</strong> <span class="new-badge">new</span> — an edge row is the first claim about a link; later claims can dispute it, so a human can overrule an inferred <code>likely_caused_by</code> or <code>duplicate_of</code>.</li>
+        </ul>
+
+        <div class="subhead">// freshness from basis hashes</div>
+        <p>Every node, edge and claim records a <strong>basis</strong>: the hashes of what it was based on — file blob SHAs from git and normalised aria-snapshot hashes of the pages involved. A <code>basis_state</code> table holds the current hash of each key. A claim is <strong>fresh</strong> while its whole basis still matches, so nothing has to be rewritten when code changes:</p>
+        <ul class="choice-list">
+          <li><strong>Precise</strong> — a change to a shared file only affects claims based on it, instead of marking everything downstream stale.</li>
+          <li><strong>Reversible</strong> — reverting a commit makes the old hashes match again, so the memory is fresh again.</li>
+          <li><strong>Sees non-git changes</strong> — seed data or config changes still show up through aria hashes.</li>
+        </ul>
+        <p class="muted">Aria snapshots are normalised before hashing (roles and accessible names kept; numbers, dates and generated values masked), or every run would produce a new hash. Commits and human decisions are immutable and have an empty basis.</p>
 
         <div class="subhead">// how it plugs into the pipeline</div>
         <p>Memory doesn't add a step — it wraps every existing one in the same five-part loop:</p>
         <div class="steps">
-          <div class="step"><div class="step-num">a</div><div><h3>Look up</h3><p>Before acting, the agent queries the graph. Is this error a known noise signature? Is there a working target for this element? Has this flow been planned, and has nothing it touches changed since?</p></div></div>
-          <div class="step"><div class="step-num">b</div><div><h3>Try deterministic tools</h3><p>If memory doesn't answer it, rules, parsers, crawlers and diffing get the next shot (§07).</p></div></div>
+          <div class="step"><div class="step-num">a</div><div><h3>Look up</h3><p>Before acting, the agent queries the graph. Is this error a known noise signature? Is there a working target for this element? Has this flow been planned, and is that plan still fresh?</p></div></div>
+          <div class="step"><div class="step-num">b</div><div><h3>Try deterministic tools</h3><p>If memory doesn't answer it, rules, parsers, crawlers, diffing and the labelled-neighbour vote get the next shot (§07).</p></div></div>
           <div class="step"><div class="step-num">c</div><div><h3>Escalate to a local model</h3><p>Only what's still unanswered reaches a model — with the relevant neighbourhood of the graph as context, rather than the whole app.</p></div></div>
-          <div class="step"><div class="step-num">d</div><div><h3>Write back</h3><p>The answer becomes a claim on a node, stamped with its source (rules / LLM / human), a confidence level, and the Langfuse trace ID. Next time, step (a) answers it for free.</p></div></div>
-          <div class="step"><div class="step-num">e</div><div><h3>Invalidate on change</h3><p>When a commit lands, its <code>changes</code> edges lead to files, which are followed through <code>touches</code> and <code>renders</code>; every dependent node and claim is marked stale until re-verified.</p></div></div>
+          <div class="step"><div class="step-num">d</div><div><h3>Write back</h3><p>The answer becomes a claim, stamped with its source, a confidence level, the trace ID and its basis. Next time, step (a) answers it for free.</p></div></div>
+          <div class="step"><div class="step-num">e</div><div><h3>Check freshness</h3><p>A claim counts only while its basis hashes match the current ones. Stale claims are shown as hints, never used as answers.</p></div></div>
         </div>
 
         <div class="subhead">// what each agent reads and writes</div>
         <div class="table-wrap">
         <table>
           <tr><th>Agent</th><th>Reads before acting</th><th>Writes after</th></tr>
-          <tr><td>Planner</td><td class="opt">Existing flows, pages with no covering test, bug-prone components</td><td class="opt"><code>Page</code>, <code>Component</code>, <code>Element</code>, <code>Flow</code>, <code>ApiEndpoint</code></td></tr>
+          <tr><td>Planner</td><td class="opt">Existing flows, pages with no covering test, bug-prone components</td><td class="opt"><code>Page</code>, <code>Component</code>, <code>Element</code>, <code>Flow</code>, <code>ApiEndpoint</code>, inferred <code>Requirement</code>s</td></tr>
           <tr><td>Test gen</td><td class="opt">Targets that worked, similar specs to template from, test data that passed a form's validation</td><td class="opt"><code>TestCase</code> nodes (spec + status) linked to flows and requirements</td></tr>
-          <tr><td>Executor</td><td class="opt">Stored auth state, slow endpoints to mock</td><td class="opt"><code>Run</code>, <code>Evidence</code> paths, <code>touches</code> edges</td></tr>
-          <tr><td>Analyzer</td><td class="opt">Noise signatures, past bugs on the same component, recent commits touching it</td><td class="opt"><code>Bug</code>, <code>NoiseSignature</code>, verdict claims, dedup links</td></tr>
-          <tr><td>Reporter</td><td class="opt">Affected requirements, owning module</td><td class="opt">Report paths (ticket IDs later) on <code>Bug</code> nodes</td></tr>
-          <tr><td>Pipeline runner</td><td class="opt">Diff → <code>changes</code> → <code>touches</code> → affected specs</td><td class="opt"><code>Commit</code> nodes, stale flags</td></tr>
-          <tr><td>Review queue</td><td class="opt">Low-confidence claims awaiting a human</td><td class="opt">Human claims, <code>HumanDecision</code> nodes (also sent to Langfuse as scores)</td></tr>
+          <tr><td>Executor</td><td class="opt">Stored auth state, endpoints to mock</td><td class="opt"><code>Run</code>, <code>result</code> rows, <code>touches</code> edges, aria hashes</td></tr>
+          <tr><td>Analyzer</td><td class="opt">Noise signatures, labelled neighbours, past bugs on the same component, recent commits touching it</td><td class="opt"><code>Bug</code>, <code>NoiseSignature</code>, verdict claims, <code>duplicate_of</code> edges</td></tr>
+          <tr><td>Reporter</td><td class="opt">Affected requirements, owning module</td><td class="opt">Report paths (ticket IDs later) on <code>bug</code> rows</td></tr>
+          <tr><td>Pipeline runner</td><td class="opt">Changed files → <code>touches</code> / <code>renders</code> → flows and specs needing model work</td><td class="opt"><code>Commit</code> nodes, file hashes, run state</td></tr>
+          <tr><td>Review queue</td><td class="opt">Open <code>review_item</code> rows</td><td class="opt">Human claims, <code>HumanDecision</code> nodes (also sent to traces as scores)</td></tr>
         </table>
         </div>
 
         <div class="subhead">// features that become graph queries</div>
         <ul class="choice-list">
           <li><strong>Coverage gap analysis</strong> — pages with no incoming <code>covers</code> path.</li>
-          <li><strong>Test impact analysis</strong> — commit → <code>changes</code> → files → <code>touches</code> → tests to rerun.</li>
+          <li><strong>Model-work scope</strong> — changed files → <code>touches</code> / <code>renders</code> → flows to re-plan and specs to regenerate. Every approved spec still runs.</li>
           <li><strong>Traceability</strong> — test → <code>justified_by</code> → requirement.</li>
-          <li><strong>Dedup &amp; regression clustering</strong> — failures sharing a component and an error signature.</li>
+          <li><strong>Dedup &amp; regression clustering</strong> — results sharing a signature; <code>duplicate_of</code> edges for fuzzy matches.</li>
           <li><strong>Root-cause suggestion</strong> — bug → component → recent commits touching it.</li>
           <li><strong>Per-module health</strong> — bug and coverage counts rolled up per component.</li>
         </ul>
 
         <div class="subhead">// trust rules</div>
         <ul class="choice-list">
-          <li><strong>Provenance on everything</strong> — nodes, edges and claims all record their source, confidence and the trace ID that produced them.</li>
-          <li><strong>Human beats model</strong> — for any node and field, the newest non-stale human claim wins; otherwise the highest-confidence non-stale claim. Losing claims are kept, not overwritten.</li>
-          <li><strong>No silent suppression</strong> — an LLM-inferred <code>NoiseSignature</code> never auto-hides a failure until a human confirms it.</li>
+          <li><strong>Provenance on everything</strong> — nodes, edges and claims all record their source, confidence, trace ID and basis.</li>
+          <li><strong>Human beats model</strong> — for any node field or edge, the newest fresh human claim wins; otherwise the highest-confidence fresh claim. Losing claims are kept, not overwritten.</li>
+          <li><strong>No silent suppression</strong> — a <code>NoiseSignature</code> inferred by a model (<code>llm</code> or <code>knn</code>) never auto-hides a failure until a human confirms it.</li>
           <li><strong>Stale until proven</strong> — stale nodes and claims can inform an agent but can't short-circuit a decision, even human ones.</li>
         </ul>
 
         <div class="subhead">// storage</div>
-        <p>Postgres with pgvector for fuzzy matching ("is this error similar to a known one?"). Traversals are mostly one to three hops, which recursive CTEs handle fine; a dedicated graph database is only worth it if they get deep or slow. Embedding size follows the local embedding model — 768 for the current candidate.</p>
-        <div class="code"><pre><span class="c">-- nodes: the things the system knows about</span>
+        <p>Postgres with pgvector for fuzzy matching ("is this error similar to a known one?"). Traversals are mostly one to three hops, which recursive CTEs handle fine; a dedicated graph database is only worth it if they get deep or slow. Embedding size follows the local embedding model — 768 for the current candidate. The core tables (the full schema, with typed tables and <code>review_item</code>, is in <code>docs/MEMORY_GRAPH.md</code>):</p>
+        <div class="code"><pre><span class="c">-- nodes: the identity of everything the system knows about</span>
 CREATE TABLE mem_node (
   id          uuid PRIMARY KEY,
   project     text NOT NULL DEFAULT 'default',
   kind        text NOT NULL,        <span class="c">-- 'Page', 'Bug', 'TestCase', ...</span>
   key         text NOT NULL,        <span class="c">-- natural key, e.g. route or error hash</span>
-  props       jsonb NOT NULL DEFAULT '{}',
+  props       jsonb NOT NULL DEFAULT '{}',   <span class="c">-- only for kinds without a typed table</span>
   embedding   vector(768),          <span class="c">-- optional; size of the local embed model</span>
-  source      text NOT NULL,        <span class="c">-- who created it: 'rules' | 'llm' | 'human'</span>
-  trace_id    text,                 <span class="c">-- Langfuse trace that created it</span>
-  stale       boolean NOT NULL DEFAULT false,
+  source      text NOT NULL,        <span class="c">-- 'rules' | 'knn' | 'llm' | 'human'</span>
+  trace_id    text,                 <span class="c">-- trace that created it</span>
+  basis       jsonb NOT NULL DEFAULT '{}',   <span class="c">-- {"aria:/checkout": "…", "file:src/…": "…"}</span>
   updated_at  timestamptz NOT NULL DEFAULT now(),
   UNIQUE (project, kind, key)
 );
 
-<span class="c">-- edges: how those things relate, with the same provenance</span>
+<span class="c">-- results: one row per test per run (replaces v0.5 Evidence nodes)</span>
+CREATE TABLE result (
+  id            uuid PRIMARY KEY,
+  run_id        uuid NOT NULL REFERENCES run(node_id),
+  test_case_id  uuid REFERENCES test_case(node_id),  <span class="c">-- null for imported Playwright tests</span>
+  external_test text,               <span class="c">-- 'file › title' for imported tests</span>
+  outcome       text NOT NULL,
+  failing_step  int,
+  signature     text,               <span class="c">-- = Bug / NoiseSignature key</span>
+  evidence_dir  text NOT NULL,
+  duration_ms   int
+);
+
+<span class="c">-- edges: how things relate; the row is the first claim about the link</span>
 CREATE TABLE mem_edge (
-  src         uuid REFERENCES mem_node(id),
+  id          uuid PRIMARY KEY,
+  src         uuid NOT NULL REFERENCES mem_node(id),
   rel         text NOT NULL,        <span class="c">-- 'covers', 'touches', 'changes', ...</span>
-  dst         uuid REFERENCES mem_node(id),
+  dst         uuid NOT NULL REFERENCES mem_node(id),
   props       jsonb NOT NULL DEFAULT '{}',
   source      text NOT NULL,
   confidence  real NOT NULL DEFAULT 1.0,
   trace_id    text,
-  stale       boolean NOT NULL DEFAULT false,
+  basis       jsonb NOT NULL DEFAULT '{}',
   updated_at  timestamptz NOT NULL DEFAULT now(),
-  PRIMARY KEY (src, rel, dst)
+  UNIQUE (src, rel, dst)
 );
 
-<span class="c">-- claims: what each source asserts about a node; several can coexist</span>
+<span class="c">-- claims: what each source asserts about a node field or an edge</span>
 CREATE TABLE mem_claim (
   id          uuid PRIMARY KEY,
-  node_id     uuid NOT NULL REFERENCES mem_node(id),
-  field       text NOT NULL,        <span class="c">-- 'verdict', 'is_noise', 'severity', ...</span>
+  node_id     uuid REFERENCES mem_node(id),
+  edge_id     uuid REFERENCES mem_edge(id),
+  field       text NOT NULL,        <span class="c">-- 'verdict', 'severity', ...; 'holds' for edges</span>
   value       jsonb NOT NULL,
-  source      text NOT NULL,        <span class="c">-- 'rules' | 'llm' | 'human'</span>
+  source      text NOT NULL,        <span class="c">-- 'rules' | 'knn' | 'llm' | 'human'</span>
   confidence  real NOT NULL,
   trace_id    text,
-  stale       boolean NOT NULL DEFAULT false,
-  created_at  timestamptz NOT NULL DEFAULT now()
+  basis       jsonb NOT NULL DEFAULT '{}',
+  created_at  timestamptz NOT NULL DEFAULT now(),
+  CHECK ((node_id IS NULL) &lt;&gt; (edge_id IS NULL))
+);
+
+<span class="c">-- current hash per basis key; a claim is fresh while its basis matches</span>
+CREATE TABLE basis_state (
+  project     text NOT NULL,
+  key         text NOT NULL,        <span class="c">-- 'file:src/pages/Checkout.tsx', 'aria:/checkout'</span>
+  hash        text NOT NULL,        <span class="c">-- git blob SHA or normalised aria hash</span>
+  observed_at timestamptz NOT NULL DEFAULT now(),
+  PRIMARY KEY (project, key)
 );</pre></div>
-        <p class="muted">A <code>mem_fact</code> view applies the "human beats model" rule to claims, so agents read one resolved value per node and field.</p>
+        <p class="muted">A <code>mem_fact</code> view applies the "human beats model" rule to fresh claims, so agents read one resolved value per node and field; <code>mem_edge_fact</code> does the same for edges. In the MVP, <code>Requirement</code> nodes come from business rules the planner infers and from humans at spec approval.</p>
       </section>
 
       <section id="cost">
@@ -1047,51 +1140,58 @@ CREATE TABLE mem_claim (
         <table>
           <tr><th>Stage</th><th>Deterministic first</th><th>Model only for</th></tr>
           <tr><td>Plan</td><td class="opt">Router / sitemap / OpenAPI parsing; state-graph crawler; aria snapshots</td><td class="opt">Naming and ranking flows; inferring business rules</td></tr>
-          <tr><td>Generate</td><td class="opt">Spec templates for common patterns; boundary values from HTML attributes; schema-driven API specs; Faker references</td><td class="opt">Novel multi-step flows (as specs, never code)</td></tr>
-          <tr><td>Execute</td><td class="opt">Playwright Test running specs with role / test-id targets</td><td class="opt">Nothing</td></tr>
-          <tr><td>Analyze</td><td class="opt">Assertions, status codes, console allowlist, axe-core, screenshot diff, flake history</td><td class="opt">Failures matching no known signature</td></tr>
+          <tr><td>Generate</td><td class="opt">Spec templates for common patterns; boundary values from HTML attributes; schema-driven API specs; Faker references; helper steps</td><td class="opt">Novel multi-step flows (as specs, never code)</td></tr>
+          <tr><td>Execute</td><td class="opt">Playwright Test running every approved spec with role / test-id targets</td><td class="opt">Nothing</td></tr>
+          <tr><td>Analyze</td><td class="opt">Assertions, status codes, console allowlist, axe-core, screenshot diff, flake history, labelled-neighbour vote</td><td class="opt">Failures nothing else settled — one call, label probability from logprobs</td></tr>
           <tr><td>Dedupe</td><td class="opt">Hash of normalised error signature</td><td class="opt">Borderline matches (local embeddings first)</td></tr>
           <tr><td>Report</td><td class="opt">Templated reports and notifications</td><td class="opt">Optional summary on filed bugs</td></tr>
-          <tr><td>Impact</td><td class="opt">Static route → file map, then coverage, via the memory graph</td><td class="opt">Nothing</td></tr>
+          <tr><td>Scope</td><td class="opt">Static route → file map, then coverage, via the memory graph — decides what to re-plan and regenerate</td><td class="opt">Nothing</td></tr>
         </table>
         </div>
 
         <div class="subhead">// making the remaining calls cheap</div>
         <ul class="choice-list">
-          <li><strong>Memory before model</strong> — the graph is the cache; a question answered once isn't asked again.</li>
+          <li><strong>Memory before model</strong> — the graph is the cache; a question answered once isn't asked again while its basis still matches.</li>
           <li><strong>Change-triggered</strong> — re-plan and regenerate only what a diff touched.</li>
-          <li><strong>Model tiers</strong> — a ~4B model that fits entirely on the GPU for classification, dedup and naming; a ~7–8B model with partial CPU offload for spec generation, planning and repair.</li>
+          <li><strong>One model by default</strong> — a ~4B model that fits entirely on the GPU does all text work. A ~7–8B model with partial CPU offload is added only if the benchmark shows it's worth the swap.</li>
+          <li><strong>One call, not three</strong> — the label probability comes from logprobs, so triage needs one call instead of three samples.</li>
           <li><strong>Structured output</strong> — JSON-schema-constrained decoding means no calls are wasted on output that can't be parsed.</li>
           <li><strong>Text over pixels</strong> — send the aria snapshot or a trimmed DOM; screenshots only for suspected visual bugs.</li>
-          <li><strong>Group work by model</strong> — 4 GB of VRAM holds one model at a time. Batch all small-model work, then all large-model work, and keep the model loaded for the whole batch to avoid reload cost.</li>
+          <li><strong>Group work by model</strong> — 4 GB of VRAM holds one model at a time. Batch embeddings, then small-model work, then any large-model work, and keep the model loaded for the whole batch.</li>
+          <li><strong>Unload while browsers run</strong> — the runner unloads the model before spec runs and repair-round runs, so more workers fit and timeouts don't look like flakes.</li>
           <li><strong>Overnight batches</strong> — planning and generation for areas a PR didn't touch can run while the laptop is idle.</li>
-          <li><strong>Hard per-run budget</strong> — a cap on model calls and model wall-clock time per run. Once it's spent, remaining items go to the review queue.</li>
+          <li><strong>Hard per-run budget</strong> — a cap on model calls and model wall-clock time per run. Once it's spent, the analyzer skips the model step and remaining items usually go to the review queue.</li>
         </ul>
 
         <div class="subhead">// exploratory testing without a vision loop</div>
-        <p>Before reaching for any agent, run monkey/fuzz interaction and coverage-guided crawling, checking invariants on every state reached: no console errors, no 5xx responses, no axe violations, nothing overflowing the viewport. The exploratory agent then works on aria snapshots with a text model; a small vision model is an optional, budgeted deep pass on high-value flows.</p>
+        <p>Before reaching for any agent, run monkey/fuzz interaction and coverage-guided crawling, checking invariants on every state reached: no console errors, no 5xx responses, no axe violations, nothing overflowing the viewport. The exploratory agent then works on aria snapshots with a text model, choosing spec steps on the target origin only; a small vision model is an optional, budgeted deep pass on high-value flows.</p>
       </section>
 
       <section id="observability">
         <div class="section-head">
           <span class="section-num">08</span>
-          <h2>Observability with Langfuse</h2>
+          <h2>Observability</h2>
         </div>
-        <p>Langfuse is the record of what each agent did, how long it took, and whether it was right. It is self-hosted on the laptop with its Docker Compose setup. Its trace model maps cleanly onto Testomation:</p>
+        <p>Traces are the record of what each agent did, how long it took, and whether it was right. They come in two stages:</p>
+        <ul class="choice-list">
+          <li><strong>Phases 0–2: OpenTelemetry → a local file</strong> <span class="new-badge">new</span> — pipeline code uses the OpenTelemetry API with a file exporter (<code>data/traces/&lt;run&gt;.jsonl</code>). There are no model calls yet, so this saves the 2–3 GB of RAM the Langfuse stack needs.</li>
+          <li><strong>Phase 3 on: Langfuse, self-hosted</strong> — brought up with its Docker Compose setup alongside the first model call. Its Python SDK is built on OpenTelemetry, so the same spans flow into it without changing pipeline code.</li>
+        </ul>
+        <p>Langfuse's trace model maps cleanly onto Testomation:</p>
         <div class="table-wrap">
         <table>
           <tr><th>Langfuse</th><th>Testomation</th></tr>
-          <tr><td>Session</td><td class="opt">One test run — <code>run-&lt;pr&gt;-&lt;sha&gt;</code> or <code>run-local-&lt;timestamp&gt;</code></td></tr>
+          <tr><td>Session</td><td class="opt">One test run — <code>run-&lt;pr&gt;-&lt;sha&gt;</code>, <code>run-local-&lt;timestamp&gt;</code> or <code>run-import-&lt;timestamp&gt;</code></td></tr>
           <tr><td>Trace</td><td class="opt">One agent job — "plan checkout flows", "triage failure #182"</td></tr>
-          <tr><td>Span</td><td class="opt">A non-LLM step — memory lookup, crawl, rules-engine triage, a pipeline stage</td></tr>
+          <tr><td>Span</td><td class="opt">A non-LLM step — memory lookup, crawl, rules-engine triage, neighbour vote, a pipeline stage</td></tr>
           <tr><td>Generation</td><td class="opt">An actual model call, with model name, tokens, latency and prompt version</td></tr>
           <tr><td>Tags</td><td class="opt"><code>agent:analyzer</code>, <code>trigger:local</code>, <code>project:web-app</code>, <code>model-tier:small</code></td></tr>
           <tr><td>Scores</td><td class="opt">Human verdicts from the review queue</td></tr>
-          <tr><td>Datasets</td><td class="opt">Benchmark cases and hard triage cases, rerun on every prompt or model change</td></tr>
+          <tr><td>Datasets</td><td class="opt">Benchmark cases, replay bundles and hard triage cases, rerun on every prompt or model change</td></tr>
         </table>
         </div>
 
-        <div class="subhead">// instrumentation sketch</div>
+        <div class="subhead">// instrumentation sketch (phase 3 on)</div>
         <div class="code"><pre>from langfuse import observe, get_client, propagate_attributes
 from langfuse.openai import OpenAI     <span class="c"># drop-in client: every call → a generation</span>
 
@@ -1101,21 +1201,24 @@ langfuse = get_client()                <span class="c"># reads LANGFUSE_* env va
 @observe(name="analyzer.triage", capture_input=False)  <span class="c"># no raw DOM / screenshots</span>
 def triage_failure(failure, run_id):
     with propagate_attributes(session_id=run_id, tags=["agent:analyzer"]):
-        hit = memory.lookup_noise(failure.signature)       <span class="c"># (a) memory</span>
+        hit = memory.fresh_human_verdict(failure.signature)    <span class="c"># (a) memory</span>
         langfuse.update_current_span(metadata={"memory_hit": hit is not None})
-        if hit and hit.source == "human" and not hit.stale:
-            return hit.verdict
+        if hit:
+            return hit
 
-        verdict = rules_engine.classify(failure)           <span class="c"># (b) deterministic</span>
-        if verdict.confident:
-            memory.claim(verdict, source="rules")
-            return verdict
+        rule = rules_engine.classify(failure)                  <span class="c"># (b) deterministic</span>
+        if rule.confident:
+            return memory.claim(failure, rule, source="rules")
 
-        verdict = llm_classify(llm, failure, tier="small", samples=3)  <span class="c"># (c) model</span>
-        memory.claim(verdict, source="llm",                <span class="c"># (d) write back</span>
-                     trace_id=langfuse.get_current_trace_id())
-        return verdict</pre></div>
-        <p class="muted">Call <code>langfuse.flush()</code> before a short-lived worker or CLI command exits.</p>
+        votes = memory.labelled_neighbours(failure)            <span class="c"># (b) embeddings, no generation</span>
+        if votes.decisive:
+            return memory.claim(failure, votes.verdict, source="knn")
+
+        p = llm_classify(llm, failure, tier="small")           <span class="c"># (c) one call, logprobs → p(label)</span>
+        verdict = calibrate(rule, votes, p)                    <span class="c"># gate + review_item: §09</span>
+        return memory.claim(failure, verdict, source="llm",    <span class="c"># (d) write back</span>
+                            trace_id=langfuse.get_current_trace_id())</pre></div>
+        <p class="muted">Call <code>langfuse.flush()</code> before a short-lived worker or CLI command exits. The spike verifies that structured output with the spec schema and logprobs both work through the OpenAI-compatible endpoint and <code>langfuse.openai</code>; the fallback is Ollama's native client with a manual generation span.</p>
 
         <div class="subhead">// how it ties to memory and compute</div>
         <ul class="choice-list">
@@ -1123,8 +1226,8 @@ def triage_failure(failure, run_id):
           <li><strong>Cache rate</strong> — a <code>memory_hit</code> flag on every span shows the share of decisions memory answered, which should climb as the graph matures.</li>
           <li><strong>Budget enforcement</strong> — the pipeline runner counts model calls and model time per session and stops escalating once a run's budget is used.</li>
           <li><strong>Analyzer accuracy</strong> — review-queue decisions are written back as scores, giving real precision numbers alongside the benchmark.</li>
-          <li><strong>LangGraph tracing</strong> — Langfuse's LangChain callback handler traces LangGraph runs, so each graph node appears as its own span without extra instrumentation.</li>
-          <li><strong>Prompt management &amp; datasets</strong> — prompts are versioned in Langfuse; benchmark and hard triage cases become datasets to rerun on every prompt change or model swap.</li>
+          <li><strong>Exploration tracing</strong> — Langfuse's LangChain callback handler traces the exploration graph, so each of its nodes appears as its own span.</li>
+          <li><strong>Prompt management &amp; datasets</strong> — prompts are versioned in Langfuse; benchmark, replay and hard triage cases become datasets to rerun on every prompt change or model swap.</li>
         </ul>
         <div class="note"><strong>Local models have no price.</strong> Langfuse won't show a cost for them, so track tokens, latency and call counts instead — those are the numbers that matter on a laptop. Keep <code>capture_input=False</code> on anything that sees page content, and log evidence paths rather than raw payloads.</div>
       </section>
@@ -1132,129 +1235,121 @@ def triage_failure(failure, run_id):
       <section id="runtime">
         <div class="section-head">
           <span class="section-num">09</span>
-          <h2>Agent runtime: pipeline outside, LangGraph inside</h2>
+          <h2>Agent runtime: pipeline for jobs, plain code for decisions</h2>
         </div>
-        <p>Testomation has two different orchestration problems, and they want different tools. Running tests in parallel, retrying failures and moving a run through its stages is <em>job</em> work. Deciding, inside one agent, whether memory answered a question, whether the rules engine is sure, and whether to ask a human is <em>reasoning control flow</em>. On one laptop, the job side doesn't need Temporal: <strong>a plain pipeline runner and Playwright Test on the outside, LangGraph on the inside.</strong></p>
+        <p>Testomation has three different control-flow problems. Running tests in parallel, retrying failures and moving a run through its stages is <em>job</em> work. Deciding, inside one agent, whether memory answered a question, whether the rules are sure and whether to ask a human is a <em>decision</em>. An exploratory session that acts, looks and acts again for minutes is a <em>long loop</em>. On one laptop: <strong>a pipeline runner and Playwright Test for jobs, plain Python for decisions, and LangGraph only for the exploration loop.</strong></p>
 
         <div class="table-wrap">
         <table>
-          <tr><th>Concern</th><th>Pipeline runner + Playwright Test</th><th>LangGraph</th></tr>
-          <tr><td>Unit of work</td><td class="opt">A whole run: impact analysis, test execution, triage, reporting</td><td class="opt">One agent's decision on one item</td></tr>
-          <tr><td>Parallelism</td><td class="opt">Playwright workers for tests; model calls one at a time</td><td class="opt">Within a single graph, if at all</td></tr>
-          <tr><td>Durability</td><td class="opt">Stage state in Postgres; a crashed run resumes at the last completed stage</td><td class="opt">Graph state checkpointed per step to Postgres</td></tr>
-          <tr><td>Branching</td><td class="opt">Fixed sequence of stages</td><td class="opt">Conditional edges: memory hit, confidence, budget</td></tr>
-          <tr><td>Humans</td><td class="opt">—</td><td class="opt"><code>interrupt()</code> pauses a graph until the review queue answers</td></tr>
+          <tr><th>Concern</th><th>Pipeline runner + Playwright</th><th>Agent code</th><th>LangGraph</th></tr>
+          <tr><td>Unit of work</td><td class="opt">A whole run</td><td class="opt">One decision on one item</td><td class="opt">One exploratory session</td></tr>
+          <tr><td>Durability</td><td class="opt">Stage state in Postgres; resumes at the last completed stage</td><td class="opt">Stateless; results written as claims</td><td class="opt">Checkpointed per step to Postgres</td></tr>
+          <tr><td>Branching</td><td class="opt">Fixed sequence of stages</td><td class="opt">Early exits in a cascade</td><td class="opt">New state, budget, invariants</td></tr>
+          <tr><td>Humans</td><td class="opt">—</td><td class="opt">Writes a <code>review_item</code> row and moves on</td><td class="opt">—</td></tr>
         </table>
         </div>
 
-        <div class="subhead">// how a run nests</div>
-        <div class="code"><pre>testomation run --pr 412              pipeline runner · stage state in Postgres
- ├─ stage: invalidate + impact         plain code · memory-graph query
- ├─ stage: run affected specs          npx playwright test · workers=2 · retries=1
- ├─ stage: triage failures          →  Analyzer graph, one thread per failure
- ├─ stage: generate missing tests   →  Test-gen graph (spec → run → repair, capped)
- └─ stage: report                      plain code · local HTML / Markdown</pre></div>
-        <p>Each stage that needs reasoning invokes a small, focused graph. Everything else stays plain code.</p>
+        <div class="note"><strong>Why not LangGraph everywhere (changed in v0.6).</strong> v0.5 made the analyzer a LangGraph graph so it could pause for review. But the analyzer is a cascade with early exits, and the step after a human decides is just "write the claim and apply it", which the review CLI can do itself. Plain Python means fewer dependencies, no checkpoint tables next to memory, and simple unit tests ("the model is never called when rules are confident"). Test generation's repair loop moves into the pipeline as batched rounds, because the model has to be unloaded while drafts run.</div>
 
-        <div class="subhead">// where LangGraph is used — and where it isn't</div>
-        <ul class="feature-grid">
-          <li><strong>Analyzer — first, and the best fit</strong><span>Memory → rules → model → confidence gate → file or pause for review. The graph drawn below.</span></li>
-          <li><strong>Test gen</strong><span>Generate spec → run → read the error → repair, with a hard retry cap so a stubborn flow can't eat the budget.</span></li>
-          <li><strong>Planner</strong><span>Crawl → parse → rank → go back for more detail on high-value areas.</span></li>
-          <li><strong>Exploratory agent</strong><span>A natural loop that stops on budget exhausted or no new states found.</span></li>
-          <li><strong>Not: spec execution</strong><span>Playwright running a spec has no decisions to make; a graph adds only overhead.</span></li>
-          <li><strong>Not: reporter</strong><span>Templated output — a plain function is enough.</span></li>
-          <li><strong>Not: the pipeline</strong><span>Stage order, resumption and parallel test runs stay in the runner and Playwright.</span></li>
-          <li><strong>Not: the memory graph</strong><span>LangGraph's own long-term store is key-value, not a linked graph. Agents reach the Postgres memory graph through lookup and write-back nodes.</span></li>
-        </ul>
+        <div class="subhead" style="margin-top:36px">// the analyzer cascade</div>
+        <div class="diagram"><pre>         failure  (spec-runner result or imported Playwright result)
+              │
+     ┌────────▼────────┐
+     │  memory lookup  ├── fresh human verdict ───────────────────┐
+     └────────┬────────┘                                          │
+              │ miss · model-only · stale                         │
+     ┌────────▼────────┐                                          │
+     │   rules engine  ├── confident ───────────────────────┐     │
+     └────────┬────────┘                                    │     │
+              │ unsure                                      │     │
+     ┌────────▼────────┐                                    │     │
+     │     labelled    ├── close + unanimous ─────────┐     │     │
+     │    neighbours   │                              │     │     │
+     └────────┬────────┘                              │     │     │
+              │ unsure                                │     │     │
+     ┌────────▼────────┐                              │     │     │
+     │ LLM classify ×1 │                              │     │     │
+     │ (if budget left)│                              │     │     │
+     └────────┬────────┘                              │     │     │
+              │ calibrated score                      │     │     │
+     ┌────────▼────────┐                              │     │     │
+     │ confidence gate ├── low ──► review_item        │     │     │
+     └────────┬────────┘          (human, later)      │     │     │
+              │ high                                  │     │     │
+     ┌────────▼────────┐                              │     │     │
+     │   write claim   │◄─────────────────────────────┴─────┴─────┘
+     └────────┬────────┘
+              ▼
+  apply_verdict(): file bug · add noise signature · link duplicate</pre></div>
+        <p class="diagram-caption">Every box except "LLM classify" runs without a generation call. Labelled neighbours are past failures with a fresh human or benchmark verdict, nearest by embedding.</p>
 
-        <div class="subhead">// the analyzer as a graph</div>
-        <div class="diagram"><pre>         failure
-            │
-   ┌────────▼────────┐
-   │  memory lookup  ├─ human-confirmed, fresh ┐
-   └────────┬────────┘                         │
-            │ miss / unconfirmed / stale       │
-   ┌────────▼────────┐                         │
-   │   rules engine  ├─ confident ──────┐      │
-   └────────┬────────┘                  │      │
-            │ unsure                    │      │
-   ┌────────▼────────┐                  │      │
-   │ LLM classify ×3 │                  │      │
-   │ (if budget left)│                  │      │
-   └────────┬────────┘                  │      │
-            │ agreement                 │      │
-   ┌────────▼────────┐                  │      │
-   │ confidence gate ├─ low ───┐        │      │
-   └────────┬────────┘         │        │      │
-            │ high      ┌──────▼──────┐ │      │
-            │           │ interrupt() │ │      │
-            │           │ review queue│ │      │
-            │           └──────┬──────┘ │      │
-            │                  │        │      │
-   ┌────────▼────────┐                  │      │
-   │    write back   │◄────────┴────────┴──────┘
-   │ claim in memory │
-   └────────┬────────┘
-            │
-            ▼
-   file bug · add noise signature · link dupe</pre></div>
-        <p class="diagram-caption">Every box except "LLM classify" is plain Python. A cheap path through the graph never touches a model.</p>
+        <div class="table-wrap" style="margin-top:20px">
+        <table>
+          <tr><th>Gate</th><th>Rule</th><th>Otherwise</th></tr>
+          <tr><td>Memory</td><td class="opt">A fresh human verdict on this signature → write</td><td class="opt">Rules engine</td></tr>
+          <tr><td>Rules engine</td><td class="opt">Rule confidence ≥ 0.9 → write</td><td class="opt">Neighbours</td></tr>
+          <tr><td>Neighbours</td><td class="opt">≥ k fresh labelled neighbours above similarity s, all agreeing → write (source <code>knn</code>)</td><td class="opt">LLM classify</td></tr>
+          <tr><td>LLM classify</td><td class="opt">One call, small tier; label probability from logprobs</td><td class="opt">—</td></tr>
+          <tr><td>Confidence gate</td><td class="opt">Calibrated score (LLM probability + neighbour vote + rules signal) ≥ 0.8 → write</td><td class="opt"><code>review_item</code></td></tr>
+          <tr><td>Budget spent</td><td class="opt">LLM step skipped; score from rules + neighbours only</td><td class="opt">Usually <code>review_item</code></td></tr>
+        </table>
+        </div>
+        <p class="muted">0.9, 0.8, k = 5 and s = 0.9 are placeholders until the benchmark calibrates them (§11). If logprobs prove unusable, the fallback samples three times at temperature &gt; 0 and uses the agreement share.</p>
 
         <div class="subhead" style="margin-top:36px">// sketch</div>
-        <div class="code"><pre>from typing import TypedDict, Optional
-from langgraph.graph import StateGraph, START, END
-from langgraph.types import interrupt, Command
-from langgraph.checkpoint.postgres import PostgresSaver
-from langfuse.langchain import CallbackHandler
+        <div class="code"><pre>def triage(failure, run) -&gt; Verdict | None:
+    """Returns a verdict, or None after queuing a review item."""
+    if hit := memory.fresh_human_verdict(failure.signature):            <span class="c"># (a) memory</span>
+        return hit
+    rule = rules.classify(failure)                                       <span class="c"># (b) rules</span>
+    if rule and rule.confidence &gt;= RULES_GATE:
+        return memory.claim(failure, rule)
+    votes = memory.labelled_neighbours(failure, k=K, min_sim=MIN_SIM)    <span class="c"># (b) neighbours</span>
+    if votes.unanimous and len(votes) &gt;= K:
+        return memory.claim(failure, Verdict(votes.label, votes.share, "knn"))
+    p = llm.classify(failure, tier="small") if run.budget.allows_call() else None  <span class="c"># (c)</span>
+    score = calibrate(rule, votes, p)                                    <span class="c"># fitted on the benchmark</span>
+    if score.confidence &gt;= MODEL_GATE:
+        return memory.claim(failure, score.verdict)                      <span class="c"># (d) write back</span>
+    review.enqueue(kind="triage", node=failure.signature_node,
+                   suggestion=score, evidence_dir=failure.evidence_dir)
+    return None
 
-class Triage(TypedDict):
-    failure: dict
-    verdict: Optional[dict]
-    confidence: float
-    source: str                     <span class="c"># 'memory' | 'rules' | 'llm' | 'human'</span>
+<span class="c"># testomation review → for each open review_item</span>
+def decide(item, decision):
+    memory.claim(item.node, Verdict(decision, 1.0, "human"), basis=item.basis)
+    memory.human_decision(item, decision)
+    traces.score(item.trace_id, name="triage", value=decision)
+    apply_verdict(item.node, decision)        <span class="c"># same function the triage stage uses</span>
+    review.close(item, decision)</pre></div>
 
-def memory_lookup(s): ...           <span class="c"># plain Python; only fresh human claims count as a hit</span>
-def rules_engine(s):  ...           <span class="c"># plain Python, no model</span>
-def llm_classify(s):  ...           <span class="c"># the ONLY node that calls a model (local, small tier);</span>
-                                    <span class="c"># 3 samples, confidence = agreement;</span>
-                                    <span class="c"># confidence=0 if the run's compute budget is spent</span>
-def review(s):
-    decision = interrupt({"failure_id": s["failure"]["id"]})   <span class="c"># graph pauses here</span>
-    return {"verdict": decision, "source": "human", "confidence": 1.0}
-def write_back(s):    ...           <span class="c"># memory.claim(verdict, source=s["source"], ...)</span>
-
-g = StateGraph(Triage)
-for name, fn in [("memory", memory_lookup), ("rules", rules_engine),
-                 ("llm", llm_classify), ("review", review), ("write", write_back)]:
-    g.add_node(name, fn)
-
-g.add_edge(START, "memory")
-g.add_conditional_edges("memory", lambda s: "write" if s["source"] == "human" else "rules")
-g.add_conditional_edges("rules",  lambda s: "write" if s["confidence"] &gt;= 0.9 else "llm")
-g.add_conditional_edges("llm",    lambda s: "write" if s["confidence"] &gt;= 0.8 else "review")
-g.add_edge("review", "write")
-g.add_edge("write", END)
-
-analyzer = g.compile(checkpointer=PostgresSaver(conn))   <span class="c"># same Postgres as memory</span>
-
-<span class="c"># inside the pipeline's triage stage</span>
-cfg = {"configurable": {"thread_id": f"triage-{failure['id']}"},
-       "callbacks": [CallbackHandler()]}                  <span class="c"># every node -&gt; Langfuse span</span>
-analyzer.invoke({"failure": failure}, config=cfg)
-
-<span class="c"># later, when a reviewer decides in `testomation review`</span>
-analyzer.invoke(Command(resume=reviewer_decision), config=cfg)</pre></div>
-        <p class="muted">The 0.9 and 0.8 thresholds are placeholders until the benchmark calibrates them (§11).</p>
+        <div class="subhead">// the exploration loop — the one LangGraph graph</div>
+        <div class="diagram"><pre>   start (seed page, budget)
+      │
+ ┌────▼─────────────┐
+ │ snapshot         │  aria snapshot → normalised hash → new state?
+ └────┬─────────────┘
+ ┌────▼─────────────┐
+ │ check invariants ├── violation ──► result row + draft reproducer spec
+ └────┬─────────────┘
+ ┌────▼─────────────┐
+ │ choose action    │  small model · spec step vocabulary · on-origin only
+ └────┬─────────────┘
+ ┌────▼─────────────┐
+ │ act              │  runs the step through the runner's step code
+ └────┬─────────────┘
+      ├── budget spent, or no new state in N steps ──► stop
+      └── otherwise ──► snapshot</pre></div>
+        <p class="diagram-caption">Checkpointed to the same Postgres as memory, so a long session resumes where it stopped. Actions are spec steps, so every finding comes with a reproducer that can be saved as a draft spec. How the Python loop drives the TypeScript runner is an open question; the proposal is a small step server.</p>
 
         <div class="subhead">// what this buys</div>
         <ul class="choice-list">
-          <li><strong>Compute rules enforced in code</strong> — the order memory → rules → model is the graph's shape, not a convention each agent has to remember.</li>
-          <li><strong>Review queue for free</strong> — an interrupted graph <em>is</em> a review-queue item. The reviewer's decision resumes it, the result is written to memory as a human claim, and it's sent to Langfuse as a score.</li>
-          <li><strong>Crash-safe exploration</strong> — checkpoints in the same Postgres as the memory graph mean a long exploratory session resumes where it stopped.</li>
-          <li><strong>Visible paths</strong> — with the Langfuse handler attached, every node is a span, so you can see how many failures took the free path versus the model path.</li>
+          <li><strong>Compute rules enforced in code</strong> — memory → rules → neighbours → model is the shape of one function, and a unit test can assert it.</li>
+          <li><strong>Review queue without paused graphs</strong> — a review item is a row. The decision is written as a human claim, applied, and sent to traces as a score.</li>
+          <li><strong>One place for state</strong> — memory and review items in Postgres; checkpoints only for exploration sessions.</li>
+          <li><strong>Visible paths</strong> — every step is a span, so you can see how many failures took the free path versus the model path.</li>
         </ul>
-        <div class="note"><strong>When Temporal comes back.</strong> If Testomation spreads across several machines, needs many concurrent runs, or must survive restarts in the middle of a stage, Temporal replaces the pipeline runner — stage for stage — and LangGraph stays exactly where it is.</div>
+        <div class="note"><strong>When Temporal comes back.</strong> If Testomation spreads across several machines, needs many concurrent runs, or must survive restarts in the middle of a stage, Temporal replaces the pipeline runner — stage for stage — and the agents and the exploration graph stay exactly where they are.</div>
       </section>
 
       <section id="local">
@@ -1286,9 +1381,9 @@ analyzer.invoke(Command(resume=reviewer_decision), config=cfg)</pre></div>
         <div class="table-wrap">
         <table>
           <tr><th>Service</th><th>How it runs</th><th>Notes</th></tr>
-          <tr><td>Ollama</td><td class="opt">Native install, GPU, <code>:11434</code></td><td class="opt">Native avoids container GPU passthrough. <code>OLLAMA_MAX_LOADED_MODELS=1</code>, <code>OLLAMA_NUM_PARALLEL=1</code></td></tr>
-          <tr><td>Postgres + pgvector</td><td class="opt">Container, <code>:5432</code></td><td class="opt">One server, two databases: <code>testomation</code> and <code>langfuse</code></td></tr>
-          <tr><td>Langfuse v3</td><td class="opt">Docker Compose (web, worker, ClickHouse, Redis, S3-compatible store)</td><td class="opt">Web UI on <code>:3000</code> by default — run the target app on another port</td></tr>
+          <tr><td>Ollama</td><td class="opt">Native install, GPU, <code>:11434</code></td><td class="opt">Native avoids container GPU passthrough. <code>OLLAMA_MAX_LOADED_MODELS=1</code>, <code>OLLAMA_NUM_PARALLEL=1</code>. The runner unloads the model (<code>keep_alive: 0</code>) before browser stages</td></tr>
+          <tr><td>Postgres + pgvector</td><td class="opt">Container, <code>:5432</code></td><td class="opt">One server: the <code>testomation</code> database, plus <code>langfuse</code> from phase 3</td></tr>
+          <tr><td>Langfuse v3</td><td class="opt">Docker Compose (web, worker, ClickHouse, Redis, S3-compatible store) — from phase 3</td><td class="opt">Web UI on <code>:3000</code> by default — run the target app on another port</td></tr>
           <tr><td>Target app</td><td class="opt">Container with a seeded database</td><td class="opt">Restored before each run</td></tr>
           <tr><td>Playwright</td><td class="opt">Host, Node 22</td><td class="opt">Chromium + Firefox; WebKit via the official container when needed</td></tr>
         </table>
@@ -1298,52 +1393,56 @@ analyzer.invoke(Command(resume=reviewer_decision), config=cfg)</pre></div>
         <div class="table-wrap">
         <table>
           <tr><th>Tier</th><th>Size</th><th>Candidates</th><th>Used for</th></tr>
-          <tr><td>small</td><td class="opt">~4B, fully on GPU</td><td class="opt">Qwen3 4B, Gemma 3 4B</td><td class="opt">Triage, dedup, flow naming</td></tr>
-          <tr><td>large</td><td class="opt">~7–8B, partial CPU offload</td><td class="opt">Qwen3 8B, Qwen2.5-Coder 7B</td><td class="opt">Spec generation, planning, repair</td></tr>
+          <tr><td>small</td><td class="opt">~4B, fully on GPU</td><td class="opt">Qwen3 4B, Gemma 3 4B</td><td class="opt">The default for all text work: triage, dedup, naming, planning, spec generation, repair, exploration</td></tr>
+          <tr><td>large</td><td class="opt">~7–8B, partial CPU offload</td><td class="opt">Qwen3 8B, Qwen2.5-Coder 7B</td><td class="opt">Optional — only if the benchmark shows a real gain on generation or planning</td></tr>
           <tr><td>vision</td><td class="opt">~4B multimodal</td><td class="opt">Gemma 3 4B</td><td class="opt">Optional visual triage and exploration</td></tr>
-          <tr><td>embed</td><td class="opt">Small</td><td class="opt">nomic-embed-text (768-d)</td><td class="opt">Fuzzy matching of errors and specs</td></tr>
+          <tr><td>embed</td><td class="opt">Small</td><td class="opt">nomic-embed-text (768-d)</td><td class="opt">Labelled-neighbour vote, fuzzy matching of errors and specs</td></tr>
         </table>
         </div>
-        <p class="muted">Candidates only — the benchmark (§11) picks the actual models. Model names are configuration, not code.</p>
+        <p class="muted">Candidates only — the spike and the benchmark (§11) pick the actual models. Model names are configuration, not code; until the large tier earns its place, it points at the small model.</p>
 
         <div class="subhead">// RAM budget (estimates)</div>
         <div class="table-wrap">
         <table>
-          <tr><th>Consumer</th><th>Approx. RAM</th></tr>
-          <tr><td>OS + desktop</td><td class="opt">3–4 GB</td></tr>
-          <tr><td>Langfuse stack</td><td class="opt">2–3 GB (ClickHouse is the largest part)</td></tr>
-          <tr><td>Postgres</td><td class="opt">~0.3 GB</td></tr>
-          <tr><td>Ollama</td><td class="opt">~1 GB with the small model on GPU; 2–3 GB with the large model offloading</td></tr>
-          <tr><td>Target app</td><td class="opt">0.5–1 GB</td></tr>
-          <tr><td>Playwright, 2 workers</td><td class="opt">1–1.5 GB</td></tr>
-          <tr><td><b>Total</b></td><td class="opt"><b>~9–13 GB of ~14 GB</b></td></tr>
+          <tr><th>Consumer</th><th>Phases 0–2</th><th>From phase 3</th></tr>
+          <tr><td>OS + desktop</td><td class="opt">3–4 GB</td><td class="opt">3–4 GB</td></tr>
+          <tr><td>Langfuse stack</td><td class="opt">—</td><td class="opt">2–3 GB (ClickHouse is the largest part)</td></tr>
+          <tr><td>Postgres</td><td class="opt">~0.3 GB</td><td class="opt">~0.3 GB</td></tr>
+          <tr><td>Ollama</td><td class="opt">—</td><td class="opt">~1 GB with the small model on GPU; 2–3 GB only if the large tier is enabled</td></tr>
+          <tr><td>Target app</td><td class="opt">0.5–1 GB</td><td class="opt">0.5–1 GB</td></tr>
+          <tr><td>Playwright, 2 workers</td><td class="opt">1–1.5 GB</td><td class="opt">1–1.5 GB</td></tr>
+          <tr><td><b>Total</b></td><td class="opt"><b>~5–7 GB of ~14 GB</b></td><td class="opt"><b>~8–13 GB of ~14 GB</b></td></tr>
         </table>
         </div>
         <ul class="choice-list">
-          <li><strong>Two workers with a model loaded</strong> — raise the worker count only for stages that don't call a model.</li>
-          <li><strong>Separate generation from execution</strong> — don't run large-model generation while a big test batch runs.</li>
+          <li><strong>Unload the model while specs run</strong> — spec runs and repair-round runs happen with no model loaded, so they can use more workers.</li>
+          <li><strong>Two workers with a model loaded</strong> — in practice, during exploration.</li>
+          <li><strong>Separate generation from execution</strong> — batched repair rounds keep them apart.</li>
           <li><strong>Lean evidence</strong> — traces and video on failure or first retry, not for every passing test.</li>
           <li><strong>Record machine load per run</strong> — a test that times out because the laptop is swapping looks flaky; such runs don't count toward flake history.</li>
         </ul>
 
         <div class="subhead">// app state</div>
-        <p>Results only mean something if every run starts from the same place. The target app runs in containers with a seeded database that is restored before each run (a Postgres template database makes this fast). Each test creates its own synthetic user through <code>$faker</code>, so parallel workers never fight over the same account. Exploratory sessions only ever touch this disposable copy.</p>
+        <p>Results only mean something if every run starts from the same place. The target app runs in containers with a seeded database that is restored before each run (a Postgres template database makes this fast). Each test creates its own synthetic user through <code>$faker</code>, so parallel workers never fight over the same account. Exploratory sessions only ever touch this disposable copy, and never leave its origin.</p>
 
         <div class="subhead">// proposed repo layout</div>
         <div class="code"><pre>testomation/
 ├── pyproject.toml              <span class="c"># uv, Python 3.12 / 3.13</span>
 ├── src/testomation/
-│   ├── cli.py                  <span class="c"># testomation run | review | bench | approve</span>
-│   ├── pipeline/               <span class="c"># stages: impact, execute, triage, generate, report</span>
-│   ├── agents/                 <span class="c"># planner, testgen, analyzer (LangGraph graphs)</span>
-│   ├── memory/                 <span class="c"># schema, queries, claims, invalidation</span>
-│   ├── llm/                    <span class="c"># Ollama client via langfuse.openai, model tiers</span>
+│   ├── cli.py                  <span class="c"># testomation run | import | explore | review | approve | bench</span>
+│   ├── pipeline/               <span class="c"># stages: basis + scope, execute, triage, generate, report</span>
+│   ├── agents/                 <span class="c"># planner, testgen, analyzer (plain Python), explorer (LangGraph)</span>
+│   ├── ingest/                 <span class="c"># spec-runner results + imported Playwright reports</span>
+│   ├── memory/                 <span class="c"># schema, queries, claims, freshness</span>
+│   ├── llm/                    <span class="c"># Ollama client via langfuse.openai, model tiers, logprobs</span>
 │   └── evidence/               <span class="c"># local evidence store</span>
 ├── runner/                     <span class="c"># TypeScript: Playwright config + spec runner + fixtures</span>
-├── schemas/test-spec.schema.json
-├── bench/                      <span class="c"># target app, seeded bugs, scoring</span>
-├── deploy/compose.yaml         <span class="c"># Postgres + pgvector, Langfuse stack</span>
-└── data/                       <span class="c"># gitignored: evidence, reports, run specs</span></pre></div>
+│   └── helpers/                <span class="c"># hand-written helper steps (registry)</span>
+├── schemas/                    <span class="c"># test-spec.schema.json (the one source) + examples/</span>
+├── bench/                      <span class="c"># target app, seeded bugs, replay bundles, scoring</span>
+├── deploy/                     <span class="c"># compose.yaml (Postgres + pgvector; Langfuse from phase 3), sql/</span>
+├── spike/                      <span class="c"># throwaway feasibility spike; never imported</span>
+└── data/                       <span class="c"># gitignored: evidence, reports, run specs, traces</span></pre></div>
       </section>
 
       <section id="evaluation">
@@ -1357,9 +1456,19 @@ analyzer.invoke(Command(resume=reviewer_decision), config=cfg)</pre></div>
         <ul class="choice-list">
           <li><strong>Target app</strong> — one small but realistic web app (auth, forms, CRUD, lists) run locally with a seeded database. A RealWorld ("Conduit") implementation is a good candidate.</li>
           <li><strong>Hand-planted bugs</strong> — about twenty across categories: broken flows, missing validation, 5xx responses, console errors, layout breaks, accessibility violations, an intentionally flaky element, and harmless noise that must <em>not</em> be reported.</li>
-          <li><strong>Mutation bugs</strong> — a mutation-testing tool such as Stryker adds many small automatic bugs to the app's code.</li>
+          <li><strong>Mutation bugs</strong> — a mutation-testing tool such as Stryker adds many small automatic bugs. Only <em>detectable</em> mutants count — ones a hand-written reference suite kills — since the rest change nothing a user could see.</li>
           <li><strong>Toggles</strong> — every bug can be switched on or off, so the same app runs clean or bugged.</li>
+          <li><strong>Replay bundles</strong> <span class="new-badge">new</span> — the recorded evidence of each bug's failure, with its expected label, so the analyzer can be re-scored without running the app.</li>
         </ul>
+
+        <div class="subhead">// two tiers</div>
+        <div class="table-wrap">
+        <table>
+          <tr><th>Tier</th><th>What runs</th><th>Takes</th><th>Gates</th></tr>
+          <tr><td>Replay</td><td class="opt">Recorded evidence → analyzer only; no app, browsers or generation</td><td class="opt">Minutes</td><td class="opt">Every analyzer prompt, threshold, rule or model change</td></tr>
+          <tr><td>Full</td><td class="opt">Clean and bugged app → the whole pipeline</td><td class="opt">Hours</td><td class="opt">Generation, planning or model changes; nightly</td></tr>
+        </table>
+        </div>
 
         <div class="subhead">// what gets measured</div>
         <div class="table-wrap">
@@ -1369,19 +1478,20 @@ analyzer.invoke(Command(resume=reviewer_decision), config=cfg)</pre></div>
           <tr><td>False-positive rate</td><td class="opt">How many reports on the clean app, or for planted noise?</td></tr>
           <tr><td>Noise precision</td><td class="opt">When something was called noise, was it really noise?</td></tr>
           <tr><td>Review-queue rate</td><td class="opt">How much work was pushed to a human?</td></tr>
-          <tr><td>Spec success rate</td><td class="opt">Share of generated specs that are valid and pass on the clean app within the repair cap</td></tr>
+          <tr><td>Spec success rate</td><td class="opt">Share of generated specs that are valid and pass on the clean app within three repair rounds</td></tr>
           <tr><td>Model calls &amp; time per run</td><td class="opt">What did it cost in compute?</td></tr>
           <tr><td>Memory hit rate</td><td class="opt">How much did memory answer on a second run?</td></tr>
         </table>
         </div>
+        <p class="muted">With about twenty bugs, one bug is five points of recall, and the models are stochastic. Every benchmark run repeats three times and reports mean and min–max; a change is rejected only if it moves outside that range.</p>
 
         <div class="subhead">// how it's used</div>
         <ul class="choice-list">
-          <li><strong><code>testomation bench</code></strong> — runs the clean and bugged variants and scores them; results go to <code>bench/results/</code> and Langfuse dataset runs.</li>
-          <li><strong>Gate every change</strong> — any prompt, model or threshold change reruns the benchmark before it's kept.</li>
-          <li><strong>Calibrate thresholds</strong> — the analyzer's confidence gates are set from the benchmark's precision and recall, then refined with review-queue scores.</li>
-          <li><strong>Pick models</strong> — the model-tier candidates in §10 compete on the benchmark, not on reputation.</li>
-          <li><strong>Hold some bugs out</strong> — a held-out set of seeded bugs that prompts are never tuned against shows whether changes really improve detection or just fit the benchmark.</li>
+          <li><strong><code>testomation bench</code></strong> (full) and <strong><code>testomation bench --replay</code></strong> — results go to <code>bench/results/</code> and, from phase 3, to Langfuse dataset runs.</li>
+          <li><strong>Gate every change</strong> — analyzer changes on the replay tier; generation, planning and model changes on the full tier.</li>
+          <li><strong>Calibrate thresholds</strong> — the rules gate, the neighbour vote, the model gate and how the three signals combine are fitted on the benchmark's precision and recall, then refined with review-queue scores.</li>
+          <li><strong>Pick models</strong> — the model-tier candidates in §10 compete on the benchmark, not on reputation — including whether the large tier earns a place at all.</li>
+          <li><strong>Hold some bugs out</strong> — a held-out set of seeded bugs (and their replay bundles) that prompts are never tuned against shows whether changes really improve detection or just fit the benchmark.</li>
         </ul>
       </section>
 
@@ -1408,21 +1518,21 @@ analyzer.invoke(Command(resume=reviewer_decision), config=cfg)</pre></div>
           <div class="risk-bar"></div>
           <div class="risk-body">
             <h3>Small local models are weaker</h3>
-            <p>A 4–8B model will misjudge things a frontier model wouldn't. Keep their jobs narrow, make them fill schemas instead of writing code, put deterministic tools first, derive confidence from agreement rather than self-report, and gate every prompt or model change on the benchmark.</p>
+            <p>A 4–8B model will misjudge things a frontier model wouldn't. Measure that in a spike before building anything, keep their jobs narrow, make them fill schemas instead of writing code, put deterministic tools first, derive confidence from label probabilities and labelled neighbours rather than self-report, and gate every prompt or model change on the benchmark.</p>
           </div>
         </div>
         <div class="risk">
           <div class="risk-bar"></div>
           <div class="risk-body">
             <h3>Memory can learn the wrong lesson</h3>
-            <p>If the Analyzer once wrongly decides a 500 error is noise and saves that as a signature, it will ignore that bug on every future run. It's the same failure mode as self-healing, made permanent. LLM-inferred suppressions must stay in the review queue until a human confirms them.</p>
+            <p>If the Analyzer once wrongly decides a 500 error is noise and saves that as a signature, it will ignore that bug on every future run. It's the same failure mode as self-healing, made permanent. Suppressions inferred by a model — from the LLM or the neighbour vote — must stay in the review queue until a human confirms them.</p>
           </div>
         </div>
         <div class="risk">
           <div class="risk-bar"></div>
           <div class="risk-body">
             <h3>Stale memory looks like fresh knowledge</h3>
-            <p>A target or flow that was correct last month may not be today. Invalidation on every commit, plus treating stale nodes and claims as hints rather than answers, keeps old facts from short-circuiting new decisions.</p>
+            <p>A target or flow that was correct last month may not be today. Every claim records the file and page-structure hashes it was based on and counts only while they still match; stale nodes and claims are hints, not answers.</p>
           </div>
         </div>
         <div class="risk">
@@ -1436,7 +1546,7 @@ analyzer.invoke(Command(resume=reviewer_decision), config=cfg)</pre></div>
           <div class="risk-bar"></div>
           <div class="risk-body">
             <h3>The laptop becomes the bottleneck</h3>
-            <p>Langfuse, a loaded model, the target app and several browsers compete for 16 GB of RAM and 4 GB of VRAM. Swapping makes tests time out and look flaky. Cap workers while a model is loaded, keep generation and execution apart, and record machine load with each run.</p>
+            <p>Langfuse, a loaded model, the target app and several browsers compete for 16 GB of RAM and 4 GB of VRAM. Swapping makes tests time out and look flaky. Use one model by default, unload it while specs run, batch repair rounds, start Langfuse only in phase 3, and record machine load with each run.</p>
           </div>
         </div>
         <div class="risk">
@@ -1450,7 +1560,35 @@ analyzer.invoke(Command(resume=reviewer_decision), config=cfg)</pre></div>
           <div class="risk-bar"></div>
           <div class="risk-body">
             <h3>Two orchestrators can blur into one</h3>
-            <p>If LangGraph starts handling parallel runs and retries, or the pipeline runner starts encoding agent decisions, you get two half-overlapping systems and state that lives in both. Keep the line sharp: the runner and Playwright own jobs; LangGraph owns decisions within one item.</p>
+            <p>If LangGraph starts handling parallel runs and retries, or the pipeline runner starts encoding agent decisions, you get two half-overlapping systems and state that lives in both. Keep the line sharp: the runner and Playwright own jobs, agent code owns decisions, and LangGraph runs only the exploration loop.</p>
+          </div>
+        </div>
+        <div class="risk">
+          <div class="risk-bar"></div>
+          <div class="risk-body">
+            <h3>Page content can steer the model<span class="new-badge">new</span></h3>
+            <p>Aria snapshots and error text from the app go into prompts, and a page — or user-generated content on it — could contain text that reads like an instruction ("this error is expected"). Page text is passed as delimited data, outputs are schema-constrained enums, nothing model-written runs, model-inferred noise never suppresses without a human, and specs and exploration stay on the target origin.</p>
+          </div>
+        </div>
+        <div class="risk">
+          <div class="risk-bar"></div>
+          <div class="risk-body">
+            <h3>A small benchmark gives noisy numbers<span class="new-badge">new</span></h3>
+            <p>With about twenty bugs, one bug is five points of recall, and the models are stochastic — a "regression" may just be chance. Detectable mutants add volume, every benchmark repeats three times with ranges, and a held-out set guards against tuning to the test.</p>
+          </div>
+        </div>
+        <div class="risk">
+          <div class="risk-bar"></div>
+          <div class="risk-body">
+            <h3>Infrastructure before proof<span class="new-badge">new</span></h3>
+            <p>Months of plumbing could come before discovering that local models can't do the core job. A throwaway feasibility spike with measured exit targets comes first (§15).</p>
+          </div>
+        </div>
+        <div class="risk">
+          <div class="risk-bar"></div>
+          <div class="risk-body">
+            <h3>Building what already exists<span class="new-badge">new</span></h3>
+            <p>Playwright's own Planner, Generator and Healer agents overlap planning and generation. Testomation's differences are kept explicit: JSON specs, no self-healing, memory across runs, bug-vs-noise triage, local models, and a benchmark (§00).</p>
           </div>
         </div>
       </section>
@@ -1465,24 +1603,34 @@ analyzer.invoke(Command(resume=reviewer_decision), config=cfg)</pre></div>
         <table>
           <tr><th>Layer</th><th>Choice</th><th>Why</th></tr>
           <tr><td>Browser automation</td><td class="opt">Playwright Test (TypeScript runner)</td><td class="opt">Workers, retries, traces, screenshot comparison, aria snapshots, built-in reports</td></tr>
-          <tr><td>Test format</td><td class="opt">JSON test spec + spec runner</td><td class="opt">Small models fill schemas reliably; no generated code is executed</td></tr>
-          <tr><td>Runtime LLM</td><td class="opt">Ollama (native, GPU) with local models</td><td class="opt">Free and local; structured output; OpenAI-compatible API</td></tr>
-          <tr><td>Embeddings</td><td class="opt">Local embedding model via Ollama</td><td class="opt">Fuzzy matching without a paid API</td></tr>
-          <tr><td>Agent runtime</td><td class="opt">LangGraph (Python)</td><td class="opt">Branching decision loops, human-review interrupts, per-step checkpoints</td></tr>
+          <tr><td>Test format</td><td class="opt">JSON test spec + spec runner; one JSON Schema source with generated Python and TS types</td><td class="opt">Small models fill schemas reliably; no generated code is executed; no drift between languages</td></tr>
+          <tr><td>Runtime LLM</td><td class="opt">Ollama (native, GPU) with local models</td><td class="opt">Free and local; structured output; logprobs; OpenAI-compatible API</td></tr>
+          <tr><td>Embeddings</td><td class="opt">Local embedding model via Ollama</td><td class="opt">Labelled-neighbour vote and fuzzy matching without a paid API</td></tr>
+          <tr><td>Agents</td><td class="opt">Plain Python</td><td class="opt">The analyzer, test gen and planner are cascades or pipeline rounds — no framework needed</td></tr>
+          <tr><td>Exploration loop</td><td class="opt">LangGraph (Python)</td><td class="opt">A long, stateful loop with per-step checkpoints; the only graph</td></tr>
           <tr><td>Job orchestration</td><td class="opt">Python pipeline runner + Playwright Test workers</td><td class="opt">One user, one machine; Temporal deferred</td></tr>
-          <tr><td>Memory graph</td><td class="opt">Postgres (nodes, edges, claims; JSONB) + pgvector</td><td class="opt">One database, fuzzy matching built in</td></tr>
-          <tr><td>Graph checkpoints</td><td class="opt">LangGraph Postgres checkpointer</td><td class="opt">Same database as the memory graph; resumable agent state</td></tr>
+          <tr><td>Memory graph</td><td class="opt">Postgres (generic nodes, edges, claims + typed tables; JSONB) + pgvector</td><td class="opt">One database, constraints where the volume is, fuzzy matching built in</td></tr>
+          <tr><td>Graph checkpoints</td><td class="opt">LangGraph Postgres checkpointer (exploration only)</td><td class="opt">Same database as the memory graph; resumable sessions</td></tr>
           <tr><td>Evidence store</td><td class="opt">Local folder</td><td class="opt">Traces open directly with <code>npx playwright show-trace</code></td></tr>
-          <tr><td>LLM observability</td><td class="opt">Langfuse v3, self-hosted with Docker Compose</td><td class="opt">Traces, tokens and latency per agent, prompt versions, scores, datasets</td></tr>
-          <tr><td>Deterministic checks</td><td class="opt">@axe-core/playwright, Playwright screenshot comparison, V8 coverage</td><td class="opt">Handle most triage and impact analysis without a model</td></tr>
+          <tr><td>Tracing</td><td class="opt">OpenTelemetry → local file (phases 0–2), then Langfuse v3, self-hosted with Docker Compose</td><td class="opt">Traces from day one without the RAM cost; then tokens and latency per agent, prompt versions, scores, datasets</td></tr>
+          <tr><td>Deterministic checks</td><td class="opt">@axe-core/playwright, Playwright screenshot comparison, V8 coverage</td><td class="opt">Handle most triage and scoping without a model</td></tr>
           <tr><td>Test data</td><td class="opt">@faker-js/faker in the spec runner</td><td class="opt">Synthetic data resolved at run time</td></tr>
           <tr><td>Reporting</td><td class="opt">Local HTML/Markdown + Playwright HTML report + desktop notifications</td><td class="opt">No external services</td></tr>
-          <tr><td>Review queue</td><td class="opt">CLI (<code>testomation review</code>)</td><td class="opt">Web UI later</td></tr>
+          <tr><td>Review queue</td><td class="opt">CLI (<code>testomation review</code>) over <code>review_item</code> rows</td><td class="opt">Web UI later</td></tr>
           <tr><td>Exploration</td><td class="opt">Coverage-guided crawler + monkey/fuzz + text agent over aria snapshots</td><td class="opt">Cheap passes before any vision model</td></tr>
-          <tr><td>Benchmark</td><td class="opt">Local target app with seeded bugs + Stryker mutations</td><td class="opt">Ground truth for every change</td></tr>
+          <tr><td>Benchmark</td><td class="opt">Local target app with seeded bugs + detectable Stryker mutations + replay bundles</td><td class="opt">Ground truth for every change, fast enough to actually run</td></tr>
           <tr><td>Dev tooling</td><td class="opt">uv, Node 22, Docker Compose, Claude Code</td><td class="opt">Claude is used to build Testomation, not inside it</td></tr>
         </table>
         </div>
+
+        <div class="subhead">// considered and not used (for now)</div>
+        <ul class="choice-list">
+          <li><strong>LangGraph for the analyzer, test gen and planner</strong> — their logic is a cascade or pipeline rounds. Revisit if one of them grows a real loop.</li>
+          <li><strong>Arize Phoenix</strong> — lighter single-container tracing, but Langfuse's prompt management, scores and datasets are already designed in. Revisit if the Langfuse stack proves too heavy.</li>
+          <li><strong>Playwright Test Agents (Generator, Healer)</strong> — the Generator writes code and the Healer self-heals. The planner's plan format may still be borrowed.</li>
+          <li><strong>All-TypeScript (LangGraph.js)</strong> — one toolchain, but Python's embedding and evaluation tooling is stronger.</li>
+          <li><strong>Temporal, S3 evidence, Jira/Slack, hosted LLMs</strong> — deferred until Testomation outgrows one laptop and one user; hosted models only if local quality is insufficient and paid use is accepted.</li>
+        </ul>
       </section>
 
       <section id="roadmap">
@@ -1492,50 +1640,101 @@ analyzer.invoke(Command(resume=reviewer_decision), config=cfg)</pre></div>
         </div>
         <div class="roadmap">
           <div class="phase">
+            <div class="phase-label">SPIKE <span class="new-badge">new</span></div>
+            <h3>Prove the models</h3>
+            <p>One to two throwaway weeks: Conduit, a minimal spec runner, Ollama and a script — no Postgres, Langfuse, LangGraph or memory. Measure how many generated specs pass on the clean app (small vs large tier), how well one-call triage with logprobs works on about twenty captured failures, and peak RAM with a model and two workers. Confirm structured output and logprobs through the client. The result is a short report with numbers; see §15 for the targets.</p>
+          </div>
+          <div class="phase">
             <div class="phase-label">PHASE 0</div>
             <h3>Set the stage</h3>
-            <p>Compose stack (Postgres + pgvector, Langfuse), native Ollama with candidate models pulled, a target app with a seeded database and reset, and the seeded-bug catalogue with toggles. <code>testomation bench</code> can already score a hand-written suite.</p>
+            <p>Compose stack (Postgres + pgvector — Langfuse waits for phase 3), native Ollama with the model the spike picked, a target app with a seeded database and reset, and the seeded-bug catalogue with toggles, detectable mutants and replay bundles. <code>testomation bench</code> can already score a hand-written suite, three runs with ranges.</p>
           </div>
           <div class="phase">
             <div class="phase-label">PHASE 1</div>
             <h3>Prove the plumbing</h3>
-            <p>The spec schema and the Playwright spec runner, running hand-written specs and capturing evidence into the local folder. Create the memory schema (nodes, edges, claims) now: specs, runs and evidence paths are its first nodes, and a static route → file map gives the first <code>touches</code> edges. Trace pipeline stages in Langfuse from day one. No model calls yet.</p>
+            <p>The spec schema (one source, generated types) and the Playwright spec runner with fixtures, helper registry and origin guard, running hand-written specs and capturing evidence. Results are ingested as <code>result</code> rows, and the same ingest reads external Playwright reports. Create the memory schema now — typed tables, claims, basis hashes — with specs and runs as its first nodes and a static route → file map giving the first <code>touches</code> edges. Stage spans go to an OpenTelemetry file. No model calls yet.</p>
           </div>
           <div class="phase">
             <div class="phase-label">PHASE 2</div>
             <h3>Tell bugs from noise — rules only</h3>
-            <p>The analyzer's deterministic half: assertions, status codes, console allowlist, axe, screenshot diffs, flake history, dedup by error hash. It writes rule claims, noise signatures and a local report. Its benchmark scores become the baseline every model-based feature has to beat.</p>
+            <p>The analyzer's deterministic half: assertions, status codes, console allowlist, axe, screenshot diffs, flake history, dedup by error hash — for spec-runner results and imported Playwright suites alike. It writes rule claims, noise signatures and a local report. Its scores on both benchmark tiers become the baseline every model-based feature has to beat.</p>
           </div>
           <div class="phase">
             <div class="phase-label">PHASE 3</div>
             <h3>Generate specs from plain English</h3>
-            <p>Test gen with the large local model: described flow → JSON spec under constrained decoding, a capped repair loop that can't touch assertions, and drafts promoted with <code>testomation approve</code>. Generated specs land in memory linked to the flows they cover. The repair loop stays plain code for now.</p>
+            <p>Langfuse comes up. Test gen with the small model: described flow → JSON spec under constrained decoding, up to three batched repair rounds with the model unloaded while drafts run, and drafts promoted with <code>testomation approve</code>. The large tier is tried on the benchmark and kept only if it earns its place.</p>
           </div>
           <div class="phase">
             <div class="phase-label">PHASE 4</div>
             <h3>Plan the coverage</h3>
-            <p>A planner built as crawler + parser + aria snapshots first, with the small model naming and ranking flows. It populates <code>Page</code>, <code>Component</code>, <code>Element</code>, <code>Flow</code> and <code>ApiEndpoint</code> nodes, and re-plans only what a diff touches.</p>
+            <p>A planner built as crawler + parser + aria snapshots first, with the small model naming and ranking flows and inferring business rules. It populates <code>Page</code>, <code>Component</code>, <code>Element</code>, <code>Flow</code> and <code>ApiEndpoint</code> nodes with aria basis hashes, and re-plans only pages whose basis changed.</p>
           </div>
           <div class="phase">
             <div class="phase-label">PHASE 5</div>
             <h3>Put the model in the loop</h3>
-            <p>The analyzer becomes the first LangGraph graph: memory → rules → small model ×3 → confidence gate → <code>interrupt()</code>. <code>testomation review</code> resumes paused graphs; decisions become human claims and Langfuse scores. Thresholds are calibrated on the benchmark. Move the test-gen repair loop onto LangGraph once the pattern is proven.</p>
+            <p>The analyzer cascade in plain Python: memory → rules → labelled neighbours → small model with logprobs → calibrated gate → <code>review_item</code>. <code>testomation review</code> decides items; decisions become human claims, trace scores and new labelled neighbours. Gates, the neighbour vote, the score combination and the budget are calibrated on the benchmark.</p>
           </div>
           <div class="phase">
             <div class="phase-label">PHASE 6</div>
             <h3>Go exploratory</h3>
-            <p>Fuzzing and coverage-guided crawling with invariant checks first, then a text-based exploratory agent over aria snapshots (a LangGraph loop that stops when budget or new states run out), an optional small vision model, plus flaky-test quarantine and visual baselines — the trio that turns a test runner into something that finds bugs on its own.</p>
+            <p>Fuzzing and coverage-guided crawling with invariant checks first, then a text-based exploratory agent over aria snapshots — the one LangGraph loop, checkpointed, choosing spec steps on the target origin and stopping when budget or new states run out — an optional small vision model, plus flaky-test quarantine and visual baselines.</p>
           </div>
           <div class="phase">
             <div class="phase-label">LATER</div>
             <h3>Platformize</h3>
-            <p>CI/CD plugins, dashboard and trend analytics (read from the memory graph and Langfuse), GitHub Issues / Jira / Slack, production synthetic monitoring, RBAC, multi-project UI, the plugin architecture, WebKit through the Playwright container — and Temporal, if Testomation ever outgrows one machine.</p>
+            <p>CI/CD plugins, dashboard and trend analytics (read from the memory graph and Langfuse), GitHub Issues / Jira / Slack, production synthetic monitoring, RBAC, multi-project UI, the plugin architecture, WebKit through the Playwright container, test selection once the full suite gets slow — and Temporal, if Testomation ever outgrows one machine.</p>
           </div>
         </div>
       </section>
 
+      <section id="design">
+        <div class="section-head">
+          <span class="section-num">15</span>
+          <h2>Design roadmap</h2>
+        </div>
+        <p>§14 says what gets <em>built</em> in which phase. This section says what has to be <em>designed and decided</em> before each phase starts, what each design step produces, and how you know it's done. The rule: <strong>design one step ahead of the build, not the whole thing up front.</strong> Steps 1–3 come before any product code; after that, each step is finished just before its phase starts.</p>
+
+        <div class="subhead">// how design decisions are made</div>
+        <ul class="choice-list">
+          <li><strong>Measure before deciding</strong> — anything that depends on model quality (tiers, thresholds, budget, prompts) is decided by the spike or the benchmark, not by argument.</li>
+          <li><strong>Freeze contracts, not internals</strong> — the spec schema, file formats, table DDL and the llm client interface are versioned and changed deliberately; the code behind them changes freely.</li>
+          <li><strong>Write it down in order</strong> — the decisions log first, then every doc that references it, then this brief.</li>
+          <li><strong>Every step has an exit gate</strong> — a step is done when its gate passes, not when the document looks complete.</li>
+        </ul>
+
+        <div class="subhead">// the steps</div>
+        <div class="table-wrap">
+        <table>
+          <tr><th>Step</th><th>Design focus</th><th>Before</th><th>Exit gate</th></tr>
+          <tr><td>1 · Spike</td><td class="opt">Are local models good enough on this laptop?</td><td class="opt">Everything</td><td class="opt">A report with a number for every question below</td></tr>
+          <tr><td>2 · Contracts</td><td class="opt">Spec schema v1 + examples, result format, memory DDL, llm client interface, trace attributes, helper registry</td><td class="opt">Phases 0–1</td><td class="opt">Examples validate in Python and TypeScript; DDL applies to a fresh Postgres</td></tr>
+          <tr><td>3 · Benchmark</td><td class="opt">Target app, bug catalogue format, reference suite, replay bundles, scoring with ranges</td><td class="opt">Phase 0</td><td class="opt">Scores stable within ±1 bug across 3 runs; replay runs in minutes</td></tr>
+          <tr><td>4 · Execution</td><td class="opt">Runner fixtures, evidence retention, the importer, stage state, machine load, file traces</td><td class="opt">Phase 1</td><td class="opt">Spec-runner and imported results land as result rows; a crashed run resumes</td></tr>
+          <tr><td>5 · Rules</td><td class="opt">Rule catalogue with ids and fixed confidences, noise signature kinds, dedup, report template</td><td class="opt">Phase 2</td><td class="opt">Baseline numbers on both benchmark tiers</td></tr>
+          <tr><td>6 · Generation</td><td class="opt">Prompts, templates, repair-round state, approval flow, requirement inference; Langfuse wiring</td><td class="opt">Phase 3</td><td class="opt">Spec success rate measured; large tier kept or dropped</td></tr>
+          <tr><td>7 · Planner</td><td class="opt">Crawler choice, natural keys, aria normalisation, basis policy, plan format</td><td class="opt">Phase 4</td><td class="opt">Second-run memory hit rate measured; a one-file change re-plans only affected pages</td></tr>
+          <tr><td>8 · Model in loop</td><td class="opt">Neighbour vote, logprob extraction, score calibration, gate values, budget, review flow</td><td class="opt">Phase 5</td><td class="opt">Thresholds fitted; held-out recall within the run-to-run range</td></tr>
+          <tr><td>9 · Exploration</td><td class="opt">The LangGraph loop, invariants, novelty measure, Python ↔ TypeScript bridge</td><td class="opt">Phase 6</td><td class="opt">Finds a seeded bug no approved spec caught, within budget, never leaving the origin</td></tr>
+        </table>
+        </div>
+
+        <div class="subhead">// step 1 — the spike's questions (proposed targets)</div>
+        <div class="table-wrap">
+        <table>
+          <tr><th>Question</th><th>How</th><th>Target</th></tr>
+          <tr><td>Usable specs?</td><td class="opt">10 described Conduit flows → spec, ≤ 3 batched repair rounds</td><td class="opt">≥ 7 of 10 pass on the clean app</td></tr>
+          <tr><td>Large tier worth it?</td><td class="opt">The same 10 flows on the large tier</td><td class="opt">Keep only if ≥ 2 more pass, or repairs halve</td></tr>
+          <tr><td>Useful triage?</td><td class="opt">~20 captured failures, one call each, label probability from logprobs</td><td class="opt">Beats "everything is a bug"; right answers get higher probabilities than wrong ones</td></tr>
+          <tr><td>Toolchain?</td><td class="opt">Structured output with the spec schema; logprobs through the client</td><td class="opt">Works, or a fallback is chosen</td></tr>
+          <tr><td>Fits?</td><td class="opt">Peak RAM and swap with model + 2 workers + app; tokens/s per tier</td><td class="opt">No swapping</td></tr>
+        </table>
+        </div>
+        <div class="note"><strong>If the spike misses its targets</strong>, narrow the scope before building anything — for example, generation from templates only, with the model limited to planning and triage. Moving to hosted models would change the ground rules, so it needs an explicit decision.</div>
+        <p class="muted" style="margin-top:20px">The full design roadmap, with what each step produces and which open question it closes, is in <code>docs/DESIGN_ROADMAP.md</code>.</p>
+      </section>
+
       <footer>
-        Testomation — project brief v0.5 · local-first: Ollama models, JSON test specs, Playwright Test, self-hosted Langfuse, seeded-bug benchmark
+        Testomation — project brief v0.6 · local-first: Ollama models, JSON test specs, Playwright Test, plain-Python agents, traces from day one, seeded-bug benchmark with a replay tier
       </footer>
 
     </div>

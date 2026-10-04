@@ -1,6 +1,6 @@
 # Test Spec
 
-> Source: `testomation.html` §05 (brief v0.5)
+> Source: `index.html` §05 (brief v0.6)
 
 A test is **data, not code**. A model fills a JSON schema; one Playwright runner interprets it.
 
@@ -19,7 +19,7 @@ Why:
   "spec_version": 1,
   "id": "checkout.guest.no-email",
   "flow": "guest-checkout",
-  "requirement": "REQ-142",
+  "requirement": "checkout.email-required",
   "steps": [
     { "action": "goto",   "url": "/cart" },
     { "action": "click",  "target": { "role": "button", "name": "Checkout" } },
@@ -31,14 +31,27 @@ Why:
 }
 ```
 
+`requirement` is optional. In the MVP it names a business rule the planner inferred or a
+human added at approval (see [MEMORY_GRAPH.md](MEMORY_GRAPH.md#where-requirements-come-from-mvp)).
+
 Each step is discriminated by `action`, which keeps the JSON Schema simple for constrained
-decoding. The schema lives at `schemas/test-spec.schema.json` (planned).
+decoding.
+
+## One schema, two languages
+
+- `schemas/test-spec.schema.json` is the **only** definition of a spec.
+- Pydantic models (Python) and TypeScript types are **generated** from it — never edited by
+  hand.
+- `schemas/examples/` holds valid and invalid example specs. Both sides validate them in
+  tests, so the brain and the hands can't drift.
+- At generation time, the registered helper names are injected into the schema as an enum,
+  so constrained decoding can only name helpers that exist.
 
 ## Step vocabulary
 
 | Action | Fields | Notes |
 |---|---|---|
-| `goto` | `url` | Relative to the target's base URL |
+| `goto` | `url` | A path relative to the target's base URL — must start with `/` |
 | `click`, `hover` | `target` | |
 | `fill`, `select` | `target`, `value` | Value may be a literal or a reference |
 | `check`, `uncheck` | `target` | |
@@ -46,8 +59,9 @@ decoding. The schema lives at `schemas/test-spec.schema.json` (planned).
 | `upload` | `target`, `file` | `file` is a `$fixture` reference |
 | `wait_for` | `target`, `state` | `visible` · `hidden` |
 | `expect` | `target` or page, `assert`, `value` | `visible` · `hidden` · `hasText` · `hasValue` · `count` · `url` · `ariaSnapshot` |
-| `api` | `method`, `path`, `body`, optional `expect` | Backend setup/verification via Playwright's request context |
+| `api` | `method`, `path`, `body`, optional `expect` | Backend setup/verification via Playwright's request context; `path` must start with `/` |
 | `viewport` | `preset` | `phone` · `tablet` · `desktop` |
+| `helper` | `name`, `args` | Runs a registered, hand-written helper (see below) — *new in v0.6* |
 
 ## Targets
 
@@ -70,6 +84,27 @@ CSS and XPath are **not in the schema**.
 | `{"$secret": "TEST_ADMIN_PASSWORD"}` | Credential resolved from the environment at run time; never stored |
 | `{"$fixture": "invoice.pdf"}` | File from the project's fixtures folder |
 
+## Growing the vocabulary: helper steps
+
+Specs will need things the core vocabulary can't express — dialogs, downloads, iframes,
+drag-and-drop, network assertions. Rather than growing the format into a programming
+language:
+
+- A human writes a **helper** in `runner/helpers/<name>.ts` exporting `name`, an `args` JSON
+  Schema, and `run(page, args)`.
+- A spec calls it with `{ "action": "helper", "name": "acceptDownload", "args": { … } }`.
+- Models can only **name** registered helpers (the enum above); they never write one.
+- A helper that many specs use can be promoted into the core vocabulary with a
+  `spec_version` bump.
+
+## Origin guard
+
+- `goto.url` and `api.path` must be relative (schema pattern `^/`), so a spec can't point
+  anywhere else.
+- The runner resolves every path against `TESTO_TARGET_URL` and aborts top-level navigation
+  to any other origin. Third-party subresources follow the mocking rules (`page.route` / HAR).
+- Exploratory mode uses the same guard.
+
 ## Spec runner
 
 - One Playwright Test file (`runner/spec-runner.spec.ts`) reads the run's spec files and
@@ -77,8 +112,9 @@ CSS and XPath are **not in the schema**.
 - Each step runs inside `test.step()`, so steps appear by name in traces and the HTML report,
   and the failing step index is easy for the analyzer to read.
 - Fixtures add: axe check after each navigation, Chromium JS coverage, aria snapshot on
-  failure, saved auth state, route/HAR mocks.
-- Output: Playwright JSON reporter results + evidence folder, ingested by Python.
+  failure, saved auth state, route/HAR mocks, the origin guard, the helper registry.
+- Output: Playwright JSON reporter results + evidence folder, ingested by Python as `result`
+  rows.
 
 **Exporter (later):** turns a spec into a readable `.spec.ts` for anyone who wants to own a
 test outside Testomation.
@@ -92,18 +128,22 @@ approved ──flaky────►  quarantined ──fixed──► approved
 approved ──obsolete─►  retired
 ```
 
-Stored as `status` on the `TestCase` node (not inside the spec). Only `approved` specs run in
-regression.
+Stored as `status` on the `test_case` row (not inside the spec). Only `approved` specs run in
+regression — and all of them run, every run.
 
-## Repair loop (drafts only)
+## Repair rounds (drafts only) — *changed in v0.6*
+
+Repairs are **batched**, so the model and the browsers never compete for RAM:
 
 ```
-run draft ─► fails ─► large model gets: spec + failing step + error + aria snapshot
-                         │
-                         ▼
-                 corrected spec (schema-constrained) ─► validate ─► run again
-                         │
-                 after 3 attempts ─► review queue ("couldn't make it pass — real bug?")
+round 1..3
+  ├─ generate / repair every pending draft      model loaded (small tier)
+  ├─ unload the model                           keep_alive: 0
+  ├─ run every pending draft                    Playwright, full worker count
+  └─ passing → ready for `testomation approve`
+     failing → next round gets: spec + failing step + error + aria snapshot
+
+after round 3, still failing → review queue ("couldn't make it pass — real bug?")
 ```
 
 | Repair may | Repair may not (needs review) |
@@ -120,6 +160,6 @@ bugs" from happening. See [RISKS.md](RISKS.md).
 
 ## Storage
 
-- Source of truth: `TestCase.props.spec` (+ `status`) in the memory graph.
+- Source of truth: `test_case.spec` (+ `status`) in the memory graph.
 - Per run: materialised to `data/runs/<run>/specs/*.json` for the runner.
 - Embeddings of specs (optional) help find similar specs to template from.

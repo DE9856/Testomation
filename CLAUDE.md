@@ -5,10 +5,10 @@ Guidance for Claude (and humans) working in this repository.
 ## Status
 
 **Design stage — there is no code yet.** This repo holds the idea documentation for
-Testomation. The source of truth is the project brief `testomation.html` (**v0.5**); the
-Markdown files in `docs/` are a split-out, editable version of it. Keep the two in sync. If
-they disagree, flag it rather than silently picking one. The previous brief is kept at
-`archive/testomation-v0.4.html`.
+Testomation. The source of truth is the project brief `index.html` (**v0.6**, served on
+GitHub Pages); the Markdown files in `docs/` are a split-out, editable version of it. Keep the
+two in sync. If they disagree, flag it rather than silently picking one. Previous briefs are
+kept at `archive/testomation-v0.5.html` and `archive/testomation-v0.4.html`.
 
 ## What Testomation is
 
@@ -19,7 +19,7 @@ from noise, and reports back — asking a human only when it isn't sure.
 It sits **alongside** scripted regression testing, not instead of it: it fills the gap
 between "what we remembered to test" and "what the app can actually do."
 
-## Ground rules (v0.5)
+## Ground rules (v0.6)
 
 - **Free and local.** Everything runs on one laptop (Ryzen 7 5800H, 16 GB RAM, RTX 3050 4 GB
   VRAM, Fedora). No paid APIs or hosted services in the product.
@@ -28,26 +28,28 @@ between "what we remembered to test" and "what the app can actually do."
   `anthropic` SDK or any paid API as a runtime dependency.
 - **Playwright does the running.** Playwright Test provides execution, workers, retries,
   traces, screenshots and reports. Don't rebuild what it already does.
-- **Langfuse, self-hosted.** Runs locally with Docker Compose.
+- **Tracing: OpenTelemetry first, Langfuse from phase 3.** Phases 0–2 write spans to a local
+  file; self-hosted Langfuse (Docker Compose) arrives with the first model call.
 
 ## Doc map
 
 | File | Read it when you need… |
 |---|---|
-| [docs/OVERVIEW.md](docs/OVERVIEW.md) | The pitch, ground rules, pipeline, what changed in v0.5 |
+| [docs/OVERVIEW.md](docs/OVERVIEW.md) | The pitch, ground rules, pipeline, what changed in v0.6, how it differs from Playwright's agents |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | How every part connects: agents, runner, stores, model path, data flow |
 | [docs/COMPONENTS.md](docs/COMPONENTS.md) | What each agent/service does, its inputs and outputs |
-| [docs/TEST_SPEC.md](docs/TEST_SPEC.md) | The JSON test format, spec runner, lifecycle, repair rules |
-| [docs/MEMORY_GRAPH.md](docs/MEMORY_GRAPH.md) | Node/edge/claim model, SQL schema, read-first/write-back loop, trust rules |
+| [docs/TEST_SPEC.md](docs/TEST_SPEC.md) | The JSON test format, helper steps, origin guard, spec runner, lifecycle, repair rounds |
+| [docs/MEMORY_GRAPH.md](docs/MEMORY_GRAPH.md) | Nodes, typed tables, edges, claims, basis-hash freshness, SQL schema, trust rules |
 | [docs/COST_STRATEGY.md](docs/COST_STRATEGY.md) | Where models are and aren't allowed; compute budget |
-| [docs/OBSERVABILITY.md](docs/OBSERVABILITY.md) | Langfuse mapping, instrumentation with Ollama, metrics |
-| [docs/AGENT_RUNTIME.md](docs/AGENT_RUNTIME.md) | Pipeline runner (outside) vs LangGraph (inside), the analyzer graph |
+| [docs/OBSERVABILITY.md](docs/OBSERVABILITY.md) | OpenTelemetry file traces, Langfuse mapping, instrumentation, metrics |
+| [docs/AGENT_RUNTIME.md](docs/AGENT_RUNTIME.md) | Pipeline runner for jobs, plain-Python agents, the analyzer cascade, the LangGraph exploration loop |
 | [docs/LOCAL_SETUP.md](docs/LOCAL_SETUP.md) | Laptop limits, services, model tiers, RAM budget, app state, repo layout |
-| [docs/EVALUATION.md](docs/EVALUATION.md) | Seeded-bug benchmark, metrics, how thresholds and models are chosen |
+| [docs/EVALUATION.md](docs/EVALUATION.md) | Seeded-bug benchmark, replay and full tiers, metrics, how thresholds and models are chosen |
 | [docs/FEATURES.md](docs/FEATURES.md) | Full feature catalog, core vs later |
 | [docs/RISKS.md](docs/RISKS.md) | Design risks the architecture is built around |
-| [docs/TECH_STACK.md](docs/TECH_STACK.md) | Chosen tools per layer and why |
-| [docs/ROADMAP.md](docs/ROADMAP.md) | Build order, phases 0–6 + later |
+| [docs/TECH_STACK.md](docs/TECH_STACK.md) | Chosen tools per layer and why; what was considered and not used |
+| [docs/ROADMAP.md](docs/ROADMAP.md) | Build order: spike, phases 0–6 + later |
+| [docs/DESIGN_ROADMAP.md](docs/DESIGN_ROADMAP.md) | What to design and decide before each phase, with exit gates |
 | [docs/DECISIONS.md](docs/DECISIONS.md) | Decisions made, decisions still open, gaps found and resolved |
 
 ## Core principles (do not violate without discussion)
@@ -55,46 +57,63 @@ between "what we remembered to test" and "what the app can actually do."
 1. **The LLM writes and interprets tests; it never runs them.** Execution is Playwright Test.
    Model work should scale with how much the app *changes*, not how often it's tested.
 2. **Tests are JSON specs, not code.** Models fill a schema; one spec runner executes it.
-   Nothing a model writes is ever executed on the host.
+   Nothing a model writes is ever executed on the host, and specs never leave the target
+   app's origin.
 3. **Memory → deterministic tools → model → write back.** Every agent step follows this order.
-4. **Provenance on everything.** Nodes, edges and claims record source (`rules` / `llm` /
-   `human`), confidence, and the Langfuse trace ID.
-5. **Human beats model.** Resolved per node and field from claims; losing claims are kept.
-6. **No silent suppression or self-healing.** An LLM-inferred `NoiseSignature` never hides a
-   failure until a human confirms it. Approved specs never change without review. Repairs to
-   drafts may not touch assertions.
-7. **Stale until proven.** Invalidated memory can inform a decision but cannot short-circuit
-   one — including human claims.
-8. **Pipeline runner + Playwright own jobs; LangGraph owns decisions.** Never blur the two.
-9. **Confidence comes from agreement and rules, not model self-report**, and thresholds are
-   calibrated on the benchmark.
-10. **Every prompt, model or threshold change is gated on the seeded-bug benchmark.**
-11. **Respect the laptop.** One model loaded at a time, two Playwright workers while a model
-    is loaded, generation and execution kept apart.
-12. **Only use a framework where logic branches.** Executor and reporter stay plain code.
+4. **Provenance on everything.** Nodes, edges and claims record source (`rules` / `knn` /
+   `llm` / `human`), confidence, trace ID and basis.
+5. **Human beats model.** Resolved per node field and per edge from claims; losing claims are
+   kept.
+6. **No silent suppression or self-healing.** A model-inferred (`llm` or `knn`)
+   `NoiseSignature` never hides a failure until a human confirms it. Approved specs never
+   change without review. Repairs to drafts may not touch assertions.
+7. **Stale until proven.** Freshness comes from basis hashes. Stale memory can inform a
+   decision but cannot short-circuit one — including human claims.
+8. **Pipeline runner + Playwright own jobs; agent code owns decisions; LangGraph only for the
+   exploration loop.** Never blur them.
+9. **Confidence comes from label probabilities, labelled neighbours and rules, not model
+   self-report**, and thresholds are calibrated on the benchmark.
+10. **Every prompt, model or threshold change is gated on the seeded-bug benchmark** — the
+    replay tier for analyzer changes, the full tier for generation and model changes.
+11. **Respect the laptop.** One model loaded at a time, and unloaded while specs run; two
+    Playwright workers while a model is loaded; generation and execution kept apart
+    (batched repair rounds).
+12. **Only use a framework where logic loops.** Agents, executor and reporter stay plain
+    code.
 
 ## Vocabulary
 
 - **Spec** — a JSON test: steps with role/label targets and assertions. Stored on a
-  `TestCase` node. Lifecycle `draft → approved → quarantined → retired`.
+  `TestCase` node (`test_case` table). Lifecycle `draft → approved → quarantined → retired`.
 - **Spec runner** — the one Playwright Test file that interprets specs.
-- **Run** — one execution of the pipeline (`run-<pr>-<sha>` or `run-local-<timestamp>`).
+- **Helper step** — a hand-written TypeScript helper a spec can call by name; models can only
+  name registered helpers.
+- **Run** — one execution of the pipeline (`run-<pr>-<sha>`, `run-local-<timestamp>` or
+  `run-import-<timestamp>`).
+- **Result** — one row per test per run: outcome, failing step, error signature, evidence path.
 - **Evidence** — Playwright trace, screenshots, video, axe results, coverage for a run. Lives
-  in `data/evidence/<run>/`; memory stores only paths.
-- **Claim** — one source's assertion about a node field (e.g. verdict = bug, source = llm,
-  confidence = 0.67). Several claims can coexist; `mem_fact` resolves them.
+  in `data/evidence/<run>/`; memory stores only paths (on `result` rows).
+- **Claim** — one source's assertion about a node field or an edge (e.g. verdict = bug,
+  source = llm, confidence = 0.71). Several claims can coexist; `mem_fact` resolves them.
+- **Basis** — the file hashes and normalised aria-snapshot hashes a node, edge or claim was
+  based on. It's fresh while they still match `basis_state`.
+- **Labelled neighbours** — past failures with a fresh human (or benchmark) verdict, nearest
+  by embedding; their vote is a claim with source `knn`.
 - **Noise signature** — a known-harmless error pattern.
-- **Review queue** — interrupted LangGraph threads waiting for a human, listed via
-  `testomation review`.
-- **Model tiers** — `small` (~4B, on GPU), `large` (~7–8B, CPU offload), `vision`
-  (optional), `embed`.
+- **Review queue** — open `review_item` rows, decided via `testomation review`.
+- **Model tiers** — `small` (~4B, on GPU; the default for everything), `large` (~7–8B, CPU
+  offload; only if the benchmark earns it), `vision` (optional), `embed`.
 - **Compute budget** — per-run cap on model calls and model wall-clock time.
-- **Benchmark** — local target app with toggleable seeded bugs; `testomation bench`.
+- **Spike** — the throwaway feasibility test that comes before any infrastructure.
+- **Benchmark** — local target app with toggleable seeded bugs; `testomation bench` (full
+  tier) and `testomation bench --replay` (replay tier).
 
 ## Working conventions for this repo
 
 - Change a decision → update `docs/DECISIONS.md`, every doc that references it, **and** the
-  matching section of `testomation.html` (bump its version in the sidebar and footer).
+  matching section of `index.html` (bump its version in the sidebar and footer).
+- Before bumping the brief's version, copy the current `index.html` to
+  `archive/testomation-v<old version>.html`.
 - Prefer concrete examples (node names, edge names, table columns, spec fields) over prose.
 - When proposing something not covered, add it under "Open questions" in `docs/DECISIONS.md`
   rather than stating it as settled.
